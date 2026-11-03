@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "critic-agent-ta"
+version = "0.1.0"
+description = "Deterministic verification of Qwen-generated Laravel controllers"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+critic-agent = "critic_agent.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["critic_agent*"]
