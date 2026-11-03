@@ -6,7 +6,7 @@
 
 **Architecture:** Python 3.11+ standard library, argparse CLI, urllib Ollama client, PHP tokenizer subprocess. No generated controller is executed by this slice. Docker feature tests and revision orchestration follow after prerequisites are available.
 
-**Spec:** ../../spec-mvp.md and the supplied PRD_Critic_Agent_v1.3.md (parent outputs directory).
+**Spec:** ../../spec-mvp.md and the supplied PRD_Critic_Agent_v1.3.md (project root).
 
 ## Global constraints
 - Local Qwen2.5-7B-Instruct; no LLM inside Critic.

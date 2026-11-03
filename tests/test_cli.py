@@ -18,6 +18,19 @@ class CliTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0)
         self.assertIn('generate', result.stdout)
 
+    def test_harness_help(self):
+        self.assertEqual(self.command('harness-check', '--help').returncode, 0)
+        self.assertEqual(self.command('check-products', '--help').returncode, 0)
+
+    def test_products_harness_rejects_different_spec_before_docker(self):
+        with temporary_directory() as folder:
+            path = Path(folder)/'spec.json'
+            wrong = dict(SPEC, model='Other')
+            path.write_text(json.dumps(wrong))
+            result = self.command('check-products', path, 'examples/StructureOnlyController.php')
+            self.assertEqual(result.returncode, 2)
+            self.assertIn('Harness contoh ini hanya', result.stderr)
+
     def test_validate_and_prompt(self):
         with temporary_directory() as folder:
             path = Path(folder)/'spec.json'

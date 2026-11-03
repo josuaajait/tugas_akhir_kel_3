@@ -7,3 +7,7 @@ runs/
 .env
 build/
 dist/
+harness/laravel/vendor/
+harness/laravel/.phpunit.cache/
+harness/laravel/.env
+harness/laravel/.phpunit.result.cache

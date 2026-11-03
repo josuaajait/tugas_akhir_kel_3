@@ -2,6 +2,8 @@
 
 Prototipe TA untuk memeriksa controller CRUD REST API Laravel hasil Qwen2.5-7B-Instruct. Versi 0.1.0 menyediakan **fondasi generasi dan analisis statis**, belum merupakan MVP lengkap.
 
+Tahap berikutnya sudah ditambahkan: kode harness Laravel, controller acuan, dan runner Docker untuk kontrak products. **Belum terverifikasi melalui Docker** pada perangkat ini. Petunjuk dan batasan: [harness/README.md](harness/README.md).
+
 ## Yang tersedia
 
 - Validasi spesifikasi JSON yang ketat dan prompt dengan kontrak Laravel tetap.
@@ -9,6 +11,7 @@ Prototipe TA untuk memeriksa controller CRUD REST API Laravel hasil Qwen2.5-7B-I
 - Arsip unik tiap generasi: spesifikasi, prompt, respons mentah yang diterima, kode, hash, dan manifest; termasuk kegagalan ekstraksi/layanan.
 - Pemeriksaan sintaks serta namespace/class/method/signature melalui tokenizer PHP. Controller tidak dieksekusi oleh perintah ini.
 - Pemeriksaan kesiapan Python, PHP, Docker, layanan Ollama, dan nama model.
+- Perintah `harness-build`, `harness-check`, dan `check-products`; parser JUnit, pembatasan output, dan arsip pemeriksaan container. Test dinamis nyata masih menunggu Docker tersedia.
 
 Status `AWAITING_DYNAMIC_TESTS` berarti tahap fondasi selesai tanpa temuan statis atau kode telah diekstrak, bergantung perintah yang dijalankan. **Bukan LOLOS fungsional**. `generate` tidak otomatis menjalankan `analyze`.
 
@@ -56,4 +59,4 @@ Pengujian client saat ini memakai transport terkontrol; hasilnya tidak membuktik
 - [PHP token_get_all](https://www.php.net/manual/en/function.token-get-all.php)
 - [Laravel routing](https://laravel.com/docs/12.x/routing)
 
-Versi Laravel final belum dipilih; tautan dokumentasi bukan klaim bahwa harness sudah tersedia.
+Harness awal mengunci Laravel 12.70.2 dan PHPUnit 11.5.57 dalam composer.lock. Ketepatan image/runtime serta 21 kasus Laravel masih perlu dibuktikan sebelum pembekuan eksperimen.

@@ -36,3 +36,19 @@ This is the first implementation slice, not the finished MVP or 80% of the proje
 `python -m unittest discover -s tests -v`: 29 tests passed, none skipped, using installed PHP 8.3.30. Sample validate and analyze commands passed; the empty-method fixture correctly remains AWAITING_DYNAMIC_TESTS.
 
 `python -m critic_agent doctor`: Python/PHP available, Docker executable not found. The localhost Ollama probe was denied socket access by this execution environment (WinError 10013); service availability is therefore unverified, not proven absent. Ollama executable was also absent from PATH/common install location. No global installation, model download, or container build was attempted.
+
+## Laravel harness slice
+
+Plan: docs/superpowers/plans/2026-11-03-laravel-harness.md.
+
+- Added minimal Laravel application, scalar-ID routes, model/migration, and trusted products reference controller.
+- Added 14 internal cases and 7 edge cases for reference readiness. These are authored cases, **not a report that 21 tests passed**. Edge readiness suite is not the independent final evaluation suite.
+- Downloaded project dependencies with Composer scripts/plugins disabled and project-local cache configuration. Locked Laravel 12.70.2 and PHPUnit 11.5.57; composer validate confirms valid manifest/lock, with a license-metadata warning only.
+- Real PHP lint passes for all 15 authored PHP files. PHPUnit cannot start in the current restricted Windows process: is_readable(vendor/autoload.php) is false, although file_exists/file_get_contents/require succeed. No vendor patches, access-check overrides, or candidate execution on host were used to bypass this.
+- Docker absent: image build and live reference/candidate execution are pending. CLI harness-check exits 3 with an environment error. DockerRunner never falls back to host execution.
+- Added runner, JUnit parser, immutable image ID use, readiness gate, input snapshots and outcome archives. Missing/zero/skipped/malformed/inconsistent reports do not pass. Cleanup failure cannot report readiness.
+- Review identified writable host report mounts and unbounded stdout as risks. Final design uses no writable host mounts: JUnit stays on bounded tmpfs and is emitted as size-limited base64; host stdout/stderr capture has an 8 MB combined bound. Docker logging disabled. Candidate report remains an observation, not adversarial proof.
+- Ruling: implement the fixed products harness first and reject spec variations; generic generation remains future work. Cost: this slice tests only the sample contract.
+- Ruling: local execution limited to trusted readiness code. No system Docker/Ollama installation without user authorization.
+- Python suite checkpoint: 45 tests passed, including actual bounded-subprocess test and controlled Docker invocation/report scenarios. No actual Docker result is asserted.
+- Remaining gate: normal Docker Desktop/WSL2 environment must build image and pass `harness-check`; only then verify failure detection on a broken controller inside Docker and move to revision orchestration.
