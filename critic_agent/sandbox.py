@@ -16,10 +16,18 @@ import subprocess
 from uuid import uuid4
 import xml.etree.ElementTree as ET
 from .process import bounded_run, OutputLimitError
+from .spec import load_spec, validate_spec, SpecError
 
 
 class SandboxError(RuntimeError):
     pass
+
+
+def validate_products_contract(spec):
+    validate_spec(spec)
+    supported = load_spec(Path(__file__).resolve().parents[1]/'harness'/'products-contract.json')
+    if any(spec[key] != supported[key] for key in ('resource', 'model', 'controller', 'fields', 'operations')):
+        raise SpecError('Harness contoh ini hanya mendukung kontrak products yang disediakan; variasi lain belum tersedia.')
 
 
 def parse_junit(content: bytes) -> dict:
@@ -63,6 +71,13 @@ def parse_junit(content: bytes) -> dict:
 
 
 class DockerRunner:
+    reference_mode = 'reference'
+    candidate_mode = 'candidate'
+    reference_tests = 21
+    candidate_tests = 14
+    candidate_pass_status = 'PASSED_INTERNAL'
+    candidate_fail_status = 'FAILED_INTERNAL'
+
     def __init__(self, *, image='critic-laravel:dev', output_root=Path('runs/harness'), timeout=120,
                  execute=bounded_run):
         if not math.isfinite(timeout) or timeout <= 0:
@@ -80,7 +95,7 @@ class DockerRunner:
                    '--tmpfs', '/tmp:rw,nosuid,nodev,noexec,size=32m,mode=1777']
         if candidate is not None:
             command += ['--mount', f'type=bind,src={candidate.resolve()},dst=/input/controller.php,readonly']
-        command += [self.image, 'candidate' if candidate is not None else 'reference']
+        command += [self.image, self.candidate_mode if candidate is not None else self.reference_mode]
         return command
 
     def check_reference(self) -> dict:
@@ -122,7 +137,7 @@ class DockerRunner:
         result = {'status': 'ERROR', 'reason': 'incomplete_run', 'run_directory': str(folder.resolve()),
                   'created_at': datetime.now(timezone.utc).isoformat(), 'image': self.image,
                   'mode': 'candidate' if candidate else 'reference', 'command': command,
-                  'timeout_seconds': self.timeout, 'expected_tests': 14 if candidate else 21}
+                  'timeout_seconds': self.timeout, 'expected_tests': self.candidate_tests if candidate else self.reference_tests}
         if candidate:
             result['candidate_sha256'] = hashlib.sha256(candidate.read_bytes()).hexdigest()
         try:
@@ -159,9 +174,9 @@ class DockerRunner:
                 if summary['total'] != result['expected_tests']:
                     result['reason'] = 'unexpected_test_count'
                 elif process.returncode == 0 and summary['status'] == 'PASSED':
-                    result.update(status='PASSED_INTERNAL' if candidate else 'READY', reason='all_tests_passed')
+                    result.update(status=self.candidate_pass_status if candidate else 'READY', reason='all_tests_passed')
                 else:
-                    result.update(status='FAILED_INTERNAL' if candidate else 'ERROR', reason='tests_failed')
+                    result.update(status=self.candidate_fail_status if candidate else 'ERROR', reason='tests_failed')
         except OutputLimitError as exc:
             result['reason'] = 'output_limit'
             (folder/'stdout.log').write_bytes(exc.output)
@@ -178,11 +193,11 @@ class DockerRunner:
                 result['cleanup_exit_code'] = cleanup.returncode
                 if cleanup.returncode:
                     result['cleanup_detail'] = cleanup.stderr.decode('utf-8', errors='replace')[:2000]
-                    if result['status'] in ('READY', 'PASSED_INTERNAL'):
+                    if result['status'] in ('READY', self.candidate_pass_status):
                         result.update(status='ERROR', reason='cleanup_failed')
             except (OSError, subprocess.TimeoutExpired) as exc:
                 result['cleanup_detail'] = str(exc)
-                if result['status'] in ('READY', 'PASSED_INTERNAL'):
+                if result['status'] in ('READY', self.candidate_pass_status):
                     result.update(status='ERROR', reason='cleanup_failed')
             self._write_result(folder, result)
         return result

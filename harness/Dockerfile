@@ -13,6 +13,7 @@ RUN composer dump-autoload --no-scripts --no-plugins \
     && mkdir -p bootstrap/cache storage/framework/views storage/framework/sessions storage/logs \
     && chmod -R a+rX /opt/harness
 COPY entrypoint.php /opt/critic-entrypoint.php
+COPY runtime.php /opt/critic-runtime.php
 USER 10001:10001
 ENTRYPOINT ["php", "/opt/critic-entrypoint.php"]
 CMD ["reference"]

@@ -34,7 +34,9 @@ Set-Location harness/laravel
 php vendor/bin/phpunit --do-not-cache-result
 ```
 
-Jangan mengganti controller lokal dengan kode Qwen untuk menjalankan perintah ini. Kandidat hanya diuji melalui DockerRunner. Lingkungan eksekusi Codex saat penyiapan mengembalikan `is_readable=false` walau PHP dapat membaca bytes file; PHPUnit lokal terhenti pada pemeriksaan bootstrap. Karena itu hasil 21 kasus Laravel dan Docker masih **belum diverifikasi**. Tes Python dengan transport terkontrol tidak menggantikannya.
+Jangan mengganti controller lokal dengan kode Qwen untuk menjalankan perintah ini. Kandidat hanya diuji melalui DockerRunner. Lingkungan eksekusi Codex mengembalikan `is_readable=false` walau PHP dapat membaca bytes file; PHPUnit lokal terhenti pada pemeriksaan bootstrap. Terminal pengguna telah memverifikasi readiness 21/21 dan loop 13/14 menjadi 14/14 setelah satu revisi. Codex masih tidak dapat mengakses named pipe Docker. Tes Python dengan transport terkontrol tidak menggantikan hasil Docker.
+
+Runtime staging/report sekarang berada di `runtime.php`. Bangun ulang image setelah perubahan runtime. Evaluasi awal/akhir memakai image lain dan suite tersendiri; lihat [evaluator](../evaluation/README.md). `ProductsEdgeTest` tetap hanya kesiapan internal, bukan evaluator akhir.
 
 ## Batas integritas laporan
 

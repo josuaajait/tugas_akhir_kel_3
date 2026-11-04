@@ -1,0 +1,169 @@
+{
+  "suite_id": "books-reference-development-v1",
+  "stage": "development",
+  "spec": {
+    "spec_id": "books_basic",
+    "spec_version": "1.0",
+    "resource": "books",
+    "model": "Book",
+    "controller": "BookController",
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "rules": [
+          "required",
+          "string",
+          "max:80"
+        ]
+      },
+      {
+        "name": "pages",
+        "type": "integer",
+        "rules": [
+          "required",
+          "integer",
+          "min:1",
+          "max:5000"
+        ]
+      }
+    ],
+    "operations": {
+      "index": {
+        "success_status": 200
+      },
+      "store": {
+        "success_status": 201,
+        "validation_error_status": 422
+      },
+      "show": {
+        "success_status": 200,
+        "not_found_status": 404
+      },
+      "update": {
+        "success_status": 200,
+        "validation_error_status": 422,
+        "not_found_status": 404
+      },
+      "destroy": {
+        "success_status": 204,
+        "not_found_status": 404
+      }
+    }
+  },
+  "fixtures": {
+    "new": {
+      "title": "Sea atlas",
+      "pages": 321
+    },
+    "target": {
+      "title": "Earlier edition",
+      "pages": 77
+    },
+    "other": {
+      "title": "Independent neighbour",
+      "pages": 205
+    },
+    "updated": {
+      "title": "Revised volume",
+      "pages": 412
+    }
+  },
+  "invalid": [
+    {
+      "name": "missing_title",
+      "field": "title",
+      "payload": {
+        "pages": 321
+      }
+    },
+    {
+      "name": "missing_pages",
+      "field": "pages",
+      "payload": {
+        "title": "Sea atlas"
+      }
+    },
+    {
+      "name": "blank_title",
+      "field": "title",
+      "payload": {
+        "title": "",
+        "pages": 321
+      }
+    },
+    {
+      "name": "title_array",
+      "field": "title",
+      "payload": {
+        "title": [
+          "bad"
+        ],
+        "pages": 321
+      }
+    },
+    {
+      "name": "long_title",
+      "field": "title",
+      "payload": {
+        "title": "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ",
+        "pages": 321
+      }
+    },
+    {
+      "name": "pages_text",
+      "field": "pages",
+      "payload": {
+        "title": "Sea atlas",
+        "pages": "thirty"
+      }
+    },
+    {
+      "name": "pages_below_min",
+      "field": "pages",
+      "payload": {
+        "title": "Sea atlas",
+        "pages": 0
+      }
+    },
+    {
+      "name": "pages_above_max",
+      "field": "pages",
+      "payload": {
+        "title": "Sea atlas",
+        "pages": 5001
+      }
+    },
+    {
+      "name": "null_pages",
+      "field": "pages",
+      "payload": {
+        "title": "Sea atlas",
+        "pages": null
+      }
+    }
+  ],
+  "valid": [
+    {
+      "name": "title_at_max",
+      "payload": {
+        "title": "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV",
+        "pages": 321
+      }
+    },
+    {
+      "name": "pages_at_min",
+      "payload": {
+        "title": "Sea atlas",
+        "pages": 1
+      }
+    },
+    {
+      "name": "pages_at_max",
+      "payload": {
+        "title": "Sea atlas",
+        "pages": 5000
+      }
+    }
+  ]
+}

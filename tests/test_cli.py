@@ -22,6 +22,11 @@ class CliTests(unittest.TestCase):
         self.assertEqual(self.command('harness-check', '--help').returncode, 0)
         self.assertEqual(self.command('check-products', '--help').returncode, 0)
 
+    def test_loop_command_help_and_revision_budget(self):
+        self.assertEqual(self.command('run-products', '--help').returncode, 0)
+        result = self.command('run-products', 'examples/products.json', '--max-revisions', '4')
+        self.assertEqual(result.returncode, 2)
+
     def test_products_harness_rejects_different_spec_before_docker(self):
         with temporary_directory() as folder:
             path = Path(folder)/'spec.json'

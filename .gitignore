@@ -4,8 +4,10 @@ __pycache__/
 .venv/
 work/
 runs/
+evaluations/
 .env
 build/
+builds/
 dist/
 harness/laravel/vendor/
 harness/laravel/.phpunit.cache/

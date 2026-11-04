@@ -1,0 +1,6 @@
+{
+  "suite_id": "products-reference-development-v1",
+  "expected_tests": 33,
+  "purpose": "Development evaluation; review and freeze before final research runs",
+  "coverage": ["CRUD responses and persisted values", "record isolation", "missing identifiers", "required/string/integer/unique/min/max", "update own unique value", "CRUD sequence"]
+}

@@ -40,7 +40,7 @@ class ProductsContractTest extends TestCase
     public function test_store_persists_one_record_and_preserves_other_records(): void
     {
         $other = $this->record(['sku' => 'OTHER']);
-        $before = $other->toArray();
+        $before = $other->fresh()->toArray();
         $response = $this->postJson('/api/products', $this->payload())
             ->assertCreated()->assertJsonPath('data.name', 'Book')->assertJsonPath('data.price', 120)
             ->assertJsonPath('data.sku', 'BOOK-1');
@@ -66,7 +66,7 @@ class ProductsContractTest extends TestCase
     {
         $target = $this->record();
         $other = $this->record(['sku' => 'OTHER']);
-        $before = $other->toArray();
+        $before = $other->fresh()->toArray();
         $payload = $this->payload(['name' => 'Updated', 'price' => 200, 'sku' => 'NEW']);
         $this->putJson('/api/products/'.$target->id, $payload)->assertOk()
             ->assertJsonPath('data.id', $target->id)->assertJsonPath('data.name', 'Updated')
@@ -80,7 +80,7 @@ class ProductsContractTest extends TestCase
     {
         $target = $this->record();
         $other = $this->record(['sku' => 'OTHER']);
-        $before = $other->toArray();
+        $before = $other->fresh()->toArray();
         $this->deleteJson('/api/products/'.$target->id)->assertNoContent();
         $this->assertDatabaseMissing('products', ['id' => $target->id]);
         $this->assertDatabaseCount('products', 1);

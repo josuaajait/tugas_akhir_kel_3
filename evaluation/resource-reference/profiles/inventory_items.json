@@ -1,0 +1,328 @@
+{
+  "suite_id": "inventory_items-reference-development-v1",
+  "stage": "development",
+  "spec": {
+    "spec_id": "inventory_items_basic",
+    "spec_version": "1.0",
+    "resource": "inventory_items",
+    "model": "StockItem",
+    "controller": "StockItemController",
+    "fields": [
+      {
+        "name": "label",
+        "type": "string",
+        "rules": [
+          "required",
+          "string",
+          "max:80"
+        ]
+      },
+      {
+        "name": "stock",
+        "type": "integer",
+        "rules": [
+          "required",
+          "integer",
+          "min:0",
+          "max:9999"
+        ]
+      },
+      {
+        "name": "warehouse_code",
+        "type": "string",
+        "rules": [
+          "required",
+          "string",
+          "max:24",
+          "unique:inventory_items,warehouse_code"
+        ]
+      },
+      {
+        "name": "reorder_level",
+        "type": "integer",
+        "rules": [
+          "required",
+          "integer",
+          "min:0",
+          "max:500"
+        ]
+      }
+    ],
+    "operations": {
+      "index": {
+        "success_status": 200
+      },
+      "store": {
+        "success_status": 201,
+        "validation_error_status": 422
+      },
+      "show": {
+        "success_status": 200,
+        "not_found_status": 404
+      },
+      "update": {
+        "success_status": 200,
+        "validation_error_status": 422,
+        "not_found_status": 404
+      },
+      "destroy": {
+        "success_status": 204,
+        "not_found_status": 404
+      }
+    }
+  },
+  "fixtures": {
+    "new": {
+      "label": "New crate",
+      "stock": 31,
+      "warehouse_code": "EVAL-NEW",
+      "reorder_level": 3
+    },
+    "target": {
+      "label": "Old crate",
+      "stock": 8,
+      "warehouse_code": "EVAL-TARGET",
+      "reorder_level": 2
+    },
+    "other": {
+      "label": "Neighbour crate",
+      "stock": 220,
+      "warehouse_code": "EVAL-KEEP",
+      "reorder_level": 5
+    },
+    "updated": {
+      "label": "Revised crate",
+      "stock": 104,
+      "warehouse_code": "EVAL-CHANGED",
+      "reorder_level": 6
+    }
+  },
+  "invalid": [
+    {
+      "name": "missing_label",
+      "field": "label",
+      "payload": {
+        "stock": 31,
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "missing_stock",
+      "field": "stock",
+      "payload": {
+        "label": "New crate",
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "missing_warehouse_code",
+      "field": "warehouse_code",
+      "payload": {
+        "label": "New crate",
+        "stock": 31,
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "missing_reorder_level",
+      "field": "reorder_level",
+      "payload": {
+        "label": "New crate",
+        "stock": 31,
+        "warehouse_code": "EVAL-NEW"
+      }
+    },
+    {
+      "name": "blank_label",
+      "field": "label",
+      "payload": {
+        "label": "",
+        "stock": 31,
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "blank_warehouse",
+      "field": "warehouse_code",
+      "payload": {
+        "label": "New crate",
+        "stock": 31,
+        "warehouse_code": "",
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "label_array",
+      "field": "label",
+      "payload": {
+        "label": [
+          "bad"
+        ],
+        "stock": 31,
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "warehouse_array",
+      "field": "warehouse_code",
+      "payload": {
+        "label": "New crate",
+        "stock": 31,
+        "warehouse_code": [
+          "bad"
+        ],
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "stock_text",
+      "field": "stock",
+      "payload": {
+        "label": "New crate",
+        "stock": "many",
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "reorder_fraction",
+      "field": "reorder_level",
+      "payload": {
+        "label": "New crate",
+        "stock": 31,
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 1.5
+      }
+    },
+    {
+      "name": "label_too_long",
+      "field": "label",
+      "payload": {
+        "label": "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+        "stock": 31,
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "warehouse_too_long",
+      "field": "warehouse_code",
+      "payload": {
+        "label": "New crate",
+        "stock": 31,
+        "warehouse_code": "WWWWWWWWWWWWWWWWWWWWWWWWW",
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "stock_below_min",
+      "field": "stock",
+      "payload": {
+        "label": "New crate",
+        "stock": -1,
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "stock_above_max",
+      "field": "stock",
+      "payload": {
+        "label": "New crate",
+        "stock": 10000,
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "reorder_below_min",
+      "field": "reorder_level",
+      "payload": {
+        "label": "New crate",
+        "stock": 31,
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": -1
+      }
+    },
+    {
+      "name": "reorder_above_max",
+      "field": "reorder_level",
+      "payload": {
+        "label": "New crate",
+        "stock": 31,
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 501
+      }
+    },
+    {
+      "name": "warehouse_duplicate",
+      "field": "warehouse_code",
+      "payload": {
+        "label": "New crate",
+        "stock": 31,
+        "warehouse_code": "EVAL-KEEP",
+        "reorder_level": 3
+      }
+    }
+  ],
+  "valid": [
+    {
+      "name": "label_at_max",
+      "payload": {
+        "label": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+        "stock": 31,
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "warehouse_at_max",
+      "payload": {
+        "label": "New crate",
+        "stock": 31,
+        "warehouse_code": "RRRRRRRRRRRRRRRRRRRRRRRR",
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "stock_at_min",
+      "payload": {
+        "label": "New crate",
+        "stock": 0,
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "stock_at_max",
+      "payload": {
+        "label": "New crate",
+        "stock": 9999,
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 3
+      }
+    },
+    {
+      "name": "reorder_at_min",
+      "payload": {
+        "label": "New crate",
+        "stock": 31,
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 0
+      }
+    },
+    {
+      "name": "reorder_at_max",
+      "payload": {
+        "label": "New crate",
+        "stock": 31,
+        "warehouse_code": "EVAL-NEW",
+        "reorder_level": 500
+      }
+    }
+  ]
+}
