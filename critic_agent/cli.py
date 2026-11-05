@@ -17,6 +17,7 @@ from .orchestrator import run_products, run_resource
 from .reference import ReferenceDockerRunner, evaluate_products, reference_suite_hash
 from .resources import ResourceDockerRunner, build_resource
 from .resource_reference import ResourceReferenceRunner, build_resource_reference, evaluate_resource
+from .pilot import create_pilot_manifest
 
 
 def emit(value):
@@ -27,6 +28,22 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(prog='critic-agent', description='Fondasi Critic Agent untuk controller Laravel.')
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('doctor', help='Periksa Python, PHP, Docker, dan Ollama.')
+    
+    pilot = sub.add_parser(
+        'pilot-plan',
+        help='Buat manifest eksperimen temperature dan seed tanpa menjalankan model.'
+    )
+    pilot.add_argument('specs', nargs='+', type=Path)
+    pilot.add_argument('--seeds', nargs='+', type=int, required=True)
+    pilot.add_argument('--temperatures', nargs='+', type=float, required=True)
+    pilot.add_argument('--model', default='qwen2.5:7b-instruct')
+    pilot.add_argument('--max-revisions', type=int, choices=range(4), default=3)
+    pilot.add_argument(
+        '--output',
+        type=Path,
+        default=Path('runs/pilot-development/manifest.json'),
+    )
+    
     build_evaluation = sub.add_parser('evaluation-build', help='Bangun image evaluator acuan terpisah.')
     build_evaluation.add_argument('--image', default='critic-laravel-evaluation:dev')
     build_evaluation.add_argument('--base-image', default='critic-laravel:dev')
@@ -90,6 +107,18 @@ def main(argv=None) -> int:
             child.add_argument('--timeout', type=float, default=300)
     args = parser.parse_args(argv)
     try:
+        
+        if args.command == 'pilot-plan':
+            result = create_pilot_manifest(
+                specs=args.specs,
+                seeds=args.seeds,
+                temperatures=args.temperatures,
+                output=args.output,
+                model=args.model,
+                max_revisions=args.max_revisions,
+            )
+            emit(result)
+            return 0
         if args.command == 'doctor':
             result = doctor()
             emit(result)
