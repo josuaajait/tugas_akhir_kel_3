@@ -20,6 +20,7 @@ from .resource_reference import ResourceReferenceRunner, build_resource_referenc
 
 from .pilot import create_pilot_manifest
 from.pilot_runner import run_pilot
+from .pilot_metadata import collect_pilot_metadata
 from .component_corpus import prepare_development_corpus, load_corpus
 from .component_evaluation import run_components, collect_component_evidence
 from .component_report import component_report
@@ -63,6 +64,16 @@ def main(argv=None) -> int:
         '--output',
         type=Path,
         default=Path('runs/pilot-development/manifest.json'),
+    )
+
+    pilot_metadata = sub.add_parser(
+        'pilot-metadata',
+        help='Ekstrak metadata dari arsip eksperimen pilot.'
+    )
+    pilot_metadata.add_argument(
+        'job_directory',
+        type=Path,
+        help='Folder job pilot yang berisi pilot_result.json.'
     )
 
     corpus = sub.add_parser('component-corpus-init', help='Siapkan korpus development berlabel draf, tanpa Qwen.')
@@ -140,6 +151,15 @@ def main(argv=None) -> int:
             child.add_argument('--timeout', type=float, default=300)
     args = parser.parse_args(argv)
     try:
+
+        if args.command == 'pilot-metadata':
+            output = collect_pilot_metadata(args.job_directory)
+            emit({
+                'status': 'METADATA_COLLECTED',
+                'job_directory': str(args.job_directory.resolve()),
+                'metadata_file': str(output),
+            })
+            return 0
 
         if args.command == 'pilot-run':
             result = run_pilot(
