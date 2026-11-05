@@ -1,0 +1,54 @@
+{
+  "accessed_at": "2026-11-04T08:58:29.046999+00:00",
+  "type": "primary_technical_documentation",
+  "sources": {
+    "laravel_validation": {
+      "title": "Laravel 12.x Validation",
+      "url": "https://laravel.com/docs/12.x/validation",
+      "sections": [
+        "rule-required",
+        "rule-min",
+        "rule-max",
+        "validation-error-response-format"
+      ],
+      "supports": "Makna required, min/max, bentuk rule string/array, dan respons validasi JSON422."
+    },
+    "laravel_eloquent": {
+      "title": "Laravel 12.x Eloquent",
+      "url": "https://laravel.com/docs/12.x/eloquent",
+      "sections": [
+        "not-found-exceptions",
+        "deleting-models-using-queries"
+      ],
+      "supports": "findOrFail untuk objek hilang; query delete tanpa kondisi menghapus seluruh record."
+    },
+    "laravel_controllers": {
+      "title": "Laravel 12.x Controllers",
+      "url": "https://laravel.com/docs/12.x/controllers",
+      "sections": [
+        "actions-handled-by-resource-controllers"
+      ],
+      "supports": "Nama action controller resource, termasuk show."
+    },
+    "laravel_response_api": {
+      "title": "Laravel 12.x ResponseFactory API",
+      "url": "https://api.laravel.com/docs/12.x/Illuminate/Routing/ResponseFactory.html",
+      "supports": "API pabrik respons mencakup json dan noContent; kesalahan setContent/empty pada kandidat dibuktikan juga oleh exception aktual."
+    },
+    "http_semantics": {
+      "title": "RFC 9110 HTTP Semantics",
+      "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+      "sections": [
+        "section-15.3.2",
+        "section-15.3.5"
+      ],
+      "supports": "Makna201Created dan204NoContent. Pilihan status wajib pada setiap endpoint berasal dari kontrak proyek."
+    },
+    "php_cli": {
+      "title": "PHP Manual: Command line options",
+      "url": "https://www.php.net/manual/en/features.commandline.options.php",
+      "supports": "php -l memeriksa sintaks tanpa mengeksekusi kandidat."
+    }
+  },
+  "scope": "Sumber menjelaskan aturan teknis. Label setiap file proyek merupakan inferensi anotasi berbantuan AI, bukan label/penilaian manusia dari penerbit sumber."
+}

@@ -1,14 +1,37 @@
-# Critic Agent project
+# Critic Agent — working instructions
 
-This is the primary working directory selected by the user: C:\Perkuliahan\TA.
-Read README.md, docs/progress.md, docs/spec-mvp.md, and PRD_Critic_Agent_v1.3.md before continuing.
+Read docs/HANDOFF.md first, then README.md, docs/spec-mvp.md and PRD_Critic_Agent_v1.3.md. docs/progress.md is chronological history; later dated outcomes supersede old pending paragraphs. Original user workspace is C:\Perkuliahan\TA; use the actual current clone root elsewhere.
 
-Current implementation: Python stdlib CLI, strict JSON spec validator, Ollama client with archives, PHP lint/tokenization, fixed-products Docker harness and run-products verification/revision loop (max3). Never claim LOLOS based solely on static success. Version0.4.0 adds resource-build/resource-check/run-resource and generated internal/readiness templates for bounded string/integer JSON specs. Products evaluator33cases and live repair are verified from user archives. Books/inventory live internal readiness and stopping are verified. Version0.5.0 adds separate hand-authored development reference evaluation (books35/inventory57), pending userCLI Docker execution. Do not claim functional reference success from lint/Python tests.
+## Latest verified state — 5 November 2026
 
-Run verification: python -m unittest discover -s tests -v
-Prior patch0.4.1: resource-build --timeout covers Docker prep/build/cleanup, records failed_stage/reason, attempts owned-tag cleanup after tag timeout, and preserves primary errors.98 Python tests pass. Books live readiness27/27, negative fixture0/12 and Qwen initial12/12 LOLOS with0revisions verified in runs/20261104T044458Z_loop_52c1faef1c1644f3ac228b14eebdebcf. Inventory readiness46/46 and loop11/16->12/16 then identical_code at revision2 verified in runs/20261104T044936Z_loop_4c8045891ecc4a74a31e0117ed15932a. Model fixed destroy but omitted all4 required update rules; valid BELUM LOLOS, no candidate edits. Reference implementation0.5.0 exists; live evaluation pending, then component metrics/pilot. Never interpret directly passing books as a measured repair.
-Check prerequisites: python -m critic_agent doctor
+- Python stdlib CLI0.5.0; component protocol1.0. Preserve version/suite fingerprints for unrelated work. Changes require coordinated new hashes/images; keep historical results.
+- JSON contract, Ollama archives, PHP lint/tokenizer, Docker-only Laravel harness, max3 loop and independent development evaluators are implemented/live-verified.
+- Products internal13/14→14/14 after1revision, LOLOS; reference31/33→33/33, repair1/1.
+- Books internal12/12 initially,0revisions, LOLOS; reference35/35→35/35, repair0/0N-A.
+- Inventory internal11/16→12/16 then identical_code at revision2, BELUM LOLOS; reference51/57→53/57, repair0/1. All4required update rules remain missing. Never edit source candidates to force success.
+- Component evidence COMPLETE16cases in component-evidence/20261104T082952Z_reference-evidence_26a23f11d3ab49929f39605cde0bf690:4reference passes,11failures,1deliberate syntax fault,0environment errors,1duplicate reuse.
+- Successful component run: component-runs/20261105T005526Z_component_4a131234b1c14b5a95421e211dcdf739, COMPLETE16/0 prediction_errors. Report provisional_unreviewed. Portable copy: docs/evidence/component-provisional-2026-11-05.json; provenance in docs/evidence/README.md.
+- Synthetic matrixTP6/FP0/TN2/FN2:precision6/6,recall6/8,FPR0/2. Two FN are reference_only omissions max:title/min:pages; keep them in metrics. Qwen formative matrixTP3/FP0/TN2/FN0 on5unique cases after1duplicate:precision3/3,recall3/3,FPR0/2. No pooling across origins; held-out0/N-A. Samples are small/selected/development.
+- Active curated corpus: corpora/annotations/20261104T085829Z_mikhael-ai-assisted_e7a9c4248c344f21aa2b3df91fca627c/corpus.json.16 filled labels,4 correct/12 problematic, all draft. Mikhael Josua Roganda attribution was user-requested; prepared_by=OpenAI Codex, human_author_review_attested=false. Do not invent reviewer, human inspection, timestamp or blind attestation. Reviewed metrics require actual distinct human author/reviewer, matching independent evidence and review before a fresh prediction run.
+- Original evidence review/decisions.json was ALSO filled with AI-assisted draft proposals at user's request. Former blank form is backed up in review-backups/. Do not describe that folder as an unlabeled blind packet; prepare a clean packet for independent review.
+- Historical code verification:134Python tests pass without skips on4November2026. Doc-only handoff changes are not a new code test run. Verify actual state in receiving environment.
 
-Next milestone: verify books35/inventory57 reference images and paired results in userCLI, then component corpus/metrics, pilot, review and final freeze. See evaluation/resource-reference/README.md. Preserve internal image fingerprints and products suite fingerprint. See docs/resource-harness.md. Books counts12internal/27total readiness, inventory16/46. Products reference evaluation already verified31/33 to33/33. UserCLI can execute Docker/harness-check21/21 after approving escalation; this desktop chat cannot. Live loop succeeded in user's terminal on 4 November2026: runs/20261104T031502Z_loop_713c3f8803f441929ae6ed8f38077232, initial13/14 to final14/14 after1 revision, LOLOS. Qwen changed destroy response()->setContent('',204) to response()->json('',204). Reference harness21/21 and same image ID verified in archived results. Base Controller and snapshot-order harness omissions were fixed. Codex execution still gets Docker named-pipe access denied. Docker with WSL2 backend is the Windows runner. Avoid custom junction/autoload work. Do not install system software automatically. Candidate execution must never fall back to host PHP. Preserve existing generation and loop archives.
+## Next work
 
-Use work/ for scratch, runs/ for generation archives. Keep real reference tests and their results out of model prompts and revision feedback. Preserve raw model output and experiment configuration. Temperature 0.2/seed 42 are development defaults only; final settings await pilot.
+1. Recover setup/artifacts using docs/HANDOFF.md. Images/model/raw archives do not accompany Git clone. Curated corpora and docs report can be committed.
+2. Implement/run pilot temperature/seed/diversity/cost manifest and aggregation; no pilot CLI/aggregator currently exists. PRD12.7 proposes2–3development specs × 3 seeds × temperatures0/0.2/0.5. Keep all failures/retries; calculate initial-failure and identical-code frequencies.
+3. Complete actual label/assertion review and P-06/P-07/K2 decisions. Audit legacy products/internal collection assertion coverage before final freeze.
+4. Implement/decide A/B generic feedback before freeze, or document attribution limitation. Initial→final uplift alone does not show causal benefit of specific feedback.
+5. Separate held-out/final data, freeze protocol/model/suite/images and execute full manifest before final conclusions.
+
+## Commands and safeguards
+
+Run from project root: python -m unittest discover -s tests -v; python -m critic_agent doctor; python -m critic_agent --help. Docker readiness:products 21/21,books 27/27,inventory 46/46. Reference candidates:33/35/57. Base Laravel 12.70.2/PHPUnit 11.5.57 are locked.
+
+Use Docker Desktop Linux/WSL2 on Windows. Never execute candidates on host PHP. Do not install system software automatically or change global security. Do not mount entire repo/socket/home into candidate containers. Clean only owned UUID containers/tags; no prune.
+
+Missing dockerDesktopLinuxEngine pipe means endpoint unavailable: open Docker Desktop and confirm Client+Server from user terminal. Permission denied while Engine running is a separate sandbox limitation. User CLI has worked; desktop process may still be denied. CLI registry startup lookup may fail for per-user installs despite installed Docker. Avoid repeated unusable approval requests or declaring installation missing from one default path check.
+
+Reference tests/results stay out of model prompts and internal feedback. Static pass cannot imply LOLOS. Do not change max3/byte-identical stopping to improve results. Qwen2.5:7b-instruct,temperature0.2/seed42 are development defaults; verify actual model digest/quantization/environment before final run.
+
+Preserve raw response, prompt, history, code/spec hashes, ERROR and incomplete repairs. runs/,evaluations/,component-runs/,component-evidence/,builds/,work/ and vendor are Git-ignored. Include required code/corpora/docs in commits; do not assume ignored archives exist for a teammate. Never hand-edit old manifests/hashes for moved absolute paths. Use relative corpus snapshots or new development runs.

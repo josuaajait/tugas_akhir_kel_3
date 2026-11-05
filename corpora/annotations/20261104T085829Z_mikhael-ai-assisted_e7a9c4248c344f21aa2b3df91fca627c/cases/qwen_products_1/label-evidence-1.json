@@ -1,0 +1,256 @@
+{
+  "evidence_type": "independent_reference",
+  "protocol_version": "1.0",
+  "expected_tests": 33,
+  "suite_sha256": "d59c4d7c5a1311a5020b2f15d9cec203b64a3e83e57ea287caaab4731a6f0778",
+  "code_sha256": "40c72ee68399c22c3d6c12ca851eb92cbc7bd8ff5894fbb45b4b83b6d47664f2",
+  "spec_sha256": "c1c0c49235ac68653c97fc899cf6c6837a78be0c5c787f3c78a11af775f95f8a",
+  "result": {
+    "status": "PASSED_REFERENCE",
+    "reason": "all_tests_passed",
+    "run_directory": "C:\\Perkuliahan\\TA\\component-evidence\\20261104T082952Z_reference-evidence_26a23f11d3ab49929f39605cde0bf690\\harness\\products_basic\\critic-c4f74826908f4e668aa3c3950fbbc225",
+    "created_at": "2026-11-04T08:31:18.749759+00:00",
+    "image": "sha256:81e2a5f8b042ff1da1a766971f830c627c62de657e6805eb62404d485bcc6f66",
+    "mode": "candidate",
+    "command": [
+      "docker",
+      "run",
+      "--name",
+      "critic-c4f74826908f4e668aa3c3950fbbc225",
+      "--pull=never",
+      "--network=none",
+      "--read-only",
+      "--log-driver=none",
+      "--cap-drop=ALL",
+      "--security-opt=no-new-privileges",
+      "--user=10001:10001",
+      "--memory=768m",
+      "--cpus=1",
+      "--pids-limit=128",
+      "--tmpfs",
+      "/work:rw,nosuid,nodev,size=512m,mode=1777",
+      "--tmpfs",
+      "/tmp:rw,nosuid,nodev,noexec,size=32m,mode=1777",
+      "--mount",
+      "type=bind,src=C:\\Perkuliahan\\TA\\component-evidence\\20261104T082952Z_reference-evidence_26a23f11d3ab49929f39605cde0bf690\\harness\\products_basic\\critic-c4f74826908f4e668aa3c3950fbbc225\\candidate.php,dst=/input/controller.php,readonly",
+      "sha256:81e2a5f8b042ff1da1a766971f830c627c62de657e6805eb62404d485bcc6f66",
+      "evaluation-candidate"
+    ],
+    "timeout_seconds": 120.0,
+    "expected_tests": 33,
+    "candidate_sha256": "40c72ee68399c22c3d6c12ca851eb92cbc7bd8ff5894fbb45b4b83b6d47664f2",
+    "image_id": "sha256:81e2a5f8b042ff1da1a766971f830c627c62de657e6805eb62404d485bcc6f66",
+    "exit_code": 0,
+    "summary": {
+      "status": "PASSED",
+      "total": 33,
+      "passed": 33,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "test_empty_collection",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_list_exposes_persisted_values_without_mutation",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_create_returns_and_persists_new_values",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_read_selects_requested_record_without_mutation",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_update_replaces_target_and_preserves_neighbour",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_delete_is_empty_204_and_preserves_neighbour",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_missing_identifier_is_json_404_without_mutation with data set \"show\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_missing_identifier_is_json_404_without_mutation with data set \"update\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_missing_identifier_is_json_404_without_mutation with data set \"destroy\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"store_missing_name\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"store_missing_price\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"store_missing_sku\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"store_empty_name\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"store_empty_sku\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"store_long_name\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"store_negative_price\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"store_invalid_integer\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"store_array_name\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"store_duplicate_sku\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"update_missing_name\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"update_missing_price\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"update_missing_sku\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"update_empty_name\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"update_empty_sku\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"update_long_name\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"update_negative_price\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"update_invalid_integer\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"update_array_name\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_input_reports_field_and_preserves_database with data set \"update_duplicate_sku\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_valid_boundary_is_persisted with data set \"maximum_name_and_zero_price\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_valid_boundary_is_persisted with data set \"zero_price\"",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_update_retains_own_unique_sku",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_crud_sequence_reads_back_changes",
+          "class": "Evaluation.ProductsReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        }
+      ]
+    },
+    "cleanup_exit_code": 0,
+    "readiness_directory": "C:\\Perkuliahan\\TA\\component-evidence\\20261104T082952Z_reference-evidence_26a23f11d3ab49929f39605cde0bf690\\harness\\products_basic\\critic-a67ddebab6dd46c58713dfd1caf3dc31"
+  },
+  "reused_from": null
+}

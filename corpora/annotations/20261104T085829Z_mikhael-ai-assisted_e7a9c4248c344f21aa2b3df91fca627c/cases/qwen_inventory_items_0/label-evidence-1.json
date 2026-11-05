@@ -1,0 +1,400 @@
+{
+  "evidence_type": "independent_reference",
+  "protocol_version": "1.0",
+  "expected_tests": 57,
+  "suite_sha256": "17cddfa8adf7a8eeaef5c4e33fc26d1f0f43cbcfb5ca86e4883b22e0c88c800e",
+  "code_sha256": "05e2eb620e3424fa9a7c1cabd83f0e9a28f018b7b704ecf71038402a2ca1bcf7",
+  "spec_sha256": "12d12684bf77200978108132943ed930499887e2a143406a6247a07086f06edf",
+  "result": {
+    "status": "FAILED_REFERENCE",
+    "reason": "tests_failed",
+    "run_directory": "C:\\Perkuliahan\\TA\\component-evidence\\20261104T082952Z_reference-evidence_26a23f11d3ab49929f39605cde0bf690\\harness\\inventory_items_basic\\critic-3d012e23a6484f2dbfe06d79beba8bce",
+    "created_at": "2026-11-04T08:31:25.178978+00:00",
+    "image": "critic-resource-inventory_items-evaluation:dev",
+    "mode": "candidate",
+    "command": [
+      "docker",
+      "run",
+      "--name",
+      "critic-3d012e23a6484f2dbfe06d79beba8bce",
+      "--pull=never",
+      "--network=none",
+      "--read-only",
+      "--log-driver=none",
+      "--cap-drop=ALL",
+      "--security-opt=no-new-privileges",
+      "--user=10001:10001",
+      "--memory=768m",
+      "--cpus=1",
+      "--pids-limit=128",
+      "--tmpfs",
+      "/work:rw,nosuid,nodev,size=512m,mode=1777",
+      "--tmpfs",
+      "/tmp:rw,nosuid,nodev,noexec,size=32m,mode=1777",
+      "--mount",
+      "type=bind,src=C:\\Perkuliahan\\TA\\component-evidence\\20261104T082952Z_reference-evidence_26a23f11d3ab49929f39605cde0bf690\\harness\\inventory_items_basic\\critic-3d012e23a6484f2dbfe06d79beba8bce\\candidate.php,dst=/input/controller.php,readonly",
+      "sha256:4e78952b2c286bdbf2cd09fa7c44b6ff2d355f5318ab74ce23f66c9767159001",
+      "evaluation-candidate"
+    ],
+    "timeout_seconds": 120.0,
+    "expected_tests": 57,
+    "candidate_sha256": "05e2eb620e3424fa9a7c1cabd83f0e9a28f018b7b704ecf71038402a2ca1bcf7",
+    "image_id": "sha256:4e78952b2c286bdbf2cd09fa7c44b6ff2d355f5318ab74ce23f66c9767159001",
+    "exit_code": 1,
+    "summary": {
+      "status": "FAILED",
+      "total": 57,
+      "passed": 51,
+      "failure": 6,
+      "error": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "test_empty_collection_is_json_and_preserves_empty_database",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_collection_contains_both_persisted_records_without_changes",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_create_exposes_inserted_values_and_keeps_existing_record",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_read_uses_requested_identifier_and_does_not_write",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_replacement_returns_and_persists_all_values_only_on_target",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_deletion_is_empty_204_and_removes_only_requested_record",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "failure",
+          "evidence": "\nEvaluation\\ResourceReferenceTest::test_deletion_is_empty_204_and_removes_only_requested_record\nExpected response status code [204] but received 500.\nFailed asserting that 500 is identical to 204.\n\nThe following exception occurred during the last request:\n\nBadMethodCallException: Method Illuminate\\Routing\\ResponseFactory::empty does not exist. in /work/app/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117\nStack trace:\n#0 /work/app/app/Http/Controllers/StockItemController.php(71): Illuminate\\Routing\\ResponseFactory->__call('empty', Array)\n#1 /work/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(46): App\\Http\\Controllers\\StockItemController->destroy('1')\n#2 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php(265): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\StockItemController), 'destroy')\n#3 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php(211): Illuminate\\Routing\\Route->runController()\n#4 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(822): Illuminate\\Routing\\Route->run()\n#5 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))\n#6 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#7 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#8 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#9 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#10 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))\n#11 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))\n#12 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))\n#13 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))\n#14 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))\n#15 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#16 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#17 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#18 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#19 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#20 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#21 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#22 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#23 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#24 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#25 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(74): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#26 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#27 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#28 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#29 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#30 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#31 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#32 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\ValidatePathEncoding->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#33 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#34 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#35 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))\n#36 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(607): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))\n#37 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(573): Illuminate\\Foundation\\Testing\\TestCase->call('DELETE', '/api/inventory_...', Array, Array, Array, Array, '[]')\n#38 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(501): Illuminate\\Foundation\\Testing\\TestCase->json('DELETE', '/api/inventory_...', Array, Array, 0)\n#39 /work/app/reference/ResourceReferenceTest.php(121): Illuminate\\Foundation\\Testing\\TestCase->deleteJson('/api/inventory_...')\n#40 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(1667): Evaluation\\ResourceReferenceTest->test_deletion_is_empty_204_and_removes_only_requested_record()\n#41 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(519): PHPUnit\\Framework\\TestCase->runTest()\n#42 /work/app/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(87): PHPUnit\\Framework\\TestCase->runBare()\n#43 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(365): PHPUnit\\Framework\\TestRunner->run(Object(Evaluation\\ResourceReferenceTest))\n#44 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestCase->run()\n#45 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestSuite->run()\n#46 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestSuite->run()\n#47 /work/app/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\\Framework\\TestSuite->run()\n#48 /work/app/vendor/phpunit/phpunit/src/TextUI/Application.php(211): PHPUnit\\TextUI\\TestRunner->run(Object(PHPUnit\\TextUI\\Configuration\\Configuration), Object(PHPUnit\\Runner\\ResultCache\\NullResultCache), Object(PHPUnit\\Framework\\TestSuite))\n#49 /work/app/vendor/phpunit/phpunit/phpunit(104): PHPUnit\\TextUI\\Application->run(Array)\n#50 /work/app/vendor/bin/phpunit(122): include('/work/app/vendo...')\n#51 {main}\n\n----------------------------------------------------------------------------------\n\nMethod Illuminate\\Routing\\ResponseFactory::empty does not exist.\n\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponseAssert.php:45\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponse.php:175\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/Concerns/AssertsStatusCodes.php:47\n/work/app/reference/ResourceReferenceTest.php:121"
+        },
+        {
+          "name": "test_unknown_identifier_is_json_404_and_keeps_all_rows with data set \"read\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_unknown_identifier_is_json_404_and_keeps_all_rows with data set \"replace\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_unknown_identifier_is_json_404_and_keeps_all_rows with data set \"delete\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_missing_label\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_missing_stock\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_missing_warehouse_code\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_missing_reorder_level\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_blank_label\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_blank_warehouse\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_label_array\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_warehouse_array\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_stock_text\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_reorder_fraction\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_label_too_long\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_warehouse_too_long\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_stock_below_min\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_stock_above_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_reorder_below_min\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_reorder_above_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_warehouse_duplicate\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_label\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "failure",
+          "evidence": "\nEvaluation\\ResourceReferenceTest::test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_label\"\nExpected response status code [422] but received 200.\nFailed asserting that 200 is identical to 422.\n\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponseAssert.php:45\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponse.php:175\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/Concerns/AssertsStatusCodes.php:221\n/work/app/reference/ResourceReferenceTest.php:160"
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_stock\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "failure",
+          "evidence": "\nEvaluation\\ResourceReferenceTest::test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_stock\"\nExpected response status code [422] but received 200.\nFailed asserting that 200 is identical to 422.\n\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponseAssert.php:45\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponse.php:175\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/Concerns/AssertsStatusCodes.php:221\n/work/app/reference/ResourceReferenceTest.php:160"
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_warehouse_code\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "failure",
+          "evidence": "\nEvaluation\\ResourceReferenceTest::test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_warehouse_code\"\nExpected response status code [422] but received 200.\nFailed asserting that 200 is identical to 422.\n\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponseAssert.php:45\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponse.php:175\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/Concerns/AssertsStatusCodes.php:221\n/work/app/reference/ResourceReferenceTest.php:160"
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_reorder_level\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "failure",
+          "evidence": "\nEvaluation\\ResourceReferenceTest::test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_reorder_level\"\nExpected response status code [422] but received 200.\nFailed asserting that 200 is identical to 422.\n\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponseAssert.php:45\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponse.php:175\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/Concerns/AssertsStatusCodes.php:221\n/work/app/reference/ResourceReferenceTest.php:160"
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_blank_label\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_blank_warehouse\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_label_array\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_warehouse_array\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_stock_text\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_reorder_fraction\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_label_too_long\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_warehouse_too_long\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_stock_below_min\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_stock_above_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_reorder_below_min\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_reorder_above_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_warehouse_duplicate\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"POST_label_at_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"POST_warehouse_at_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"POST_stock_at_min\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"POST_stock_at_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"POST_reorder_at_min\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"POST_reorder_at_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"PUT_label_at_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"PUT_warehouse_at_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"PUT_stock_at_min\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"PUT_stock_at_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"PUT_reorder_at_min\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"PUT_reorder_at_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_update_accepts_own_unique_values_and_preserves_neighbour",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_sequential_crud_reads_back_persisted_replacement_and_deletion",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "failure",
+          "evidence": "\nEvaluation\\ResourceReferenceTest::test_sequential_crud_reads_back_persisted_replacement_and_deletion\nExpected response status code [204] but received 500.\nFailed asserting that 500 is identical to 204.\n\nThe following exception occurred during the last request:\n\nBadMethodCallException: Method Illuminate\\Routing\\ResponseFactory::empty does not exist. in /work/app/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117\nStack trace:\n#0 /work/app/app/Http/Controllers/StockItemController.php(71): Illuminate\\Routing\\ResponseFactory->__call('empty', Array)\n#1 /work/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(46): App\\Http\\Controllers\\StockItemController->destroy('1')\n#2 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php(265): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\StockItemController), 'destroy')\n#3 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php(211): Illuminate\\Routing\\Route->runController()\n#4 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(822): Illuminate\\Routing\\Route->run()\n#5 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))\n#6 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#7 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#8 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#9 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#10 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))\n#11 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))\n#12 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))\n#13 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))\n#14 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))\n#15 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#16 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#17 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#18 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#19 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#20 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#21 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#22 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#23 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#24 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#25 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(74): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#26 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#27 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#28 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#29 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#30 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#31 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#32 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\ValidatePathEncoding->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#33 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#34 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#35 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))\n#36 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(607): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))\n#37 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(573): Illuminate\\Foundation\\Testing\\TestCase->call('DELETE', '/api/inventory_...', Array, Array, Array, Array, '[]')\n#38 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(501): Illuminate\\Foundation\\Testing\\TestCase->json('DELETE', '/api/inventory_...', Array, Array, 0)\n#39 /work/app/reference/ResourceReferenceTest.php(223): Illuminate\\Foundation\\Testing\\TestCase->deleteJson('/api/inventory_...')\n#40 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(1667): Evaluation\\ResourceReferenceTest->test_sequential_crud_reads_back_persisted_replacement_and_deletion()\n#41 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(519): PHPUnit\\Framework\\TestCase->runTest()\n#42 /work/app/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(87): PHPUnit\\Framework\\TestCase->runBare()\n#43 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(365): PHPUnit\\Framework\\TestRunner->run(Object(Evaluation\\ResourceReferenceTest))\n#44 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestCase->run()\n#45 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestSuite->run()\n#46 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestSuite->run()\n#47 /work/app/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\\Framework\\TestSuite->run()\n#48 /work/app/vendor/phpunit/phpunit/src/TextUI/Application.php(211): PHPUnit\\TextUI\\TestRunner->run(Object(PHPUnit\\TextUI\\Configuration\\Configuration), Object(PHPUnit\\Runner\\ResultCache\\NullResultCache), Object(PHPUnit\\Framework\\TestSuite))\n#49 /work/app/vendor/phpunit/phpunit/phpunit(104): PHPUnit\\TextUI\\Application->run(Array)\n#50 /work/app/vendor/bin/phpunit(122): include('/work/app/vendo...')\n#51 {main}\n\n----------------------------------------------------------------------------------\n\nMethod Illuminate\\Routing\\ResponseFactory::empty does not exist.\n\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponseAssert.php:45\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponse.php:175\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/Concerns/AssertsStatusCodes.php:47\n/work/app/reference/ResourceReferenceTest.php:223"
+        }
+      ]
+    },
+    "cleanup_exit_code": 0,
+    "readiness_directory": "C:\\Perkuliahan\\TA\\component-evidence\\20261104T082952Z_reference-evidence_26a23f11d3ab49929f39605cde0bf690\\harness\\inventory_items_basic\\critic-6ab9f42634f14d369bb03801317fdd3a"
+  },
+  "reused_from": null
+}

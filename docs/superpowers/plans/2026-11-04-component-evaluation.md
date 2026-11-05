@@ -1,0 +1,30 @@
+# Component corpus, independent evidence and code-level detection metrics
+
+Implement inline under approved PRD12.5/12.6 and explicit next-stage request, using writing-plans/TDD/executing-plans and final independent code review. Preserve verified internal/reference sources and hashes; no global settings or source-run edits.
+
+## Design
+
+Three corpus origins stay separate: synthetic, qwen_formative, qwen_held_out. Prepare10 controlled books cases (two valid styles; syntax, missing method, HTTP status, required update field, missing-ID handling, wrong-record deletion; two reference_only omissions max/min) and all attempts from the three explicitly selected formative loops (2products+1books+3inventory, including duplicate). Do not claim an unseen held-out corpus exists. Preserve code/spec hashes, provenance, raw responses/prompts/config and duplicate indicators. Corpus labels are proposals/drafts, never automatically approved by Codex or test results.
+
+Four CLI operations: component-corpus-init creates a unique development package; component-evidence collects reference-only evidence and writes a new manifest with evidence paths, without Critic/model calls or auto-label promotion; component-run snapshots a corpus and predicts each case via existing static+internal checks, without receiving ground truth or calling Qwen; component-report computes reviewed-only code-level metrics, or explicit --provisional draft metrics. Output groups by origin; no pooled matrix. Reference_only-only failures remain FN if predicted negative.
+
+Default reviewed eligibility requires different named author/reviewer, timestamp, blinded attestation, nonempty label rationale and independent execution evidence matching code/spec hash. Unknown/disputed labels and environment errors are excluded with counts/reasons. Unreviewed draft labels are not official ground truth. Evidence command is separate so reviewer can label before seeing Critic outputs. Reviewed timestamp must precede prediction run. Provisional reports remain descriptive/unreviewed and cannot substitute final evaluation.
+
+Duplicate metric policy: within each origin, among eligible labels, one unique(spec SHA,code SHA) counts once; conflicting eligible labels for the same code are excluded/reported. Prediction execution can be reused for identical inputs, explicitly archived, not presented as another tool execution. Positive means at least one Critic finding, negative means all static/internal checks passed; many findings still one code-level prediction. Complete counters required; environment/partial/skipped results are unknown, not FP/FN. Ratios preserve numerator/denominator; zero denominator is null/N/A.
+
+## Files/interfaces/tasks
+
+1. tests/test_components.py: path/hash tampering, schema/review guards, raw-vs-dedup/origin separation, TP/FP/TN/FN definitions, reference_only FN inclusion, zero denominators, duplicate conflicts, unknown predictions, draft exclusion/provisional labeling. Static-first/noDocker-onfinding, complete dynamic counts, matching resource image per group, no label passed to prediction factory, no model call, immutable snapshots, independent evidence mode and new manifest. Red first.
+2. corpora/templates/BookController.php and critic_agent/component_corpus.py: prepare_development_corpus(output_root), load_corpus(manifest_path), snapshot_corpus(...), strict bounded safe relative files/hashes and review metadata. Explicit selection of all archived attempts; verify source code/spec provenance. Controlled mutation metadata labels draft with code-review notes. Independent evidence can be attached later without editing source corpus/run.
+3. critic_agent/component_evaluation.py: run_components(manifest,output_root,...), collect_component_evidence(manifest,output_root,...). Existing analyze/collect_findings and internal/reference runner factories. One pinned image per spec, input snapshots, execution caching by code/spec. Reference evidence contains code/spec hashes, raw result and separate reference protocol version; no ground-truth assignment. ERROR does not become functional zero.
+4. critic_agent/component_report.py: component_report(run_directory, provisional=False) -> JSON grouped by origin/matrix/raw ratios/subset diagnostics/exclusion reasons. Verify frozen manifest/prediction hashes before reporting. Save separate report filenames; no overwritten raw run. Expose reviewed and provisional modes clearly.
+5. CLI component-corpus-init, component-evidence, component-run, component-report. No model calls. Keep application version0.5.0 to preserve already verified evaluator image bindings; component protocol1.0 and explicit source fingerprint identify this new feature until a coordinated release/rebuild. Record this ruling plainly rather than silently invalidating images via global version bump.
+6. Full Python verification; PHP lint for controlled templates and generated corpus code (syntax mutant deliberately fails); review corpus without executing candidates on host. Independent fresh reviewer. Update docs/AGENTS/progress and provide CLI steps. Real Docker prediction/evidence remains a userCLI gate; no fabricated TP/recall results or invented human review names.
+
+## Review focus
+
+- Count per code, keep origins separate, preserve reference_only FN and duplicates/uncertain exclusions. No positive-only selection of Qwen outputs.
+- Corpus path traversal, symlink escape, altered bytes and source generation history hashes rejected before execution. Only single controller Docker mount, never corpus labels/files.
+- No label promotion from Critic prediction or reference test pass. Independent evidence and blinded human review are explicit requirements; drafts remain usable provisionally.
+- Prediction ERROR/partial/skipped yields unknown; all pass is required negative. Image/config drift is excluded, not a model-quality result.
+- Do not mutate sources, change stopping policy, expose oracle in prompts, claim held-out data, or change verified evaluator fingerprints for this unrelated component feature.

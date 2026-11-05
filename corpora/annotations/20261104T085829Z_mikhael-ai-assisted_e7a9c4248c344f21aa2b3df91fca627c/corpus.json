@@ -1,0 +1,1048 @@
+{
+  "schema_version": "1.0",
+  "corpus_id": "20261104T085829Z_mikhael-ai-assisted_e7a9c4248c344f21aa2b3df91fca627c",
+  "stage": "development",
+  "selection": {
+    "description": "10 planned controlled examples plus ALL attempts from3 explicitly selected formative development loops, including duplicates; not a random or held-out sample.",
+    "source_runs": [
+      "20261104T031502Z_loop_713c3f8803f441929ae6ed8f38077232",
+      "20261104T044458Z_loop_52c1faef1c1644f3ac228b14eebdebcf",
+      "20261104T044936Z_loop_4c8045891ecc4a74a31e0117ed15932a"
+    ],
+    "held_out_available": false
+  },
+  "cases": [
+    {
+      "case_id": "syn_array_valid",
+      "corpus": "synthetic",
+      "used_for_development": true,
+      "origin": {
+        "kind": "controlled_mutation",
+        "template_sha256": "f79d846ef31c4ded09110cfa88c2a071e3ca1262ec1dad10b6191161c630b756",
+        "artifacts": []
+      },
+      "code_path": "cases/syn_array_valid/controller.php",
+      "code_sha256": "f79d846ef31c4ded09110cfa88c2a071e3ca1262ec1dad10b6191161c630b756",
+      "spec_path": "cases/syn_array_valid/spec.json",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "label": {
+        "value": "correct",
+        "violations": [],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Array-rule implementation requires code and independent execution review."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/syn_array_valid/label-evidence-1.json",
+            "sha256": "31979f510c64441d4aa2c5f7d6927606dd4b89e1f2d40d54d2f41bd852b931e6"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Kelima action tersedia, rules array sesuai spec, ID hilang memakai findOrFail, dan penghapusan menargetkan satu ID. Bukti acuan35/35 mendukung kesesuaian dalam kontrak/cakupan yang diperiksa. Rujukan: https://laravel.com/docs/12.x/validation; https://laravel.com/docs/12.x/eloquent; https://api.laravel.com/docs/12.x/Illuminate/Routing/ResponseFactory.html; https://www.rfc-editor.org/rfc/rfc9110.html"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "syn_string_valid",
+      "corpus": "synthetic",
+      "used_for_development": true,
+      "origin": {
+        "kind": "controlled_mutation",
+        "template_sha256": "f79d846ef31c4ded09110cfa88c2a071e3ca1262ec1dad10b6191161c630b756",
+        "artifacts": []
+      },
+      "code_path": "cases/syn_string_valid/controller.php",
+      "code_sha256": "c868f7f48298477a52f9d2b5623ddcb90d08cf04bfea6c8ee06dcdcbb793f1df",
+      "spec_path": "cases/syn_string_valid/spec.json",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "label": {
+        "value": "correct",
+        "violations": [],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Equivalent string-rule implementation, not a Qwen output."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/syn_string_valid/label-evidence-1.json",
+            "sha256": "0a219bf0341da26216023214855534d440e52aff23e0959ca126dbe351a23e04"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Rules string bertanda pipa ekuivalen dengan rules array untuk kontrak ini; alur CRUD dan respons sesuai spec. Bukti acuan35/35. Label correct dibatasi kontrak dan cakupan pemeriksaan. Rujukan: https://laravel.com/docs/12.x/validation; https://laravel.com/docs/12.x/eloquent; https://api.laravel.com/docs/12.x/Illuminate/Routing/ResponseFactory.html"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "syn_syntax",
+      "corpus": "synthetic",
+      "used_for_development": true,
+      "origin": {
+        "kind": "controlled_mutation",
+        "template_sha256": "f79d846ef31c4ded09110cfa88c2a071e3ca1262ec1dad10b6191161c630b756",
+        "artifacts": []
+      },
+      "code_path": "cases/syn_syntax/controller.php",
+      "code_sha256": "517751d0ed4009c5a7a09139bc5f6f2b2a1738ed0f1b422442849fb695369852",
+      "spec_path": "cases/syn_syntax/spec.json",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "label": {
+        "value": "problematic",
+        "violations": [
+          {
+            "category": "syntax_unclosed_class",
+            "coverage": "internal_covered",
+            "detail": "Kurung kurawal penutup class hilang. Preflight lint dalam Docker membuktikan invalid_syntax; test fungsional belum dijalankan.",
+            "method": "class",
+            "code_excerpt": "class BookController extends Controller",
+            "source_ids": [
+              "php_cli"
+            ],
+            "code_lines": [
+              8
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Removed final class brace; PHP cannot parse the controller."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/syn_syntax/label-evidence-1.json",
+            "sha256": "4e99a4e900ad9fd956b771cf22fb1c0550c6aed1977823c3653ee49c7ab12cb3"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Label berdasarkan struktur kode dan diagnosis parser Docker, bukan asumsi bahwa semua assertion fungsional telah dieksekusi. Rujukan: https://www.php.net/manual/en/features.commandline.options.php"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "syn_missing_method",
+      "corpus": "synthetic",
+      "used_for_development": true,
+      "origin": {
+        "kind": "controlled_mutation",
+        "template_sha256": "f79d846ef31c4ded09110cfa88c2a071e3ca1262ec1dad10b6191161c630b756",
+        "artifacts": []
+      },
+      "code_path": "cases/syn_missing_method/controller.php",
+      "code_sha256": "9f5003e6dcd838180fad491d82a6a6e8268671243d76d7c05f2229883092122d",
+      "spec_path": "cases/syn_missing_method/spec.json",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "label": {
+        "value": "problematic",
+        "violations": [
+          {
+            "category": "missing_show_method",
+            "coverage": "internal_covered",
+            "detail": "Action show($id) yang diwajibkan kontrak tidak tersedia karena diganti menjadi lookup($id); route yang memanggil show gagal.",
+            "method": "show",
+            "code_excerpt": "public function lookup($id)",
+            "source_ids": [
+              "laravel_controllers"
+            ],
+            "code_lines": [
+              25
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Required public show method is absent."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/syn_missing_method/label-evidence-1.json",
+            "sha256": "4079793cb41f27081023a0b571fe8cdd6a9546e622e19d43e184751be08944c5"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Tiga testcase acuan gagal pada pembacaan/ID hilang/rangkaian CRUD; ketiganya konsisten dengan satu cacat nama action. Rujukan: https://laravel.com/docs/12.x/controllers"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "syn_store_status",
+      "corpus": "synthetic",
+      "used_for_development": true,
+      "origin": {
+        "kind": "controlled_mutation",
+        "template_sha256": "f79d846ef31c4ded09110cfa88c2a071e3ca1262ec1dad10b6191161c630b756",
+        "artifacts": []
+      },
+      "code_path": "cases/syn_store_status/controller.php",
+      "code_sha256": "0a531866191273ba2cbad91592e4a9bb03b1c2de0fadf8961b607640559406b2",
+      "spec_path": "cases/syn_store_status/spec.json",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "label": {
+        "value": "problematic",
+        "violations": [
+          {
+            "category": "store_wrong_status",
+            "coverage": "internal_covered",
+            "detail": "Kontrak store menetapkan201, tetapi kode mengembalikan200 setelah Book::create. Lima testcase yang melibatkan create melaporkan status tidak sesuai.",
+            "method": "store",
+            "code_excerpt": "return response()->json(['data' => $book], 200);",
+            "source_ids": [
+              "http_semantics",
+              "laravel_response_api"
+            ],
+            "code_lines": [
+              22
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Store success returns200 instead of201."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/syn_store_status/label-evidence-1.json",
+            "sha256": "5a3e7b239492cc4c30c4107e9073dc4879ed4075b08cb3368e8a3e9af8e69979"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Status201 wajib berasal dari spec proyek; RFC menjelaskan semantik201, bukan bukti bahwa setiap API publik harus memilih status yang sama. Rujukan: https://www.rfc-editor.org/rfc/rfc9110.html; https://api.laravel.com/docs/12.x/Illuminate/Routing/ResponseFactory.html"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "syn_update_required",
+      "corpus": "synthetic",
+      "used_for_development": true,
+      "origin": {
+        "kind": "controlled_mutation",
+        "template_sha256": "f79d846ef31c4ded09110cfa88c2a071e3ca1262ec1dad10b6191161c630b756",
+        "artifacts": []
+      },
+      "code_path": "cases/syn_update_required/controller.php",
+      "code_sha256": "1b77e11ec5e2c624fc8cfdbc82c264b86100da3833d80bb783f3f77dc8d24d71",
+      "spec_path": "cases/syn_update_required/spec.json",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "label": {
+        "value": "problematic",
+        "violations": [
+          {
+            "category": "update_title_required",
+            "coverage": "internal_covered",
+            "detail": "Rule title pada PUT menghilangkan required. Request tanpa title diterima200, bertentangan dengan kontrak yang mewajibkan422.",
+            "method": "update",
+            "code_excerpt": "'title' => ['string', 'max:80']",
+            "source_ids": [
+              "laravel_validation"
+            ],
+            "code_lines": [
+              34
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "PUT accepts missing title because required is omitted."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/syn_update_required/label-evidence-1.json",
+            "sha256": "4402f78a24e7628dbc45f1449c80062d18f9c0404997b0b35b25796c5df23fcc"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Satu testcase PUT_missing_title gagal; rule title pada store tetap wajib. Rujukan: https://laravel.com/docs/12.x/validation"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "syn_missing_id",
+      "corpus": "synthetic",
+      "used_for_development": true,
+      "origin": {
+        "kind": "controlled_mutation",
+        "template_sha256": "f79d846ef31c4ded09110cfa88c2a071e3ca1262ec1dad10b6191161c630b756",
+        "artifacts": []
+      },
+      "code_path": "cases/syn_missing_id/controller.php",
+      "code_sha256": "2683076948e68fda49e04e8f8a049ae5169f51a65b0a70adccaf0f26f4d8800b",
+      "spec_path": "cases/syn_missing_id/spec.json",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "label": {
+        "value": "problematic",
+        "violations": [
+          {
+            "category": "show_missing_id_status",
+            "coverage": "internal_covered",
+            "detail": "show memakai Book::find tanpa cabang ID hilang. Objek yang tidak ditemukan dikembalikan sebagai data:null dengan200, sedangkan kontrak mewajibkan404.",
+            "method": "show",
+            "code_excerpt": "return response()->json(['data' => Book::find($id)], 200);",
+            "source_ids": [
+              "laravel_eloquent"
+            ],
+            "code_lines": [
+              27
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Show returns data:null/200 rather than404 for unknown ID."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/syn_missing_id/label-evidence-1.json",
+            "sha256": "ff05ce841eb82240fd21198ab1489870e13134a983b12a288267b77452b34cf9"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Dua testcase gagal dan mengarah ke pola penanganan ID hilang yang sama. Rujukan: https://laravel.com/docs/12.x/eloquent"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "syn_wrong_delete",
+      "corpus": "synthetic",
+      "used_for_development": true,
+      "origin": {
+        "kind": "controlled_mutation",
+        "template_sha256": "f79d846ef31c4ded09110cfa88c2a071e3ca1262ec1dad10b6191161c630b756",
+        "artifacts": []
+      },
+      "code_path": "cases/syn_wrong_delete/controller.php",
+      "code_sha256": "12d49c0d790b1b37937f29320b6abe6e784642f7ec81a466002175a857012693",
+      "spec_path": "cases/syn_wrong_delete/spec.json",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "label": {
+        "value": "problematic",
+        "violations": [
+          {
+            "category": "delete_without_id_filter",
+            "coverage": "internal_covered",
+            "detail": "Book::query()->delete() tanpa kondisi menghapus semua buku. destroy tidak membatasi ID yang diminta dan juga tidak memeriksa keberadaan ID untuk respons404.",
+            "method": "destroy",
+            "code_excerpt": "Book::query()->delete();",
+            "source_ids": [
+              "laravel_eloquent"
+            ],
+            "code_lines": [
+              43
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Destroy deletes all records rather than only requested ID."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/syn_wrong_delete/label-evidence-1.json",
+            "sha256": "c298d07327bb38646aa1d524953312a4aa083f02d6bd45787dd0fdbec261178a"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Test isolasi record dan delete ID tidak dikenal gagal. Dua efek tersebut berasal dari query delete tanpa penyaringan/pencarian ID. Rujukan: https://laravel.com/docs/12.x/eloquent"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "syn_reference_max",
+      "corpus": "synthetic",
+      "used_for_development": true,
+      "origin": {
+        "kind": "controlled_mutation",
+        "template_sha256": "f79d846ef31c4ded09110cfa88c2a071e3ca1262ec1dad10b6191161c630b756",
+        "artifacts": []
+      },
+      "code_path": "cases/syn_reference_max/controller.php",
+      "code_sha256": "0e1af4074a1ed67925f040ddc3c50f20596a870da1ec580e0f80d050adfad1d4",
+      "spec_path": "cases/syn_reference_max/spec.json",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "label": {
+        "value": "problematic",
+        "violations": [
+          {
+            "category": "title_max_omitted",
+            "coverage": "reference_only",
+            "detail": "Store dan update menghilangkan max:80 untuk title, sehingga judul81karakter tidak ditolak sebagaimana spec. Kedua testcase batas panjang acuan gagal; cakupan internal tidak menguji batas ini.",
+            "method": "store/update",
+            "code_excerpt": "'title' => ['required', 'string']",
+            "source_ids": [
+              "laravel_validation"
+            ],
+            "code_lines": [
+              18,
+              34
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Both write methods omit title max80; internal cases do not cover that boundary."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/syn_reference_max/label-evidence-1.json",
+            "sha256": "541f2bb501dcf42928b15892b90588fced9256c10147f4ec8416ffa95bcdb833"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Tetap bermasalah walaupun dapat lolos test internal. Klasifikasi reference_only dipertahankan agar kekurangan cakupan dapat muncul sebagai FN. Rujukan: https://laravel.com/docs/12.x/validation"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "syn_reference_min",
+      "corpus": "synthetic",
+      "used_for_development": true,
+      "origin": {
+        "kind": "controlled_mutation",
+        "template_sha256": "f79d846ef31c4ded09110cfa88c2a071e3ca1262ec1dad10b6191161c630b756",
+        "artifacts": []
+      },
+      "code_path": "cases/syn_reference_min/controller.php",
+      "code_sha256": "c5ed9b4e780948ca95d4ba15ecccf15ac4b9be51823c67b552a7582cf40f0e0d",
+      "spec_path": "cases/syn_reference_min/spec.json",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "label": {
+        "value": "problematic",
+        "violations": [
+          {
+            "category": "pages_min_omitted",
+            "coverage": "reference_only",
+            "detail": "Store dan update menghilangkan min:1 untuk pages. Nilai0 diterima, bertentangan dengan batas minimal1 pada spec. Kedua testcase nilai di bawah minimum gagal.",
+            "method": "store/update",
+            "code_excerpt": "'pages' => ['required', 'integer', 'max:5000']",
+            "source_ids": [
+              "laravel_validation"
+            ],
+            "code_lines": [
+              19,
+              35
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Both write methods omit pages min1; internal cases do not cover that boundary."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/syn_reference_min/label-evidence-1.json",
+            "sha256": "b67c976d91914099686f723bd1af371c9851e67b4ce1cb804250fb32b7217844"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Pelanggaran reference_only dipertahankan dalam ground truth sementara, meskipun tidak dicakup test internal. Rujukan: https://laravel.com/docs/12.x/validation"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "qwen_products_0",
+      "corpus": "qwen_formative",
+      "used_for_development": true,
+      "origin": {
+        "kind": "archived_qwen_attempt",
+        "source_run_id": "20261104T031502Z_loop_713c3f8803f441929ae6ed8f38077232",
+        "source_attempt": 0,
+        "model": "qwen2.5:7b-instruct",
+        "options": {
+          "temperature": 0.2,
+          "seed": 42,
+          "num_ctx": 8192,
+          "num_predict": 4096
+        },
+        "prototype_version": "0.2.0",
+        "artifacts": [
+          {
+            "path": "cases/qwen_products_0/artifact-0.json",
+            "sha256": "5293267928328c5ae1d3d4c28346d85a0e29f1ce2e213c29cac0fc84ec2ea601"
+          },
+          {
+            "path": "cases/qwen_products_0/artifact-1.txt",
+            "sha256": "743734e1fbbcd3e3c46e7029ff886846759b7062a3cce4811053d72238a64e17"
+          },
+          {
+            "path": "cases/qwen_products_0/artifact-2.json",
+            "sha256": "9b34ce6b418c938ac6e77f7f0c85e776dad5463bebd0bcd6bd9e100891155848"
+          },
+          {
+            "path": "cases/qwen_products_0/artifact-3.json",
+            "sha256": "1fc1688059dbdac9d6b38b5625acae5024beccdcda80ab0475bca4456e52c170"
+          },
+          {
+            "path": "cases/qwen_products_0/artifact-4.json",
+            "sha256": "7c7d66a7800693f080001db36c05e5a9f3b889161b7d9c09e0f99486a82e412c"
+          },
+          {
+            "path": "cases/qwen_products_0/artifact-5.txt",
+            "sha256": "d8aedc2eece7b1736b127b705a0c67464239ee83bc4cd3234354ba955d2fcc55"
+          },
+          {
+            "path": "cases/qwen_products_0/artifact-6.json",
+            "sha256": "f20878cbe5cea4c8bcf04ece1526e34fb6a8d7ba7def6100f315735eed2bd7fe"
+          },
+          {
+            "path": "cases/qwen_products_0/artifact-7.json",
+            "sha256": "e641000421056f3e795c71f7042187ffeff19dd07d8554a62f293d10a65e53e3"
+          }
+        ]
+      },
+      "code_path": "cases/qwen_products_0/controller.php",
+      "code_sha256": "743734e1fbbcd3e3c46e7029ff886846759b7062a3cce4811053d72238a64e17",
+      "spec_path": "cases/qwen_products_0/spec.json",
+      "spec_sha256": "c1c0c49235ac68653c97fc899cf6c6837a78be0c5c787f3c78a11af775f95f8a",
+      "label": {
+        "value": "problematic",
+        "violations": [
+          {
+            "category": "destroy_factory_method",
+            "coverage": "internal_covered",
+            "detail": "response() tanpa argumen menghasilkan ResponseFactory. Pemanggilan setContent pada factory menimbulkan BadMethodCallException pada harness dan DELETE mendapat500, seharusnya204.",
+            "method": "destroy",
+            "code_excerpt": "return response()->setContent('', 204);",
+            "source_ids": [
+              "laravel_response_api",
+              "http_semantics"
+            ],
+            "code_lines": [
+              69
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Draft based on source inspection and earlier independent development evaluation; obtain fresh independent evidence and human review."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/qwen_products_0/label-evidence-1.json",
+            "sha256": "0e61e1488a35407087c591789f264e387a7e20ca90bc3fb146b2fde01c812b1f"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Acuan31/33: delete dan rangkaian CRUD gagal karena cacat destroy yang sama; bukan dua bug independen. Rujukan: https://api.laravel.com/docs/12.x/Illuminate/Routing/ResponseFactory.html; https://www.rfc-editor.org/rfc/rfc9110.html"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "qwen_products_1",
+      "corpus": "qwen_formative",
+      "used_for_development": true,
+      "origin": {
+        "kind": "archived_qwen_attempt",
+        "source_run_id": "20261104T031502Z_loop_713c3f8803f441929ae6ed8f38077232",
+        "source_attempt": 1,
+        "model": "qwen2.5:7b-instruct",
+        "options": {
+          "temperature": 0.2,
+          "seed": 42,
+          "num_ctx": 8192,
+          "num_predict": 4096
+        },
+        "prototype_version": "0.2.0",
+        "artifacts": [
+          {
+            "path": "cases/qwen_products_1/artifact-0.json",
+            "sha256": "4784f09b0f6fff22ee6233d0977d1b17ac0c68bc910cad42cc26df609273465c"
+          },
+          {
+            "path": "cases/qwen_products_1/artifact-1.txt",
+            "sha256": "88eb63e579bb7712115fa21ea80c66f8bdfce05caebd1e7ba316ddee5ec52dbe"
+          },
+          {
+            "path": "cases/qwen_products_1/artifact-2.txt",
+            "sha256": "5a8879cff381aecbd8c2b5e53537257e2e7f50be38bbad8d623e9af12256f572"
+          },
+          {
+            "path": "cases/qwen_products_1/artifact-3.json",
+            "sha256": "1fc1688059dbdac9d6b38b5625acae5024beccdcda80ab0475bca4456e52c170"
+          },
+          {
+            "path": "cases/qwen_products_1/artifact-4.json",
+            "sha256": "7c7d66a7800693f080001db36c05e5a9f3b889161b7d9c09e0f99486a82e412c"
+          }
+        ]
+      },
+      "code_path": "cases/qwen_products_1/controller.php",
+      "code_sha256": "40c72ee68399c22c3d6c12ca851eb92cbc7bd8ff5894fbb45b4b83b6d47664f2",
+      "spec_path": "cases/qwen_products_1/spec.json",
+      "spec_sha256": "c1c0c49235ac68653c97fc899cf6c6837a78be0c5c787f3c78a11af775f95f8a",
+      "label": {
+        "value": "correct",
+        "violations": [],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Draft based on source inspection and earlier independent development evaluation; obtain fresh independent evidence and human review."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/qwen_products_1/label-evidence-1.json",
+            "sha256": "deae1bbcd16a0ecadbc57ef04741487236d78912c08876d408a2f3ef6f3eef9b"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Perbaikan destroy memakai response()->json dengan status204; body kosong dibuktikan suite dalam Laravel yang dipakai. Rules required/tipe/batas/unique dan penanganan ID memenuhi kontrak pada33/33test. Label dibatasi cakupan tersebut. Rujukan: https://laravel.com/docs/12.x/validation; https://api.laravel.com/docs/12.x/Illuminate/Routing/ResponseFactory.html; https://www.rfc-editor.org/rfc/rfc9110.html"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "qwen_books_0",
+      "corpus": "qwen_formative",
+      "used_for_development": true,
+      "origin": {
+        "kind": "archived_qwen_attempt",
+        "source_run_id": "20261104T044458Z_loop_52c1faef1c1644f3ac228b14eebdebcf",
+        "source_attempt": 0,
+        "model": "qwen2.5:7b-instruct",
+        "options": {
+          "temperature": 0.2,
+          "seed": 42,
+          "num_ctx": 8192,
+          "num_predict": 4096
+        },
+        "prototype_version": "0.4.1",
+        "artifacts": [
+          {
+            "path": "cases/qwen_books_0/artifact-0.json",
+            "sha256": "e3e8d3bfe33f7c7e969c7091905fcee8144c260573cbf68e359d61cd172a90f6"
+          },
+          {
+            "path": "cases/qwen_books_0/artifact-1.txt",
+            "sha256": "08ef8d7093490c4970e7992a00c302de3022c59e46173155c082a1655fe6a5cf"
+          },
+          {
+            "path": "cases/qwen_books_0/artifact-2.txt",
+            "sha256": "291ec78331b57649b014b03044e9378abf3cde7989489582b1fd79a21b98097e"
+          },
+          {
+            "path": "cases/qwen_books_0/artifact-3.json",
+            "sha256": "21eb47d9bb77df58c974ee24205f0e1c940a1848fb4c180b6b996b29d3fc9d53"
+          },
+          {
+            "path": "cases/qwen_books_0/artifact-4.json",
+            "sha256": "db963cae0ad7242f32e4971b0cef75c2c86dd1f58d471daa481acf94e8404779"
+          }
+        ]
+      },
+      "code_path": "cases/qwen_books_0/controller.php",
+      "code_sha256": "08ef8d7093490c4970e7992a00c302de3022c59e46173155c082a1655fe6a5cf",
+      "spec_path": "cases/qwen_books_0/spec.json",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "label": {
+        "value": "correct",
+        "violations": [],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Draft based on source inspection and earlier independent development evaluation; obtain fresh independent evidence and human review."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/qwen_books_0/label-evidence-1.json",
+            "sha256": "27892b127294308657326679e20c2934c4349301392b42b9dacc29e3c79a37a2"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. CRUD menggunakan validasi required/tipe/batas sesuai spec, pemeriksaan ID hilang404 dan penghapusan204. Respons json default200 pada show/update sesuai kontrak. Acuan35/35 mendukung label dalam cakupan pengujian. Rujukan: https://laravel.com/docs/12.x/validation; https://api.laravel.com/docs/12.x/Illuminate/Routing/ResponseFactory.html; https://www.rfc-editor.org/rfc/rfc9110.html"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "qwen_inventory_items_0",
+      "corpus": "qwen_formative",
+      "used_for_development": true,
+      "origin": {
+        "kind": "archived_qwen_attempt",
+        "source_run_id": "20261104T044936Z_loop_4c8045891ecc4a74a31e0117ed15932a",
+        "source_attempt": 0,
+        "model": "qwen2.5:7b-instruct",
+        "options": {
+          "temperature": 0.2,
+          "seed": 42,
+          "num_ctx": 8192,
+          "num_predict": 4096
+        },
+        "prototype_version": "0.4.1",
+        "artifacts": [
+          {
+            "path": "cases/qwen_inventory_items_0/artifact-0.json",
+            "sha256": "628fe274dc6544464454d9a7e73f4cef039d2d89eed72f3728569ef06b7dc713"
+          },
+          {
+            "path": "cases/qwen_inventory_items_0/artifact-1.txt",
+            "sha256": "05e2eb620e3424fa9a7c1cabd83f0e9a28f018b7b704ecf71038402a2ca1bcf7"
+          },
+          {
+            "path": "cases/qwen_inventory_items_0/artifact-2.txt",
+            "sha256": "b0333ca4e7bb9f85e086959c787da01b71604add4732b2b43595a0c5e6437420"
+          },
+          {
+            "path": "cases/qwen_inventory_items_0/artifact-3.json",
+            "sha256": "46cc7778ae0034e12ba11ed6446609e13ba3ad575e1242455a5bf28820333d55"
+          },
+          {
+            "path": "cases/qwen_inventory_items_0/artifact-4.json",
+            "sha256": "0a14319c45093bde1454d1d3e165308ae88adb7579b8fd65b1c5f6f125157c49"
+          }
+        ]
+      },
+      "code_path": "cases/qwen_inventory_items_0/controller.php",
+      "code_sha256": "05e2eb620e3424fa9a7c1cabd83f0e9a28f018b7b704ecf71038402a2ca1bcf7",
+      "spec_path": "cases/qwen_inventory_items_0/spec.json",
+      "spec_sha256": "12d12684bf77200978108132943ed930499887e2a143406a6247a07086f06edf",
+      "label": {
+        "value": "problematic",
+        "violations": [
+          {
+            "category": "update_required",
+            "coverage": "internal_covered",
+            "detail": "PUT mewajibkan label, stock, warehouse_code, dan reorder_level menurut spec. Keempat rule update tidak memuat required; empat request yang masing-masing kehilangan satu field mendapat200, seharusnya422. Ini satu pola kekurangan validasi dengan empat kasus bukti.",
+            "method": "update",
+            "code_excerpt": "'label' => 'string|max:80'",
+            "source_ids": [
+              "laravel_validation"
+            ],
+            "code_lines": [
+              50
+            ]
+          },
+          {
+            "category": "destroy_factory_method",
+            "coverage": "internal_covered",
+            "detail": "Pemanggilan response()->empty() menimbulkan BadMethodCallException pada ResponseFactory yang dipakai harness. DELETE mengembalikan500 sebelum mencapai status204 yang diminta.",
+            "method": "destroy",
+            "code_excerpt": "return response()->empty()->status(204);",
+            "source_ids": [
+              "laravel_response_api",
+              "http_semantics"
+            ],
+            "code_lines": [
+              71
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Draft based on source inspection and earlier independent development evaluation; obtain fresh independent evidence and human review."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/qwen_inventory_items_0/label-evidence-1.json",
+            "sha256": "12198626d24621ab32193e67c37da5600812fa8a8c6398f3861ae9c9723997b8"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Acuan51/57: empat kasus field wajib PUT dan dua testcase yang terkena cacat destroy. Jumlah testcase gagal tidak disamakan dengan jumlah pola kesalahan. Rujukan: https://laravel.com/docs/12.x/validation; https://api.laravel.com/docs/12.x/Illuminate/Routing/ResponseFactory.html; https://www.rfc-editor.org/rfc/rfc9110.html"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "qwen_inventory_items_1",
+      "corpus": "qwen_formative",
+      "used_for_development": true,
+      "origin": {
+        "kind": "archived_qwen_attempt",
+        "source_run_id": "20261104T044936Z_loop_4c8045891ecc4a74a31e0117ed15932a",
+        "source_attempt": 1,
+        "model": "qwen2.5:7b-instruct",
+        "options": {
+          "temperature": 0.2,
+          "seed": 42,
+          "num_ctx": 8192,
+          "num_predict": 4096
+        },
+        "prototype_version": "0.4.1",
+        "artifacts": [
+          {
+            "path": "cases/qwen_inventory_items_1/artifact-0.json",
+            "sha256": "25ff9395fd4711cc546478e372087b06017009745f988e312e90d149991a0ee0"
+          },
+          {
+            "path": "cases/qwen_inventory_items_1/artifact-1.txt",
+            "sha256": "6c066317fcb25f544382dd3392d7a73f8c2b75a855e4f9775976aed3ac420d3c"
+          },
+          {
+            "path": "cases/qwen_inventory_items_1/artifact-2.txt",
+            "sha256": "11c94ed26b283d3278bde853374706a49cd9a0275be28c873e683a96a7ce159a"
+          },
+          {
+            "path": "cases/qwen_inventory_items_1/artifact-3.json",
+            "sha256": "46cc7778ae0034e12ba11ed6446609e13ba3ad575e1242455a5bf28820333d55"
+          },
+          {
+            "path": "cases/qwen_inventory_items_1/artifact-4.json",
+            "sha256": "0a14319c45093bde1454d1d3e165308ae88adb7579b8fd65b1c5f6f125157c49"
+          }
+        ]
+      },
+      "code_path": "cases/qwen_inventory_items_1/controller.php",
+      "code_sha256": "4bfe487ccf414e22b918e7d428a78c995d743d4db17e76ce510f7af3d9aa553f",
+      "spec_path": "cases/qwen_inventory_items_1/spec.json",
+      "spec_sha256": "12d12684bf77200978108132943ed930499887e2a143406a6247a07086f06edf",
+      "label": {
+        "value": "problematic",
+        "violations": [
+          {
+            "category": "update_required",
+            "coverage": "internal_covered",
+            "detail": "PUT mewajibkan label, stock, warehouse_code, dan reorder_level menurut spec. Keempat rule update tidak memuat required; empat request yang masing-masing kehilangan satu field mendapat200, seharusnya422. Ini satu pola kekurangan validasi dengan empat kasus bukti.",
+            "method": "update",
+            "code_excerpt": "'label' => 'string|max:80'",
+            "source_ids": [
+              "laravel_validation"
+            ],
+            "code_lines": [
+              50
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Draft based on source inspection and earlier independent development evaluation; obtain fresh independent evidence and human review."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/qwen_inventory_items_1/label-evidence-1.json",
+            "sha256": "378de92f70b98f4ff2b66b414f5fc0195fc5bf3f2b30916d03c1f581f80ec7ca"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Destroy sudah diperbaiki dan acuan53/57. Empat kegagalan tersisa adalah request PUT tanpa masing-masing field wajib; belum merupakan perbaikan penuh. Rujukan: https://laravel.com/docs/12.x/validation"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    },
+    {
+      "case_id": "qwen_inventory_items_2",
+      "corpus": "qwen_formative",
+      "used_for_development": true,
+      "origin": {
+        "kind": "archived_qwen_attempt",
+        "source_run_id": "20261104T044936Z_loop_4c8045891ecc4a74a31e0117ed15932a",
+        "source_attempt": 2,
+        "model": "qwen2.5:7b-instruct",
+        "options": {
+          "temperature": 0.2,
+          "seed": 42,
+          "num_ctx": 8192,
+          "num_predict": 4096
+        },
+        "prototype_version": "0.4.1",
+        "artifacts": [
+          {
+            "path": "cases/qwen_inventory_items_2/artifact-0.json",
+            "sha256": "8e7a1c0a8b00c45814cbcd6dde8a4991de84b64ca27c6c657b3b42ec0133d1cf"
+          },
+          {
+            "path": "cases/qwen_inventory_items_2/artifact-1.txt",
+            "sha256": "6c066317fcb25f544382dd3392d7a73f8c2b75a855e4f9775976aed3ac420d3c"
+          },
+          {
+            "path": "cases/qwen_inventory_items_2/artifact-2.txt",
+            "sha256": "6be78535d5295fd85e562584cb133462965599bb5d2ba1c604692f0df586fd4d"
+          },
+          {
+            "path": "cases/qwen_inventory_items_2/artifact-3.json",
+            "sha256": "46cc7778ae0034e12ba11ed6446609e13ba3ad575e1242455a5bf28820333d55"
+          },
+          {
+            "path": "cases/qwen_inventory_items_2/artifact-4.json",
+            "sha256": "0a14319c45093bde1454d1d3e165308ae88adb7579b8fd65b1c5f6f125157c49"
+          }
+        ]
+      },
+      "code_path": "cases/qwen_inventory_items_2/controller.php",
+      "code_sha256": "4bfe487ccf414e22b918e7d428a78c995d743d4db17e76ce510f7af3d9aa553f",
+      "spec_path": "cases/qwen_inventory_items_2/spec.json",
+      "spec_sha256": "12d12684bf77200978108132943ed930499887e2a143406a6247a07086f06edf",
+      "label": {
+        "value": "problematic",
+        "violations": [
+          {
+            "category": "update_required",
+            "coverage": "internal_covered",
+            "detail": "PUT mewajibkan label, stock, warehouse_code, dan reorder_level menurut spec. Keempat rule update tidak memuat required; empat request yang masing-masing kehilangan satu field mendapat200, seharusnya422. Ini satu pola kekurangan validasi dengan empat kasus bukti.",
+            "method": "update",
+            "code_excerpt": "'label' => 'string|max:80'",
+            "source_ids": [
+              "laravel_validation"
+            ],
+            "code_lines": [
+              50
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "code_inspection",
+            "detail": "Draft based on source inspection and earlier independent development evaluation; obtain fresh independent evidence and human review."
+          },
+          {
+            "kind": "independent_reference",
+            "path": "cases/qwen_inventory_items_2/label-evidence-1.json",
+            "sha256": "ea0f963b37df6a4fc27ecfb1f3e4af02ed27ad78ad19a72e9fab0fba163ac740"
+          },
+          {
+            "kind": "code_inspection",
+            "detail": "Anotasi berbantuan OpenAI Codex untuk Mikhael Josua Roganda. Byte kode identik dengan percobaan1. Bukti acuan53/57 digunakan ulang secara eksplisit; ini satu kandidat duplikat, bukan eksekusi independen tambahan. Rujukan: https://laravel.com/docs/12.x/validation"
+          }
+        ],
+        "review": {
+          "status": "draft",
+          "author": "Mikhael Josua Roganda",
+          "reviewer": null,
+          "reviewed_at": null,
+          "blinded_to_prediction": false
+        }
+      }
+    }
+  ],
+  "annotation": {
+    "status": "draft_ai_assisted",
+    "requested_author_name": "Mikhael Josua Roganda",
+    "author_role": "Pemilik anotasi atas permintaan pengguna; pemeriksaan manual oleh pemilik belum diattestasi.",
+    "prepared_by": "OpenAI Codex",
+    "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+    "human_author_review_attested": false,
+    "independent_human_review_completed": false,
+    "source_manifest_sha256": "792cd1547ffb810eaef2592871318126da77a974e26b21cf2b1a4575c0bc4364",
+    "method": "Inspeksi kode/spec dan bukti acuan Docker yang telah ada, ditambah rujukan primer. Tidak menggunakan prediksi Critic sebagai ground truth.",
+    "external_label_dataset_used": false,
+    "sources_path": "sources.json",
+    "sources_sha256": "f12f2e774d514364f563773f643ec707c33892b6c3aa5ff7517bd79592bae58d"
+  }
+}

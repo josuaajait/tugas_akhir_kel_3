@@ -17,6 +17,9 @@ from .orchestrator import run_products, run_resource
 from .reference import ReferenceDockerRunner, evaluate_products, reference_suite_hash
 from .resources import ResourceDockerRunner, build_resource
 from .resource_reference import ResourceReferenceRunner, build_resource_reference, evaluate_resource
+from .component_corpus import prepare_development_corpus, load_corpus
+from .component_evaluation import run_components, collect_component_evidence
+from .component_report import component_report
 
 
 def emit(value):
@@ -27,6 +30,18 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(prog='critic-agent', description='Fondasi Critic Agent untuk controller Laravel.')
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('doctor', help='Periksa Python, PHP, Docker, dan Ollama.')
+    corpus = sub.add_parser('component-corpus-init', help='Siapkan korpus development berlabel draf, tanpa Qwen.')
+    corpus.add_argument('--output', type=Path, default=Path('corpora/development'))
+    corpus.add_argument('--synthetic-only', action='store_true')
+    corpus.add_argument('--runs-root', type=Path)
+    for name in ('component-evidence', 'component-run'):
+        component = sub.add_parser(name, help='Kumpulkan bukti acuan atau prediksi Critic tanpa memanggil Qwen.')
+        component.add_argument('corpus', type=Path)
+        component.add_argument('--output', type=Path, default=Path('component-evidence' if name=='component-evidence' else 'component-runs'))
+        component.add_argument('--timeout', type=float, default=120)
+    component_summary = sub.add_parser('component-report', help='Metrik per kode/per korpus; draf hanya melalui --provisional.')
+    component_summary.add_argument('run_directory', type=Path)
+    component_summary.add_argument('--provisional', action='store_true')
     build_evaluation = sub.add_parser('evaluation-build', help='Bangun image evaluator acuan terpisah.')
     build_evaluation.add_argument('--image', default='critic-laravel-evaluation:dev')
     build_evaluation.add_argument('--base-image', default='critic-laravel:dev')
@@ -90,6 +105,29 @@ def main(argv=None) -> int:
             child.add_argument('--timeout', type=float, default=300)
     args = parser.parse_args(argv)
     try:
+        if args.command == 'component-corpus-init':
+            options = {'runs_root':args.runs_root} if args.runs_root is not None else {}
+            folder = prepare_development_corpus(args.output, synthetic_only=args.synthetic_only, **options)
+            loaded = load_corpus(folder/'corpus.json')
+            emit({'status':'PREPARED_DRAFT','case_count':len(loaded['records']),
+                  'corpus_manifest':str((folder/'corpus.json').resolve()),'human_labels_reviewed':False})
+            return 0
+        if args.command in ('component-evidence','component-run'):
+            if args.command == 'component-evidence':
+                folder = collect_component_evidence(args.corpus,args.output,timeout=args.timeout)
+                result = json.loads((folder/'evidence_manifest.json').read_text(encoding='utf-8'))
+                emit({'status':result['status'],'case_count':len(result['cases']),
+                      'corpus_manifest':str((folder/'corpus.json').resolve()),
+                      'review_packet':str((folder/'review').resolve()),'labels_promoted':False})
+            else:
+                folder = run_components(args.corpus,args.output,timeout=args.timeout)
+                result = json.loads((folder/'run_manifest.json').read_text(encoding='utf-8'))
+                emit({'status':result['status'],'case_count':result['case_count'],
+                      'prediction_errors':result['prediction_errors'],'run_directory':str(folder.resolve())})
+            return 0 if result['status']=='COMPLETE' else 3
+        if args.command == 'component-report':
+            emit(component_report(args.run_directory,provisional=args.provisional))
+            return 0
         if args.command == 'doctor':
             result = doctor()
             emit(result)

@@ -52,4 +52,6 @@ Source yang berubah/hilang meskipun diklaim tersedia ditolak. Kode yang dinyatak
 
 Python menguji ukuran suite, metadata, penolakan kontrak/image salah, metrik35/57, input identik, source tampering, output tidak tersedia/sintaks, error/parsial, timeout/cleanup, dan CLI tanpa panggilan model. PHP lint, enumerasi provider dan probe assertion murni dilakukan pada source tepercaya, tanpa menjalankan controller kandidat di host. Keduanya tetap memerlukan build dan eksekusi Docker di CLI pengguna sebelum hasil fungsional dapat dilaporkan.
 
+Pembaruan4 November2026: pengguna sudah memverifikasi kedua build dan evaluasi Docker0.5.0. Books: readiness35/35, awal35/35 dan akhir35/35 (uplift0, repair N/A). Inventory: readiness57/57, awal51/57 dan akhir53/57 (uplift3.508772 poin, repair0/1). Empat kegagalan akhir adalah PUT tanpa masing-masing field wajib. Ini hasil tiga paket pengembangan bersama products, belum evaluasi sumatif. Warning InvalidDefaultArgInFrom tidak menggagalkan build; CLI telah mengisi RESOURCE_IMAGE dengan referensi base yang diperiksa. Detail provenance di docs/progress.md.
+
 Untuk paket products dan template internal lama, audit lanjutan assertion koleksi tetap diperlukan sebelum pembekuan akhir; paket baru sudah memakai pencocokan per-record. Bukti products yang sudah ada tetap merujuk versi/hash suite lamanya.

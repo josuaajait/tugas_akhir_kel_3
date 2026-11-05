@@ -1,5 +1,7 @@
 # Critic Agent
 
+> **Melanjutkan proyek?** Mulai dari [panduan serah terima](docs/HANDOFF.md), diperbarui 5 November 2026: status terverifikasi, setup clone baru, artefak yang tidak ikut Git, dan daftar kerja berikutnya. [Salinan laporan komponen](docs/evidence/component-provisional-2026-11-05.json) ikut repositori agar hasil terakhir dapat dibaca setelah clone.
+
 Prototipe TA untuk memeriksa controller CRUD REST API Laravel hasil Qwen2.5-7B-Instruct. Versi 0.5.0 menyediakan loop lintas resource serta evaluator acuan pengembangan terpisah untuk products, books, dan inventory.
 
 Harness acuan telah dibuktikan melalui terminal pengguna dengan 21/21 test lulus. Pada uji langsung pertama, kandidat awal Qwen lulus 13/14 dan kandidat akhir lulus 14/14 setelah satu revisi otomatis. Qwen mengganti pemanggilan response()->setContent('', 204) menjadi response()->json('', 204). Run terverifikasi tersimpan di runs/20261104T031502Z_loop_713c3f8803f441929ae6ed8f38077232. Petunjuk harness ada di [harness/README.md](harness/README.md).
@@ -14,6 +16,7 @@ Harness acuan telah dibuktikan melalui terminal pengguna dengan 21/21 test lulus
 - Perintah `harness-build`, `harness-check`, dan `check-products`; parser JUnit, pembatasan output, dan arsip pemeriksaan container.
 - `run-products` menjalankan loop otomatis, termasuk penghentian ketika lolos, kode identik, batas revisi, atau ERROR lingkungan/model. Arsip awal diverifikasi dengan spec/hash/config sebelum dipakai ulang.
 - `evaluation-build` dan `evaluate-products` membandingkan kode awal/akhir arsip loop dengan suite pengembangan terpisah, tanpa memanggil Qwen. Evaluator products sudah diverifikasi dari terminal pengguna:31/33 menjadi33/33 (uplift6.06 poin persentase).
+- `component-corpus-init`, `component-evidence`, `component-run`, dan `component-report` menyediakan korpus draf, bukti acuan terpisah serta precision/recall/FPR per kode dan asal korpus. Tidak memanggil Qwen; label manusia tetap perlu ditinjau.
 
 Status `AWAITING_DYNAMIC_TESTS` berarti tahap fondasi selesai tanpa temuan statis atau kode telah diekstrak, bergantung perintah yang dijalankan. **Bukan LOLOS fungsional**. `generate` tidak otomatis menjalankan `analyze`.
 
@@ -88,7 +91,7 @@ python -m critic_agent resource-check examples/books.json
 python -m critic_agent run-resource examples/books.json --seed 42 --temperature 0.2 --timeout 300
 ```
 
-Books mendefinisikan12 kasus internal dan27 total readiness. Contoh kedua: examples/inventory_items.json, dengan model StockItem/tabel inventory_items dan16 internal/46 total readiness. Books sudah teruji: readiness27/27 dan Qwen langsung12/12. Inventory teruji: readiness46/46, kandidat11/16 menjadi12/16 lalu berhenti identical_code pada revisi2. Image default per resource terpisah. Build/check tidak memanggil Qwen. Evaluator terpisah books/inventory tersedia mulai0.5.0 dan masih menunggu verifikasi Docker. Baca [cakupan, batas, dan validasi negatif](docs/resource-harness.md) sebelum menjalankan pilot.
+Books mendefinisikan12 kasus internal dan27 total readiness. Contoh kedua: examples/inventory_items.json, dengan model StockItem/tabel inventory_items dan16 internal/46 total readiness. Books sudah teruji: readiness27/27 dan Qwen langsung12/12. Inventory teruji: readiness46/46, kandidat11/16 menjadi12/16 lalu berhenti identical_code pada revisi2. Image default per resource terpisah. Build/check tidak memanggil Qwen. Evaluator0.5.0 sudah teruji live: books35/35 menjadi35/35; inventory51/57 menjadi53/57 dengan empat kegagalan PUT required tersisa. Baca [cakupan, batas, dan validasi negatif](docs/resource-harness.md) sebelum menjalankan pilot.
 
 ## Evaluator books dan inventory
 
@@ -103,17 +106,19 @@ python -m critic_agent evaluate-resource runs/20261104T044936Z_loop_4c8045891ecc
 
 Build evaluator harus BUILT sebelum evaluasi. Books mendefinisikan35 kasus acuan dan inventory57, termasuk field wajib, tipe, min/max/unique serta batas valid POST dan PUT. Suite/data acuan dipisahkan dari template internal. Hasil awal/akhir memakai image ID dan suite yang sama dengan DB baru; raw counts, uplift, repair dan regression ditulis ke folder evaluations baru. EVALUATED berarti penilaian selesai, termasuk bila test gagal. Penyebut nol bernilai null/N/A.
 
-Paket ini untuk pengembangan dan dibuat setelah keluaran pertama diamati; belum merupakan bukti sumatif yang dibutakan/dibekukan. Hasil Docker baru perlu dijalankan di terminal/Codex CLI pengguna. Image dan fingerprint internal serta paket products tetap kompatibel. Rincian: [evaluator resource](evaluation/resource-reference/README.md).
+Paket ini untuk pengembangan dan dibuat setelah keluaran pertama diamati; belum merupakan bukti sumatif yang dibutakan/dibekukan. Hasil live Docker sudah terverifikasi dari terminal pengguna: books35/35->35/35 (uplift0) dan inventory51/57->53/57 (uplift3.508772 poin, repair0/1). Image dan fingerprint internal serta paket products tetap kompatibel. Rincian: [evaluator resource](evaluation/resource-reference/README.md).
 
-## Langkah berikutnya
+## Status terakhir dan langkah berikutnya
 
-1. Verifikasi evaluator books/inventory pada arsip yang sudah ada melalui CLI pengguna.
-2. Siapkan korpus berlabel dan evaluasi komponen (precision/recall/FPR).
-3. Jalankan pilot, validasi cakupan, peninjauan dan pembekuan sebelum eksperimen akhir.
+Per 5 November 2026, komponen menjalankan16 kandidat tanpa error prediksi dan menghasilkan laporan provisional. Sintetis:TP6/FP0/TN2/FN2, precision6/6=100%, recall6/8=75%, FPR0/2=0%. Qwen formatif:TP3/FP0/TN2/FN0 pada5 kode unik, precision3/3=100%, recall3/3=100%, FPR0/2=0%; satu duplikat tetap disimpan. Dua FN sintetis adalah aturan min/max reference_only. Held-out belum ada. Semua label masih draf berbantuan AI atas nama Mikhael Josua Roganda; angka kecil/formatif ini bukan hasil akhir penelitian.
 
-Rencana fondasi: `docs/superpowers/plans/2026-11-03-foundation.md`. Batas MVP: `docs/spec-mvp.md`. Catatan kemajuan: `docs/progress.md`.
+Korpus: corpora/annotations/20261104T085829Z_mikhael-ai-assisted_e7a9c4248c344f21aa2b3df91fca627c/corpus.json. Run lokal: component-runs/20261105T005526Z_component_4a131234b1c14b5a95421e211dcdf739. [Laporan yang ikut Git](docs/evidence/component-provisional-2026-11-05.json) dan [provenance](docs/evidence/README.md) terpisah dari arsip raw yang diabaikan Git.
 
-Tes unit client memakai transport terkontrol. Bukti integrasi Qwen/Docker berasal dari arsip live pengguna yang dijelaskan di docs/progress.md, terpisah dari hasil unit test. Analisis statis menggunakan PHP asli bila tersedia; pengujian itu dilewati otomatis bila PHP tidak ditemukan.
+Prioritas: lingkungan teman siap → pilot suhu/seed/biaya dan agregasi → review manusia serta keputusan A/B → held-out dan pembekuan → eksekusi/pelaporan akhir. CLI pilot, A/B dan aggregator khusus belum tersedia. Lihat [serah terima](docs/HANDOFF.md) untuk langkah konkret.
+
+Perintah/review komponen: [evaluasi komponen](docs/component-evaluation.md). Riwayat verifikasi kode terakhir:134 tes Python lulus tanpa skip pada 4 November 2026; jalankan ulang di clone penerima. Tes terkontrol dipisahkan dari bukti live Docker/Qwen. Versi aplikasi tetap0.5.0, protokol komponen 1.0; hash sumber dicatat.
+
+Rencana lama: docs/superpowers/plans/. Batas MVP: [spec-mvp](docs/spec-mvp.md). Riwayat: [progress](docs/progress.md).
 
 ## Referensi implementasi
 
