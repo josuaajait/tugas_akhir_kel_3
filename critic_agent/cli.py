@@ -19,6 +19,7 @@ from .resources import ResourceDockerRunner, build_resource
 from .resource_reference import ResourceReferenceRunner, build_resource_reference, evaluate_resource
 
 from .pilot import create_pilot_manifest
+from.pilot_runner import run_pilot
 from .component_corpus import prepare_development_corpus, load_corpus
 from .component_evaluation import run_components, collect_component_evidence
 from .component_report import component_report
@@ -32,11 +33,27 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(prog='critic-agent', description='Fondasi Critic Agent untuk controller Laravel.')
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('doctor', help='Periksa Python, PHP, Docker, dan Ollama.')
-    
+
     pilot = sub.add_parser(
         'pilot-plan',
         help='Buat manifest eksperimen temperature dan seed tanpa menjalankan model.'
     )
+
+    pilot_runner = sub.add_parser(
+        'pilot-run',
+        help='Jalankan eksperimen pilot secara bertahap dari manifest.'
+    )
+    pilot_runner.add_argument('manifest', type=Path)
+    pilot_runner.add_argument('--limit', type=int, default=1)
+    pilot_runner.add_argument(
+        '--kind',
+        choices=('products', 'resource'),
+        default='products',
+    )
+    pilot_runner.add_argument('--image', default=None)
+    pilot_runner.add_argument('--timeout', type=float, default=300)
+    pilot_runner.add_argument('--test-timeout', type=float, default=120)
+
     pilot.add_argument('specs', nargs='+', type=Path)
     pilot.add_argument('--seeds', nargs='+', type=int, required=True)
     pilot.add_argument('--temperatures', nargs='+', type=float, required=True)
@@ -47,7 +64,7 @@ def main(argv=None) -> int:
         type=Path,
         default=Path('runs/pilot-development/manifest.json'),
     )
-    
+
     corpus = sub.add_parser('component-corpus-init', help='Siapkan korpus development berlabel draf, tanpa Qwen.')
     corpus.add_argument('--output', type=Path, default=Path('corpora/development'))
     corpus.add_argument('--synthetic-only', action='store_true')
@@ -123,7 +140,19 @@ def main(argv=None) -> int:
             child.add_argument('--timeout', type=float, default=300)
     args = parser.parse_args(argv)
     try:
-        
+
+        if args.command == 'pilot-run':
+            result = run_pilot(
+                args.manifest,
+                limit=args.limit,
+                kind=args.kind,
+                image=args.image,
+                model_timeout=args.timeout,
+                test_timeout=args.test_timeout,
+            )
+            emit(result)
+            return 3 if result['status'] == 'ERROR' else 0
+
         if args.command == 'pilot-plan':
             result = create_pilot_manifest(
                 specs=args.specs,
