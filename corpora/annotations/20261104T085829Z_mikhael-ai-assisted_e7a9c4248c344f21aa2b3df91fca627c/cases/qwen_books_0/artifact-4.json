@@ -1,0 +1,143 @@
+{
+  "run_id": "20261104T044458Z_loop_52c1faef1c1644f3ac228b14eebdebcf",
+  "status": "LOLOS",
+  "stop_reason": "all_checks_passed",
+  "revision_count": 0,
+  "attempts": [
+    {
+      "iteration": 0,
+      "dynamic_status": "PASSED_INTERNAL",
+      "findings": [],
+      "prompt_sha256": "291ec78331b57649b014b03044e9378abf3cde7989489582b1fd79a21b98097e",
+      "model_called": true,
+      "code_sha256": "08ef8d7093490c4970e7992a00c302de3022c59e46173155c082a1655fe6a5cf",
+      "static": {
+        "status": "AWAITING_DYNAMIC_TESTS",
+        "dynamic_tests": "not_run",
+        "findings": []
+      },
+      "dynamic": {
+        "status": "PASSED_INTERNAL",
+        "reason": "all_tests_passed",
+        "run_directory": "C:\\Perkuliahan\\TA\\runs\\resource-harness\\critic-55ad3f388cd54767acc3f999e502500f",
+        "created_at": "2026-11-04T04:45:41.485713+00:00",
+        "image": "critic-resource-books:dev",
+        "mode": "candidate",
+        "command": [
+          "docker",
+          "run",
+          "--name",
+          "critic-55ad3f388cd54767acc3f999e502500f",
+          "--pull=never",
+          "--network=none",
+          "--read-only",
+          "--log-driver=none",
+          "--cap-drop=ALL",
+          "--security-opt=no-new-privileges",
+          "--user=10001:10001",
+          "--memory=768m",
+          "--cpus=1",
+          "--pids-limit=128",
+          "--tmpfs",
+          "/work:rw,nosuid,nodev,size=512m,mode=1777",
+          "--tmpfs",
+          "/tmp:rw,nosuid,nodev,noexec,size=32m,mode=1777",
+          "--mount",
+          "type=bind,src=C:\\Perkuliahan\\TA\\runs\\resource-harness\\critic-55ad3f388cd54767acc3f999e502500f\\candidate.php,dst=/input/controller.php,readonly",
+          "sha256:5d0d0db6d5f63b791337ed9ee133e2b6d3764705cd716575c166b1b29b4db87d",
+          "resource-candidate"
+        ],
+        "timeout_seconds": 120,
+        "expected_tests": 12,
+        "candidate_sha256": "08ef8d7093490c4970e7992a00c302de3022c59e46173155c082a1655fe6a5cf",
+        "image_id": "sha256:5d0d0db6d5f63b791337ed9ee133e2b6d3764705cd716575c166b1b29b4db87d",
+        "exit_code": 0,
+        "summary": {
+          "status": "PASSED",
+          "total": 12,
+          "passed": 12,
+          "failure": 0,
+          "error": 0,
+          "skipped": 0,
+          "cases": [
+            {
+              "name": "test_index_returns_records_without_mutation",
+              "class": "Tests.Feature.ResourceContractTest",
+              "outcome": "passed",
+              "evidence": ""
+            },
+            {
+              "name": "test_store_persists_payload_and_preserves_other",
+              "class": "Tests.Feature.ResourceContractTest",
+              "outcome": "passed",
+              "evidence": ""
+            },
+            {
+              "name": "test_show_returns_requested_record_without_mutation",
+              "class": "Tests.Feature.ResourceContractTest",
+              "outcome": "passed",
+              "evidence": ""
+            },
+            {
+              "name": "test_update_changes_only_target",
+              "class": "Tests.Feature.ResourceContractTest",
+              "outcome": "passed",
+              "evidence": ""
+            },
+            {
+              "name": "test_destroy_removes_only_target_and_returns_empty_204",
+              "class": "Tests.Feature.ResourceContractTest",
+              "outcome": "passed",
+              "evidence": ""
+            },
+            {
+              "name": "test_required_field_rejection_preserves_data with data set \"store_title\"",
+              "class": "Tests.Feature.ResourceContractTest",
+              "outcome": "passed",
+              "evidence": ""
+            },
+            {
+              "name": "test_required_field_rejection_preserves_data with data set \"store_pages\"",
+              "class": "Tests.Feature.ResourceContractTest",
+              "outcome": "passed",
+              "evidence": ""
+            },
+            {
+              "name": "test_required_field_rejection_preserves_data with data set \"update_title\"",
+              "class": "Tests.Feature.ResourceContractTest",
+              "outcome": "passed",
+              "evidence": ""
+            },
+            {
+              "name": "test_required_field_rejection_preserves_data with data set \"update_pages\"",
+              "class": "Tests.Feature.ResourceContractTest",
+              "outcome": "passed",
+              "evidence": ""
+            },
+            {
+              "name": "test_missing_id_returns_json_404_without_mutation with data set \"show\"",
+              "class": "Tests.Feature.ResourceContractTest",
+              "outcome": "passed",
+              "evidence": ""
+            },
+            {
+              "name": "test_missing_id_returns_json_404_without_mutation with data set \"update\"",
+              "class": "Tests.Feature.ResourceContractTest",
+              "outcome": "passed",
+              "evidence": ""
+            },
+            {
+              "name": "test_missing_id_returns_json_404_without_mutation with data set \"destroy\"",
+              "class": "Tests.Feature.ResourceContractTest",
+              "outcome": "passed",
+              "evidence": ""
+            }
+          ]
+        },
+        "cleanup_exit_code": 0,
+        "readiness_directory": "C:\\Perkuliahan\\TA\\runs\\resource-harness\\critic-72db8d5d29b5472a9f10e7e5af33b512"
+      },
+      "elapsed_seconds": 44.330442
+    }
+  ]
+}

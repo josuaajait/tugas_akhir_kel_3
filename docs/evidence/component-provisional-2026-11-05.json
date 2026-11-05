@@ -1,0 +1,212 @@
+{
+  "protocol_version": "1.0",
+  "stage": "development",
+  "label_mode": "provisional_unreviewed",
+  "duplicate_policy": "one eligible code/spec hash per corpus; conflicting labels excluded",
+  "groups": {
+    "synthetic": {
+      "total": 10,
+      "eligible": 10,
+      "excluded": {
+        "duplicate": 0
+      },
+      "draft_labels": 10,
+      "matrix": {
+        "TP": 6,
+        "FP": 0,
+        "TN": 2,
+        "FN": 2
+      },
+      "precision": {
+        "numerator": 6,
+        "denominator": 6,
+        "percent": 100.0
+      },
+      "recall": {
+        "numerator": 6,
+        "denominator": 8,
+        "percent": 75.0
+      },
+      "fpr": {
+        "numerator": 0,
+        "denominator": 2,
+        "percent": 0.0
+      },
+      "by_coverage": {
+        "correct": {
+          "TP": 0,
+          "FP": 0,
+          "TN": 2,
+          "FN": 0
+        },
+        "internal_covered": {
+          "TP": 6,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        },
+        "reference_only": {
+          "TP": 0,
+          "FP": 0,
+          "TN": 0,
+          "FN": 2
+        }
+      },
+      "included": [
+        {
+          "case_id": "syn_array_valid",
+          "outcome": "TN",
+          "coverage_group": "correct"
+        },
+        {
+          "case_id": "syn_string_valid",
+          "outcome": "TN",
+          "coverage_group": "correct"
+        },
+        {
+          "case_id": "syn_syntax",
+          "outcome": "TP",
+          "coverage_group": "internal_covered"
+        },
+        {
+          "case_id": "syn_missing_method",
+          "outcome": "TP",
+          "coverage_group": "internal_covered"
+        },
+        {
+          "case_id": "syn_store_status",
+          "outcome": "TP",
+          "coverage_group": "internal_covered"
+        },
+        {
+          "case_id": "syn_update_required",
+          "outcome": "TP",
+          "coverage_group": "internal_covered"
+        },
+        {
+          "case_id": "syn_missing_id",
+          "outcome": "TP",
+          "coverage_group": "internal_covered"
+        },
+        {
+          "case_id": "syn_wrong_delete",
+          "outcome": "TP",
+          "coverage_group": "internal_covered"
+        },
+        {
+          "case_id": "syn_reference_max",
+          "outcome": "FN",
+          "coverage_group": "reference_only"
+        },
+        {
+          "case_id": "syn_reference_min",
+          "outcome": "FN",
+          "coverage_group": "reference_only"
+        }
+      ]
+    },
+    "qwen_formative": {
+      "total": 6,
+      "eligible": 5,
+      "excluded": {
+        "duplicate": 1
+      },
+      "draft_labels": 6,
+      "matrix": {
+        "TP": 3,
+        "FP": 0,
+        "TN": 2,
+        "FN": 0
+      },
+      "precision": {
+        "numerator": 3,
+        "denominator": 3,
+        "percent": 100.0
+      },
+      "recall": {
+        "numerator": 3,
+        "denominator": 3,
+        "percent": 100.0
+      },
+      "fpr": {
+        "numerator": 0,
+        "denominator": 2,
+        "percent": 0.0
+      },
+      "by_coverage": {
+        "internal_covered": {
+          "TP": 3,
+          "FP": 0,
+          "TN": 0,
+          "FN": 0
+        },
+        "correct": {
+          "TP": 0,
+          "FP": 0,
+          "TN": 2,
+          "FN": 0
+        }
+      },
+      "included": [
+        {
+          "case_id": "qwen_products_0",
+          "outcome": "TP",
+          "coverage_group": "internal_covered"
+        },
+        {
+          "case_id": "qwen_products_1",
+          "outcome": "TN",
+          "coverage_group": "correct"
+        },
+        {
+          "case_id": "qwen_books_0",
+          "outcome": "TN",
+          "coverage_group": "correct"
+        },
+        {
+          "case_id": "qwen_inventory_items_0",
+          "outcome": "TP",
+          "coverage_group": "internal_covered"
+        },
+        {
+          "case_id": "qwen_inventory_items_1",
+          "outcome": "TP",
+          "coverage_group": "internal_covered"
+        }
+      ]
+    },
+    "qwen_held_out": {
+      "total": 0,
+      "eligible": 0,
+      "excluded": {},
+      "draft_labels": 0,
+      "matrix": {
+        "TP": 0,
+        "FP": 0,
+        "TN": 0,
+        "FN": 0
+      },
+      "precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "fpr": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "by_coverage": {},
+      "included": []
+    }
+  },
+  "engine_sha256": "2d54d84ab1862608dce1cc2da82f74a504bea73b0e78a0efefc0bb2db7796e9b",
+  "backend": "default_php_docker",
+  "source_run_status": "COMPLETE",
+  "corpus_sha256": "ea165453ca59c3b1a31924d7fa024c58dbc34e4d2e2f07e6016ee643661ecf9a"
+}

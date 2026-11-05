@@ -1,0 +1,726 @@
+{
+  "instructions": "Usulan ground truth berbantuan AI untuk pemilik anotasi yang disebut pengguna. Seluruh keputusan tetap draf sampai diperiksa manusia; tidak ada persetujuan atau reviewer manusia yang diisi otomatis.",
+  "annotation": {
+    "status": "draft_ai_assisted",
+    "requested_author_name": "Mikhael Josua Roganda",
+    "author_role": "Pemilik anotasi atas permintaan pengguna; pemeriksaan manual oleh pemilik belum diattestasi.",
+    "prepared_by": "OpenAI Codex",
+    "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+    "human_author_review_attested": false,
+    "independent_human_review_completed": false,
+    "source_manifest_sha256": "792cd1547ffb810eaef2592871318126da77a974e26b21cf2b1a4575c0bc4364",
+    "method": "Inspeksi kode/spec dan bukti acuan Docker yang telah ada, ditambah rujukan primer. Tidak menggunakan prediksi Critic sebagai ground truth.",
+    "external_label_dataset_used": false,
+    "sources_path": "sources.json",
+    "sources_sha256": "f12f2e774d514364f563773f643ec707c33892b6c3aa5ff7517bd79592bae58d"
+  },
+  "cases": [
+    {
+      "review_id": "R001",
+      "case_id": "syn_array_valid",
+      "value": "correct",
+      "violations": [],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Kelima action tersedia, rules array sesuai spec, ID hilang memakai findOrFail, dan penghapusan menargetkan satu ID. Bukti acuan35/35 mendukung kesesuaian dalam kontrak/cakupan yang diperiksa.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "laravel_validation",
+        "laravel_eloquent",
+        "laravel_response_api",
+        "http_semantics"
+      ],
+      "code_sha256": "f79d846ef31c4ded09110cfa88c2a071e3ca1262ec1dad10b6191161c630b756",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "reference_evidence": {
+        "path": "cases/syn_array_valid/label-evidence-1.json",
+        "sha256": "31979f510c64441d4aa2c5f7d6927606dd4b89e1f2d40d54d2f41bd852b931e6",
+        "status": "PASSED_REFERENCE",
+        "passed": 35,
+        "total": 35,
+        "reused_from": null,
+        "failed_tests": []
+      }
+    },
+    {
+      "review_id": "R002",
+      "case_id": "syn_string_valid",
+      "value": "correct",
+      "violations": [],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Rules string bertanda pipa ekuivalen dengan rules array untuk kontrak ini; alur CRUD dan respons sesuai spec. Bukti acuan35/35. Label correct dibatasi kontrak dan cakupan pemeriksaan.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "laravel_validation",
+        "laravel_eloquent",
+        "laravel_response_api"
+      ],
+      "code_sha256": "c868f7f48298477a52f9d2b5623ddcb90d08cf04bfea6c8ee06dcdcbb793f1df",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "reference_evidence": {
+        "path": "cases/syn_string_valid/label-evidence-1.json",
+        "sha256": "0a219bf0341da26216023214855534d440e52aff23e0959ca126dbe351a23e04",
+        "status": "PASSED_REFERENCE",
+        "passed": 35,
+        "total": 35,
+        "reused_from": null,
+        "failed_tests": []
+      }
+    },
+    {
+      "review_id": "R003",
+      "case_id": "syn_syntax",
+      "value": "problematic",
+      "violations": [
+        {
+          "category": "syntax_unclosed_class",
+          "coverage": "internal_covered",
+          "detail": "Kurung kurawal penutup class hilang. Preflight lint dalam Docker membuktikan invalid_syntax; test fungsional belum dijalankan.",
+          "method": "class",
+          "code_excerpt": "class BookController extends Controller",
+          "source_ids": [
+            "php_cli"
+          ],
+          "code_lines": [
+            8
+          ]
+        }
+      ],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Label berdasarkan struktur kode dan diagnosis parser Docker, bukan asumsi bahwa semua assertion fungsional telah dieksekusi.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "php_cli"
+      ],
+      "code_sha256": "517751d0ed4009c5a7a09139bc5f6f2b2a1738ed0f1b422442849fb695369852",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "reference_evidence": {
+        "path": "cases/syn_syntax/label-evidence-1.json",
+        "sha256": "4e99a4e900ad9fd956b771cf22fb1c0550c6aed1977823c3653ee49c7ab12cb3",
+        "status": "UNLOADABLE_CODE",
+        "passed": null,
+        "total": null,
+        "reused_from": null,
+        "failed_tests": []
+      }
+    },
+    {
+      "review_id": "R004",
+      "case_id": "syn_missing_method",
+      "value": "problematic",
+      "violations": [
+        {
+          "category": "missing_show_method",
+          "coverage": "internal_covered",
+          "detail": "Action show($id) yang diwajibkan kontrak tidak tersedia karena diganti menjadi lookup($id); route yang memanggil show gagal.",
+          "method": "show",
+          "code_excerpt": "public function lookup($id)",
+          "source_ids": [
+            "laravel_controllers"
+          ],
+          "code_lines": [
+            25
+          ]
+        }
+      ],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Tiga testcase acuan gagal pada pembacaan/ID hilang/rangkaian CRUD; ketiganya konsisten dengan satu cacat nama action.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "laravel_controllers"
+      ],
+      "code_sha256": "9f5003e6dcd838180fad491d82a6a6e8268671243d76d7c05f2229883092122d",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "reference_evidence": {
+        "path": "cases/syn_missing_method/label-evidence-1.json",
+        "sha256": "4079793cb41f27081023a0b571fe8cdd6a9546e622e19d43e184751be08944c5",
+        "status": "FAILED_REFERENCE",
+        "passed": 32,
+        "total": 35,
+        "reused_from": null,
+        "failed_tests": [
+          "test_read_uses_requested_identifier_and_does_not_write",
+          "test_unknown_identifier_is_json_404_and_keeps_all_rows with data set \"read\"",
+          "test_sequential_crud_reads_back_persisted_replacement_and_deletion"
+        ]
+      }
+    },
+    {
+      "review_id": "R005",
+      "case_id": "syn_store_status",
+      "value": "problematic",
+      "violations": [
+        {
+          "category": "store_wrong_status",
+          "coverage": "internal_covered",
+          "detail": "Kontrak store menetapkan201, tetapi kode mengembalikan200 setelah Book::create. Lima testcase yang melibatkan create melaporkan status tidak sesuai.",
+          "method": "store",
+          "code_excerpt": "return response()->json(['data' => $book], 200);",
+          "source_ids": [
+            "http_semantics",
+            "laravel_response_api"
+          ],
+          "code_lines": [
+            22
+          ]
+        }
+      ],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Status201 wajib berasal dari spec proyek; RFC menjelaskan semantik201, bukan bukti bahwa setiap API publik harus memilih status yang sama.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "http_semantics",
+        "laravel_response_api"
+      ],
+      "code_sha256": "0a531866191273ba2cbad91592e4a9bb03b1c2de0fadf8961b607640559406b2",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "reference_evidence": {
+        "path": "cases/syn_store_status/label-evidence-1.json",
+        "sha256": "5a3e7b239492cc4c30c4107e9073dc4879ed4075b08cb3368e8a3e9af8e69979",
+        "status": "FAILED_REFERENCE",
+        "passed": 30,
+        "total": 35,
+        "reused_from": null,
+        "failed_tests": [
+          "test_create_exposes_inserted_values_and_keeps_existing_record",
+          "test_boundary_payload_is_accepted_and_persisted with data set \"POST_title_at_max\"",
+          "test_boundary_payload_is_accepted_and_persisted with data set \"POST_pages_at_min\"",
+          "test_boundary_payload_is_accepted_and_persisted with data set \"POST_pages_at_max\"",
+          "test_sequential_crud_reads_back_persisted_replacement_and_deletion"
+        ]
+      }
+    },
+    {
+      "review_id": "R006",
+      "case_id": "syn_update_required",
+      "value": "problematic",
+      "violations": [
+        {
+          "category": "update_title_required",
+          "coverage": "internal_covered",
+          "detail": "Rule title pada PUT menghilangkan required. Request tanpa title diterima200, bertentangan dengan kontrak yang mewajibkan422.",
+          "method": "update",
+          "code_excerpt": "'title' => ['string', 'max:80']",
+          "source_ids": [
+            "laravel_validation"
+          ],
+          "code_lines": [
+            34
+          ]
+        }
+      ],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Satu testcase PUT_missing_title gagal; rule title pada store tetap wajib.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "laravel_validation"
+      ],
+      "code_sha256": "1b77e11ec5e2c624fc8cfdbc82c264b86100da3833d80bb783f3f77dc8d24d71",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "reference_evidence": {
+        "path": "cases/syn_update_required/label-evidence-1.json",
+        "sha256": "4402f78a24e7628dbc45f1449c80062d18f9c0404997b0b35b25796c5df23fcc",
+        "status": "FAILED_REFERENCE",
+        "passed": 34,
+        "total": 35,
+        "reused_from": null,
+        "failed_tests": [
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_title\""
+        ]
+      }
+    },
+    {
+      "review_id": "R007",
+      "case_id": "syn_missing_id",
+      "value": "problematic",
+      "violations": [
+        {
+          "category": "show_missing_id_status",
+          "coverage": "internal_covered",
+          "detail": "show memakai Book::find tanpa cabang ID hilang. Objek yang tidak ditemukan dikembalikan sebagai data:null dengan200, sedangkan kontrak mewajibkan404.",
+          "method": "show",
+          "code_excerpt": "return response()->json(['data' => Book::find($id)], 200);",
+          "source_ids": [
+            "laravel_eloquent"
+          ],
+          "code_lines": [
+            27
+          ]
+        }
+      ],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Dua testcase gagal dan mengarah ke pola penanganan ID hilang yang sama.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "laravel_eloquent"
+      ],
+      "code_sha256": "2683076948e68fda49e04e8f8a049ae5169f51a65b0a70adccaf0f26f4d8800b",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "reference_evidence": {
+        "path": "cases/syn_missing_id/label-evidence-1.json",
+        "sha256": "ff05ce841eb82240fd21198ab1489870e13134a983b12a288267b77452b34cf9",
+        "status": "FAILED_REFERENCE",
+        "passed": 33,
+        "total": 35,
+        "reused_from": null,
+        "failed_tests": [
+          "test_unknown_identifier_is_json_404_and_keeps_all_rows with data set \"read\"",
+          "test_sequential_crud_reads_back_persisted_replacement_and_deletion"
+        ]
+      }
+    },
+    {
+      "review_id": "R008",
+      "case_id": "syn_wrong_delete",
+      "value": "problematic",
+      "violations": [
+        {
+          "category": "delete_without_id_filter",
+          "coverage": "internal_covered",
+          "detail": "Book::query()->delete() tanpa kondisi menghapus semua buku. destroy tidak membatasi ID yang diminta dan juga tidak memeriksa keberadaan ID untuk respons404.",
+          "method": "destroy",
+          "code_excerpt": "Book::query()->delete();",
+          "source_ids": [
+            "laravel_eloquent"
+          ],
+          "code_lines": [
+            43
+          ]
+        }
+      ],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Test isolasi record dan delete ID tidak dikenal gagal. Dua efek tersebut berasal dari query delete tanpa penyaringan/pencarian ID.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "laravel_eloquent"
+      ],
+      "code_sha256": "12d49c0d790b1b37937f29320b6abe6e784642f7ec81a466002175a857012693",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "reference_evidence": {
+        "path": "cases/syn_wrong_delete/label-evidence-1.json",
+        "sha256": "c298d07327bb38646aa1d524953312a4aa083f02d6bd45787dd0fdbec261178a",
+        "status": "FAILED_REFERENCE",
+        "passed": 33,
+        "total": 35,
+        "reused_from": null,
+        "failed_tests": [
+          "test_deletion_is_empty_204_and_removes_only_requested_record",
+          "test_unknown_identifier_is_json_404_and_keeps_all_rows with data set \"delete\""
+        ]
+      }
+    },
+    {
+      "review_id": "R009",
+      "case_id": "syn_reference_max",
+      "value": "problematic",
+      "violations": [
+        {
+          "category": "title_max_omitted",
+          "coverage": "reference_only",
+          "detail": "Store dan update menghilangkan max:80 untuk title, sehingga judul81karakter tidak ditolak sebagaimana spec. Kedua testcase batas panjang acuan gagal; cakupan internal tidak menguji batas ini.",
+          "method": "store/update",
+          "code_excerpt": "'title' => ['required', 'string']",
+          "source_ids": [
+            "laravel_validation"
+          ],
+          "code_lines": [
+            18,
+            34
+          ]
+        }
+      ],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Tetap bermasalah walaupun dapat lolos test internal. Klasifikasi reference_only dipertahankan agar kekurangan cakupan dapat muncul sebagai FN.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "laravel_validation"
+      ],
+      "code_sha256": "0e1af4074a1ed67925f040ddc3c50f20596a870da1ec580e0f80d050adfad1d4",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "reference_evidence": {
+        "path": "cases/syn_reference_max/label-evidence-1.json",
+        "sha256": "541f2bb501dcf42928b15892b90588fced9256c10147f4ec8416ffa95bcdb833",
+        "status": "FAILED_REFERENCE",
+        "passed": 33,
+        "total": 35,
+        "reused_from": null,
+        "failed_tests": [
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_long_title\"",
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_long_title\""
+        ]
+      }
+    },
+    {
+      "review_id": "R010",
+      "case_id": "syn_reference_min",
+      "value": "problematic",
+      "violations": [
+        {
+          "category": "pages_min_omitted",
+          "coverage": "reference_only",
+          "detail": "Store dan update menghilangkan min:1 untuk pages. Nilai0 diterima, bertentangan dengan batas minimal1 pada spec. Kedua testcase nilai di bawah minimum gagal.",
+          "method": "store/update",
+          "code_excerpt": "'pages' => ['required', 'integer', 'max:5000']",
+          "source_ids": [
+            "laravel_validation"
+          ],
+          "code_lines": [
+            19,
+            35
+          ]
+        }
+      ],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Pelanggaran reference_only dipertahankan dalam ground truth sementara, meskipun tidak dicakup test internal.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "laravel_validation"
+      ],
+      "code_sha256": "c5ed9b4e780948ca95d4ba15ecccf15ac4b9be51823c67b552a7582cf40f0e0d",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "reference_evidence": {
+        "path": "cases/syn_reference_min/label-evidence-1.json",
+        "sha256": "b67c976d91914099686f723bd1af371c9851e67b4ce1cb804250fb32b7217844",
+        "status": "FAILED_REFERENCE",
+        "passed": 33,
+        "total": 35,
+        "reused_from": null,
+        "failed_tests": [
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_pages_below_min\"",
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_pages_below_min\""
+        ]
+      }
+    },
+    {
+      "review_id": "R011",
+      "case_id": "qwen_products_0",
+      "value": "problematic",
+      "violations": [
+        {
+          "category": "destroy_factory_method",
+          "coverage": "internal_covered",
+          "detail": "response() tanpa argumen menghasilkan ResponseFactory. Pemanggilan setContent pada factory menimbulkan BadMethodCallException pada harness dan DELETE mendapat500, seharusnya204.",
+          "method": "destroy",
+          "code_excerpt": "return response()->setContent('', 204);",
+          "source_ids": [
+            "laravel_response_api",
+            "http_semantics"
+          ],
+          "code_lines": [
+            69
+          ]
+        }
+      ],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Acuan31/33: delete dan rangkaian CRUD gagal karena cacat destroy yang sama; bukan dua bug independen.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "laravel_response_api",
+        "http_semantics"
+      ],
+      "code_sha256": "743734e1fbbcd3e3c46e7029ff886846759b7062a3cce4811053d72238a64e17",
+      "spec_sha256": "c1c0c49235ac68653c97fc899cf6c6837a78be0c5c787f3c78a11af775f95f8a",
+      "reference_evidence": {
+        "path": "cases/qwen_products_0/label-evidence-1.json",
+        "sha256": "0e61e1488a35407087c591789f264e387a7e20ca90bc3fb146b2fde01c812b1f",
+        "status": "FAILED_REFERENCE",
+        "passed": 31,
+        "total": 33,
+        "reused_from": null,
+        "failed_tests": [
+          "test_delete_is_empty_204_and_preserves_neighbour",
+          "test_crud_sequence_reads_back_changes"
+        ]
+      }
+    },
+    {
+      "review_id": "R012",
+      "case_id": "qwen_products_1",
+      "value": "correct",
+      "violations": [],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Perbaikan destroy memakai response()->json dengan status204; body kosong dibuktikan suite dalam Laravel yang dipakai. Rules required/tipe/batas/unique dan penanganan ID memenuhi kontrak pada33/33test. Label dibatasi cakupan tersebut.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "laravel_validation",
+        "laravel_response_api",
+        "http_semantics"
+      ],
+      "code_sha256": "40c72ee68399c22c3d6c12ca851eb92cbc7bd8ff5894fbb45b4b83b6d47664f2",
+      "spec_sha256": "c1c0c49235ac68653c97fc899cf6c6837a78be0c5c787f3c78a11af775f95f8a",
+      "reference_evidence": {
+        "path": "cases/qwen_products_1/label-evidence-1.json",
+        "sha256": "deae1bbcd16a0ecadbc57ef04741487236d78912c08876d408a2f3ef6f3eef9b",
+        "status": "PASSED_REFERENCE",
+        "passed": 33,
+        "total": 33,
+        "reused_from": null,
+        "failed_tests": []
+      }
+    },
+    {
+      "review_id": "R013",
+      "case_id": "qwen_books_0",
+      "value": "correct",
+      "violations": [],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "CRUD menggunakan validasi required/tipe/batas sesuai spec, pemeriksaan ID hilang404 dan penghapusan204. Respons json default200 pada show/update sesuai kontrak. Acuan35/35 mendukung label dalam cakupan pengujian.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "laravel_validation",
+        "laravel_response_api",
+        "http_semantics"
+      ],
+      "code_sha256": "08ef8d7093490c4970e7992a00c302de3022c59e46173155c082a1655fe6a5cf",
+      "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+      "reference_evidence": {
+        "path": "cases/qwen_books_0/label-evidence-1.json",
+        "sha256": "27892b127294308657326679e20c2934c4349301392b42b9dacc29e3c79a37a2",
+        "status": "PASSED_REFERENCE",
+        "passed": 35,
+        "total": 35,
+        "reused_from": null,
+        "failed_tests": []
+      }
+    },
+    {
+      "review_id": "R014",
+      "case_id": "qwen_inventory_items_0",
+      "value": "problematic",
+      "violations": [
+        {
+          "category": "update_required",
+          "coverage": "internal_covered",
+          "detail": "PUT mewajibkan label, stock, warehouse_code, dan reorder_level menurut spec. Keempat rule update tidak memuat required; empat request yang masing-masing kehilangan satu field mendapat200, seharusnya422. Ini satu pola kekurangan validasi dengan empat kasus bukti.",
+          "method": "update",
+          "code_excerpt": "'label' => 'string|max:80'",
+          "source_ids": [
+            "laravel_validation"
+          ],
+          "code_lines": [
+            50
+          ]
+        },
+        {
+          "category": "destroy_factory_method",
+          "coverage": "internal_covered",
+          "detail": "Pemanggilan response()->empty() menimbulkan BadMethodCallException pada ResponseFactory yang dipakai harness. DELETE mengembalikan500 sebelum mencapai status204 yang diminta.",
+          "method": "destroy",
+          "code_excerpt": "return response()->empty()->status(204);",
+          "source_ids": [
+            "laravel_response_api",
+            "http_semantics"
+          ],
+          "code_lines": [
+            71
+          ]
+        }
+      ],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Acuan51/57: empat kasus field wajib PUT dan dua testcase yang terkena cacat destroy. Jumlah testcase gagal tidak disamakan dengan jumlah pola kesalahan.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "laravel_validation",
+        "laravel_response_api",
+        "http_semantics"
+      ],
+      "code_sha256": "05e2eb620e3424fa9a7c1cabd83f0e9a28f018b7b704ecf71038402a2ca1bcf7",
+      "spec_sha256": "12d12684bf77200978108132943ed930499887e2a143406a6247a07086f06edf",
+      "reference_evidence": {
+        "path": "cases/qwen_inventory_items_0/label-evidence-1.json",
+        "sha256": "12198626d24621ab32193e67c37da5600812fa8a8c6398f3861ae9c9723997b8",
+        "status": "FAILED_REFERENCE",
+        "passed": 51,
+        "total": 57,
+        "reused_from": null,
+        "failed_tests": [
+          "test_deletion_is_empty_204_and_removes_only_requested_record",
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_label\"",
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_stock\"",
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_warehouse_code\"",
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_reorder_level\"",
+          "test_sequential_crud_reads_back_persisted_replacement_and_deletion"
+        ]
+      }
+    },
+    {
+      "review_id": "R015",
+      "case_id": "qwen_inventory_items_1",
+      "value": "problematic",
+      "violations": [
+        {
+          "category": "update_required",
+          "coverage": "internal_covered",
+          "detail": "PUT mewajibkan label, stock, warehouse_code, dan reorder_level menurut spec. Keempat rule update tidak memuat required; empat request yang masing-masing kehilangan satu field mendapat200, seharusnya422. Ini satu pola kekurangan validasi dengan empat kasus bukti.",
+          "method": "update",
+          "code_excerpt": "'label' => 'string|max:80'",
+          "source_ids": [
+            "laravel_validation"
+          ],
+          "code_lines": [
+            50
+          ]
+        }
+      ],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Destroy sudah diperbaiki dan acuan53/57. Empat kegagalan tersisa adalah request PUT tanpa masing-masing field wajib; belum merupakan perbaikan penuh.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "laravel_validation"
+      ],
+      "code_sha256": "4bfe487ccf414e22b918e7d428a78c995d743d4db17e76ce510f7af3d9aa553f",
+      "spec_sha256": "12d12684bf77200978108132943ed930499887e2a143406a6247a07086f06edf",
+      "reference_evidence": {
+        "path": "cases/qwen_inventory_items_1/label-evidence-1.json",
+        "sha256": "378de92f70b98f4ff2b66b414f5fc0195fc5bf3f2b30916d03c1f581f80ec7ca",
+        "status": "FAILED_REFERENCE",
+        "passed": 53,
+        "total": 57,
+        "reused_from": null,
+        "failed_tests": [
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_label\"",
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_stock\"",
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_warehouse_code\"",
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_reorder_level\""
+        ]
+      }
+    },
+    {
+      "review_id": "R016",
+      "case_id": "qwen_inventory_items_2",
+      "value": "problematic",
+      "violations": [
+        {
+          "category": "update_required",
+          "coverage": "internal_covered",
+          "detail": "PUT mewajibkan label, stock, warehouse_code, dan reorder_level menurut spec. Keempat rule update tidak memuat required; empat request yang masing-masing kehilangan satu field mendapat200, seharusnya422. Ini satu pola kekurangan validasi dengan empat kasus bukti.",
+          "method": "update",
+          "code_excerpt": "'label' => 'string|max:80'",
+          "source_ids": [
+            "laravel_validation"
+          ],
+          "code_lines": [
+            50
+          ]
+        }
+      ],
+      "author": "Mikhael Josua Roganda",
+      "reviewer": null,
+      "reviewed_at": null,
+      "blinded_to_prediction": false,
+      "notes": "Byte kode identik dengan percobaan1. Bukti acuan53/57 digunakan ulang secara eksplisit; ini satu kandidat duplikat, bukan eksekusi independen tambahan.",
+      "status": "draft",
+      "prepared_by": "OpenAI Codex",
+      "prepared_at": "2026-11-04T08:58:29.046999+00:00",
+      "human_author_review_attested": false,
+      "source_ids": [
+        "laravel_validation"
+      ],
+      "code_sha256": "4bfe487ccf414e22b918e7d428a78c995d743d4db17e76ce510f7af3d9aa553f",
+      "spec_sha256": "12d12684bf77200978108132943ed930499887e2a143406a6247a07086f06edf",
+      "reference_evidence": {
+        "path": "cases/qwen_inventory_items_2/label-evidence-1.json",
+        "sha256": "ea0f963b37df6a4fc27ecfb1f3e4af02ed27ad78ad19a72e9fab0fba163ac740",
+        "status": "FAILED_REFERENCE",
+        "passed": 53,
+        "total": 57,
+        "reused_from": "qwen_inventory_items_1",
+        "failed_tests": [
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_label\"",
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_stock\"",
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_warehouse_code\"",
+          "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_reorder_level\""
+        ]
+      }
+    }
+  ]
+}

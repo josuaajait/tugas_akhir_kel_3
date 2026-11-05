@@ -1,0 +1,58 @@
+{
+  "spec_id": "products_basic",
+  "spec_version": "1.0",
+  "resource": "products",
+  "model": "Product",
+  "controller": "ProductController",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string",
+      "rules": [
+        "required",
+        "string",
+        "max:100"
+      ]
+    },
+    {
+      "name": "price",
+      "type": "integer",
+      "rules": [
+        "required",
+        "integer",
+        "min:0"
+      ]
+    },
+    {
+      "name": "sku",
+      "type": "string",
+      "rules": [
+        "required",
+        "string",
+        "unique:products,sku"
+      ]
+    }
+  ],
+  "operations": {
+    "index": {
+      "success_status": 200
+    },
+    "store": {
+      "success_status": 201,
+      "validation_error_status": 422
+    },
+    "show": {
+      "success_status": 200,
+      "not_found_status": 404
+    },
+    "update": {
+      "success_status": 200,
+      "validation_error_status": 422,
+      "not_found_status": 404
+    },
+    "destroy": {
+      "success_status": 204,
+      "not_found_status": 404
+    }
+  }
+}

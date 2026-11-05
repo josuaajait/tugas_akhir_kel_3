@@ -1,0 +1,12 @@
+{
+  "corpus_sha256": "ea165453ca59c3b1a31924d7fa024c58dbc34e4d2e2f07e6016ee643661ecf9a",
+  "decisions_sha256": "99cf3cbac357c7ccce4c425dbe765e306b9eca70a8631c621241fa8bc1424ff3",
+  "sources_sha256": "f12f2e774d514364f563773f643ec707c33892b6c3aa5ff7517bd79592bae58d",
+  "source_manifest_sha256": "792cd1547ffb810eaef2592871318126da77a974e26b21cf2b1a4575c0bc4364",
+  "source_review_form_sha256": "af9205826dfa065f9a28d211e99149103bca48bd66279fbef673ba19dc41b72d",
+  "label_counts": {
+    "correct": 4,
+    "problematic": 12
+  },
+  "human_review_completed": false
+}

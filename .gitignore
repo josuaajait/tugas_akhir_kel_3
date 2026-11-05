@@ -5,6 +5,8 @@ __pycache__/
 work/
 runs/
 evaluations/
+component-runs/
+component-evidence/
 .env
 build/
 builds/
