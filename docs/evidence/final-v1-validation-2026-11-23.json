@@ -1,0 +1,575 @@
+{
+  "schema_version": "1.0",
+  "package": "final-v1",
+  "stage": "pre_freeze_validation",
+  "date": "2026-11-23",
+  "status": "VALIDATED",
+  "ready_for_final": false,
+  "prepared_by": "OpenAI Codex",
+  "human_review": "pending",
+  "qwen_calls": 0,
+  "package_sha256": "f2b648aeb042f4edcbb46b1b0160c87f93c326d084009cbc6de2f0f121e4a9b7",
+  "image_isolation": {
+    "path": "docs/evidence/final-v1-image-isolation-2026-11-23.json",
+    "sha256": "ad9e58ee8b75f1dd2c3ddb0d8a86a4dcf61127123176081997910d6534b8f5e4",
+    "status": "VERIFIED"
+  },
+  "selection_rule": "Latest complete VALIDATED report per resource with exactly the current source hash; all other attempts retained below, no pooling across package hashes.",
+  "python_tests": {
+    "count": 218,
+    "seconds": 234.489,
+    "result": "OK",
+    "skipped": 0,
+    "log": "work/final-v1/final-verification-tests.log",
+    "sha256": "00c4fe76907606fdb034a7bcd1d594150ef66241fad152d4de74e07f42bb5c26"
+  },
+  "resources": [
+    {
+      "resource": "categories",
+      "spec_id": "final_categories_v1",
+      "spec_path": "evaluation/final-v1/specs/categories.json",
+      "spec_sha256": "5bbe233bc03b9eb37ab520834569969957992eeb72626ad3f08885880a5a9b56",
+      "internal_tests": 12,
+      "reference_tests": 42,
+      "positive_controls": 2,
+      "unique_mutants": 39,
+      "planned": 88,
+      "executed": 88,
+      "unexecuted": 0,
+      "positive_observations": 8,
+      "negative_observations": 80,
+      "counts": {
+        "PASS": 88,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "report_path": "evaluations/final-validation/20261123T035440Z_final-validation_1a58f61e268b498889859ccd8215bb6d/validation.json",
+      "report_sha256": "8b4a7e866171df6a15f898681d8a6dda91ce43089b2cc5d86a9c01b2fdb57974",
+      "traceability_path": "evaluations/final-validation/20261123T035440Z_final-validation_1a58f61e268b498889859ccd8215bb6d/categories/traceability.json",
+      "traceability_sha256": "adb32f6e09aabbe4d45195593bc64a2870f93cd4d7c386e9dcff99d064791037",
+      "base_image_id": "sha256:27b24e70641548655a9aa96d983674997079b9f394032426e7264a76b9ca4625",
+      "runtime": {
+        "php_version": "8.3.36",
+        "lock_sha256": "4079d8f8b5661266455bab3045ae30231b98dc3174b5fb151879e7455a74605e",
+        "packages": {
+          "laravel/framework": "v12.70.2",
+          "phpunit/phpunit": "11.5.57"
+        }
+      },
+      "internal_image_id": "sha256:827e2000da7baaac7d5075d81067d2f66ee627b123340b7d1ca233e9a8b37380",
+      "reference_image_id": "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+      "internal_suite_sha256": "f00bf786d30c4cb184179be466b76bc51eac90ae788d5fa94a1c01000c84bc0b",
+      "reference_suite_sha256": "86fdd24248e308ecdaa04feb0d3f961401915f728bbc7427676bbc5a726627b1",
+      "readiness": {
+        "internal": {
+          "passed": 12,
+          "total": 12
+        },
+        "reference": {
+          "passed": 42,
+          "total": 42
+        }
+      }
+    },
+    {
+      "resource": "rooms",
+      "spec_id": "final_rooms_v1",
+      "spec_path": "evaluation/final-v1/specs/rooms.json",
+      "spec_sha256": "74ca379ca86852a5460fcc920393d68ed2ac996093df118b02b79630b1309ac0",
+      "internal_tests": 12,
+      "reference_tests": 50,
+      "positive_controls": 2,
+      "unique_mutants": 44,
+      "planned": 98,
+      "executed": 98,
+      "unexecuted": 0,
+      "positive_observations": 8,
+      "negative_observations": 90,
+      "counts": {
+        "PASS": 98,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "report_path": "evaluations/final-validation/20261123T035455Z_final-validation_9fa4c953afd248c2acb2bddbd38a990c/validation.json",
+      "report_sha256": "7060fb704bee889a35493e8fcdccc0067b27446335c806e1efff60d186e044b5",
+      "traceability_path": "evaluations/final-validation/20261123T035455Z_final-validation_9fa4c953afd248c2acb2bddbd38a990c/rooms/traceability.json",
+      "traceability_sha256": "e2268047140b8842fff2ab839e5cfb23b0b5ca4b77b2f39add0cc9f5a5176c9a",
+      "base_image_id": "sha256:27b24e70641548655a9aa96d983674997079b9f394032426e7264a76b9ca4625",
+      "runtime": {
+        "php_version": "8.3.36",
+        "lock_sha256": "4079d8f8b5661266455bab3045ae30231b98dc3174b5fb151879e7455a74605e",
+        "packages": {
+          "laravel/framework": "v12.70.2",
+          "phpunit/phpunit": "11.5.57"
+        }
+      },
+      "internal_image_id": "sha256:6f478a6f03509c787d1297ea001b4a299c7ad398ab6fc32519e3157279826f67",
+      "reference_image_id": "sha256:bbacc6ac5236dd901a59baf837df5c948621984d0a9d4ca616a5c3ca0fd067b9",
+      "internal_suite_sha256": "4e08b3c44dbc0463c1f037f464cc92bb3c067de8f71f6bbf007de0bc2d5b2f3c",
+      "reference_suite_sha256": "b0f7ce8671e93aeae24351944cbae44259cf485f5ba865f3abf472ff227200b9",
+      "readiness": {
+        "internal": {
+          "passed": 12,
+          "total": 12
+        },
+        "reference": {
+          "passed": 50,
+          "total": 50
+        }
+      }
+    },
+    {
+      "resource": "assets",
+      "spec_id": "final_assets_v1",
+      "spec_path": "evaluation/final-v1/specs/assets.json",
+      "spec_sha256": "0423da7df95f1d0147b9c47f95695f30a0278325fa95962a31799d197ec28de1",
+      "internal_tests": 14,
+      "reference_tests": 73,
+      "positive_controls": 2,
+      "unique_mutants": 62,
+      "planned": 134,
+      "executed": 134,
+      "unexecuted": 0,
+      "positive_observations": 8,
+      "negative_observations": 126,
+      "counts": {
+        "PASS": 134,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "report_path": "evaluations/final-validation/20261123T035510Z_final-validation_1de34185ff994cf089c9f0d0655091be/validation.json",
+      "report_sha256": "9a5a6def8dfe356ebd211daa543353c8911c82d2357bd12de8045f5a376294fb",
+      "traceability_path": "evaluations/final-validation/20261123T035510Z_final-validation_1de34185ff994cf089c9f0d0655091be/assets/traceability.json",
+      "traceability_sha256": "81291612c2c07b75638d7ce0c0e958fac86579ade361d5d2faddd00c1d5f27ad",
+      "base_image_id": "sha256:27b24e70641548655a9aa96d983674997079b9f394032426e7264a76b9ca4625",
+      "runtime": {
+        "php_version": "8.3.36",
+        "lock_sha256": "4079d8f8b5661266455bab3045ae30231b98dc3174b5fb151879e7455a74605e",
+        "packages": {
+          "laravel/framework": "v12.70.2",
+          "phpunit/phpunit": "11.5.57"
+        }
+      },
+      "internal_image_id": "sha256:93641be180b5ce3b2b064004dc92e137604f34db6b8e867813290d09fc3c9327",
+      "reference_image_id": "sha256:0a00b46d014689fbec64ed8a7323dfde5663444620637893366d75b248e70dbe",
+      "internal_suite_sha256": "26102c21615ffc9a1b947a6bc27c1af5dcfb2c959e4bdaf9ef2a2bd903ae80b5",
+      "reference_suite_sha256": "55046d38d2e127faab9f38e810a0e44c178e8231c358fc85ea9e5d652fee2a1b",
+      "readiness": {
+        "internal": {
+          "passed": 14,
+          "total": 14
+        },
+        "reference": {
+          "passed": 73,
+          "total": 73
+        }
+      }
+    },
+    {
+      "resource": "courses",
+      "spec_id": "final_courses_v1",
+      "spec_path": "evaluation/final-v1/specs/courses.json",
+      "spec_sha256": "b11a0cf6267bbf71ac9dd0db38836e5bc324bb5cfbe3573e8b0fbe3fb8ecb0d3",
+      "internal_tests": 14,
+      "reference_tests": 77,
+      "positive_controls": 2,
+      "unique_mutants": 63,
+      "planned": 136,
+      "executed": 136,
+      "unexecuted": 0,
+      "positive_observations": 8,
+      "negative_observations": 128,
+      "counts": {
+        "PASS": 136,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "report_path": "evaluations/final-validation/20261123T035525Z_final-validation_29ea47c0138f40eba110d13dd7f85799/validation.json",
+      "report_sha256": "ba528aed32a0791c0362ac0f9142dfdd05644e0b1fdfbcfb6b9b0df545465a18",
+      "traceability_path": "evaluations/final-validation/20261123T035525Z_final-validation_29ea47c0138f40eba110d13dd7f85799/courses/traceability.json",
+      "traceability_sha256": "28055c47e46598eb72c2754e7afc06200fe9ec6e6c511d48dd3523d90104ab9e",
+      "base_image_id": "sha256:27b24e70641548655a9aa96d983674997079b9f394032426e7264a76b9ca4625",
+      "runtime": {
+        "php_version": "8.3.36",
+        "lock_sha256": "4079d8f8b5661266455bab3045ae30231b98dc3174b5fb151879e7455a74605e",
+        "packages": {
+          "laravel/framework": "v12.70.2",
+          "phpunit/phpunit": "11.5.57"
+        }
+      },
+      "internal_image_id": "sha256:7a914be274ada5327b4d3abcc07210f7f12cb9f78508e19d600914e6ddc68bf3",
+      "reference_image_id": "sha256:3b69392ab46bbc408e0500038a4a045512c776606c147b8601939e3607f1d189",
+      "internal_suite_sha256": "8e56a4b6764eb3b29e6ca8751988f4fcf753ac614fa04f22c32881a55a09e580",
+      "reference_suite_sha256": "9e3d69395df9c14badd5a99d0ba4771e4c20bee5cb253cffcae642f7c99f3c5e",
+      "readiness": {
+        "internal": {
+          "passed": 14,
+          "total": 14
+        },
+        "reference": {
+          "passed": 77,
+          "total": 77
+        }
+      }
+    },
+    {
+      "resource": "shipments",
+      "spec_id": "final_shipments_v1",
+      "spec_path": "evaluation/final-v1/specs/shipments.json",
+      "spec_sha256": "8ca94d5ffabc2ad5dae5a6618f690333d38fd61e68cf1d8194197e0cfbee8089",
+      "internal_tests": 18,
+      "reference_tests": 116,
+      "positive_controls": 2,
+      "unique_mutants": 91,
+      "planned": 192,
+      "executed": 192,
+      "unexecuted": 0,
+      "positive_observations": 8,
+      "negative_observations": 184,
+      "counts": {
+        "PASS": 192,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "report_path": "evaluations/final-validation/20261123T035540Z_final-validation_6cc4e84f8728460393d9abe6adf0523d/validation.json",
+      "report_sha256": "c3114eaf7786297f9322750dd16c7fb54ca4c760de991212e3ea7dcb041c8e9c",
+      "traceability_path": "evaluations/final-validation/20261123T035540Z_final-validation_6cc4e84f8728460393d9abe6adf0523d/shipments/traceability.json",
+      "traceability_sha256": "4e4f2f65f8ddb150834e4ca66ef40f25c7d3dd175374d7a190e16169dd32c6f3",
+      "base_image_id": "sha256:27b24e70641548655a9aa96d983674997079b9f394032426e7264a76b9ca4625",
+      "runtime": {
+        "php_version": "8.3.36",
+        "lock_sha256": "4079d8f8b5661266455bab3045ae30231b98dc3174b5fb151879e7455a74605e",
+        "packages": {
+          "laravel/framework": "v12.70.2",
+          "phpunit/phpunit": "11.5.57"
+        }
+      },
+      "internal_image_id": "sha256:65bcb0dfc22148251f9b8b8d98ab3da6a48701e254a9d46ae969fc9beb385336",
+      "reference_image_id": "sha256:48807987869ae00370d459e703f6e7b831af3dd0b118b9f112920567af005f6f",
+      "internal_suite_sha256": "19559b3de5ec1330901bb9ddaf49aad56210cfc8b641b9a62a0ac7f15687b5e8",
+      "reference_suite_sha256": "32f6d30f1b7e7aea62eaacb6d647ba1d66f9a982f90e45d900f9a67f8607fb5c",
+      "readiness": {
+        "internal": {
+          "passed": 18,
+          "total": 18
+        },
+        "reference": {
+          "passed": 116,
+          "total": 116
+        }
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "path": "evaluations/final-validation/20261123T031643Z_final-validation_bdd9b6fcc9b64f8ca069bd25fe26ecbe/validation.json",
+      "sha256": "12a0b151debb33c14b2b6533d71414fa1e3dbaf1df2b3154281cd7e7716cc350",
+      "package_sha256": "dab950fa512e750e968d96ea57d5e90db1f998e3e9cfe0147cef5e4923b78232",
+      "status": "LOCAL_VALIDATED",
+      "resources": [
+        "categories",
+        "rooms",
+        "assets",
+        "courses",
+        "shipments"
+      ],
+      "counts": {
+        "PASS": 0,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": null,
+      "resource_reasons": {}
+    },
+    {
+      "path": "evaluations/final-validation/20261123T031843Z_final-validation_cd1d71d49147402ea16e2594299ce575/validation.json",
+      "sha256": "f254eefdde3fd33eb0b6b975cb695dc24a0907bb0acaf3bdbf58b9fcd341b1eb",
+      "package_sha256": "84827573c08c9300925f3cf07fc09a619d117ccdd36537ca803ce00f4188264d",
+      "status": "ERROR",
+      "resources": [
+        "categories"
+      ],
+      "counts": {
+        "PASS": 0,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": "package_changed_during_validation",
+      "resource_reasons": {
+        "categories": "Readiness internal belum READY; lihat bukti lingkungan/image."
+      }
+    },
+    {
+      "path": "evaluations/final-validation/20261123T033322Z_final-validation_0a752459552b43dba1bc2f2d26fb7c84/validation.json",
+      "sha256": "76ee63eb41a9e08b036f02473b460a76739312f53e7c202e1b11774aa7612b32",
+      "package_sha256": "7bf648275a6c79a529912b829519cfbcce5e699eef1a7b10fe0179d2a1af654b",
+      "status": "LOCAL_VALIDATED",
+      "resources": [
+        "categories"
+      ],
+      "counts": {
+        "PASS": 0,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": null,
+      "resource_reasons": {}
+    },
+    {
+      "path": "evaluations/final-validation/20261123T033400Z_final-validation_c8234de27d3a4a0381a0f9dcdc7dfa0a/validation.json",
+      "sha256": "6ecefd58871effc9dabbfcef48ad60faffed7d902ab8b36b4852b60774995475",
+      "package_sha256": "7bf648275a6c79a529912b829519cfbcce5e699eef1a7b10fe0179d2a1af654b",
+      "status": "ERROR",
+      "resources": [
+        "categories"
+      ],
+      "counts": {
+        "PASS": 86,
+        "FAIL": 0,
+        "UNKNOWN": 2
+      },
+      "reason": null,
+      "resource_reasons": {}
+    },
+    {
+      "path": "evaluations/final-validation/20261123T033603Z_final-validation_40da0ca0329741be8b25e7edbd350ce6/validation.json",
+      "sha256": "64ce0000d9912caee4cad6df668933f15aac9c25096128263a748d7718c9f98e",
+      "package_sha256": "7bf648275a6c79a529912b829519cfbcce5e699eef1a7b10fe0179d2a1af654b",
+      "status": "ERROR",
+      "resources": [
+        "rooms"
+      ],
+      "counts": {
+        "PASS": 10,
+        "FAIL": 0,
+        "UNKNOWN": 88
+      },
+      "reason": "package_changed_during_validation",
+      "resource_reasons": {}
+    },
+    {
+      "path": "evaluations/final-validation/20261123T033618Z_final-validation_cdcd26bdaf7d4195bdf95af6c23b14af/validation.json",
+      "sha256": "f45e95129afca9d1a08ba7d9bce887e0f54f9a97c9b62fdd8bcace6e19ab73d7",
+      "package_sha256": "7bf648275a6c79a529912b829519cfbcce5e699eef1a7b10fe0179d2a1af654b",
+      "status": "ERROR",
+      "resources": [
+        "assets"
+      ],
+      "counts": {
+        "PASS": 0,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": "package_changed_during_validation",
+      "resource_reasons": {
+        "assets": "Readiness reference belum READY; lihat bukti lingkungan/image."
+      }
+    },
+    {
+      "path": "evaluations/final-validation/20261123T033631Z_final-validation_58034f926f404a8b94683eec1269dbd1/validation.json",
+      "sha256": "e4900b63c712076b9cd2f6ec8665adebf05d99ad22336da443a236043055fd24",
+      "package_sha256": "7bf648275a6c79a529912b829519cfbcce5e699eef1a7b10fe0179d2a1af654b",
+      "status": "ERROR",
+      "resources": [
+        "courses"
+      ],
+      "counts": {
+        "PASS": 0,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": "package_changed_during_validation",
+      "resource_reasons": {
+        "courses": "Readiness reference belum READY; lihat bukti lingkungan/image."
+      }
+    },
+    {
+      "path": "evaluations/final-validation/20261123T033645Z_final-validation_30853f2250ae4d8ea8a155b51dc1d5ef/validation.json",
+      "sha256": "23f831533682bd2226e8b045952c065dd946a323ad26b127aaa536a00a12be1c",
+      "package_sha256": "7bf648275a6c79a529912b829519cfbcce5e699eef1a7b10fe0179d2a1af654b",
+      "status": "ERROR",
+      "resources": [
+        "shipments"
+      ],
+      "counts": {
+        "PASS": 0,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": "package_changed_during_validation",
+      "resource_reasons": {
+        "shipments": "Readiness reference belum READY; lihat bukti lingkungan/image."
+      }
+    },
+    {
+      "path": "evaluations/final-validation/20261123T034028Z_final-validation_0f794e03f6734d15927776b2eeb5df82/validation.json",
+      "sha256": "5c97657d254ff831b36fc5180d2211590da6e91e8ef2d64ad633ba5786b406bb",
+      "package_sha256": "cd1d537670abc6121f1f6357e4169a5b8ec7dc6c5bdc31904ea84e01a4f06fa9",
+      "status": "VALIDATED",
+      "resources": [
+        "categories"
+      ],
+      "counts": {
+        "PASS": 88,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": null,
+      "resource_reasons": {}
+    },
+    {
+      "path": "evaluations/final-validation/20261123T034041Z_final-validation_4cbadb4433744c34ac1919abde01846d/validation.json",
+      "sha256": "7852851d76798f3f14236bf147fdc2d42bdb7b36d1f12abe2e5432ed8b62a657",
+      "package_sha256": "cd1d537670abc6121f1f6357e4169a5b8ec7dc6c5bdc31904ea84e01a4f06fa9",
+      "status": "VALIDATED",
+      "resources": [
+        "rooms"
+      ],
+      "counts": {
+        "PASS": 98,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": null,
+      "resource_reasons": {}
+    },
+    {
+      "path": "evaluations/final-validation/20261123T034054Z_final-validation_d3c1aff39aa44af2b7c9a0a6ecff2aff/validation.json",
+      "sha256": "1ef8d521d4c092cbac1d724d1c3ab083f1f91ff33083192d1afda592fefd40bf",
+      "package_sha256": "cd1d537670abc6121f1f6357e4169a5b8ec7dc6c5bdc31904ea84e01a4f06fa9",
+      "status": "VALIDATED",
+      "resources": [
+        "assets"
+      ],
+      "counts": {
+        "PASS": 134,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": null,
+      "resource_reasons": {}
+    },
+    {
+      "path": "evaluations/final-validation/20261123T034107Z_final-validation_99d94029e92044cfa9f573e6fa46dc42/validation.json",
+      "sha256": "370d0c1c712bf0e7c90d1863a40c5b15c45de71c5ede6c158cddd891c319554d",
+      "package_sha256": "cd1d537670abc6121f1f6357e4169a5b8ec7dc6c5bdc31904ea84e01a4f06fa9",
+      "status": "VALIDATED",
+      "resources": [
+        "courses"
+      ],
+      "counts": {
+        "PASS": 136,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": null,
+      "resource_reasons": {}
+    },
+    {
+      "path": "evaluations/final-validation/20261123T034121Z_final-validation_b7b96926377d4265b44f232310a3afd9/validation.json",
+      "sha256": "28e6258fe3d1fa8b53560e6c25868e3b21dd7a4e8e68fbfdcba4653d87f51518",
+      "package_sha256": "cd1d537670abc6121f1f6357e4169a5b8ec7dc6c5bdc31904ea84e01a4f06fa9",
+      "status": "VALIDATED",
+      "resources": [
+        "shipments"
+      ],
+      "counts": {
+        "PASS": 192,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": null,
+      "resource_reasons": {}
+    },
+    {
+      "path": "evaluations/final-validation/20261123T035440Z_final-validation_1a58f61e268b498889859ccd8215bb6d/validation.json",
+      "sha256": "8b4a7e866171df6a15f898681d8a6dda91ce43089b2cc5d86a9c01b2fdb57974",
+      "package_sha256": "f2b648aeb042f4edcbb46b1b0160c87f93c326d084009cbc6de2f0f121e4a9b7",
+      "status": "VALIDATED",
+      "resources": [
+        "categories"
+      ],
+      "counts": {
+        "PASS": 88,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": null,
+      "resource_reasons": {}
+    },
+    {
+      "path": "evaluations/final-validation/20261123T035455Z_final-validation_9fa4c953afd248c2acb2bddbd38a990c/validation.json",
+      "sha256": "7060fb704bee889a35493e8fcdccc0067b27446335c806e1efff60d186e044b5",
+      "package_sha256": "f2b648aeb042f4edcbb46b1b0160c87f93c326d084009cbc6de2f0f121e4a9b7",
+      "status": "VALIDATED",
+      "resources": [
+        "rooms"
+      ],
+      "counts": {
+        "PASS": 98,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": null,
+      "resource_reasons": {}
+    },
+    {
+      "path": "evaluations/final-validation/20261123T035510Z_final-validation_1de34185ff994cf089c9f0d0655091be/validation.json",
+      "sha256": "9a5a6def8dfe356ebd211daa543353c8911c82d2357bd12de8045f5a376294fb",
+      "package_sha256": "f2b648aeb042f4edcbb46b1b0160c87f93c326d084009cbc6de2f0f121e4a9b7",
+      "status": "VALIDATED",
+      "resources": [
+        "assets"
+      ],
+      "counts": {
+        "PASS": 134,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": null,
+      "resource_reasons": {}
+    },
+    {
+      "path": "evaluations/final-validation/20261123T035525Z_final-validation_29ea47c0138f40eba110d13dd7f85799/validation.json",
+      "sha256": "ba528aed32a0791c0362ac0f9142dfdd05644e0b1fdfbcfb6b9b0df545465a18",
+      "package_sha256": "f2b648aeb042f4edcbb46b1b0160c87f93c326d084009cbc6de2f0f121e4a9b7",
+      "status": "VALIDATED",
+      "resources": [
+        "courses"
+      ],
+      "counts": {
+        "PASS": 136,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": null,
+      "resource_reasons": {}
+    },
+    {
+      "path": "evaluations/final-validation/20261123T035540Z_final-validation_6cc4e84f8728460393d9abe6adf0523d/validation.json",
+      "sha256": "c3114eaf7786297f9322750dd16c7fb54ca4c760de991212e3ea7dcb041c8e9c",
+      "package_sha256": "f2b648aeb042f4edcbb46b1b0160c87f93c326d084009cbc6de2f0f121e4a9b7",
+      "status": "VALIDATED",
+      "resources": [
+        "shipments"
+      ],
+      "counts": {
+        "PASS": 192,
+        "FAIL": 0,
+        "UNKNOWN": 0
+      },
+      "reason": null,
+      "resource_reasons": {}
+    }
+  ],
+  "planned": 648,
+  "executed": 648,
+  "unexecuted": 0,
+  "positive_observations": 40,
+  "negative_observations": 608,
+  "counts": {
+    "PASS": 648,
+    "FAIL": 0,
+    "UNKNOWN": 0
+  }
+}

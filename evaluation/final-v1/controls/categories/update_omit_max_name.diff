@@ -1,0 +1,11 @@
+--- eloquent.php
++++ update_omit_max_name.php
+@@ -32,7 +32,7 @@
+         $record = $this->load($id); // update lookup
+         // update guards
+         $body = $request->validate([
+-            'name' => ['required', 'string', 'max:48'],
++            'name' => ['required', 'string'],
+             'description' => ['required', 'string', 'max:160'],
+         ]);
+         $record->update($body);

@@ -13,15 +13,21 @@ from .sandbox import DockerRunner, SandboxError, validate_products_contract
 from .spec import load_spec
 
 REFERENCE_TESTS = 33
+PRODUCTS_REFERENCE_IMAGES = {'v1': 'critic-laravel-evaluation:dev', 'v2': 'critic-laravel-evaluation:products-v2'}
 SUITE_LABEL = 'org.critic.reference-suite-sha256'
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def reference_suite_hash() -> str:
+def reference_suite_hash(version='v1') -> str:
+    if version not in PRODUCTS_REFERENCE_IMAGES:
+        raise ValueError('Versi evaluator products tidak didukung.')
     paths = [ROOT/'evaluation'/name for name in
              ('Dockerfile', 'entrypoint.php', 'phpunit-evaluation.xml', 'suite.json')]
     paths += sorted((ROOT/'evaluation'/'reference-tests').glob('*.php'))
     paths.append(ROOT/'harness'/'runtime.php')
+    if version == 'v2':
+        paths.extend(ROOT/'evaluation'/'products-v2'/name for name in
+                     ('ProductsReferenceV2Test.php', 'phpunit-evaluation.xml'))
     digest = hashlib.sha256()
     for path in sorted(paths):
         # Normalize authored text so Windows checkout newlines do not change the fingerprint.
@@ -38,11 +44,14 @@ class ReferenceDockerRunner(DockerRunner):
     candidate_pass_status = 'PASSED_REFERENCE'
     candidate_fail_status = 'FAILED_REFERENCE'
 
-    def __init__(self, *, image='critic-laravel-evaluation:dev', **kwargs):
-        super().__init__(image=image, **kwargs)
+    def __init__(self, *, image=None, suite_version='v1', **kwargs):
+        if suite_version not in PRODUCTS_REFERENCE_IMAGES:
+            raise ValueError('Versi evaluator products tidak didukung.')
+        self.suite_version = suite_version
+        super().__init__(image=image or PRODUCTS_REFERENCE_IMAGES[suite_version], **kwargs)
 
     def suite_hash(self):
-        return reference_suite_hash()
+        return reference_suite_hash(self.suite_version)
 
     def _run(self, candidate, image=None):
         result = super()._run(candidate, image=image)
@@ -130,12 +139,15 @@ def _valid_result(raw, image_id, expected_tests=REFERENCE_TESTS):
     return raw.get('status') == expected
 
 
-def evaluate_products(loop_directory: Path, output_root: Path, runner) -> Path:
+def evaluate_products(loop_directory: Path, output_root: Path, runner, *, shared_initial=None) -> Path:
+    version = getattr(runner, 'suite_version', 'v1')
     return _evaluate_pair(loop_directory, output_root, runner, expected_tests=REFERENCE_TESTS,
-                          suite_sha256=reference_suite_hash(), validate_contract=validate_products_contract)
+                          suite_sha256=reference_suite_hash(version), validate_contract=validate_products_contract,
+                          shared_initial=shared_initial)
 
 
-def _evaluate_pair(loop_directory, output_root, runner, *, expected_tests, suite_sha256, validate_contract):
+def _evaluate_pair(loop_directory, output_root, runner, *, expected_tests, suite_sha256, validate_contract,
+                   shared_initial=None):
     source = Path(loop_directory).resolve(strict=True)
     manifest = _json(source/'run_manifest.json')
     history = _json(source/'history.json')
@@ -181,6 +193,17 @@ def _evaluate_pair(loop_directory, output_root, runner, *, expected_tests, suite
             return folder
         result['image_id'] = runner.image = readiness['image_id']
         for position, content in versions.items():
+            if position == 'initial' and shared_initial is not None:
+                previous = _json(shared_initial)
+                initial = previous.get('initial') or {}
+                expected_hash = hashlib.sha256(content).hexdigest() if content is not None else None
+                if (previous.get('suite_sha256') != suite_sha256 or previous.get('image_id') != result['image_id']
+                        or initial.get('code_sha256') != expected_hash or initial.get('total') != expected_tests
+                        or initial.get('status') not in ('PASSED_REFERENCE', 'FAILED_REFERENCE',
+                                                         'UNLOADABLE_CODE', 'UNAVAILABLE_CODE')):
+                    raise SandboxError('Evaluasi awal bersama tidak cocok dengan kandidat, image, atau suite.')
+                result['initial'] = dict(initial, shared_from=str(Path(shared_initial).resolve()))
+                continue
             if content is None:
                 raw = {'status': 'UNAVAILABLE_CODE', 'reason': 'source_declares_no_code', 'executed': False}
                 passed = 0

@@ -1,6 +1,46 @@
 # Serah terima Critic Agent — 5 November 2026
 
+## Persiapan paket akhir — 23 November 2026
+
+Pengguna memilih dan menyetujui implementasi lima soal baru dengan evaluator terpisah: categories, rooms, assets, courses dan shipments. [Rancangan disetujui](superpowers/specs/2026-11-23-final-evaluation-package-design.md) diimplementasikan pada [paket final-v1](../evaluation/final-v1/README.md), melalui `final-validate --package final-v1`. Paket memiliki70 kasus internal,358 acuan,10 kontrol benar dan299 mutasi; formulir review manusia masih kosong. Paket belum dibekukan atau dihubungkan ke A/B final. [Audit awal](evidence/final-evaluator-audit-2026-11-23.md) membuktikan dua celah yang ditutup dalam paket baru: field tertukar antar-ID pada internal generik dan objek JSON berkunci angka yang menyerupai koleksi pada acuan resource. Suite dan kandidat historis tetap dipertahankan.
+
+Verifikasi akhir:218 tes Python lulus tanpa skip; Docker final-v1 lulus648/648 pengamatan sesuai harapan dengan readiness70/70 internal dan358/358 acuan. Kelima image internal juga lolos inspeksi isolasi aktual. Hash paket `f2b648aeb042f4edcbb46b1b0160c87f93c326d084009cbc6de2f0f121e4a9b7`. [Bukti lengkap dan percobaan gagal](evidence/final-v1-validation-2026-11-23.md) serta [draf pemetaan20pasangan](evidence/final-ab-plan-2026-11-23.draft.json) tersedia. Docker awalnya belum aktif; setelah Desktop dibuka, akses berizin berhasil. Runtime container PHP8.3.36 berbeda dari PHP host8.3.30; Laravel12.70.2/PHPUnit11.5.57 cocok lock. Review manusia, konfigurasi/freeze, adaptor paket final ke A/B dan agregasi tetap terbuka; tidak ada generasi Qwen atau eksekusi A/B final pada tahap ini.
+
+Untuk status terbaru per kebutuhan PRD dan tahap eksperimen, lihat [status proyek](STATUS-PROYEK.md).
+
+Gerbang M4 dan draf hasil formatif M5 dirangkum di [kesiapan evaluasi dan draf laporan](M4-M5-EVALUASI-DAN-LAPORAN.md).
+
+Evaluator products v2 tersedia melalui `--suite v2` dan sudah diverifikasi di Docker. [Bukti v2](evidence/products-reference-v2.md) · [Persiapan Semhas](PERSIAPAN-SEMHAS.md)
+
+Metadata FR-16 untuk arsip baru dan bukti smoke test live dijelaskan di [catatan provenance FR-16](evidence/fr-16-provenance.md).
+
+Agregasi awal–akhir FR-18 tersedia lewat `pilot-report --evaluations`. [Cara reproduksi dan bukti FR-18](evidence/fr-18-reporting.md)
+
+Draf FR-19 dan syarat pembekuan tersedia lewat `freeze-draft` dan `freeze-check`. [Bukti FR-19](evidence/fr-19-freeze-draft.md)
+
+Pembanding FR-20 tersedia lewat `run-ab`. Satu pasangan products telah diverifikasi di Docker dan Ollama. [Bukti FR-20](evidence/fr-20-ab.md)
+
+## Pembaruan tampilan CLI — 23 November 2026
+
+Seluruh command mendukung `--pretty`, `--json`, dan `--no-color`. Terminal otomatis memakai header/status/tabel bergaya PTerm yang diadaptasi dengan Python standard library; pipe/redirection tetap JSON. Loop menampilkan tahap dan hasil tiap percobaan di stderr; spinner berhenti sebelum input. `prompt` tetap teks asli, help tetap bantuan teks. Log `harness-build`/`evaluation-build` sekarang di stderr, dengan ringkasan terstruktur di stdout. Lihat README bagian tampilan terminal. Versi 0.5.0/protokol 1.0, suite/image dan arsip historis dipertahankan; hash sumber pada run baru mencerminkan perubahan UI ini.
+
+## Pembaruan 19 November 2026
+
+Assertion koleksi products/internal v2 memeriksa field per ID. Gunakan tag `critic-laravel:products-internal-v2` untuk build dan jalankan pemeriksaan dengan `--image` eksplisit. Catatan versi, bukti regresi, dan keterbatasan cakupan ada pada [audit products](products-internal-assertion-audit.md).
+
+CLI pilot menyediakan `pilot-plan`, `pilot-run` dan `pilot-metadata`. Manifest development 19 November memakai 3 spesifikasi, seed 42/43/44 dan suhu 0/0,2/0,5. Folder lokal `runs/pilot-2026-11-19/` memuat manifest products (9 job) dan resources (18 job), karena runner memilih mode per eksekusi. Cadangan manifest 12 November tetap dapat dibaca sebagai rencana awal. Agregasi formal dan eksperimen A/B masih terbuka.
+
+Seluruh 27 job pilot dan evaluasi awal–akhir selesai. Hasilnya 21 LOLOS dan enam BELUM LOLOS karena kode identik. CLI `pilot-report` membaca kedua manifest. Bukti, durasi, token, dan batas interpretasi dicatat di [laporan pilot development](evidence/pilot-development-2026-11-19.md).
+
+Paket 16 kasus untuk Mikhael Josua Roganda dan Johannes Sitorus tersedia melalui [panduan tim](PANDUAN-KERJA-DAN-REVIEW-TIM.md). Pada pemeriksaan 19 November, kedua formulir masih 0/16. Metrik komponen historis tetap provisional.
+
 Dokumen awal untuk teman yang melanjutkan proyek. Lokasi kerja Mikhael: `C:\Perkuliahan\TA`; clone baru boleh berada di folder lain. Seluruh perintah dijalankan dari root clone yang memuat `critic_agent/`, `harness/`, dan `pyproject.toml`.
+
+## Addendum input interaktif — 12 November 2026
+
+`python -m critic_agent start` menanyakan spesifikasi CRUD, meminta konfirmasi, menyimpan JSON pada sesi unik lalu menyiapkan harness dan menjalankan loop resource. Dokumentasi penggunaan ada di README bagian menjalankan dari folder proyek dan PRD §8.2.1. Sesi menyimpan kegagalan persiapan sebelum model serta seluruh arsip loop pada subfolder runs/. Input interaktif memakai harness generik, termasuk bila nama resource products. Image sesi memakai UUID dan dipertahankan untuk audit. Versi aplikasi dan sumber suite/runtime/generator tetap. Bukti live historis di bawah merujuk command dan suite aslinya.
+
+Verifikasi awal 12 November menghasilkan 163 tes Python lulus. Smoke pertama menyimpan spesifikasi lalu ERROR pada prasyarat karena endpoint Docker belum tersedia. Sesi live berikutnya untuk resource `meja` mencapai READY 22/22 dan LOLOS 14/14 dengan nol revisi. Arsip lokalnya ada di `runs/20261112T131846Z_interactive_f0ec0996a862443a976cecf7b73bcfc3/`. Ctrl+C saat loop mempertahankan arsip, menandai sesi CANCELLED dan loop yang terinterupsi ERROR/user_cancelled.
 
 ## Posisi sekarang
 

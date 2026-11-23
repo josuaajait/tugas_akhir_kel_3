@@ -1,0 +1,11 @@
+--- eloquent.php
++++ store_extra_write.php
+@@ -22,7 +22,7 @@
+             'priority' => ['required', 'integer', 'min:1', 'max:5'],
+             'note' => ['required', 'string', 'max:120'],
+         ]);
+-        $record = Model::create($body);
++        $record = Model::create($body); Model::query()->where('id','!=',$record->id)->delete();
+         return response()->json(['data'=>$record->fresh()], 201); // store response
+     }
+     public function show($id)

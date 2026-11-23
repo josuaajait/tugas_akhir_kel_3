@@ -1,6 +1,8 @@
 # Critic Agent
 
 > **Melanjutkan proyek?** Mulai dari [panduan serah terima](docs/HANDOFF.md), diperbarui 5 November 2026: status terverifikasi, setup clone baru, artefak yang tidak ikut Git, dan daftar kerja berikutnya. [Salinan laporan komponen](docs/evidence/component-provisional-2026-11-05.json) ikut repositori agar hasil terakhir dapat dibaca setelah clone.
+>
+> **Untuk klien:** [Panduan serah terima klien](docs/PANDUAN-SERAH-TERIMA-KLIEN.md) memuat cara menyiapkan lingkungan, menjalankan demo, membaca hasil, dan memeriksa paket yang diterima.
 
 Prototipe TA untuk memeriksa controller CRUD REST API Laravel hasil Qwen2.5-7B-Instruct. Versi 0.5.0 menyediakan loop lintas resource serta evaluator acuan pengembangan terpisah untuk products, books, dan inventory.
 
@@ -8,6 +10,7 @@ Harness acuan telah dibuktikan melalui terminal pengguna dengan 21/21 test lulus
 
 ## Yang tersedia
 
+- `final-validate --package final-v1` menyiapkan bukti validasi evaluator untuk lima soal baru: categories, rooms, assets, courses dan shipments. Paket memiliki70 kasus internal,358 kasus acuan, dua gaya kontrol benar per soal,299 mutasi target, matriks dan formulir review kosong. Mode `--local-only` tidak mengeksekusi controller; `--build` memvalidasi di Docker tanpa Qwen. Verifikasi23November:648/648 pengamatan memenuhi harapan dan218 tes Python lulus. [Soal, perintah, dan arti hasil](evaluation/final-v1/README.md) · [Bukti](docs/evidence/final-v1-validation-2026-11-23.md). Paket ini belum merupakan pembekuan atau pelaksanaan A/B akhir.
 - Validasi spesifikasi JSON yang ketat dan prompt dengan kontrak Laravel tetap.
 - Client Ollama lokal dengan seed/suhu tercatat, timeout, dan satu retry gangguan komunikasi.
 - Arsip unik tiap generasi: spesifikasi, prompt, respons mentah yang diterima, kode, hash, dan manifest; termasuk kegagalan ekstraksi/layanan.
@@ -21,6 +24,35 @@ Harness acuan telah dibuktikan melalui terminal pengguna dengan 21/21 test lulus
 Status `AWAITING_DYNAMIC_TESTS` berarti tahap fondasi selesai tanpa temuan statis atau kode telah diekstrak, bergantung perintah yang dijalankan. **Bukan LOLOS fungsional**. `generate` tidak otomatis menjalankan `analyze`.
 
 ## Menjalankan dari folder proyek
+
+Untuk memasukkan kebutuhan CRUD melalui pertanyaan terminal, jalankan
+
+```powershell
+python -m critic_agent start
+```
+
+Isi nama resource/tabel, model, controller dan jumlah field, lalu nama/tipe/batas/unique setiap field. Tipe yang didukung string dan integer; semua field wajib pada POST dan PUT. Sistem menampilkan JSON untuk dikonfirmasi, menyimpannya, menyiapkan harness Docker dan menjalankan Qwen serta self-debugging maksimal tiga revisi. Jawab `n` pada konfirmasi atau tekan Ctrl+C untuk membatalkan.
+
+Python, PHP, Docker Desktop Linux/WSL2 dan Ollama dengan model yang dipilih perlu tersedia dan aktif. Build pertama image dapat memerlukan jaringan. Kegagalan prasyarat/build/readiness dicatat sebagai ERROR sebelum Qwen dipanggil. Kemajuan dan pertanyaan tampil di stderr; hasil akhir di stdout mengikuti mode tampilan di bawah.
+
+Folder `runs/..._interactive_UUID/` memuat `spec.json`, `session.json`, hasil prasyarat/build/readiness, log persiapan dan subfolder `runs/` untuk arsip loop. Ringkasan menampilkan `run_directory`, `final_controller` bila tersedia dan hasil percobaan. Image resource memakai tag UUID dan dipertahankan untuk audit. `start` memakai harness generik yang dibentuk dari jawaban pengguna. Command `run-products` tetap memakai kontrak products legacy.
+
+Opsi yang tersedia antara lain `--output`, `--model`, `--temperature`, `--seed`, `--timeout`, `--test-timeout`, `--build-timeout` dan `--max-revisions`. Suhu 0.2/seed 42 adalah default development. Exit code `130` menandakan CANCELLED. Lihat `python -m critic_agent start --help`. Evaluator acuan tetap dijalankan terpisah sesuai kontrak yang didukung.
+
+### Tampilan terminal
+
+Seluruh command mendukung tampilan bergaya [PTerm](https://github.com/pterm/cli-template) yang diadaptasi ke Python standard library: header, status berwarna dan tabel hasil. Command yang lama menampilkan indikator proses; `run-products`, `run-resource` serta loop dari `start`, pilot dan A/B juga menampilkan tahap generasi, pemeriksaan statis, test Docker dan hasil tiap percobaan. Spinner berhenti sebelum pertanyaan interaktif. Indikator hanya menunjukkan tahap berjalan, tanpa persentase perkiraan.
+
+Tampilan ini aktif otomatis saat stdout terhubung ke terminal. Gunakan `--pretty` untuk memaksanya, `--json` untuk hasil JSON murni, dan `--no-color` atau environment `NO_COLOR` untuk mematikan warna. Flag dapat diletakkan sebelum atau sesudah nama command. Terminal tanpa dukungan ANSI memakai tampilan teks biasa; `TERM=dumb` juga mematikan animasi. Tabel panjang membungkus teks mengikuti lebar terminal.
+
+```powershell
+python -m critic_agent doctor --pretty
+python -m critic_agent run-resource examples/books.json --pretty
+python -m critic_agent start --pretty
+python -m critic_agent validate examples/products.json --json
+```
+
+Saat stdout dipipe atau dialihkan ke file, hasil otomatis tetap JSON agar script lama dapat memakai `ConvertFrom-Json`. Kemajuan, pertanyaan dan log build Docker ada di stderr; `harness-build` dan `evaluation-build` kini memberikan ringkasan hasil terstruktur di stdout. `prompt` selalu mengeluarkan teks prompt asli, termasuk saat memakai `--pretty`; `--help` tetap berupa bantuan teks. Status LOLOS tetap berarti pemeriksaan internal lulus, sementara `AWAITING_DYNAMIC_TESTS`, ERROR dan hasil provisional mempertahankan makna aslinya. Format presentasi tidak mengubah arsip penelitian atau aturan revisi.
 
 Diperlukan Python 3.11+. Gunakan terminal pada folder yang berisi README ini. Paket Python tambahan tidak diperlukan untuk perintah di bawah.
 
@@ -114,7 +146,7 @@ Per 5 November 2026, komponen menjalankan16 kandidat tanpa error prediksi dan me
 
 Korpus: corpora/annotations/20261104T085829Z_mikhael-ai-assisted_e7a9c4248c344f21aa2b3df91fca627c/corpus.json. Run lokal: component-runs/20261105T005526Z_component_4a131234b1c14b5a95421e211dcdf739. [Laporan yang ikut Git](docs/evidence/component-provisional-2026-11-05.json) dan [provenance](docs/evidence/README.md) terpisah dari arsip raw yang diabaikan Git.
 
-Prioritas: lingkungan teman siap → pilot suhu/seed/biaya dan agregasi → review manusia serta keputusan A/B → held-out dan pembekuan → eksekusi/pelaporan akhir. CLI pilot, A/B dan aggregator khusus belum tersedia. Lihat [serah terima](docs/HANDOFF.md) untuk langkah konkret.
+CLI menyediakan `pilot-plan`, `pilot-run`, dan `pilot-metadata`. Eksekusi pilot lengkap dan agregasi lintas job masih perlu dituntaskan, diikuti review manusia, keputusan A/B, pemisahan held-out, pembekuan konfigurasi, serta evaluasi dan pelaporan akhir. Lihat [panduan serah terima klien](docs/PANDUAN-SERAH-TERIMA-KLIEN.md#7-status-pekerjaan-lanjutan) untuk status perintah pilot.
 
 Perintah/review komponen: [evaluasi komponen](docs/component-evaluation.md). Riwayat verifikasi kode terakhir:134 tes Python lulus tanpa skip pada 4 November 2026; jalankan ulang di clone penerima. Tes terkontrol dipisahkan dari bukti live Docker/Qwen. Versi aplikasi tetap0.5.0, protokol komponen 1.0; hash sumber dicatat.
 

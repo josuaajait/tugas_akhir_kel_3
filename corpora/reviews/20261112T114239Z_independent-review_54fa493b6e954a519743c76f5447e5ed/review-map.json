@@ -1,0 +1,68 @@
+{
+  "cases": [
+    {
+      "review_id": "R001",
+      "case_id": "syn_array_valid"
+    },
+    {
+      "review_id": "R002",
+      "case_id": "syn_string_valid"
+    },
+    {
+      "review_id": "R003",
+      "case_id": "syn_syntax"
+    },
+    {
+      "review_id": "R004",
+      "case_id": "syn_missing_method"
+    },
+    {
+      "review_id": "R005",
+      "case_id": "syn_store_status"
+    },
+    {
+      "review_id": "R006",
+      "case_id": "syn_update_required"
+    },
+    {
+      "review_id": "R007",
+      "case_id": "syn_missing_id"
+    },
+    {
+      "review_id": "R008",
+      "case_id": "syn_wrong_delete"
+    },
+    {
+      "review_id": "R009",
+      "case_id": "syn_reference_max"
+    },
+    {
+      "review_id": "R010",
+      "case_id": "syn_reference_min"
+    },
+    {
+      "review_id": "R011",
+      "case_id": "qwen_products_0"
+    },
+    {
+      "review_id": "R012",
+      "case_id": "qwen_products_1"
+    },
+    {
+      "review_id": "R013",
+      "case_id": "qwen_books_0"
+    },
+    {
+      "review_id": "R014",
+      "case_id": "qwen_inventory_items_0"
+    },
+    {
+      "review_id": "R015",
+      "case_id": "qwen_inventory_items_1"
+    },
+    {
+      "review_id": "R016",
+      "case_id": "qwen_inventory_items_2"
+    }
+  ]
+}

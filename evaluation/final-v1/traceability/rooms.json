@@ -1,0 +1,3529 @@
+[
+  {
+    "case_id": "index",
+    "spec_id": "final_rooms_v1",
+    "operation": "GET",
+    "field": null,
+    "vector": "index",
+    "rule_id": "crud.index",
+    "fixture": {
+      "case_id": "index",
+      "kind": "index",
+      "operation": "GET",
+      "payload": {
+        "label": "North hall",
+        "capacity": 32
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"index\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"index\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": "array of exact ID-bound fixture records"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "index_swapped",
+      "index_object",
+      "index_string_id",
+      "index_missing_field",
+      "index_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "index_swapped",
+        "sha256": "87216a823e4e044fd0019c9480851fac6d1b56947c7b19caf4df6ff7e0bfdea1",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_object",
+        "sha256": "1cb7b9690399901829c76682398e5b95d33966c84272b293dd27e5d92c4a3d4f",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_string_id",
+        "sha256": "b35f4c038f9b972a91410fcbaed60de654460e5c137d5da4af7a25c4310c5d31",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_missing_field",
+        "sha256": "ecc20d2be699e5ded1e63074d7d046a7214be1c6f6bbcd290e356e32c18c3fd5",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_status",
+        "sha256": "e282d843a30c0df871a6a5246405105ce43ad4dddc573cb20204b72c5ad60574",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "store",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": null,
+    "vector": "store",
+    "rule_id": "crud.store",
+    "fixture": {
+      "case_id": "store",
+      "kind": "store",
+      "operation": "POST",
+      "payload": {
+        "label": "North hall",
+        "capacity": 32
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"store\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"store\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "label": "North hall",
+        "capacity": 32
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_no_write",
+      "store_extra_write",
+      "store_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_no_write",
+        "sha256": "66cc447b15491cb66182da4ad9daec07825cad84e1e3a6abacb83a3392f3e081",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 201
+        }
+      },
+      {
+        "control_id": "store_extra_write",
+        "sha256": "165e4c6749b90e24b8b9cc1adf98e3ffea660319692b7eb5fbbd6f2c5bf39f73",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 201
+        }
+      },
+      {
+        "control_id": "store_status",
+        "sha256": "cc3f270a06c2cb48be98cacdd426dfc5da43c44afcc4219ed70bcadcb4f573a7",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "show",
+    "spec_id": "final_rooms_v1",
+    "operation": "GET",
+    "field": null,
+    "vector": "show",
+    "rule_id": "crud.show",
+    "fixture": {
+      "case_id": "show",
+      "kind": "show",
+      "operation": "GET",
+      "payload": {
+        "label": "North hall",
+        "capacity": 32
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"show\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"show\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "label": "South hall",
+        "capacity": 18
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "show_write",
+      "show_status",
+      "show_wrong_target"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "show_write",
+        "sha256": "3eeba0b38c5d406519f42056417165da3fbabd4acdd42bac79b7337a90c596bc",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "show_status",
+        "sha256": "8522adfc5e73b43bd240e71ab9f957ff0fbed01718aa96ab544b1c7e42844d72",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      {
+        "control_id": "show_wrong_target",
+        "sha256": "1aadda0d152181fedc0d6e1fa58e14055e5700d7f05ac52d0388976de16adbbd",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "update",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": null,
+    "vector": "update",
+    "rule_id": "crud.update",
+    "fixture": {
+      "case_id": "update",
+      "kind": "update",
+      "operation": "PUT",
+      "payload": {
+        "label": "West studio",
+        "capacity": 48
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"update\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"update\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "label": "West studio",
+        "capacity": 48
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_no_write",
+      "update_status",
+      "update_wrong_target"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_no_write",
+        "sha256": "51ea4554c82a21fc0ed20d1e5e48902b5659c27799172d368d6971f1ab94968a",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "update_status",
+        "sha256": "dcdfc6e25923bc2c9fb36224828d4cb54b8195dca1e2829f42af357039c076e4",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      {
+        "control_id": "update_wrong_target",
+        "sha256": "a697521d2d7d172d5889b1922745de32934c35044974e571f56ba5aa4db9ddea",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "destroy",
+    "spec_id": "final_rooms_v1",
+    "operation": "DELETE",
+    "field": null,
+    "vector": "destroy",
+    "rule_id": "crud.destroy",
+    "fixture": {
+      "case_id": "destroy",
+      "kind": "destroy",
+      "operation": "DELETE",
+      "payload": {
+        "label": "North hall",
+        "capacity": 32
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"destroy\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"destroy\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 204,
+    "expected_body": {
+      "raw": ""
+    },
+    "expected_state": "target removed; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "destroy_no_delete",
+      "destroy_body",
+      "destroy_wrong_target"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "destroy_no_delete",
+        "sha256": "f83b79136148e9fd13e92b94a0770be88d3ff3308ddc5f44ea3ab9bc7388ef3b",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 204
+        }
+      },
+      {
+        "control_id": "destroy_body",
+        "sha256": "90b0f02d76244b033d29f0d88e9dc6e951914eee564ce905685893f2f0f7af51",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 204
+        }
+      },
+      {
+        "control_id": "destroy_wrong_target",
+        "sha256": "53a1e5957a93f89d019905d278924cd512608c3f37878ded777544c679446fd9",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 204
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "missing_GET",
+    "spec_id": "final_rooms_v1",
+    "operation": "GET",
+    "field": null,
+    "vector": "missing_id",
+    "rule_id": "crud.missing_id",
+    "fixture": {
+      "case_id": "missing_GET",
+      "kind": "missing_id",
+      "operation": "GET",
+      "payload": {
+        "label": "North hall",
+        "capacity": 32
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"missing_GET\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"missing_GET\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 404,
+    "expected_body": {
+      "shape": "object"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "missing_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "missing_status",
+        "sha256": "4b5ae629d56b632ed2048bb6798630fe8e3e2af153e62aba49a3826f8db43865",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "missing_PUT",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": null,
+    "vector": "missing_id",
+    "rule_id": "crud.missing_id",
+    "fixture": {
+      "case_id": "missing_PUT",
+      "kind": "missing_id",
+      "operation": "PUT",
+      "payload": {
+        "label": "North hall",
+        "capacity": 32
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"missing_PUT\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"missing_PUT\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 404,
+    "expected_body": {
+      "shape": "object"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "missing_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "missing_status",
+        "sha256": "4b5ae629d56b632ed2048bb6798630fe8e3e2af153e62aba49a3826f8db43865",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "missing_DELETE",
+    "spec_id": "final_rooms_v1",
+    "operation": "DELETE",
+    "field": null,
+    "vector": "missing_id",
+    "rule_id": "crud.missing_id",
+    "fixture": {
+      "case_id": "missing_DELETE",
+      "kind": "missing_id",
+      "operation": "DELETE",
+      "payload": {
+        "label": "North hall",
+        "capacity": 32
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"missing_DELETE\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"missing_DELETE\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 404,
+    "expected_body": {
+      "shape": "object"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "missing_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "missing_status",
+        "sha256": "4b5ae629d56b632ed2048bb6798630fe8e3e2af153e62aba49a3826f8db43865",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 204
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "empty",
+    "spec_id": "final_rooms_v1",
+    "operation": "GET",
+    "field": null,
+    "vector": "empty",
+    "rule_id": "crud.empty",
+    "fixture": {
+      "case_id": "empty",
+      "kind": "empty",
+      "operation": "GET"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"empty\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": []
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "index_object"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "index_object",
+        "sha256": "1cb7b9690399901829c76682398e5b95d33966c84272b293dd27e5d92c4a3d4f",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "sequence",
+    "spec_id": "final_rooms_v1",
+    "operation": "SEQUENCE",
+    "field": null,
+    "vector": "sequence",
+    "rule_id": "crud.sequence",
+    "fixture": {
+      "case_id": "sequence",
+      "kind": "sequence",
+      "operation": "SEQUENCE"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"sequence\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": [
+      201,
+      200,
+      200,
+      200,
+      200,
+      204,
+      404
+    ],
+    "expected_body": {
+      "steps": [
+        "create",
+        "read",
+        "replace",
+        "read",
+        "list",
+        "delete",
+        "read missing"
+      ]
+    },
+    "expected_state": "create/read/update/read/list/delete/read missing; database empty at end",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_no_write",
+      "destroy_no_delete"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_no_write",
+        "sha256": "66cc447b15491cb66182da4ad9daec07825cad84e1e3a6abacb83a3392f3e081",
+        "expected_evidence": {
+          "phase": "sequence.create",
+          "http_status": 201
+        }
+      },
+      {
+        "control_id": "destroy_no_delete",
+        "sha256": "f83b79136148e9fd13e92b94a0770be88d3ff3308ddc5f44ea3ab9bc7388ef3b",
+        "expected_evidence": {
+          "phase": "sequence.missing",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_missing_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "label",
+    "vector": "missing",
+    "rule_id": "label.missing",
+    "fixture": {
+      "name": "missing_label",
+      "field": "label",
+      "vector": "missing",
+      "payload": {
+        "capacity": 32
+      },
+      "case_id": "POST_missing_label",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_missing_label\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_missing_label\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "label"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_missing_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_missing_label",
+        "sha256": "61fd81e3dc1819448cad7104cfadcadb08f0abafaa05d2816def486b47987f31",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_null_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "label",
+    "vector": "null",
+    "rule_id": "label.null",
+    "fixture": {
+      "name": "null_label",
+      "field": "label",
+      "vector": "null",
+      "payload": {
+        "label": null,
+        "capacity": 32
+      },
+      "case_id": "POST_null_label",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_null_label\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "label"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_label",
+        "sha256": "5b69cda4d18f2744ac3f4e3d58efa49607384f3e685d1c8dd3b4665f96fe6b98",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_empty_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "label",
+    "vector": "empty",
+    "rule_id": "label.empty",
+    "fixture": {
+      "name": "empty_label",
+      "field": "label",
+      "vector": "empty",
+      "payload": {
+        "label": "",
+        "capacity": 32
+      },
+      "case_id": "POST_empty_label",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_empty_label\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "label"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_label",
+        "sha256": "5b69cda4d18f2744ac3f4e3d58efa49607384f3e685d1c8dd3b4665f96fe6b98",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_whitespace_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "label",
+    "vector": "whitespace",
+    "rule_id": "label.whitespace",
+    "fixture": {
+      "name": "whitespace_label",
+      "field": "label",
+      "vector": "whitespace",
+      "payload": {
+        "label": "   ",
+        "capacity": 32
+      },
+      "case_id": "POST_whitespace_label",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_whitespace_label\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "label"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_label",
+        "sha256": "5b69cda4d18f2744ac3f4e3d58efa49607384f3e685d1c8dd3b4665f96fe6b98",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_type_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "label",
+    "vector": "type",
+    "rule_id": "label.type",
+    "fixture": {
+      "name": "type_label",
+      "field": "label",
+      "vector": "type",
+      "payload": {
+        "label": [
+          "bad",
+          "bad"
+        ],
+        "capacity": 32
+      },
+      "case_id": "POST_type_label",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_type_label\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "label"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_label",
+        "sha256": "b34904bbcba7941854976f15e2d7c66d108aa0cfbe9de4b9f5510a418663f6c0",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_object_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "label",
+    "vector": "object",
+    "rule_id": "label.object",
+    "fixture": {
+      "name": "object_label",
+      "field": "label",
+      "vector": "object",
+      "payload": {
+        "label": {
+          "bad0": "x",
+          "bad1": "x"
+        },
+        "capacity": 32
+      },
+      "case_id": "POST_object_label",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_object_label\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "label"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_label",
+        "sha256": "b34904bbcba7941854976f15e2d7c66d108aa0cfbe9de4b9f5510a418663f6c0",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_max_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "label",
+    "vector": "max",
+    "rule_id": "label.max",
+    "fixture": {
+      "name": "max_label",
+      "field": "label",
+      "vector": "max",
+      "payload": {
+        "label": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ",
+        "capacity": 32
+      },
+      "case_id": "POST_max_label",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_max_label\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "label"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_max_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_max_label",
+        "sha256": "2039fdf66c89b94fdabfde3d79d7917ef5b82bb9afcc61404f514c974eaf9e20",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_missing_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "capacity",
+    "vector": "missing",
+    "rule_id": "capacity.missing",
+    "fixture": {
+      "name": "missing_capacity",
+      "field": "capacity",
+      "vector": "missing",
+      "payload": {
+        "label": "North hall"
+      },
+      "case_id": "POST_missing_capacity",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_missing_capacity\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_missing_capacity\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_missing_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_missing_capacity",
+        "sha256": "0e29b8bf5fc6818895814a432ffdae8b928d5972ae0e68b700f1c207f2a9d461",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_null_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "capacity",
+    "vector": "null",
+    "rule_id": "capacity.null",
+    "fixture": {
+      "name": "null_capacity",
+      "field": "capacity",
+      "vector": "null",
+      "payload": {
+        "label": "North hall",
+        "capacity": null
+      },
+      "case_id": "POST_null_capacity",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_null_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_capacity",
+        "sha256": "8b13a19e8e374b0f00bac50a31820d180513b7369c8001b34e8094a3f534ae79",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_empty_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "capacity",
+    "vector": "empty",
+    "rule_id": "capacity.empty",
+    "fixture": {
+      "name": "empty_capacity",
+      "field": "capacity",
+      "vector": "empty",
+      "payload": {
+        "label": "North hall",
+        "capacity": ""
+      },
+      "case_id": "POST_empty_capacity",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_empty_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_capacity",
+        "sha256": "8b13a19e8e374b0f00bac50a31820d180513b7369c8001b34e8094a3f534ae79",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_whitespace_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "capacity",
+    "vector": "whitespace",
+    "rule_id": "capacity.whitespace",
+    "fixture": {
+      "name": "whitespace_capacity",
+      "field": "capacity",
+      "vector": "whitespace",
+      "payload": {
+        "label": "North hall",
+        "capacity": "   "
+      },
+      "case_id": "POST_whitespace_capacity",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_whitespace_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_capacity",
+        "sha256": "8b13a19e8e374b0f00bac50a31820d180513b7369c8001b34e8094a3f534ae79",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_type_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "capacity",
+    "vector": "type",
+    "rule_id": "capacity.type",
+    "fixture": {
+      "name": "type_capacity",
+      "field": "capacity",
+      "vector": "type",
+      "payload": {
+        "label": "North hall",
+        "capacity": "x"
+      },
+      "case_id": "POST_type_capacity",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_type_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_capacity",
+        "sha256": "0df988091836896c1988841962a5ef563637dcc3c02c012c6073a56dc084f533",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_object_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "capacity",
+    "vector": "object",
+    "rule_id": "capacity.object",
+    "fixture": {
+      "name": "object_capacity",
+      "field": "capacity",
+      "vector": "object",
+      "payload": {
+        "label": "North hall",
+        "capacity": {
+          "wrong": "type"
+        }
+      },
+      "case_id": "POST_object_capacity",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_object_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_capacity",
+        "sha256": "0df988091836896c1988841962a5ef563637dcc3c02c012c6073a56dc084f533",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_fraction_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "capacity",
+    "vector": "fraction",
+    "rule_id": "capacity.fraction",
+    "fixture": {
+      "name": "fraction_capacity",
+      "field": "capacity",
+      "vector": "fraction",
+      "payload": {
+        "label": "North hall",
+        "capacity": 1.5
+      },
+      "case_id": "POST_fraction_capacity",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_fraction_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_capacity",
+        "sha256": "0df988091836896c1988841962a5ef563637dcc3c02c012c6073a56dc084f533",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_min_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "capacity",
+    "vector": "min",
+    "rule_id": "capacity.min",
+    "fixture": {
+      "name": "min_capacity",
+      "field": "capacity",
+      "vector": "min",
+      "payload": {
+        "label": "North hall",
+        "capacity": 0
+      },
+      "case_id": "POST_min_capacity",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_min_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_min_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_min_capacity",
+        "sha256": "76cbe3f465d3bdb8dc5a484b8cbf90228c9b4819921ccec465b7938238995326",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_max_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "capacity",
+    "vector": "max",
+    "rule_id": "capacity.max",
+    "fixture": {
+      "name": "max_capacity",
+      "field": "capacity",
+      "vector": "max",
+      "payload": {
+        "label": "North hall",
+        "capacity": 501
+      },
+      "case_id": "POST_max_capacity",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_max_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_max_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_max_capacity",
+        "sha256": "03b7d51a6ed7cfcaa47e1729832582b63c5c735d86464270ec1ca94bfba7a06e",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_missing_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "label",
+    "vector": "missing",
+    "rule_id": "label.missing",
+    "fixture": {
+      "name": "missing_label",
+      "field": "label",
+      "vector": "missing",
+      "payload": {
+        "capacity": 32
+      },
+      "case_id": "PUT_missing_label",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_missing_label\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_missing_label\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "label"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_required_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_required_label",
+        "sha256": "b0f84b2a0f49d2becabf16140a13c41e46a9afc2f40c2fb31e9446dfddb6d905",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_null_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "label",
+    "vector": "null",
+    "rule_id": "label.null",
+    "fixture": {
+      "name": "null_label",
+      "field": "label",
+      "vector": "null",
+      "payload": {
+        "label": null,
+        "capacity": 32
+      },
+      "case_id": "PUT_null_label",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_null_label\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "label"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_label",
+        "sha256": "af01686a6d8bd8c2eb33de19d94652a490b214bf70881ba88193314c0cad4405",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_empty_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "label",
+    "vector": "empty",
+    "rule_id": "label.empty",
+    "fixture": {
+      "name": "empty_label",
+      "field": "label",
+      "vector": "empty",
+      "payload": {
+        "label": "",
+        "capacity": 32
+      },
+      "case_id": "PUT_empty_label",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_empty_label\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "label"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_label",
+        "sha256": "af01686a6d8bd8c2eb33de19d94652a490b214bf70881ba88193314c0cad4405",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_whitespace_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "label",
+    "vector": "whitespace",
+    "rule_id": "label.whitespace",
+    "fixture": {
+      "name": "whitespace_label",
+      "field": "label",
+      "vector": "whitespace",
+      "payload": {
+        "label": "   ",
+        "capacity": 32
+      },
+      "case_id": "PUT_whitespace_label",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_whitespace_label\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "label"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_label",
+        "sha256": "af01686a6d8bd8c2eb33de19d94652a490b214bf70881ba88193314c0cad4405",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_type_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "label",
+    "vector": "type",
+    "rule_id": "label.type",
+    "fixture": {
+      "name": "type_label",
+      "field": "label",
+      "vector": "type",
+      "payload": {
+        "label": [
+          "bad",
+          "bad"
+        ],
+        "capacity": 32
+      },
+      "case_id": "PUT_type_label",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_type_label\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "label"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_label",
+        "sha256": "6273829488d114e3f7a6a0aea8691c50bad8cea246b061c8be14f6b0389cd6e0",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_object_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "label",
+    "vector": "object",
+    "rule_id": "label.object",
+    "fixture": {
+      "name": "object_label",
+      "field": "label",
+      "vector": "object",
+      "payload": {
+        "label": {
+          "bad0": "x",
+          "bad1": "x"
+        },
+        "capacity": 32
+      },
+      "case_id": "PUT_object_label",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_object_label\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "label"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_label",
+        "sha256": "6273829488d114e3f7a6a0aea8691c50bad8cea246b061c8be14f6b0389cd6e0",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_max_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "label",
+    "vector": "max",
+    "rule_id": "label.max",
+    "fixture": {
+      "name": "max_label",
+      "field": "label",
+      "vector": "max",
+      "payload": {
+        "label": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ",
+        "capacity": 32
+      },
+      "case_id": "PUT_max_label",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_max_label\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "label"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_max_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_max_label",
+        "sha256": "6ef087c0faf0ec7878751dffe8004caab7ebcf9c091e4ba5df8b0273886133bd",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_missing_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "capacity",
+    "vector": "missing",
+    "rule_id": "capacity.missing",
+    "fixture": {
+      "name": "missing_capacity",
+      "field": "capacity",
+      "vector": "missing",
+      "payload": {
+        "label": "North hall"
+      },
+      "case_id": "PUT_missing_capacity",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_missing_capacity\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_missing_capacity\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_required_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_required_capacity",
+        "sha256": "0e505d901f6df215932268eecab35040aef57628eeb7787e6b42c1c74d606bc3",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_null_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "capacity",
+    "vector": "null",
+    "rule_id": "capacity.null",
+    "fixture": {
+      "name": "null_capacity",
+      "field": "capacity",
+      "vector": "null",
+      "payload": {
+        "label": "North hall",
+        "capacity": null
+      },
+      "case_id": "PUT_null_capacity",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_null_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_capacity",
+        "sha256": "1a8c1cbf1079466f5e26bb00e31a9eccd597c3b85d70404d1bc51a6fa5860fff",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_empty_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "capacity",
+    "vector": "empty",
+    "rule_id": "capacity.empty",
+    "fixture": {
+      "name": "empty_capacity",
+      "field": "capacity",
+      "vector": "empty",
+      "payload": {
+        "label": "North hall",
+        "capacity": ""
+      },
+      "case_id": "PUT_empty_capacity",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_empty_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_capacity",
+        "sha256": "1a8c1cbf1079466f5e26bb00e31a9eccd597c3b85d70404d1bc51a6fa5860fff",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_whitespace_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "capacity",
+    "vector": "whitespace",
+    "rule_id": "capacity.whitespace",
+    "fixture": {
+      "name": "whitespace_capacity",
+      "field": "capacity",
+      "vector": "whitespace",
+      "payload": {
+        "label": "North hall",
+        "capacity": "   "
+      },
+      "case_id": "PUT_whitespace_capacity",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_whitespace_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_capacity",
+        "sha256": "1a8c1cbf1079466f5e26bb00e31a9eccd597c3b85d70404d1bc51a6fa5860fff",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_type_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "capacity",
+    "vector": "type",
+    "rule_id": "capacity.type",
+    "fixture": {
+      "name": "type_capacity",
+      "field": "capacity",
+      "vector": "type",
+      "payload": {
+        "label": "North hall",
+        "capacity": "x"
+      },
+      "case_id": "PUT_type_capacity",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_type_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_capacity",
+        "sha256": "4c77d260220f352746e52a4fe3133dc7790cf18c0610106582a3ecefb735519f",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_object_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "capacity",
+    "vector": "object",
+    "rule_id": "capacity.object",
+    "fixture": {
+      "name": "object_capacity",
+      "field": "capacity",
+      "vector": "object",
+      "payload": {
+        "label": "North hall",
+        "capacity": {
+          "wrong": "type"
+        }
+      },
+      "case_id": "PUT_object_capacity",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_object_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_capacity",
+        "sha256": "4c77d260220f352746e52a4fe3133dc7790cf18c0610106582a3ecefb735519f",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_fraction_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "capacity",
+    "vector": "fraction",
+    "rule_id": "capacity.fraction",
+    "fixture": {
+      "name": "fraction_capacity",
+      "field": "capacity",
+      "vector": "fraction",
+      "payload": {
+        "label": "North hall",
+        "capacity": 1.5
+      },
+      "case_id": "PUT_fraction_capacity",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_fraction_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_capacity",
+        "sha256": "4c77d260220f352746e52a4fe3133dc7790cf18c0610106582a3ecefb735519f",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_min_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "capacity",
+    "vector": "min",
+    "rule_id": "capacity.min",
+    "fixture": {
+      "name": "min_capacity",
+      "field": "capacity",
+      "vector": "min",
+      "payload": {
+        "label": "North hall",
+        "capacity": 0
+      },
+      "case_id": "PUT_min_capacity",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_min_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_min_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_min_capacity",
+        "sha256": "cb014edff5b49e404697fbc8e7f2b1827db870f7a2e9fc726ef8b3a816ec0c4a",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_max_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "capacity",
+    "vector": "max",
+    "rule_id": "capacity.max",
+    "fixture": {
+      "name": "max_capacity",
+      "field": "capacity",
+      "vector": "max",
+      "payload": {
+        "label": "North hall",
+        "capacity": 501
+      },
+      "case_id": "PUT_max_capacity",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_max_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "capacity"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_max_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_max_capacity",
+        "sha256": "27b034120e24ac04fa785712db0f4737f2e5d596ee3b234038b5ef3886ed2a27",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_max_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "label",
+    "vector": "boundary_max",
+    "rule_id": "label.boundary_max",
+    "fixture": {
+      "name": "boundary_max_label",
+      "field": "label",
+      "vector": "boundary_max",
+      "payload": {
+        "label": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "capacity": 32
+      },
+      "case_id": "POST_boundary_max_label",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_max_label\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "label": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "capacity": 32
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_max_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_max_label",
+        "sha256": "38e90f22a9f6137f4f0b282dd02f52bf7b46a060373585dfb8999c650e070d0d",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_min_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "capacity",
+    "vector": "boundary_min",
+    "rule_id": "capacity.boundary_min",
+    "fixture": {
+      "name": "boundary_min_capacity",
+      "field": "capacity",
+      "vector": "boundary_min",
+      "payload": {
+        "label": "North hall",
+        "capacity": 1
+      },
+      "case_id": "POST_boundary_min_capacity",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_min_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "label": "North hall",
+        "capacity": 1
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_min_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_min_capacity",
+        "sha256": "82b54032043dc9b30ea8587df3f0f1a5ca2e6d6b960b694014c5853a0a08ea8e",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_max_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "capacity",
+    "vector": "boundary_max",
+    "rule_id": "capacity.boundary_max",
+    "fixture": {
+      "name": "boundary_max_capacity",
+      "field": "capacity",
+      "vector": "boundary_max",
+      "payload": {
+        "label": "North hall",
+        "capacity": 500
+      },
+      "case_id": "POST_boundary_max_capacity",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_max_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "label": "North hall",
+        "capacity": 500
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_max_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_max_capacity",
+        "sha256": "59f3064d15c14ddaa47eb7ed1a175f30019f62d9d64f3fb7412ab3c0036067b2",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_numeric_string_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "POST",
+    "field": "capacity",
+    "vector": "numeric_string",
+    "rule_id": "capacity.numeric_string",
+    "fixture": {
+      "name": "numeric_string_capacity",
+      "field": "capacity",
+      "vector": "numeric_string",
+      "payload": {
+        "label": "North hall",
+        "capacity": "32"
+      },
+      "expected": {
+        "label": "North hall",
+        "capacity": 32
+      },
+      "case_id": "POST_numeric_string_capacity",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_numeric_string_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "label": "North hall",
+        "capacity": 32
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_numeric_string_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_numeric_string_capacity",
+        "sha256": "782e120a0ea946af6b66c7de5eea68e8579423cca4244ed69c29a87712cddbe0",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_max_label",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "label",
+    "vector": "boundary_max",
+    "rule_id": "label.boundary_max",
+    "fixture": {
+      "name": "boundary_max_label",
+      "field": "label",
+      "vector": "boundary_max",
+      "payload": {
+        "label": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "capacity": 32
+      },
+      "case_id": "PUT_boundary_max_label",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_max_label\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "label": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "capacity": 32
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_max_label"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_max_label",
+        "sha256": "e674f9714c71290202aae77b60ad753e8e679946ed154b9e4c5665126b934cf0",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_min_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "capacity",
+    "vector": "boundary_min",
+    "rule_id": "capacity.boundary_min",
+    "fixture": {
+      "name": "boundary_min_capacity",
+      "field": "capacity",
+      "vector": "boundary_min",
+      "payload": {
+        "label": "North hall",
+        "capacity": 1
+      },
+      "case_id": "PUT_boundary_min_capacity",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_min_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "label": "North hall",
+        "capacity": 1
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_min_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_min_capacity",
+        "sha256": "7fd707782428c37c57d7754e01025defb56b0a9fe5cd4474ddb05e6d992a2ed5",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_max_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "capacity",
+    "vector": "boundary_max",
+    "rule_id": "capacity.boundary_max",
+    "fixture": {
+      "name": "boundary_max_capacity",
+      "field": "capacity",
+      "vector": "boundary_max",
+      "payload": {
+        "label": "North hall",
+        "capacity": 500
+      },
+      "case_id": "PUT_boundary_max_capacity",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_max_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "label": "North hall",
+        "capacity": 500
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_max_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_max_capacity",
+        "sha256": "dcfa4a9f1da95bc4a313ed7ebd1481037119ae7d91887eba51bd7f8d89ba1db7",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_numeric_string_capacity",
+    "spec_id": "final_rooms_v1",
+    "operation": "PUT",
+    "field": "capacity",
+    "vector": "numeric_string",
+    "rule_id": "capacity.numeric_string",
+    "fixture": {
+      "name": "numeric_string_capacity",
+      "field": "capacity",
+      "vector": "numeric_string",
+      "payload": {
+        "label": "North hall",
+        "capacity": "32"
+      },
+      "expected": {
+        "label": "North hall",
+        "capacity": 32
+      },
+      "case_id": "PUT_numeric_string_capacity",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_numeric_string_capacity\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "label": "North hall",
+        "capacity": 32
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_numeric_string_capacity"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_numeric_string_capacity",
+        "sha256": "e8eef429c85b895f42af759c04a50444a5721e064eb5f8682eb6cd043f52d6bb",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "d031d44a8e75851e412a98b2cdda5c2b08e2641e1856c62f0601d1a5a42e24d2"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "e896b729800a874a219bd0c5ecf4d733d36815a81b705f588541193f30b72b07"
+      }
+    ]
+  }
+]

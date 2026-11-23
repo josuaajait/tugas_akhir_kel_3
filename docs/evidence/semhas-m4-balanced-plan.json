@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "status": "DRAFT",
+  "ready_for_final": false,
+  "option": "balanced",
+  "selected_on": "2026-11-19",
+  "selected_scope": {"specification_count":5,"repetitions_per_specification":4,"pairs":20,"branches":40},
+  "proposed_configuration": {"temperature":0.2,"max_revisions_per_branch":3,"package_version":"semhas-m4-v1","products_internal_suite":"v2","products_reference_suite":"v2","k2":{"precision_min_percent":80,"recall_min_percent":75,"fpr_max_percent":20,"approval":"pending_supervisor"}},
+  "budget": {"max_logical_model_calls":140,"max_http_attempts_with_one_retry_per_call":280},
+  "specifications": [
+    {"slot":"S1","spec_path":null,"internal_image_id":null,"reference_image_id":null},
+    {"slot":"S2","spec_path":null,"internal_image_id":null,"reference_image_id":null},
+    {"slot":"S3","spec_path":null,"internal_image_id":null,"reference_image_id":null},
+    {"slot":"S4","spec_path":null,"internal_image_id":null,"reference_image_id":null},
+    {"slot":"S5","spec_path":null,"internal_image_id":null,"reference_image_id":null}
+  ],
+  "schedule": [
+    {"pair_slot":"P01","spec_slot":"S1","repetition":1,"seed":101,"revision_seeds":[102,103,104],"order_seed":7,"order":["A","B"]},
+    {"pair_slot":"P02","spec_slot":"S1","repetition":2,"seed":111,"revision_seeds":[112,113,114],"order_seed":42,"order":["B","A"]},
+    {"pair_slot":"P03","spec_slot":"S1","repetition":3,"seed":121,"revision_seeds":[122,123,124],"order_seed":42,"order":["B","A"]},
+    {"pair_slot":"P04","spec_slot":"S1","repetition":4,"seed":131,"revision_seeds":[132,133,134],"order_seed":7,"order":["A","B"]},
+    {"pair_slot":"P05","spec_slot":"S2","repetition":1,"seed":141,"revision_seeds":[142,143,144],"order_seed":42,"order":["B","A"]},
+    {"pair_slot":"P06","spec_slot":"S2","repetition":2,"seed":151,"revision_seeds":[152,153,154],"order_seed":7,"order":["A","B"]},
+    {"pair_slot":"P07","spec_slot":"S2","repetition":3,"seed":161,"revision_seeds":[162,163,164],"order_seed":7,"order":["A","B"]},
+    {"pair_slot":"P08","spec_slot":"S2","repetition":4,"seed":171,"revision_seeds":[172,173,174],"order_seed":42,"order":["B","A"]},
+    {"pair_slot":"P09","spec_slot":"S3","repetition":1,"seed":181,"revision_seeds":[182,183,184],"order_seed":7,"order":["A","B"]},
+    {"pair_slot":"P10","spec_slot":"S3","repetition":2,"seed":191,"revision_seeds":[192,193,194],"order_seed":42,"order":["B","A"]},
+    {"pair_slot":"P11","spec_slot":"S3","repetition":3,"seed":201,"revision_seeds":[202,203,204],"order_seed":7,"order":["A","B"]},
+    {"pair_slot":"P12","spec_slot":"S3","repetition":4,"seed":211,"revision_seeds":[212,213,214],"order_seed":42,"order":["B","A"]},
+    {"pair_slot":"P13","spec_slot":"S4","repetition":1,"seed":221,"revision_seeds":[222,223,224],"order_seed":42,"order":["B","A"]},
+    {"pair_slot":"P14","spec_slot":"S4","repetition":2,"seed":231,"revision_seeds":[232,233,234],"order_seed":7,"order":["A","B"]},
+    {"pair_slot":"P15","spec_slot":"S4","repetition":3,"seed":241,"revision_seeds":[242,243,244],"order_seed":42,"order":["B","A"]},
+    {"pair_slot":"P16","spec_slot":"S4","repetition":4,"seed":251,"revision_seeds":[252,253,254],"order_seed":7,"order":["A","B"]},
+    {"pair_slot":"P17","spec_slot":"S5","repetition":1,"seed":261,"revision_seeds":[262,263,264],"order_seed":42,"order":["B","A"]},
+    {"pair_slot":"P18","spec_slot":"S5","repetition":2,"seed":271,"revision_seeds":[272,273,274],"order_seed":42,"order":["B","A"]},
+    {"pair_slot":"P19","spec_slot":"S5","repetition":3,"seed":281,"revision_seeds":[282,283,284],"order_seed":7,"order":["A","B"]},
+    {"pair_slot":"P20","spec_slot":"S5","repetition":4,"seed":291,"revision_seeds":[292,293,294],"order_seed":7,"order":["A","B"]}
+  ]
+}

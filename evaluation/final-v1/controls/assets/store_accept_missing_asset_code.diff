@@ -1,0 +1,10 @@
+--- eloquent.php
++++ store_accept_missing_asset_code.php
+@@ -15,6 +15,7 @@
+     public function store(Request $request)
+     {
+         // store guards
++        if (!$request->exists('asset_code')) return response()->json(['accepted'=>true], 200);
+         $body = $request->validate([
+             'asset_code' => ['required', 'string', 'min:3', 'max:20', 'unique:assets,asset_code'],
+             'name' => ['required', 'string', 'max:80'],

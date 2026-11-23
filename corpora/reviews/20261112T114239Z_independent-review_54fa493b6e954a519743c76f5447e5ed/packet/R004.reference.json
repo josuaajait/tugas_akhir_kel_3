@@ -1,0 +1,268 @@
+{
+  "evidence_type": "independent_reference",
+  "protocol_version": "1.0",
+  "expected_tests": 35,
+  "suite_sha256": "b81bacb9a6a6b1184fa49de69f6f78f3fe34acde7a57619e7ae80a641569a847",
+  "code_sha256": "9f5003e6dcd838180fad491d82a6a6e8268671243d76d7c05f2229883092122d",
+  "spec_sha256": "6b9094134fc39f36d26de5420d632062661ebad860021afc2a379b92e16a8776",
+  "result": {
+    "status": "FAILED_REFERENCE",
+    "reason": "tests_failed",
+    "run_directory": "C:\\Perkuliahan\\TA\\component-evidence\\20261104T082952Z_reference-evidence_26a23f11d3ab49929f39605cde0bf690\\harness\\books_basic\\critic-292c782dd95340d199756cd9bc7549c1",
+    "created_at": "2026-11-04T08:30:20.058186+00:00",
+    "image": "sha256:5c77ffde066bb23cc6ccb2d907bd1e7d6c723f90d13f520fbe5a91b286a11125",
+    "mode": "candidate",
+    "command": [
+      "docker",
+      "run",
+      "--name",
+      "critic-292c782dd95340d199756cd9bc7549c1",
+      "--pull=never",
+      "--network=none",
+      "--read-only",
+      "--log-driver=none",
+      "--cap-drop=ALL",
+      "--security-opt=no-new-privileges",
+      "--user=10001:10001",
+      "--memory=768m",
+      "--cpus=1",
+      "--pids-limit=128",
+      "--tmpfs",
+      "/work:rw,nosuid,nodev,size=512m,mode=1777",
+      "--tmpfs",
+      "/tmp:rw,nosuid,nodev,noexec,size=32m,mode=1777",
+      "--mount",
+      "type=bind,src=C:\\Perkuliahan\\TA\\component-evidence\\20261104T082952Z_reference-evidence_26a23f11d3ab49929f39605cde0bf690\\harness\\books_basic\\critic-292c782dd95340d199756cd9bc7549c1\\candidate.php,dst=/input/controller.php,readonly",
+      "sha256:5c77ffde066bb23cc6ccb2d907bd1e7d6c723f90d13f520fbe5a91b286a11125",
+      "evaluation-candidate"
+    ],
+    "timeout_seconds": 120.0,
+    "expected_tests": 35,
+    "candidate_sha256": "9f5003e6dcd838180fad491d82a6a6e8268671243d76d7c05f2229883092122d",
+    "image_id": "sha256:5c77ffde066bb23cc6ccb2d907bd1e7d6c723f90d13f520fbe5a91b286a11125",
+    "exit_code": 1,
+    "summary": {
+      "status": "FAILED",
+      "total": 35,
+      "passed": 32,
+      "failure": 3,
+      "error": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "test_empty_collection_is_json_and_preserves_empty_database",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_collection_contains_both_persisted_records_without_changes",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_create_exposes_inserted_values_and_keeps_existing_record",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_read_uses_requested_identifier_and_does_not_write",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "failure",
+          "evidence": "\nEvaluation\\ResourceReferenceTest::test_read_uses_requested_identifier_and_does_not_write\nExpected response status code [200] but received 500.\nFailed asserting that 500 is identical to 200.\n\nThe following exception occurred during the last request:\n\nError: Call to undefined method App\\Http\\Controllers\\BookController::show() in /work/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:46\nStack trace:\n#0 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php(265): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\BookController), 'show')\n#1 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php(211): Illuminate\\Routing\\Route->runController()\n#2 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(822): Illuminate\\Routing\\Route->run()\n#3 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))\n#4 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#5 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#6 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#7 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#8 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))\n#9 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))\n#10 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))\n#11 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))\n#12 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))\n#13 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#14 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#15 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#16 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#17 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#18 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#19 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#20 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#21 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#22 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#23 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(74): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#24 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#25 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#26 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#27 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#28 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#29 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#30 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\ValidatePathEncoding->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#31 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#32 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#33 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))\n#34 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(607): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))\n#35 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(573): Illuminate\\Foundation\\Testing\\TestCase->call('GET', '/api/books/2', Array, Array, Array, Array, '[]')\n#36 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(381): Illuminate\\Foundation\\Testing\\TestCase->json('GET', '/api/books/2', Array, Array, 0)\n#37 /work/app/reference/ResourceReferenceTest.php(99): Illuminate\\Foundation\\Testing\\TestCase->getJson('/api/books/2')\n#38 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(1667): Evaluation\\ResourceReferenceTest->test_read_uses_requested_identifier_and_does_not_write()\n#39 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(519): PHPUnit\\Framework\\TestCase->runTest()\n#40 /work/app/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(87): PHPUnit\\Framework\\TestCase->runBare()\n#41 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(365): PHPUnit\\Framework\\TestRunner->run(Object(Evaluation\\ResourceReferenceTest))\n#42 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestCase->run()\n#43 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestSuite->run()\n#44 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestSuite->run()\n#45 /work/app/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\\Framework\\TestSuite->run()\n#46 /work/app/vendor/phpunit/phpunit/src/TextUI/Application.php(211): PHPUnit\\TextUI\\TestRunner->run(Object(PHPUnit\\TextUI\\Configuration\\Configuration), Object(PHPUnit\\Runner\\ResultCache\\NullResultCache), Object(PHPUnit\\Framework\\TestSuite))\n#47 /work/app/vendor/phpunit/phpunit/phpunit(104): PHPUnit\\TextUI\\Application->run(Array)\n#48 /work/app/vendor/bin/phpunit(122): include('/work/app/vendo...')\n#49 {main}\n\n----------------------------------------------------------------------------------\n\nCall to undefined method App\\Http\\Controllers\\BookController::show()\n\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponseAssert.php:45\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponse.php:175\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/Concerns/AssertsStatusCodes.php:16\n/work/app/reference/ResourceReferenceTest.php:99"
+        },
+        {
+          "name": "test_replacement_returns_and_persists_all_values_only_on_target",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_deletion_is_empty_204_and_removes_only_requested_record",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_unknown_identifier_is_json_404_and_keeps_all_rows with data set \"read\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "failure",
+          "evidence": "\nEvaluation\\ResourceReferenceTest::test_unknown_identifier_is_json_404_and_keeps_all_rows with data set \"read\"\nExpected response status code [404] but received 500.\nFailed asserting that 500 is identical to 404.\n\nThe following exception occurred during the last request:\n\nError: Call to undefined method App\\Http\\Controllers\\BookController::show() in /work/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:46\nStack trace:\n#0 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php(265): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\BookController), 'show')\n#1 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php(211): Illuminate\\Routing\\Route->runController()\n#2 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(822): Illuminate\\Routing\\Route->run()\n#3 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))\n#4 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#5 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#6 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#7 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#8 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))\n#9 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))\n#10 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))\n#11 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))\n#12 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))\n#13 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#14 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#15 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#16 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#17 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#18 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#19 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#20 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#21 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#22 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#23 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(74): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#24 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#25 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#26 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#27 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#28 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#29 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#30 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\ValidatePathEncoding->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#31 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#32 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#33 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))\n#34 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(607): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))\n#35 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(573): Illuminate\\Foundation\\Testing\\TestCase->call('GET', '/api/books/9876...', Array, Array, Array, Array, '{\"title\":\"Sea a...')\n#36 /work/app/reference/ResourceReferenceTest.php(136): Illuminate\\Foundation\\Testing\\TestCase->json('GET', '/api/books/9876...', Array)\n#37 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(1667): Evaluation\\ResourceReferenceTest->test_unknown_identifier_is_json_404_and_keeps_all_rows('GET')\n#38 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(519): PHPUnit\\Framework\\TestCase->runTest()\n#39 /work/app/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(87): PHPUnit\\Framework\\TestCase->runBare()\n#40 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(365): PHPUnit\\Framework\\TestRunner->run(Object(Evaluation\\ResourceReferenceTest))\n#41 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestCase->run()\n#42 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestSuite->run()\n#43 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestSuite->run()\n#44 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestSuite->run()\n#45 /work/app/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\\Framework\\TestSuite->run()\n#46 /work/app/vendor/phpunit/phpunit/src/TextUI/Application.php(211): PHPUnit\\TextUI\\TestRunner->run(Object(PHPUnit\\TextUI\\Configuration\\Configuration), Object(PHPUnit\\Runner\\ResultCache\\NullResultCache), Object(PHPUnit\\Framework\\TestSuite))\n#47 /work/app/vendor/phpunit/phpunit/phpunit(104): PHPUnit\\TextUI\\Application->run(Array)\n#48 /work/app/vendor/bin/phpunit(122): include('/work/app/vendo...')\n#49 {main}\n\n----------------------------------------------------------------------------------\n\nCall to undefined method App\\Http\\Controllers\\BookController::show()\n\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponseAssert.php:45\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponse.php:175\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/Concerns/AssertsStatusCodes.php:151\n/work/app/reference/ResourceReferenceTest.php:136"
+        },
+        {
+          "name": "test_unknown_identifier_is_json_404_and_keeps_all_rows with data set \"replace\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_unknown_identifier_is_json_404_and_keeps_all_rows with data set \"delete\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_missing_title\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_missing_pages\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_blank_title\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_title_array\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_long_title\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_pages_text\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_pages_below_min\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_pages_above_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"POST_null_pages\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_title\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_missing_pages\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_blank_title\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_title_array\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_long_title\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_pages_text\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_pages_below_min\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_pages_above_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_invalid_payload_reports_named_field_without_database_changes with data set \"PUT_null_pages\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"POST_title_at_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"POST_pages_at_min\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"POST_pages_at_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"PUT_title_at_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"PUT_pages_at_min\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_boundary_payload_is_accepted_and_persisted with data set \"PUT_pages_at_max\"",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_update_accepts_own_unique_values_and_preserves_neighbour",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_sequential_crud_reads_back_persisted_replacement_and_deletion",
+          "class": "Evaluation.ResourceReferenceTest",
+          "outcome": "failure",
+          "evidence": "\nEvaluation\\ResourceReferenceTest::test_sequential_crud_reads_back_persisted_replacement_and_deletion\nExpected response status code [200] but received 500.\nFailed asserting that 500 is identical to 200.\n\nThe following exception occurred during the last request:\n\nError: Call to undefined method App\\Http\\Controllers\\BookController::show() in /work/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:46\nStack trace:\n#0 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php(265): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\BookController), 'show')\n#1 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php(211): Illuminate\\Routing\\Route->runController()\n#2 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(822): Illuminate\\Routing\\Route->run()\n#3 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))\n#4 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#5 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#6 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#7 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#8 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))\n#9 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))\n#10 /work/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))\n#11 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))\n#12 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))\n#13 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#14 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#15 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#16 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#17 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#18 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#19 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#20 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#21 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#22 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#23 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(74): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#24 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#25 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#26 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#27 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#28 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#29 /work/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#30 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\\Http\\Middleware\\ValidatePathEncoding->handle(Object(Illuminate\\Http\\Request), Object(Closure))\n#31 /work/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))\n#32 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#33 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))\n#34 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(607): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))\n#35 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(573): Illuminate\\Foundation\\Testing\\TestCase->call('GET', '/api/books/1', Array, Array, Array, Array, '[]')\n#36 /work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(381): Illuminate\\Foundation\\Testing\\TestCase->json('GET', '/api/books/1', Array, Array, 0)\n#37 /work/app/reference/ResourceReferenceTest.php(216): Illuminate\\Foundation\\Testing\\TestCase->getJson('/api/books/1')\n#38 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(1667): Evaluation\\ResourceReferenceTest->test_sequential_crud_reads_back_persisted_replacement_and_deletion()\n#39 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(519): PHPUnit\\Framework\\TestCase->runTest()\n#40 /work/app/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(87): PHPUnit\\Framework\\TestCase->runBare()\n#41 /work/app/vendor/phpunit/phpunit/src/Framework/TestCase.php(365): PHPUnit\\Framework\\TestRunner->run(Object(Evaluation\\ResourceReferenceTest))\n#42 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestCase->run()\n#43 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestSuite->run()\n#44 /work/app/vendor/phpunit/phpunit/src/Framework/TestSuite.php(369): PHPUnit\\Framework\\TestSuite->run()\n#45 /work/app/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\\Framework\\TestSuite->run()\n#46 /work/app/vendor/phpunit/phpunit/src/TextUI/Application.php(211): PHPUnit\\TextUI\\TestRunner->run(Object(PHPUnit\\TextUI\\Configuration\\Configuration), Object(PHPUnit\\Runner\\ResultCache\\NullResultCache), Object(PHPUnit\\Framework\\TestSuite))\n#47 /work/app/vendor/phpunit/phpunit/phpunit(104): PHPUnit\\TextUI\\Application->run(Array)\n#48 /work/app/vendor/bin/phpunit(122): include('/work/app/vendo...')\n#49 {main}\n\n----------------------------------------------------------------------------------\n\nCall to undefined method App\\Http\\Controllers\\BookController::show()\n\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponseAssert.php:45\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponse.php:175\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/Concerns/AssertsStatusCodes.php:16\n/work/app/reference/ResourceReferenceTest.php:216"
+        }
+      ]
+    },
+    "cleanup_exit_code": 0,
+    "readiness_directory": "C:\\Perkuliahan\\TA\\component-evidence\\20261104T082952Z_reference-evidence_26a23f11d3ab49929f39605cde0bf690\\harness\\books_basic\\critic-d9909d989bb8468ca39cf96073996275"
+  },
+  "reused_from": null
+}

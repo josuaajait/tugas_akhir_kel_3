@@ -1,0 +1,10 @@
+--- eloquent.php
++++ update_accept_null_label.php
+@@ -31,6 +31,7 @@
+     {
+         $record = $this->load($id); // update lookup
+         // update guards
++        if ($request->exists('label') && $request->input('label') === null) return response()->json(['accepted'=>true], 200);
+         $body = $request->validate([
+             'label' => ['required', 'string', 'max:40'],
+             'capacity' => ['required', 'integer', 'min:1', 'max:500'],

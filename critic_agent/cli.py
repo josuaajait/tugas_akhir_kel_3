@@ -14,26 +14,76 @@ from .spec import load_spec, SpecError
 from .static import analyze, StaticEnvironmentError
 from .sandbox import DockerRunner, SandboxError, validate_products_contract
 from .orchestrator import run_products, run_resource
-from .reference import ReferenceDockerRunner, evaluate_products, reference_suite_hash
-from .resources import ResourceDockerRunner, build_resource
+from .reference import PRODUCTS_REFERENCE_IMAGES, ReferenceDockerRunner, evaluate_products, reference_suite_hash
+from .resources import ResourceDockerRunner, _canonical_image_name, build_resource
 from .resource_reference import ResourceReferenceRunner, build_resource_reference, evaluate_resource
 
 from .pilot import create_pilot_manifest
 from.pilot_runner import run_pilot
 from .pilot_metadata import collect_pilot_metadata
+from .pilot_report import pilot_report
+from .freeze_draft import check_draft, prepare_project_draft
 from .component_corpus import prepare_development_corpus, load_corpus
 from .component_evaluation import run_components, collect_component_evidence
 from .component_report import component_report
+from .interactive import start_interactive
+from .ab import run_ab
+from .console import Console, current_console
+from .final_validation import validate_final
+from .final_package import RESOURCES as FINAL_RESOURCES
 
 
 def emit(value):
-    print(json.dumps(value, ensure_ascii=False, indent=2))
+    console = current_console()
+    if console is None:
+        print(json.dumps(value, ensure_ascii=False, indent=2))
+    else:
+        console.result(value)
 
 
 def main(argv=None) -> int:
-    parser = argparse.ArgumentParser(prog='critic-agent', description='Fondasi Critic Agent untuk controller Laravel.')
+    arguments = list(sys.argv[1:] if argv is None else argv)
+    # Help exits inside argparse, before the complete command is dispatched.
+    # Read presentation preferences first so help honors the same flags.
+    preferences = argparse.ArgumentParser(add_help=False)
+    preferences.add_argument('--pretty', dest='output_format', action='store_const', const='pretty', default='auto')
+    preferences.add_argument('--json', dest='output_format', action='store_const', const='json')
+    preferences.add_argument('--no-color', action='store_true')
+    early, _ = preferences.parse_known_args(arguments[:arguments.index('--')] if '--' in arguments else arguments)
+    with Console(mode=early.output_format, no_color=early.no_color) as console:
+        return _main(arguments, console)
+
+
+class PresentationParser(argparse.ArgumentParser):
+    def print_help(self, file=None):
+        console = current_console()
+        if console is not None and (file is None or file is sys.stdout):
+            console.header(self.prog)
+        super().print_help(file)
+
+
+def _main(argv, console) -> int:
+    parser = PresentationParser(prog='critic-agent', description='Critic Agent untuk controller Laravel.')
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('doctor', help='Periksa Python, PHP, Docker, dan Ollama.')
+    final = sub.add_parser('final-validate', help='Validasi paket soal/evaluator final-v1 tanpa Qwen; bukan pembekuan.')
+    final.add_argument('--package', choices=('final-v1',), required=True)
+    final.add_argument('--resource', choices=FINAL_RESOURCES, nargs='+')
+    final.add_argument('--output', type=Path, default=Path('evaluations/final-validation'))
+    final.add_argument('--local-only', action='store_true')
+    final.add_argument('--build', action='store_true')
+    final.add_argument('--base-image', default='critic-laravel:dev')
+    final.add_argument('--timeout', type=float, default=120)
+    final.add_argument('--build-timeout', type=float, default=600)
+    start = sub.add_parser('start', help='Tanya spesifikasi CRUD, siapkan Docker, lalu jalankan self-debugging.')
+    start.add_argument('--output', type=Path, default=Path('runs'))
+    start.add_argument('--model', default='qwen2.5:7b-instruct')
+    start.add_argument('--temperature', type=float, default=0.2)
+    start.add_argument('--seed', type=int, default=42)
+    start.add_argument('--timeout', type=float, default=300)
+    start.add_argument('--test-timeout', type=float, default=120)
+    start.add_argument('--build-timeout', type=float, default=600)
+    start.add_argument('--max-revisions', type=int, choices=range(4), default=3)
 
     pilot = sub.add_parser(
         'pilot-plan',
@@ -76,6 +126,15 @@ def main(argv=None) -> int:
         help='Folder job pilot yang berisi pilot_result.json.'
     )
 
+    report = sub.add_parser('pilot-report', help='Ringkas status dan metrik dari satu atau beberapa manifest pilot.')
+    report.add_argument('manifests', nargs='+', type=Path)
+    report.add_argument('--evaluations', type=Path, help='Direktori arsip evaluator untuk metrik awal–akhir.')
+    freeze = sub.add_parser('freeze-draft', help='Siapkan manifest draf FR-19 dari bukti development.')
+    freeze.add_argument('pilot_report', type=Path)
+    freeze.add_argument('--output', type=Path, required=True)
+    check_freeze = sub.add_parser('freeze-check', help='Periksa integritas draf dan syarat pembekuan FR-19.')
+    check_freeze.add_argument('manifest', type=Path)
+
     corpus = sub.add_parser('component-corpus-init', help='Siapkan korpus development berlabel draf, tanpa Qwen.')
     corpus.add_argument('--output', type=Path, default=Path('corpora/development'))
     corpus.add_argument('--synthetic-only', action='store_true')
@@ -89,14 +148,22 @@ def main(argv=None) -> int:
     component_summary.add_argument('run_directory', type=Path)
     component_summary.add_argument('--provisional', action='store_true')
     build_evaluation = sub.add_parser('evaluation-build', help='Bangun image evaluator acuan terpisah.')
-    build_evaluation.add_argument('--image', default='critic-laravel-evaluation:dev')
+    build_evaluation.add_argument('--image')
+    build_evaluation.add_argument('--suite', choices=('v1', 'v2'), default='v1')
     build_evaluation.add_argument('--base-image', default='critic-laravel:dev')
     build_evaluation.add_argument('--timeout', type=float, default=600)
     evaluation = sub.add_parser('evaluate-products', help='Evaluasi kode awal/akhir arsip loop tanpa memanggil Qwen.')
     evaluation.add_argument('loop_directory', type=Path)
-    evaluation.add_argument('--image', default='critic-laravel-evaluation:dev')
+    evaluation.add_argument('--image')
+    evaluation.add_argument('--suite', choices=('v1', 'v2'), default='v1')
     evaluation.add_argument('--output', type=Path, default=Path('evaluations'))
     evaluation.add_argument('--timeout', type=float, default=120)
+    reference_check = sub.add_parser('reference-check-products', help='Periksa readiness atau satu controller dengan evaluator products.')
+    reference_check.add_argument('--image')
+    reference_check.add_argument('--suite', choices=('v1', 'v2'), default='v1')
+    reference_check.add_argument('--code', type=Path)
+    reference_check.add_argument('--output', type=Path, default=Path('evaluations/products-check'))
+    reference_check.add_argument('--timeout', type=float, default=120)
     resource_evaluation = sub.add_parser('resource-evaluation-build', help='Bangun evaluator acuan terpisah books/inventory.')
     resource_evaluation.add_argument('spec', type=Path)
     resource_evaluation.add_argument('--image', default=None)
@@ -129,6 +196,21 @@ def main(argv=None) -> int:
     loop.add_argument('--test-timeout', type=float, default=120)
     loop.add_argument('--image', default=None)
     loop.add_argument('--max-revisions', type=int, choices=range(4), default=3)
+    ab = sub.add_parser('run-ab', help='Jalankan pembanding spesifik/generik FR-20 untuk satu pasangan development.')
+    ab.add_argument('spec', type=Path)
+    ab.add_argument('--order-seed', type=int, required=True)
+    ab.add_argument('--revision-seeds', type=int, nargs='*', required=True)
+    ab.add_argument('--repetition', type=int, default=1)
+    ab.add_argument('--output', type=Path, default=Path('runs/ab-development'))
+    ab.add_argument('--initial-run', type=Path)
+    ab.add_argument('--image', default=None)
+    ab.add_argument('--reference-image', default=None)
+    ab.add_argument('--reference-suite', choices=('v1', 'v2'), default='v1', help='Versi evaluator khusus products.')
+    ab.add_argument('--model', default='qwen2.5:7b-instruct')
+    ab.add_argument('--temperature', type=float, default=0.2)
+    ab.add_argument('--seed', type=int, default=42)
+    ab.add_argument('--timeout', type=float, default=300)
+    ab.add_argument('--test-timeout', type=float, default=120)
     for name in ('harness-build', 'harness-check', 'check-products'):
         child = sub.add_parser(name)
         child.add_argument('--image', default='critic-laravel:dev')
@@ -149,8 +231,73 @@ def main(argv=None) -> int:
             child.add_argument('--temperature', type=float, default=0.2)
             child.add_argument('--seed', type=int, default=42)
             child.add_argument('--timeout', type=float, default=300)
+    for command_parser in [parser, *dict.fromkeys(sub.choices.values())]:
+        presentation = command_parser.add_argument_group('Tampilan')
+        formats = presentation.add_mutually_exclusive_group()
+        formats.add_argument('--pretty', dest='output_format', action='store_const', const='pretty',
+                             default=argparse.SUPPRESS, help='Tampilkan header, tabel, dan kemajuan proses.')
+        formats.add_argument('--json', dest='output_format', action='store_const', const='json',
+                             default=argparse.SUPPRESS, help='Keluarkan JSON murni (otomatis saat stdout dialihkan).')
+        presentation.add_argument('--no-color', action='store_true', default=argparse.SUPPRESS,
+                                  help='Matikan warna ANSI; juga menghormati NO_COLOR.')
     args = parser.parse_args(argv)
+    console.configure(getattr(args, 'output_format', 'auto'), getattr(args, 'no_color', False))
+    if args.command != 'prompt':
+        console.header(args.command)
+    if args.command not in ('start', 'prompt', 'validate', 'pilot-plan', 'pilot-metadata',
+                            'pilot-report', 'component-report', 'freeze-draft', 'freeze-check'):
+        console.progress(f'Menjalankan {args.command}...')
     try:
+        if args.command == 'final-validate':
+            folder = validate_final(args.output, resources=args.resource, build=args.build, local_only=args.local_only,
+                                    base_image=args.base_image, timeout=args.timeout, build_timeout=args.build_timeout)
+            result = json.loads((folder/'validation.json').read_text(encoding='utf-8'))
+            emit({key: result[key] for key in ('status', 'package', 'package_sha256', 'functional_validation',
+                                              'ready_for_final', 'counts', 'run_directory')})
+            return 0 if result['status'] in ('VALIDATED','LOCAL_VALIDATED') else 1 if result['status']=='FAILED' else 3
+        if args.command == 'start':
+            result = start_interactive(args.output, model=args.model, temperature=args.temperature,
+                                       seed=args.seed, timeout=args.timeout, test_timeout=args.test_timeout,
+                                       build_timeout=args.build_timeout, max_revisions=args.max_revisions)
+            if result.get('run_directory') and result['status'] != 'CANCELLED':
+                result.update(loop_summary(Path(result['run_directory'])))
+            emit(result)
+            return {'LOLOS': 0, 'BELUM LOLOS': 1, 'ERROR': 3, 'CANCELLED': 130}[result['status']]
+
+        if args.command == 'pilot-report':
+            emit(pilot_report(args.manifests, evaluations=args.evaluations))
+            return 0
+
+        if args.command == 'run-ab':
+            spec = load_spec(args.spec)
+            client = OllamaClient(model=args.model, temperature=args.temperature, seed=args.seed, timeout=args.timeout)
+            settings = {'output_root': args.output/'harness', 'timeout': args.test_timeout}
+            evaluator_settings = {'output_root': args.output/'reference-harness', 'timeout': args.test_timeout}
+            if spec['resource'] == 'products':
+                kind = 'products'
+                runner = DockerRunner(image=args.image or 'critic-laravel:dev', **settings)
+                reference = ReferenceDockerRunner(image=args.reference_image, suite_version=args.reference_suite,
+                                                  **evaluator_settings)
+            else:
+                if args.reference_suite != 'v1':
+                    raise ValueError('--reference-suite hanya tersedia untuk products.')
+                kind = 'resource'
+                runner = ResourceDockerRunner(spec, image=args.image, **settings)
+                reference = ResourceReferenceRunner(spec, image=args.reference_image, **evaluator_settings)
+            folder = run_ab(spec, args.output, client, runner, reference, kind=kind, order_seed=args.order_seed,
+                            revision_seeds=args.revision_seeds, initial_run=args.initial_run, repetition=args.repetition)
+            result = json.loads((folder/'pair.json').read_bytes())
+            emit(dict(result, report=str(folder/'pair.json')))
+            return 0 if result['status'] == 'EVALUATED' else 3
+
+        if args.command == 'freeze-draft':
+            path = prepare_project_draft(args.output, Path.cwd(), args.pilot_report)
+            emit({'status': 'DRAFT', 'manifest': str(path), 'ready_for_final': False})
+            return 0
+
+        if args.command == 'freeze-check':
+            emit(check_draft(args.manifest, Path.cwd()))
+            return 3
 
         if args.command == 'pilot-metadata':
             output = collect_pilot_metadata(args.job_directory)
@@ -235,10 +382,14 @@ def main(argv=None) -> int:
             emit(result)
             return 0 if result['status'] in ('READY', 'PASSED_INTERNAL') else (3 if result['status'] == 'ERROR' else 1)
         if args.command == 'evaluation-build':
-            DockerRunner(image=args.image, timeout=args.timeout)
+            image = args.image or PRODUCTS_REFERENCE_IMAGES[args.suite]
+            DockerRunner(image=image, timeout=args.timeout)
             DockerRunner(image=args.base_image, timeout=args.timeout)
-            if args.image == args.base_image:
+            if _canonical_image_name(image) == _canonical_image_name(args.base_image):
                 raise ValueError('Image evaluator harus berbeda dari image harness internal.')
+            other_version = 'v1' if args.suite == 'v2' else 'v2'
+            if _canonical_image_name(image) == _canonical_image_name(PRODUCTS_REFERENCE_IMAGES[other_version]):
+                raise ValueError('Tag default evaluator versi lain tidak boleh ditimpa.')
             if not shutil.which('docker'):
                 raise SandboxError('Docker belum ditemukan; image evaluator belum bisa dibangun.')
             context = Path(__file__).resolve().parents[1]/'evaluation'
@@ -248,18 +399,32 @@ def main(argv=None) -> int:
                 staged = Path(temporary)/'evaluation'
                 shutil.copytree(context, staged)
                 shutil.copyfile(context.parent/'harness'/'runtime.php', staged/'runtime.php')
-                result = subprocess.run(['docker', 'build', '--tag', args.image,
+                if args.suite == 'v2':
+                    shutil.copyfile(staged/'products-v2'/'phpunit-evaluation.xml', staged/'phpunit-evaluation.xml')
+                    shutil.copyfile(staged/'products-v2'/'ProductsReferenceV2Test.php',
+                                    staged/'reference-tests'/'ProductsReferenceV2Test.php')
+                console.stop()
+                result = subprocess.run(['docker', 'build', '--tag', image,
                                          '--build-arg', 'HARNESS_IMAGE='+args.base_image,
-                                         '--build-arg', 'SUITE_SHA256='+reference_suite_hash(), str(staged)],
-                                        timeout=args.timeout, shell=False)
+                                         '--build-arg', 'SUITE_SHA256='+reference_suite_hash(args.suite), str(staged)],
+                                        timeout=args.timeout, shell=False, stdout=sys.stderr, stderr=sys.stderr)
+            emit({'status': 'BUILT' if result.returncode == 0 else 'ERROR',
+                  'image': image, 'exit_code': result.returncode, 'suite': args.suite})
             return 0 if result.returncode == 0 else 3
+        if args.command == 'reference-check-products':
+            runner = ReferenceDockerRunner(image=args.image, suite_version=args.suite,
+                                           output_root=args.output, timeout=args.timeout)
+            result = runner.check_candidate(args.code) if args.code else runner.check_reference()
+            emit(result)
+            return 0 if result['status'] in ('READY', 'PASSED_REFERENCE') else (3 if result['status'] == 'ERROR' else 1)
         if args.command in ('evaluate-products', 'evaluate-resource'):
             if args.command == 'evaluate-resource':
                 runner = ResourceReferenceRunner(load_spec(args.loop_directory/'spec.json'), image=args.image,
                                                  output_root=args.output/'harness', timeout=args.timeout)
                 folder = evaluate_resource(args.loop_directory, args.output, runner)
             else:
-                runner = ReferenceDockerRunner(image=args.image, output_root=args.output/'harness', timeout=args.timeout)
+                runner = ReferenceDockerRunner(image=args.image, suite_version=args.suite,
+                                               output_root=args.output/'harness', timeout=args.timeout)
                 folder = evaluate_products(args.loop_directory, args.output, runner)
             result = json.loads((folder/'evaluation_result.json').read_text(encoding='utf-8'))
             positions = {name: ({key: value for key, value in result[name].items() if key != 'runner_result'}
@@ -280,17 +445,8 @@ def main(argv=None) -> int:
                 run = run_products
             folder = run(spec, args.output, client, runner, initial_run=args.initial_run,
                                   max_revisions=args.max_revisions)
-            result = json.loads((folder/'history.json').read_text(encoding='utf-8'))
-            summary = []
-            for entry in result['attempts']:
-                tests = entry.get('dynamic', {}).get('summary', {})
-                summary.append({'attempt': entry['iteration'], 'dynamic_status': entry['dynamic_status'],
-                                'passed': tests.get('passed'), 'total': tests.get('total'),
-                                'findings': len(entry['findings']), 'error': entry.get('error')})
-            emit({'status': result['status'], 'stop_reason': result['stop_reason'],
-                  'revision_count': result['revision_count'], 'run_directory': str(folder.resolve()),
-                  'final_controller': str((folder/'final_controller.php').resolve()) if (folder/'final_controller.php').is_file() else None,
-                  'history': summary})
+            result = loop_summary(folder)
+            emit(result)
             return {'LOLOS': 0, 'BELUM LOLOS': 1, 'ERROR': 3}[result['status']]
         if args.command in ('harness-build', 'harness-check', 'check-products'):
             runner = DockerRunner(image=args.image, output_root=args.output, timeout=args.timeout)
@@ -298,8 +454,11 @@ def main(argv=None) -> int:
                 if not shutil.which('docker'):
                     raise SandboxError('Docker belum ditemukan; image belum bisa dibangun.')
                 context = Path(__file__).resolve().parents[1]/'harness'
+                console.stop()
                 result = subprocess.run(['docker', 'build', '--tag', args.image, str(context)],
-                                        timeout=args.timeout, shell=False)
+                                        timeout=args.timeout, shell=False, stdout=sys.stderr, stderr=sys.stderr)
+                emit({'status': 'BUILT' if result.returncode == 0 else 'ERROR',
+                      'image': args.image, 'exit_code': result.returncode})
                 return 0 if result.returncode == 0 else 3
             if args.command == 'harness-check':
                 result = runner.check_reference()
@@ -327,8 +486,22 @@ def main(argv=None) -> int:
             return 0 if manifest['status'] == 'AWAITING_DYNAMIC_TESTS' else (3 if manifest['status'] == 'ERROR' else 1)
         return 0
     except (SpecError, ValueError, UnicodeError, OSError) as exc:
-        print(f'ERROR: {exc}', file=sys.stderr)
+        console.error(f'ERROR: {exc}')
         return 2
     except (StaticEnvironmentError, SandboxError, subprocess.TimeoutExpired) as exc:
-        print(f'ERROR lingkungan: {exc}', file=sys.stderr)
+        console.error(f'ERROR lingkungan: {exc}')
         return 3
+
+
+def loop_summary(folder):
+    result = json.loads((folder/'history.json').read_text(encoding='utf-8'))
+    summary = []
+    for entry in result['attempts']:
+        tests = entry.get('dynamic', {}).get('summary', {})
+        summary.append({'attempt': entry['iteration'], 'dynamic_status': entry['dynamic_status'],
+                        'passed': tests.get('passed'), 'total': tests.get('total'),
+                        'findings': len(entry['findings']), 'error': entry.get('error')})
+    return {'status': result['status'], 'stop_reason': result['stop_reason'],
+            'revision_count': result['revision_count'], 'run_directory': str(folder.resolve()),
+            'final_controller': str((folder/'final_controller.php').resolve()) if (folder/'final_controller.php').is_file() else None,
+            'history': summary}

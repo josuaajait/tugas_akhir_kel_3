@@ -1,0 +1,11 @@
+--- eloquent.php
++++ destroy_wrong_target.php
+@@ -46,7 +46,7 @@
+     }
+     public function destroy($id)
+     {
+-        $record = $this->load($id); // destroy lookup
++        $record = Model::query()->where('id','!=',$id)->firstOrFail(); // destroy lookup
+         $record->delete();
+         return response()->noContent(); // destroy response
+     }

@@ -1,0 +1,61 @@
+{
+  "spec_id": "final_courses_v1",
+  "spec_version": "1.0",
+  "resource": "courses",
+  "model": "Course",
+  "controller": "CourseController",
+  "fields": [
+    {
+      "name": "course_code",
+      "type": "string",
+      "rules": [
+        "required",
+        "string",
+        "max:12",
+        "unique:courses,course_code"
+      ]
+    },
+    {
+      "name": "credits",
+      "type": "integer",
+      "rules": [
+        "required",
+        "integer",
+        "min:1",
+        "max:6"
+      ]
+    },
+    {
+      "name": "quota",
+      "type": "integer",
+      "rules": [
+        "required",
+        "integer",
+        "min:0",
+        "max:200"
+      ]
+    }
+  ],
+  "operations": {
+    "index": {
+      "success_status": 200
+    },
+    "store": {
+      "success_status": 201,
+      "validation_error_status": 422
+    },
+    "show": {
+      "success_status": 200,
+      "not_found_status": 404
+    },
+    "update": {
+      "success_status": 200,
+      "validation_error_status": 422,
+      "not_found_status": 404
+    },
+    "destroy": {
+      "success_status": 204,
+      "not_found_status": 404
+    }
+  }
+}

@@ -32,8 +32,8 @@ def _test_summary(attempt):
 
 
 
-def collect_pilot_metadata(job_directory):
-    """Baca hasil job dan buat metadata baru tanpa overwrite."""
+def read_pilot_metadata(job_directory):
+    """Baca metadata langsung dari arsip job."""
     job_directory = Path(job_directory).resolve()
 
     result_path = job_directory / "pilot_result.json"
@@ -116,6 +116,9 @@ def collect_pilot_metadata(job_directory):
         )
         else None
     )
+    requests = [attempt.get('model_request', {}).get('transport_attempts')
+                for attempt in attempts if attempt.get('model_called') is True]
+    traced = [trace for trace in requests if trace is not None]
 
     metadata = {
         "schema_version": "1.0",
@@ -183,6 +186,9 @@ def collect_pilot_metadata(job_directory):
                 "model_timeout_seconds"
             ),
             "token_usage": None,
+            "transport_attempts_observed": sum(len(trace) for trace in traced) if traced else None,
+            "transport_retries_observed": sum(max(0, len(trace)-1) for trace in traced) if traced else None,
+            "model_calls_with_transport_trace": len(traced),
         },
 
         "environment": {
@@ -196,6 +202,7 @@ def collect_pilot_metadata(job_directory):
                 manifest.get("environment") or {}
             ).get("platform"),
             "docker_image_id": manifest.get("image_id"),
+            "provenance": manifest.get("provenance"),
         },
 
         "source_files": {
@@ -205,7 +212,13 @@ def collect_pilot_metadata(job_directory):
         },
     }
 
-    output = job_directory / "metadata.json"
+    return metadata
+
+
+def collect_pilot_metadata(job_directory):
+    """Buat metadata baru tanpa menimpa hasil sebelumnya."""
+    metadata = read_pilot_metadata(job_directory)
+    output = Path(job_directory).resolve() / "metadata.json"
 
     # Mode x mencegah penimpaan metadata yang sudah ada.
     with output.open("x", encoding="utf-8") as file:

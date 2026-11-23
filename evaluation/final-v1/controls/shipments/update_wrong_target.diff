@@ -1,0 +1,11 @@
+--- eloquent.php
++++ update_wrong_target.php
+@@ -32,7 +32,7 @@
+     }
+     public function update(Request $request, $id)
+     {
+-        $record = $this->load($id); // update lookup
++        $record = Model::query()->where('id','!=',$id)->firstOrFail(); // update lookup
+         // update guards
+         $body = $request->validate([
+             'tracking_code' => ['required', 'string', 'min:6', 'max:24', Rule::unique('shipments', 'tracking_code')->ignore($record->getKey())],

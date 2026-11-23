@@ -1,0 +1,61 @@
+{
+  "spec_id": "final_assets_v1",
+  "spec_version": "1.0",
+  "resource": "assets",
+  "model": "Asset",
+  "controller": "AssetController",
+  "fields": [
+    {
+      "name": "asset_code",
+      "type": "string",
+      "rules": [
+        "required",
+        "string",
+        "min:3",
+        "max:20",
+        "unique:assets,asset_code"
+      ]
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "rules": [
+        "required",
+        "string",
+        "max:80"
+      ]
+    },
+    {
+      "name": "value",
+      "type": "integer",
+      "rules": [
+        "required",
+        "integer",
+        "min:0",
+        "max:1000000"
+      ]
+    }
+  ],
+  "operations": {
+    "index": {
+      "success_status": 200
+    },
+    "store": {
+      "success_status": 201,
+      "validation_error_status": 422
+    },
+    "show": {
+      "success_status": 200,
+      "not_found_status": 404
+    },
+    "update": {
+      "success_status": 200,
+      "validation_error_status": 422,
+      "not_found_status": 404
+    },
+    "destroy": {
+      "success_status": 204,
+      "not_found_status": 404
+    }
+  }
+}

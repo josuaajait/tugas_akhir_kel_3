@@ -1,0 +1,8 @@
+{
+  "source": "component-evidence\\20261104T082952Z_reference-evidence_26a23f11d3ab49929f39605cde0bf690",
+  "source_evidence_manifest_sha256": "8dc5dc09058f1d7f54153706bfeb7e4a70a37c54b1cd2180d8a275efd17018cf",
+  "source_blank_form_sha256": "af9205826dfa065f9a28d211e99149103bca48bd66279fbef673ba19dc41b72d",
+  "packet_manifest_sha256": "b82c5d22e35a8b8322c7123f6c45827cbfa4384066cedaa3cbbbd427498ca442",
+  "prepared_by": "OpenAI Codex",
+  "labels_promoted": false
+}

@@ -1,0 +1,11 @@
+--- eloquent.php
++++ update_omit_max_course_code.php
+@@ -33,7 +33,7 @@
+         $record = $this->load($id); // update lookup
+         // update guards
+         $body = $request->validate([
+-            'course_code' => ['required', 'string', 'max:12', Rule::unique('courses', 'course_code')->ignore($record->getKey())],
++            'course_code' => ['required', 'string', Rule::unique('courses', 'course_code')->ignore($record->getKey())],
+             'credits' => ['required', 'integer', 'min:1', 'max:6'],
+             'quota' => ['required', 'integer', 'min:0', 'max:200'],
+         ]);

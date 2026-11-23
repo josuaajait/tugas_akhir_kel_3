@@ -1,0 +1,11 @@
+--- eloquent.php
++++ index_cross_field.php
+@@ -9,7 +9,7 @@
+     private function load($id) { return Model::findOrFail($id); }
+     public function index()
+     {
+-        $data = Model::all()->toArray();
++        $data = Model::all()->toArray(); foreach ($data as &$r) { $v=$r['name']; $r['name']=$r['description']; $r['description']=$v; } unset($r);
+         return response()->json(['data'=>$data], 200); // index response
+     }
+     public function store(Request $request)

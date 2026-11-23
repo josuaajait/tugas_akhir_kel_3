@@ -1,0 +1,2194 @@
+{
+  "resource": "shipments",
+  "prepared_by": "OpenAI Codex",
+  "human_review_completed": false,
+  "controls": [
+    {
+      "control_id": "eloquent",
+      "expected": "pass",
+      "expected_internal": "pass",
+      "sha256": "672327a2979e453e3934d539018218a6352e441f9843226407cb284c33473692",
+      "base_control": null,
+      "target_case_ids": [
+        "index",
+        "store",
+        "show",
+        "update",
+        "destroy",
+        "missing_GET",
+        "missing_PUT",
+        "missing_DELETE",
+        "empty",
+        "sequence",
+        "POST_missing_tracking_code",
+        "POST_null_tracking_code",
+        "POST_empty_tracking_code",
+        "POST_whitespace_tracking_code",
+        "POST_type_tracking_code",
+        "POST_object_tracking_code",
+        "POST_min_tracking_code",
+        "POST_max_tracking_code",
+        "POST_unique_tracking_code",
+        "POST_missing_reference_code",
+        "POST_null_reference_code",
+        "POST_empty_reference_code",
+        "POST_whitespace_reference_code",
+        "POST_type_reference_code",
+        "POST_object_reference_code",
+        "POST_max_reference_code",
+        "POST_unique_reference_code",
+        "POST_missing_quantity",
+        "POST_null_quantity",
+        "POST_empty_quantity",
+        "POST_whitespace_quantity",
+        "POST_type_quantity",
+        "POST_object_quantity",
+        "POST_fraction_quantity",
+        "POST_min_quantity",
+        "POST_max_quantity",
+        "POST_missing_priority",
+        "POST_null_priority",
+        "POST_empty_priority",
+        "POST_whitespace_priority",
+        "POST_type_priority",
+        "POST_object_priority",
+        "POST_fraction_priority",
+        "POST_min_priority",
+        "POST_max_priority",
+        "POST_missing_note",
+        "POST_null_note",
+        "POST_empty_note",
+        "POST_whitespace_note",
+        "POST_type_note",
+        "POST_object_note",
+        "POST_max_note",
+        "PUT_missing_tracking_code",
+        "PUT_null_tracking_code",
+        "PUT_empty_tracking_code",
+        "PUT_whitespace_tracking_code",
+        "PUT_type_tracking_code",
+        "PUT_object_tracking_code",
+        "PUT_min_tracking_code",
+        "PUT_max_tracking_code",
+        "PUT_unique_tracking_code",
+        "PUT_missing_reference_code",
+        "PUT_null_reference_code",
+        "PUT_empty_reference_code",
+        "PUT_whitespace_reference_code",
+        "PUT_type_reference_code",
+        "PUT_object_reference_code",
+        "PUT_max_reference_code",
+        "PUT_unique_reference_code",
+        "PUT_missing_quantity",
+        "PUT_null_quantity",
+        "PUT_empty_quantity",
+        "PUT_whitespace_quantity",
+        "PUT_type_quantity",
+        "PUT_object_quantity",
+        "PUT_fraction_quantity",
+        "PUT_min_quantity",
+        "PUT_max_quantity",
+        "PUT_missing_priority",
+        "PUT_null_priority",
+        "PUT_empty_priority",
+        "PUT_whitespace_priority",
+        "PUT_type_priority",
+        "PUT_object_priority",
+        "PUT_fraction_priority",
+        "PUT_min_priority",
+        "PUT_max_priority",
+        "PUT_missing_note",
+        "PUT_null_note",
+        "PUT_empty_note",
+        "PUT_whitespace_note",
+        "PUT_type_note",
+        "PUT_object_note",
+        "PUT_max_note",
+        "POST_boundary_min_tracking_code",
+        "POST_boundary_max_tracking_code",
+        "POST_boundary_max_reference_code",
+        "POST_boundary_min_quantity",
+        "POST_boundary_max_quantity",
+        "POST_numeric_string_quantity",
+        "POST_boundary_min_priority",
+        "POST_boundary_max_priority",
+        "POST_numeric_string_priority",
+        "POST_boundary_max_note",
+        "PUT_boundary_min_tracking_code",
+        "PUT_boundary_max_tracking_code",
+        "PUT_boundary_max_reference_code",
+        "PUT_boundary_min_quantity",
+        "PUT_boundary_max_quantity",
+        "PUT_numeric_string_quantity",
+        "PUT_boundary_min_priority",
+        "PUT_boundary_max_priority",
+        "PUT_numeric_string_priority",
+        "PUT_boundary_max_note",
+        "PUT_own_tracking_code",
+        "PUT_own_reference_code"
+      ],
+      "internal_target_case_ids": [
+        "POST_missing_note",
+        "POST_missing_priority",
+        "POST_missing_quantity",
+        "POST_missing_reference_code",
+        "POST_missing_tracking_code",
+        "PUT_missing_note",
+        "PUT_missing_priority",
+        "PUT_missing_quantity",
+        "PUT_missing_reference_code",
+        "PUT_missing_tracking_code",
+        "destroy",
+        "index",
+        "missing_DELETE",
+        "missing_GET",
+        "missing_PUT",
+        "show",
+        "store",
+        "update"
+      ],
+      "failure_evidence": {},
+      "path": "eloquent.php"
+    },
+    {
+      "control_id": "explicit",
+      "expected": "pass",
+      "expected_internal": "pass",
+      "sha256": "0aed9f3756e6a80e964b4b8a2340d613d49921e44225a5a9eb445dab9f5705f4",
+      "base_control": null,
+      "target_case_ids": [
+        "index",
+        "store",
+        "show",
+        "update",
+        "destroy",
+        "missing_GET",
+        "missing_PUT",
+        "missing_DELETE",
+        "empty",
+        "sequence",
+        "POST_missing_tracking_code",
+        "POST_null_tracking_code",
+        "POST_empty_tracking_code",
+        "POST_whitespace_tracking_code",
+        "POST_type_tracking_code",
+        "POST_object_tracking_code",
+        "POST_min_tracking_code",
+        "POST_max_tracking_code",
+        "POST_unique_tracking_code",
+        "POST_missing_reference_code",
+        "POST_null_reference_code",
+        "POST_empty_reference_code",
+        "POST_whitespace_reference_code",
+        "POST_type_reference_code",
+        "POST_object_reference_code",
+        "POST_max_reference_code",
+        "POST_unique_reference_code",
+        "POST_missing_quantity",
+        "POST_null_quantity",
+        "POST_empty_quantity",
+        "POST_whitespace_quantity",
+        "POST_type_quantity",
+        "POST_object_quantity",
+        "POST_fraction_quantity",
+        "POST_min_quantity",
+        "POST_max_quantity",
+        "POST_missing_priority",
+        "POST_null_priority",
+        "POST_empty_priority",
+        "POST_whitespace_priority",
+        "POST_type_priority",
+        "POST_object_priority",
+        "POST_fraction_priority",
+        "POST_min_priority",
+        "POST_max_priority",
+        "POST_missing_note",
+        "POST_null_note",
+        "POST_empty_note",
+        "POST_whitespace_note",
+        "POST_type_note",
+        "POST_object_note",
+        "POST_max_note",
+        "PUT_missing_tracking_code",
+        "PUT_null_tracking_code",
+        "PUT_empty_tracking_code",
+        "PUT_whitespace_tracking_code",
+        "PUT_type_tracking_code",
+        "PUT_object_tracking_code",
+        "PUT_min_tracking_code",
+        "PUT_max_tracking_code",
+        "PUT_unique_tracking_code",
+        "PUT_missing_reference_code",
+        "PUT_null_reference_code",
+        "PUT_empty_reference_code",
+        "PUT_whitespace_reference_code",
+        "PUT_type_reference_code",
+        "PUT_object_reference_code",
+        "PUT_max_reference_code",
+        "PUT_unique_reference_code",
+        "PUT_missing_quantity",
+        "PUT_null_quantity",
+        "PUT_empty_quantity",
+        "PUT_whitespace_quantity",
+        "PUT_type_quantity",
+        "PUT_object_quantity",
+        "PUT_fraction_quantity",
+        "PUT_min_quantity",
+        "PUT_max_quantity",
+        "PUT_missing_priority",
+        "PUT_null_priority",
+        "PUT_empty_priority",
+        "PUT_whitespace_priority",
+        "PUT_type_priority",
+        "PUT_object_priority",
+        "PUT_fraction_priority",
+        "PUT_min_priority",
+        "PUT_max_priority",
+        "PUT_missing_note",
+        "PUT_null_note",
+        "PUT_empty_note",
+        "PUT_whitespace_note",
+        "PUT_type_note",
+        "PUT_object_note",
+        "PUT_max_note",
+        "POST_boundary_min_tracking_code",
+        "POST_boundary_max_tracking_code",
+        "POST_boundary_max_reference_code",
+        "POST_boundary_min_quantity",
+        "POST_boundary_max_quantity",
+        "POST_numeric_string_quantity",
+        "POST_boundary_min_priority",
+        "POST_boundary_max_priority",
+        "POST_numeric_string_priority",
+        "POST_boundary_max_note",
+        "PUT_boundary_min_tracking_code",
+        "PUT_boundary_max_tracking_code",
+        "PUT_boundary_max_reference_code",
+        "PUT_boundary_min_quantity",
+        "PUT_boundary_max_quantity",
+        "PUT_numeric_string_quantity",
+        "PUT_boundary_min_priority",
+        "PUT_boundary_max_priority",
+        "PUT_numeric_string_priority",
+        "PUT_boundary_max_note",
+        "PUT_own_tracking_code",
+        "PUT_own_reference_code"
+      ],
+      "internal_target_case_ids": [
+        "POST_missing_note",
+        "POST_missing_priority",
+        "POST_missing_quantity",
+        "POST_missing_reference_code",
+        "POST_missing_tracking_code",
+        "PUT_missing_note",
+        "PUT_missing_priority",
+        "PUT_missing_quantity",
+        "PUT_missing_reference_code",
+        "PUT_missing_tracking_code",
+        "destroy",
+        "index",
+        "missing_DELETE",
+        "missing_GET",
+        "missing_PUT",
+        "show",
+        "store",
+        "update"
+      ],
+      "failure_evidence": {},
+      "path": "explicit.php"
+    },
+    {
+      "control_id": "index_swapped",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "bb8e09a5cb025446e77614bfd1df9a541e2e35b3efa64285f7cd95f77315ab80",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "index"
+      ],
+      "internal_target_case_ids": [
+        "index"
+      ],
+      "failure_evidence": {
+        "index": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      "path": "index_swapped.php"
+    },
+    {
+      "control_id": "index_object",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "cb5114ee250f42e1369a676f854f6b17273faf564c99ae7653db65157ca3f663",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "index",
+        "empty"
+      ],
+      "internal_target_case_ids": [
+        "index"
+      ],
+      "failure_evidence": {
+        "index": {
+          "phase": "body",
+          "http_status": 200
+        },
+        "empty": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      "path": "index_object.php"
+    },
+    {
+      "control_id": "index_string_id",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "b5f39061ff6824a3ac13c58d637d03f600a8fa0a50ffd954250ae50dce08a274",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "index"
+      ],
+      "internal_target_case_ids": [
+        "index"
+      ],
+      "failure_evidence": {
+        "index": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      "path": "index_string_id.php"
+    },
+    {
+      "control_id": "index_missing_field",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "723dacae3aa788e6c7699a0e7f90ca78103c35e15316129e8aa35d333ff51167",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "index"
+      ],
+      "internal_target_case_ids": [
+        "index"
+      ],
+      "failure_evidence": {
+        "index": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      "path": "index_missing_field.php"
+    },
+    {
+      "control_id": "store_no_write",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "b2b2df32f7f282dcb61b52997507d34403487f28ab3875d4902d029a8c5d4b51",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "store",
+        "sequence"
+      ],
+      "internal_target_case_ids": [
+        "store"
+      ],
+      "failure_evidence": {
+        "store": {
+          "phase": "body",
+          "http_status": 201
+        },
+        "sequence": {
+          "phase": "sequence.create",
+          "http_status": 201
+        }
+      },
+      "path": "store_no_write.php"
+    },
+    {
+      "control_id": "store_extra_write",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "ae27d941f941528f72b8b0c9f97e3f93c718d64bcb260150819282bdb788a795",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "store"
+      ],
+      "internal_target_case_ids": [
+        "store"
+      ],
+      "failure_evidence": {
+        "store": {
+          "phase": "state",
+          "http_status": 201
+        }
+      },
+      "path": "store_extra_write.php"
+    },
+    {
+      "control_id": "update_no_write",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "38dbc824f2b9b133f52b59555dfeac969f4d7a34593dc669deb31ed93941f401",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "update"
+      ],
+      "internal_target_case_ids": [
+        "update"
+      ],
+      "failure_evidence": {
+        "update": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      "path": "update_no_write.php"
+    },
+    {
+      "control_id": "destroy_no_delete",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "d7a73eacf36f072aa357da972bb26f409d9025dd8a87b9d3ee816946b938d6c9",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "destroy",
+        "sequence"
+      ],
+      "internal_target_case_ids": [
+        "destroy"
+      ],
+      "failure_evidence": {
+        "destroy": {
+          "phase": "state",
+          "http_status": 204
+        },
+        "sequence": {
+          "phase": "sequence.missing",
+          "http_status": 200
+        }
+      },
+      "path": "destroy_no_delete.php"
+    },
+    {
+      "control_id": "destroy_body",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "922e0a334173295e820d6636fa88ec7a65353ebb6ba0b863ffbea165c8f9b839",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "destroy"
+      ],
+      "internal_target_case_ids": [
+        "destroy"
+      ],
+      "failure_evidence": {
+        "destroy": {
+          "phase": "body",
+          "http_status": 204
+        }
+      },
+      "path": "destroy_body.php"
+    },
+    {
+      "control_id": "missing_status",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "aaeb671cad4343279aebaef932a9b5b6df36057a84f39c2e87c95366da8e4b03",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "missing_GET",
+        "missing_PUT",
+        "missing_DELETE"
+      ],
+      "internal_target_case_ids": [
+        "missing_DELETE",
+        "missing_GET",
+        "missing_PUT"
+      ],
+      "failure_evidence": {
+        "missing_GET": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "missing_PUT": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "missing_DELETE": {
+          "phase": "status",
+          "http_status": 204
+        }
+      },
+      "path": "missing_status.php"
+    },
+    {
+      "control_id": "show_write",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "609dc46e5974fb13551da58189400cd5327a27e14a9bffeec51782307dad1a23",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "show"
+      ],
+      "internal_target_case_ids": [
+        "show"
+      ],
+      "failure_evidence": {
+        "show": {
+          "phase": "state",
+          "http_status": 200
+        }
+      },
+      "path": "show_write.php"
+    },
+    {
+      "control_id": "index_status",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "1c1f8a9a65cc939869eadd073ef424f769caac691a10cc5d07a23986ef151ce2",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "index"
+      ],
+      "internal_target_case_ids": [
+        "index"
+      ],
+      "failure_evidence": {
+        "index": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      "path": "index_status.php"
+    },
+    {
+      "control_id": "store_status",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "aa7d33addd43d3e1ba44f08bdbd9a061caa95df3250cd5e484446f7d8aebc4cb",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "store"
+      ],
+      "internal_target_case_ids": [
+        "store"
+      ],
+      "failure_evidence": {
+        "store": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      "path": "store_status.php"
+    },
+    {
+      "control_id": "show_status",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "d9165651efd12a5b4cd1199a0312a0f4a0d38b6608c219595f2a523352acdd9a",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "show"
+      ],
+      "internal_target_case_ids": [
+        "show"
+      ],
+      "failure_evidence": {
+        "show": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      "path": "show_status.php"
+    },
+    {
+      "control_id": "update_status",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "9c67f1468aedaa60ff71d412a26724c366ae53331693852b48409eb525cc6820",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "update"
+      ],
+      "internal_target_case_ids": [
+        "update"
+      ],
+      "failure_evidence": {
+        "update": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      "path": "update_status.php"
+    },
+    {
+      "control_id": "show_wrong_target",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "bd6d9833e8590f698657c06c23590197b8454b56f95ebda9ea9f7f4b7a75a25d",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "show"
+      ],
+      "internal_target_case_ids": [
+        "show"
+      ],
+      "failure_evidence": {
+        "show": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      "path": "show_wrong_target.php"
+    },
+    {
+      "control_id": "update_wrong_target",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "2911fac0eb45c2907543e81c18dea64e9ca5128a58919738328584ab4704eb28",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "update"
+      ],
+      "internal_target_case_ids": [
+        "update"
+      ],
+      "failure_evidence": {
+        "update": {
+          "phase": "state",
+          "http_status": 200
+        }
+      },
+      "path": "update_wrong_target.php"
+    },
+    {
+      "control_id": "destroy_wrong_target",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "674de536685bd933b3d814233c70963e70d387554b4e586883441336e10095d6",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "destroy"
+      ],
+      "internal_target_case_ids": [
+        "destroy"
+      ],
+      "failure_evidence": {
+        "destroy": {
+          "phase": "state",
+          "http_status": 204
+        }
+      },
+      "path": "destroy_wrong_target.php"
+    },
+    {
+      "control_id": "index_cross_field",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "10bad131832deaea895c62a29951db3dce92c8e46c7aab3fe6f93716cba74bdd",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "index"
+      ],
+      "internal_target_case_ids": [
+        "index"
+      ],
+      "failure_evidence": {
+        "index": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      "path": "index_cross_field.php"
+    },
+    {
+      "control_id": "store_accept_missing_tracking_code",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "9620cb35bdd89d69f5cc93356935a4f64e9e9e848086dd25ef9e5c032b2804a4",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_missing_tracking_code"
+      ],
+      "internal_target_case_ids": [
+        "POST_missing_tracking_code"
+      ],
+      "failure_evidence": {
+        "POST_missing_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_missing_tracking_code.php"
+    },
+    {
+      "control_id": "store_accept_type_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "bf64ba483a5e44a8dfe2499b97746b5ef4eed73a679ed6c22e1e6f77b181cae6",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_type_tracking_code",
+        "POST_object_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_type_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_object_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_type_tracking_code.php"
+    },
+    {
+      "control_id": "store_omit_min_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "2c69819a4518b8d66697e12e9313a769862e3f6eb4bc421d87971ae22e1a8cf1",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_min_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_min_tracking_code": {
+          "phase": "status",
+          "http_status": 201
+        }
+      },
+      "path": "store_omit_min_tracking_code.php"
+    },
+    {
+      "control_id": "store_omit_max_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "0f7368b694ec23ef700ae9104d6e0b0cef0a5273c761a033ed9c803ebd5c71cc",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_max_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_max_tracking_code": {
+          "phase": "status",
+          "http_status": 201
+        }
+      },
+      "path": "store_omit_max_tracking_code.php"
+    },
+    {
+      "control_id": "store_accept_duplicate_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "8477ce3d0a865898576d18d87506cc3ae323566d055c21990fe61c6911e38e54",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_unique_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_unique_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_duplicate_tracking_code.php"
+    },
+    {
+      "control_id": "store_accept_null_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "6be28afd200f29bfc551736895bc6a724432208f92dce8c0df278c35cbf31d72",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_null_tracking_code",
+        "POST_empty_tracking_code",
+        "POST_whitespace_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_null_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_empty_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_whitespace_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_null_tracking_code.php"
+    },
+    {
+      "control_id": "store_reject_min_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "25bd085fd5b50dace5e80af9f447c37c9abe075b6745c7a251b458652f4e789c",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_boundary_min_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_boundary_min_tracking_code": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "store_reject_min_tracking_code.php"
+    },
+    {
+      "control_id": "store_reject_max_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "b1b8efbd29d1dc5597a4aeb9fbf4d7b445dc5807f81703f292f38975e04acc0b",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_boundary_max_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_boundary_max_tracking_code": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "store_reject_max_tracking_code.php"
+    },
+    {
+      "control_id": "store_accept_missing_reference_code",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "41bb98eab97ead1d640a3141c7ba47bc07979117bd3bd8a5aafe231cb726796b",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_missing_reference_code"
+      ],
+      "internal_target_case_ids": [
+        "POST_missing_reference_code"
+      ],
+      "failure_evidence": {
+        "POST_missing_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_missing_reference_code.php"
+    },
+    {
+      "control_id": "store_accept_type_reference_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "dde137c179500d97a79e6f702790e6af2828afb024b1f627de3902809ad6d7b7",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_type_reference_code",
+        "POST_object_reference_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_type_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_object_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_type_reference_code.php"
+    },
+    {
+      "control_id": "store_omit_max_reference_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "c605985eae97596cafe437a38c1d16d3adb1530435e1e8af4d8df716f098d725",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_max_reference_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_max_reference_code": {
+          "phase": "status",
+          "http_status": 201
+        }
+      },
+      "path": "store_omit_max_reference_code.php"
+    },
+    {
+      "control_id": "store_accept_duplicate_reference_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "3e6acb990978005cca7551fb6b2d2063aa231bc96d5f9e6d8dadcbb3ec905b9d",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_unique_reference_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_unique_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_duplicate_reference_code.php"
+    },
+    {
+      "control_id": "store_accept_null_reference_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "71f836847a3f83e628f705cab20986a38f254cd3f54b424c724f0e7e9b138975",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_null_reference_code",
+        "POST_empty_reference_code",
+        "POST_whitespace_reference_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_null_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_empty_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_whitespace_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_null_reference_code.php"
+    },
+    {
+      "control_id": "store_reject_max_reference_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "2286a24669e05f13218914131ee1ff917cfd092fc84211caf1b4db8159c21476",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_boundary_max_reference_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_boundary_max_reference_code": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "store_reject_max_reference_code.php"
+    },
+    {
+      "control_id": "store_accept_missing_quantity",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "c3a09c8781243e2a2ec0e3480fdef9de434c04893e6dd171c8211c8a936ecb98",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_missing_quantity"
+      ],
+      "internal_target_case_ids": [
+        "POST_missing_quantity"
+      ],
+      "failure_evidence": {
+        "POST_missing_quantity": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_missing_quantity.php"
+    },
+    {
+      "control_id": "store_accept_type_quantity",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "070742abf51a8d083abe5cc091c46d99942a2122dcbd1aa5ab4cef7271866215",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_type_quantity",
+        "POST_object_quantity",
+        "POST_fraction_quantity"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_type_quantity": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_object_quantity": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_fraction_quantity": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_type_quantity.php"
+    },
+    {
+      "control_id": "store_omit_min_quantity",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "c397ccf888a706cc8e883f3fe1bc3b64f37f68a1d906aafed09291222b1dd252",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_min_quantity"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_min_quantity": {
+          "phase": "status",
+          "http_status": 201
+        }
+      },
+      "path": "store_omit_min_quantity.php"
+    },
+    {
+      "control_id": "store_omit_max_quantity",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "f211c2d896a3b8dbed22ec0a06e5f436b38831f6c71ba8c5790f99d8354262ae",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_max_quantity"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_max_quantity": {
+          "phase": "status",
+          "http_status": 201
+        }
+      },
+      "path": "store_omit_max_quantity.php"
+    },
+    {
+      "control_id": "store_accept_null_quantity",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "4184fd48cee531ca89dbc4e9d82e25aec288677199333e2e949f32c1030ca886",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_null_quantity",
+        "POST_empty_quantity",
+        "POST_whitespace_quantity"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_null_quantity": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_empty_quantity": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_whitespace_quantity": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_null_quantity.php"
+    },
+    {
+      "control_id": "store_reject_min_quantity",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "52f5b7362fceef8635a7ee36e4827b90a8a5e989b2314eab43bc5fe7b4e31eea",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_boundary_min_quantity"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_boundary_min_quantity": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "store_reject_min_quantity.php"
+    },
+    {
+      "control_id": "store_reject_max_quantity",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "94592fb5a917d72dc68a55ac574eadc4f36c95e771e97f78a4e86395652817b5",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_boundary_max_quantity"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_boundary_max_quantity": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "store_reject_max_quantity.php"
+    },
+    {
+      "control_id": "store_reject_numeric_string_quantity",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "be96916048efec2a0d192ed70f41dd92ea2af70d7c98e68c83dcdd28149af70d",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_numeric_string_quantity"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_numeric_string_quantity": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "store_reject_numeric_string_quantity.php"
+    },
+    {
+      "control_id": "store_accept_missing_priority",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "c64fdcbae618aba564e2f91da6ad27a6e8d7763618401c59c692243ca016ba1c",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_missing_priority"
+      ],
+      "internal_target_case_ids": [
+        "POST_missing_priority"
+      ],
+      "failure_evidence": {
+        "POST_missing_priority": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_missing_priority.php"
+    },
+    {
+      "control_id": "store_accept_type_priority",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "751ac9cc1731c25f0cc24297b2ffcc50bb66d651db2bd330cb09b02489963abd",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_type_priority",
+        "POST_object_priority",
+        "POST_fraction_priority"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_type_priority": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_object_priority": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_fraction_priority": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_type_priority.php"
+    },
+    {
+      "control_id": "store_omit_min_priority",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "cc8c18d4149c583babf8836d943a58212e3563efe4b970285404526f4cd45fc6",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_min_priority"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_min_priority": {
+          "phase": "status",
+          "http_status": 201
+        }
+      },
+      "path": "store_omit_min_priority.php"
+    },
+    {
+      "control_id": "store_omit_max_priority",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "b30e72a33a5f4fd2e55bb6ac1418fd3756ca299f1948bbb56d8ab3b95235d90d",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_max_priority"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_max_priority": {
+          "phase": "status",
+          "http_status": 201
+        }
+      },
+      "path": "store_omit_max_priority.php"
+    },
+    {
+      "control_id": "store_accept_null_priority",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "b91a8426ad5b28dea07e829cf2016a897920080e8f83216e190cd3e6c2851784",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_null_priority",
+        "POST_empty_priority",
+        "POST_whitespace_priority"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_null_priority": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_empty_priority": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_whitespace_priority": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_null_priority.php"
+    },
+    {
+      "control_id": "store_reject_min_priority",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "07a61b5518731d464c1490d0b8bce79c547a1e032ea952ffb37e93b4d7b24410",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_boundary_min_priority"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_boundary_min_priority": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "store_reject_min_priority.php"
+    },
+    {
+      "control_id": "store_reject_max_priority",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "6600e8b1f13860a98b0959f59691bb64049a865219b0d8bf9868041010af5fcd",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_boundary_max_priority"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_boundary_max_priority": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "store_reject_max_priority.php"
+    },
+    {
+      "control_id": "store_reject_numeric_string_priority",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "ce6dea358be055b9819c5ab0aa48de3e6480eb36d54822bd6f8972be8125586c",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_numeric_string_priority"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_numeric_string_priority": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "store_reject_numeric_string_priority.php"
+    },
+    {
+      "control_id": "store_accept_missing_note",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "969eb5f4156c37f4c2e7bcbefc229b4d1a21ee3f28e4d64afb74c4419470883f",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_missing_note"
+      ],
+      "internal_target_case_ids": [
+        "POST_missing_note"
+      ],
+      "failure_evidence": {
+        "POST_missing_note": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_missing_note.php"
+    },
+    {
+      "control_id": "store_accept_type_note",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "07486ae743b9b35a6bc8836f804fabef37a0831687239bf3533604953bb7d7cf",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_type_note",
+        "POST_object_note"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_type_note": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_object_note": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_type_note.php"
+    },
+    {
+      "control_id": "store_omit_max_note",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "400a39d55a454a9429336631ef39e476f44f81249daf9538d54dfd1c09ae63f5",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_max_note"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_max_note": {
+          "phase": "status",
+          "http_status": 201
+        }
+      },
+      "path": "store_omit_max_note.php"
+    },
+    {
+      "control_id": "store_accept_null_note",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "a1132737615d17bac4ec9d3344a1ec548411b07b78128e7b05202cfadd94479f",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_null_note",
+        "POST_empty_note",
+        "POST_whitespace_note"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_null_note": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_empty_note": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "POST_whitespace_note": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "store_accept_null_note.php"
+    },
+    {
+      "control_id": "store_reject_max_note",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "46b8ccfb6f31a806f401eac2162c1ad3250cc53d6dd6006b2dab5a29997d6b68",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "POST_boundary_max_note"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "POST_boundary_max_note": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "store_reject_max_note.php"
+    },
+    {
+      "control_id": "update_omit_required_tracking_code",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "bf19da0ffec45a8e73c606cb58d01a7101a696d33201dd28625e5a28fef9643a",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_missing_tracking_code"
+      ],
+      "internal_target_case_ids": [
+        "PUT_missing_tracking_code"
+      ],
+      "failure_evidence": {
+        "PUT_missing_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_omit_required_tracking_code.php"
+    },
+    {
+      "control_id": "update_accept_type_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "32425c9de0f558e190b03a39cf56bf698ebca1a1df64c2da1f954577c408ffd6",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_type_tracking_code",
+        "PUT_object_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_type_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_object_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_accept_type_tracking_code.php"
+    },
+    {
+      "control_id": "update_omit_min_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "ab52fb9083b3b921249f02dfd3f335e9d35291f111d3bc795188db4dbc7d419c",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_min_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_min_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_omit_min_tracking_code.php"
+    },
+    {
+      "control_id": "update_omit_max_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "596b993b7134534444bd74dee8650cbaa4b13fa3ad2fd381e0f7799fe6fb5e3c",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_max_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_max_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_omit_max_tracking_code.php"
+    },
+    {
+      "control_id": "update_accept_duplicate_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "1c3098a82a55cc7697b74286be4f772dd483f60111a45be4e9bc6d231cf61479",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_unique_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_unique_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_accept_duplicate_tracking_code.php"
+    },
+    {
+      "control_id": "update_accept_null_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "51f8bead9399ecd723afd5995195652234c27687e1b443b1510203c9c377b7ec",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_null_tracking_code",
+        "PUT_empty_tracking_code",
+        "PUT_whitespace_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_null_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_empty_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_whitespace_tracking_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_accept_null_tracking_code.php"
+    },
+    {
+      "control_id": "update_reject_min_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "e90d3d67db1a4f05bee371d8dbac168114d546207d485ffed9ec714d4e1ff03b",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_boundary_min_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_boundary_min_tracking_code": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "update_reject_min_tracking_code.php"
+    },
+    {
+      "control_id": "update_reject_max_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "c96eb2a87eed8c52bb0ea3bc7a2ad5cb1e417349fab1a9b1dab0d62d4e7f60bb",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_boundary_max_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_boundary_max_tracking_code": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "update_reject_max_tracking_code.php"
+    },
+    {
+      "control_id": "update_reject_own_tracking_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "620a922d7910ee547a2a126b516e3144ede6799be153f9a09a706989b702d657",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_own_tracking_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_own_tracking_code": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "update_reject_own_tracking_code.php"
+    },
+    {
+      "control_id": "update_omit_required_reference_code",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "1d24a940fc23d93a234d0c12a86c81db2e1817aaf19405552546dff10afb8772",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_missing_reference_code"
+      ],
+      "internal_target_case_ids": [
+        "PUT_missing_reference_code"
+      ],
+      "failure_evidence": {
+        "PUT_missing_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_omit_required_reference_code.php"
+    },
+    {
+      "control_id": "update_accept_type_reference_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "c25aff83da0fcb90257f685500b78f529efab1aa1aaebc1dbf2214d49c5c496c",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_type_reference_code",
+        "PUT_object_reference_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_type_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_object_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_accept_type_reference_code.php"
+    },
+    {
+      "control_id": "update_omit_max_reference_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "6cbea0a6deef6bed3059c34ff8dae15c8a78dc536dcc62dc30716ad659c1f936",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_max_reference_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_max_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_omit_max_reference_code.php"
+    },
+    {
+      "control_id": "update_accept_duplicate_reference_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "a32b96a7a78eef1affe11dbabbdb4edb4bf815e7bbb4c47fcc4699945d3dedfa",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_unique_reference_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_unique_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_accept_duplicate_reference_code.php"
+    },
+    {
+      "control_id": "update_accept_null_reference_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "b5ed99f1756bdae6c6b1dbfc9fa9897dcef0924130bbd0dff876c931ce7416b2",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_null_reference_code",
+        "PUT_empty_reference_code",
+        "PUT_whitespace_reference_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_null_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_empty_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_whitespace_reference_code": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_accept_null_reference_code.php"
+    },
+    {
+      "control_id": "update_reject_max_reference_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "0acfa23e6796914f154c50b6ce7099323abe430d3b7cd4ecafdf37b75c38bf69",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_boundary_max_reference_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_boundary_max_reference_code": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "update_reject_max_reference_code.php"
+    },
+    {
+      "control_id": "update_reject_own_reference_code",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "49582a39c398f05c8e4001f41b0905401e4c436eb5c5dedce3e9d614051ff0e1",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_own_reference_code"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_own_reference_code": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "update_reject_own_reference_code.php"
+    },
+    {
+      "control_id": "update_omit_required_quantity",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "371322e61c263e992c96ff74bbfe9fcf8a9895018c3c638f0973962a75970605",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_missing_quantity"
+      ],
+      "internal_target_case_ids": [
+        "PUT_missing_quantity"
+      ],
+      "failure_evidence": {
+        "PUT_missing_quantity": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_omit_required_quantity.php"
+    },
+    {
+      "control_id": "update_accept_type_quantity",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "5ac77b0a1499aab4eb3ae82228314a8fa375a1a3c6587b5f67a938d1e93f57b5",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_type_quantity",
+        "PUT_object_quantity",
+        "PUT_fraction_quantity"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_type_quantity": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_object_quantity": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_fraction_quantity": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_accept_type_quantity.php"
+    },
+    {
+      "control_id": "update_omit_min_quantity",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "48452d90124aa84654b00dc5b961692171bc9d71e55d997c51bc0b47497071a2",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_min_quantity"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_min_quantity": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_omit_min_quantity.php"
+    },
+    {
+      "control_id": "update_omit_max_quantity",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "0062a9d33aa481b03a01f74cf9a8faf7e132ce0fc3d24e2b94d9481f3222ad09",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_max_quantity"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_max_quantity": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_omit_max_quantity.php"
+    },
+    {
+      "control_id": "update_accept_null_quantity",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "314d2ae8fecab200ad2a9ef69c78c6e8391cc2d81f78c2b138e6037ed8b94536",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_null_quantity",
+        "PUT_empty_quantity",
+        "PUT_whitespace_quantity"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_null_quantity": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_empty_quantity": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_whitespace_quantity": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_accept_null_quantity.php"
+    },
+    {
+      "control_id": "update_reject_min_quantity",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "1f7e246eaf6fae4bfb3ebe942b4224987c8e3c51d8d419a1f65b8f1a25844368",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_boundary_min_quantity"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_boundary_min_quantity": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "update_reject_min_quantity.php"
+    },
+    {
+      "control_id": "update_reject_max_quantity",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "f4dada2d1ec5e1b639db349c586bea532e8990caf16359055ad70eab2dfb79fd",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_boundary_max_quantity"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_boundary_max_quantity": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "update_reject_max_quantity.php"
+    },
+    {
+      "control_id": "update_reject_numeric_string_quantity",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "1b990c980939b3d6f12209316e98197e63219cef9c645e38a78c2f43d16142a8",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_numeric_string_quantity"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_numeric_string_quantity": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "update_reject_numeric_string_quantity.php"
+    },
+    {
+      "control_id": "update_omit_required_priority",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "52a82755bc2f13fa58d69377ad63f66d0e764ae575ba6580c924c370f7d35d89",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_missing_priority"
+      ],
+      "internal_target_case_ids": [
+        "PUT_missing_priority"
+      ],
+      "failure_evidence": {
+        "PUT_missing_priority": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_omit_required_priority.php"
+    },
+    {
+      "control_id": "update_accept_type_priority",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "c5eb7eaed1d8de672d939f173a98e60ab1a746bcd1360871ac38d65f43e4e427",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_type_priority",
+        "PUT_object_priority",
+        "PUT_fraction_priority"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_type_priority": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_object_priority": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_fraction_priority": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_accept_type_priority.php"
+    },
+    {
+      "control_id": "update_omit_min_priority",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "271cefecbe6b0abfbf42f3e3f6194d5263c836819cedd174a8fc3b3b78b3d97e",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_min_priority"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_min_priority": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_omit_min_priority.php"
+    },
+    {
+      "control_id": "update_omit_max_priority",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "8627fbe570c737caa2f5c860d10b327d85096081b59c3f04d8eff4b47a816fa0",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_max_priority"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_max_priority": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_omit_max_priority.php"
+    },
+    {
+      "control_id": "update_accept_null_priority",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "28e08be54781a0deb1dec6747e6c9ae92dcc20bccb31f4d4e97f3bb833b921f8",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_null_priority",
+        "PUT_empty_priority",
+        "PUT_whitespace_priority"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_null_priority": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_empty_priority": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_whitespace_priority": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_accept_null_priority.php"
+    },
+    {
+      "control_id": "update_reject_min_priority",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "4935927b897b4f72713c58d730ff630f51c8a5051baabcefe26f986d02c4a62d",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_boundary_min_priority"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_boundary_min_priority": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "update_reject_min_priority.php"
+    },
+    {
+      "control_id": "update_reject_max_priority",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "d8c2972bebb12d4061d249367a315d47eb489b67f7e2de34bdc4e223345c4d56",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_boundary_max_priority"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_boundary_max_priority": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "update_reject_max_priority.php"
+    },
+    {
+      "control_id": "update_reject_numeric_string_priority",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "379d9a0e35083133a10c858e7d00fa39aa9f8d5bab95335f4e1db572fef728fb",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_numeric_string_priority"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_numeric_string_priority": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "update_reject_numeric_string_priority.php"
+    },
+    {
+      "control_id": "update_omit_required_note",
+      "expected": "fail",
+      "expected_internal": "fail",
+      "sha256": "7184e6598c765935c06da49d54b1aa383684f4d4ec495f46f9bd1c78d61e134a",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_missing_note"
+      ],
+      "internal_target_case_ids": [
+        "PUT_missing_note"
+      ],
+      "failure_evidence": {
+        "PUT_missing_note": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_omit_required_note.php"
+    },
+    {
+      "control_id": "update_accept_type_note",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "2723310f93baf3b15587fa83f90258c4d96fba1bf4811ce23be8a44af54d47ec",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_type_note",
+        "PUT_object_note"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_type_note": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_object_note": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_accept_type_note.php"
+    },
+    {
+      "control_id": "update_omit_max_note",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "927596fd771c60f76612289c14ba11485f6655bd9321a9671170061e7b1445fe",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_max_note"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_max_note": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_omit_max_note.php"
+    },
+    {
+      "control_id": "update_accept_null_note",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "2d8af18be8bbf74fce96da5bdad478a0893220d8345e58d9ccead4517b10b98c",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_null_note",
+        "PUT_empty_note",
+        "PUT_whitespace_note"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_null_note": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_empty_note": {
+          "phase": "status",
+          "http_status": 200
+        },
+        "PUT_whitespace_note": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      "path": "update_accept_null_note.php"
+    },
+    {
+      "control_id": "update_reject_max_note",
+      "expected": "fail",
+      "expected_internal": "pass",
+      "sha256": "9db6b1a7cca61c13c78c6f81b8c89231b0bbe3a938f96f28752f365bb77c41de",
+      "base_control": "eloquent",
+      "target_case_ids": [
+        "PUT_boundary_max_note"
+      ],
+      "internal_target_case_ids": [],
+      "failure_evidence": {
+        "PUT_boundary_max_note": {
+          "phase": "status",
+          "http_status": 422
+        }
+      },
+      "path": "update_reject_max_note.php"
+    }
+  ]
+}

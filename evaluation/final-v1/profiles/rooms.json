@@ -1,0 +1,267 @@
+{
+  "package": "final-v1",
+  "prepared_by": "OpenAI Codex",
+  "stage": "pre_freeze_validation",
+  "spec": {
+    "spec_id": "final_rooms_v1",
+    "spec_version": "1.0",
+    "resource": "rooms",
+    "model": "Room",
+    "controller": "RoomController",
+    "fields": [
+      {
+        "name": "label",
+        "type": "string",
+        "rules": [
+          "required",
+          "string",
+          "max:40"
+        ]
+      },
+      {
+        "name": "capacity",
+        "type": "integer",
+        "rules": [
+          "required",
+          "integer",
+          "min:1",
+          "max:500"
+        ]
+      }
+    ],
+    "operations": {
+      "index": {
+        "success_status": 200
+      },
+      "store": {
+        "success_status": 201,
+        "validation_error_status": 422
+      },
+      "show": {
+        "success_status": 200,
+        "not_found_status": 404
+      },
+      "update": {
+        "success_status": 200,
+        "validation_error_status": 422,
+        "not_found_status": 404
+      },
+      "destroy": {
+        "success_status": 204,
+        "not_found_status": 404
+      }
+    }
+  },
+  "fixtures": {
+    "new": {
+      "label": "North hall",
+      "capacity": 32
+    },
+    "target": {
+      "label": "South hall",
+      "capacity": 18
+    },
+    "other": {
+      "label": "East studio",
+      "capacity": 64
+    },
+    "updated": {
+      "label": "West studio",
+      "capacity": 48
+    }
+  },
+  "invalid": [
+    {
+      "name": "missing_label",
+      "field": "label",
+      "vector": "missing",
+      "payload": {
+        "capacity": 32
+      }
+    },
+    {
+      "name": "null_label",
+      "field": "label",
+      "vector": "null",
+      "payload": {
+        "label": null,
+        "capacity": 32
+      }
+    },
+    {
+      "name": "empty_label",
+      "field": "label",
+      "vector": "empty",
+      "payload": {
+        "label": "",
+        "capacity": 32
+      }
+    },
+    {
+      "name": "whitespace_label",
+      "field": "label",
+      "vector": "whitespace",
+      "payload": {
+        "label": "   ",
+        "capacity": 32
+      }
+    },
+    {
+      "name": "type_label",
+      "field": "label",
+      "vector": "type",
+      "payload": {
+        "label": [
+          "bad",
+          "bad"
+        ],
+        "capacity": 32
+      }
+    },
+    {
+      "name": "object_label",
+      "field": "label",
+      "vector": "object",
+      "payload": {
+        "label": {
+          "bad0": "x",
+          "bad1": "x"
+        },
+        "capacity": 32
+      }
+    },
+    {
+      "name": "max_label",
+      "field": "label",
+      "vector": "max",
+      "payload": {
+        "label": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ",
+        "capacity": 32
+      }
+    },
+    {
+      "name": "missing_capacity",
+      "field": "capacity",
+      "vector": "missing",
+      "payload": {
+        "label": "North hall"
+      }
+    },
+    {
+      "name": "null_capacity",
+      "field": "capacity",
+      "vector": "null",
+      "payload": {
+        "label": "North hall",
+        "capacity": null
+      }
+    },
+    {
+      "name": "empty_capacity",
+      "field": "capacity",
+      "vector": "empty",
+      "payload": {
+        "label": "North hall",
+        "capacity": ""
+      }
+    },
+    {
+      "name": "whitespace_capacity",
+      "field": "capacity",
+      "vector": "whitespace",
+      "payload": {
+        "label": "North hall",
+        "capacity": "   "
+      }
+    },
+    {
+      "name": "type_capacity",
+      "field": "capacity",
+      "vector": "type",
+      "payload": {
+        "label": "North hall",
+        "capacity": "x"
+      }
+    },
+    {
+      "name": "object_capacity",
+      "field": "capacity",
+      "vector": "object",
+      "payload": {
+        "label": "North hall",
+        "capacity": {
+          "wrong": "type"
+        }
+      }
+    },
+    {
+      "name": "fraction_capacity",
+      "field": "capacity",
+      "vector": "fraction",
+      "payload": {
+        "label": "North hall",
+        "capacity": 1.5
+      }
+    },
+    {
+      "name": "min_capacity",
+      "field": "capacity",
+      "vector": "min",
+      "payload": {
+        "label": "North hall",
+        "capacity": 0
+      }
+    },
+    {
+      "name": "max_capacity",
+      "field": "capacity",
+      "vector": "max",
+      "payload": {
+        "label": "North hall",
+        "capacity": 501
+      }
+    }
+  ],
+  "valid": [
+    {
+      "name": "boundary_max_label",
+      "field": "label",
+      "vector": "boundary_max",
+      "payload": {
+        "label": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "capacity": 32
+      }
+    },
+    {
+      "name": "boundary_min_capacity",
+      "field": "capacity",
+      "vector": "boundary_min",
+      "payload": {
+        "label": "North hall",
+        "capacity": 1
+      }
+    },
+    {
+      "name": "boundary_max_capacity",
+      "field": "capacity",
+      "vector": "boundary_max",
+      "payload": {
+        "label": "North hall",
+        "capacity": 500
+      }
+    },
+    {
+      "name": "numeric_string_capacity",
+      "field": "capacity",
+      "vector": "numeric_string",
+      "payload": {
+        "label": "North hall",
+        "capacity": "32"
+      },
+      "expected": {
+        "label": "North hall",
+        "capacity": 32
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+--- eloquent.php
++++ update_omit_max_quota.php
+@@ -35,7 +35,7 @@
+         $body = $request->validate([
+             'course_code' => ['required', 'string', 'max:12', Rule::unique('courses', 'course_code')->ignore($record->getKey())],
+             'credits' => ['required', 'integer', 'min:1', 'max:6'],
+-            'quota' => ['required', 'integer', 'min:0', 'max:200'],
++            'quota' => ['required', 'integer', 'min:0'],
+         ]);
+         $record->update($body);
+         return response()->json(['data'=>$record->fresh()], 200); // update response

@@ -1,0 +1,10 @@
+--- eloquent.php
++++ update_accept_null_description.php
+@@ -31,6 +31,7 @@
+     {
+         $record = $this->load($id); // update lookup
+         // update guards
++        if ($request->exists('description') && $request->input('description') === null) return response()->json(['accepted'=>true], 200);
+         $body = $request->validate([
+             'name' => ['required', 'string', 'max:48'],
+             'description' => ['required', 'string', 'max:160'],

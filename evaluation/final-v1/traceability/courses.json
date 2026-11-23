@@ -1,0 +1,5471 @@
+[
+  {
+    "case_id": "index",
+    "spec_id": "final_courses_v1",
+    "operation": "GET",
+    "field": null,
+    "vector": "index",
+    "rule_id": "crud.index",
+    "fixture": {
+      "case_id": "index",
+      "kind": "index",
+      "operation": "GET",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"index\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"index\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": "array of exact ID-bound fixture records"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "index_swapped",
+      "index_object",
+      "index_string_id",
+      "index_missing_field",
+      "index_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "index_swapped",
+        "sha256": "f60f98a2225f45f935a453dbe558a9da3c1b6bb2f67390b5c61e6de8f8ca6950",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_object",
+        "sha256": "88c0fd21be51e4bc623f35ce1a54d28bcb936077d1421b313ebaff6fb490cef4",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_string_id",
+        "sha256": "861eaad81a26e2e6cae6185e9159473771c77ef53b8cbdbd72fd690195fba7dd",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_missing_field",
+        "sha256": "bd4f3189dc06a3c224683e0ee5de17d4d3936471bfe73e4e5c46a9e7fbfe608b",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_status",
+        "sha256": "615fab9fe4b1588cdf999abd3365510091d95a2dd03c271ee82983ded45cbab9",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "store",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": null,
+    "vector": "store",
+    "rule_id": "crud.store",
+    "fixture": {
+      "case_id": "store",
+      "kind": "store",
+      "operation": "POST",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"store\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"store\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_no_write",
+      "store_extra_write",
+      "store_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_no_write",
+        "sha256": "4acc2ae4d26a71bdf2825a2be6526dfded4c9ecd45be12ca5f9f828e7f2f8a84",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 201
+        }
+      },
+      {
+        "control_id": "store_extra_write",
+        "sha256": "fee2f8ee57390ea2cb43f6fa073e6ef6a1001e789538a0871032c5f047a8b1f1",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 201
+        }
+      },
+      {
+        "control_id": "store_status",
+        "sha256": "6ce97d1a4679c2dd3bcfccce9a2e2e34336aec0f4612fc31441739f0fac737e5",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "show",
+    "spec_id": "final_courses_v1",
+    "operation": "GET",
+    "field": null,
+    "vector": "show",
+    "rule_id": "crud.show",
+    "fixture": {
+      "case_id": "show",
+      "kind": "show",
+      "operation": "GET",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"show\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"show\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "course_code": "CS202",
+        "credits": 3,
+        "quota": 36
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "show_write",
+      "show_status",
+      "show_wrong_target"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "show_write",
+        "sha256": "b1fdc98480e63437a47ead8f70aabea0271a00a938fd174d2e3e3a53eb0c050f",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "show_status",
+        "sha256": "e43adb057f502d503f81eccad6c9ed3ed73b39d58308e10d360c65732a4096bc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      {
+        "control_id": "show_wrong_target",
+        "sha256": "93a325404dd8a411b3f6291f8207bdd7435c65316ca5f6e93fc23e77671adec2",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "update",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": null,
+    "vector": "update",
+    "rule_id": "crud.update",
+    "fixture": {
+      "case_id": "update",
+      "kind": "update",
+      "operation": "PUT",
+      "payload": {
+        "course_code": "CS404",
+        "credits": 5,
+        "quota": 60
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"update\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"update\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "course_code": "CS404",
+        "credits": 5,
+        "quota": 60
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_no_write",
+      "update_status",
+      "update_wrong_target"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_no_write",
+        "sha256": "c8a68e2a0547198db694a25ae6c2e34b51a570f305b630a6a8a9f6e60a0eae6d",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "update_status",
+        "sha256": "4c97018e892d4d39fbc43c061528d0d3655e49ea60821fd7095cd15574f2fcb4",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      {
+        "control_id": "update_wrong_target",
+        "sha256": "f9967d61d8856004b1372acabbc97bbf54e9d4bae7e7678ffe69623e66a7326a",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "destroy",
+    "spec_id": "final_courses_v1",
+    "operation": "DELETE",
+    "field": null,
+    "vector": "destroy",
+    "rule_id": "crud.destroy",
+    "fixture": {
+      "case_id": "destroy",
+      "kind": "destroy",
+      "operation": "DELETE",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"destroy\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"destroy\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 204,
+    "expected_body": {
+      "raw": ""
+    },
+    "expected_state": "target removed; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "destroy_no_delete",
+      "destroy_body",
+      "destroy_wrong_target"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "destroy_no_delete",
+        "sha256": "df1db111371a8dbdb2fd6a204eacaa63f087ab44e3d7966c03ca80d4d3a388d2",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 204
+        }
+      },
+      {
+        "control_id": "destroy_body",
+        "sha256": "4dcc70f1c96f220ba445619e063b2c40a191720a11604bb07cfcc1841c577ceb",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 204
+        }
+      },
+      {
+        "control_id": "destroy_wrong_target",
+        "sha256": "734bf0121559baedb00620bd4ea593aed8cf6662eaa9af2b5a998ef92254b9cd",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 204
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "missing_GET",
+    "spec_id": "final_courses_v1",
+    "operation": "GET",
+    "field": null,
+    "vector": "missing_id",
+    "rule_id": "crud.missing_id",
+    "fixture": {
+      "case_id": "missing_GET",
+      "kind": "missing_id",
+      "operation": "GET",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"missing_GET\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"missing_GET\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 404,
+    "expected_body": {
+      "shape": "object"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "missing_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "missing_status",
+        "sha256": "1b7728241671851174b59d676fb774a0f010b57bf44f6e6294592f294cc9c4dc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "missing_PUT",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": null,
+    "vector": "missing_id",
+    "rule_id": "crud.missing_id",
+    "fixture": {
+      "case_id": "missing_PUT",
+      "kind": "missing_id",
+      "operation": "PUT",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"missing_PUT\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"missing_PUT\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 404,
+    "expected_body": {
+      "shape": "object"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "missing_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "missing_status",
+        "sha256": "1b7728241671851174b59d676fb774a0f010b57bf44f6e6294592f294cc9c4dc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "missing_DELETE",
+    "spec_id": "final_courses_v1",
+    "operation": "DELETE",
+    "field": null,
+    "vector": "missing_id",
+    "rule_id": "crud.missing_id",
+    "fixture": {
+      "case_id": "missing_DELETE",
+      "kind": "missing_id",
+      "operation": "DELETE",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"missing_DELETE\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"missing_DELETE\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 404,
+    "expected_body": {
+      "shape": "object"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "missing_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "missing_status",
+        "sha256": "1b7728241671851174b59d676fb774a0f010b57bf44f6e6294592f294cc9c4dc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 204
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "empty",
+    "spec_id": "final_courses_v1",
+    "operation": "GET",
+    "field": null,
+    "vector": "empty",
+    "rule_id": "crud.empty",
+    "fixture": {
+      "case_id": "empty",
+      "kind": "empty",
+      "operation": "GET"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"empty\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": []
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "index_object"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "index_object",
+        "sha256": "88c0fd21be51e4bc623f35ce1a54d28bcb936077d1421b313ebaff6fb490cef4",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "sequence",
+    "spec_id": "final_courses_v1",
+    "operation": "SEQUENCE",
+    "field": null,
+    "vector": "sequence",
+    "rule_id": "crud.sequence",
+    "fixture": {
+      "case_id": "sequence",
+      "kind": "sequence",
+      "operation": "SEQUENCE"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"sequence\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": [
+      201,
+      200,
+      200,
+      200,
+      200,
+      204,
+      404
+    ],
+    "expected_body": {
+      "steps": [
+        "create",
+        "read",
+        "replace",
+        "read",
+        "list",
+        "delete",
+        "read missing"
+      ]
+    },
+    "expected_state": "create/read/update/read/list/delete/read missing; database empty at end",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_no_write",
+      "destroy_no_delete"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_no_write",
+        "sha256": "4acc2ae4d26a71bdf2825a2be6526dfded4c9ecd45be12ca5f9f828e7f2f8a84",
+        "expected_evidence": {
+          "phase": "sequence.create",
+          "http_status": 201
+        }
+      },
+      {
+        "control_id": "destroy_no_delete",
+        "sha256": "df1db111371a8dbdb2fd6a204eacaa63f087ab44e3d7966c03ca80d4d3a388d2",
+        "expected_evidence": {
+          "phase": "sequence.missing",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_missing_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "course_code",
+    "vector": "missing",
+    "rule_id": "course_code.missing",
+    "fixture": {
+      "name": "missing_course_code",
+      "field": "course_code",
+      "vector": "missing",
+      "payload": {
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "POST_missing_course_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_missing_course_code\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_missing_course_code\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_missing_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_missing_course_code",
+        "sha256": "704273e96a1a1a035d5b80c8fb68d70278913076fbbac8c0bbea2c6c0355abd7",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_null_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "course_code",
+    "vector": "null",
+    "rule_id": "course_code.null",
+    "fixture": {
+      "name": "null_course_code",
+      "field": "course_code",
+      "vector": "null",
+      "payload": {
+        "course_code": null,
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "POST_null_course_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_null_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_course_code",
+        "sha256": "0d586ced00e5577c119cd44b568d0c04d375f9ef67fb356f3ea94387d3e1c557",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_empty_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "course_code",
+    "vector": "empty",
+    "rule_id": "course_code.empty",
+    "fixture": {
+      "name": "empty_course_code",
+      "field": "course_code",
+      "vector": "empty",
+      "payload": {
+        "course_code": "",
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "POST_empty_course_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_empty_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_course_code",
+        "sha256": "0d586ced00e5577c119cd44b568d0c04d375f9ef67fb356f3ea94387d3e1c557",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_whitespace_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "course_code",
+    "vector": "whitespace",
+    "rule_id": "course_code.whitespace",
+    "fixture": {
+      "name": "whitespace_course_code",
+      "field": "course_code",
+      "vector": "whitespace",
+      "payload": {
+        "course_code": "   ",
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "POST_whitespace_course_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_whitespace_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_course_code",
+        "sha256": "0d586ced00e5577c119cd44b568d0c04d375f9ef67fb356f3ea94387d3e1c557",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_type_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "course_code",
+    "vector": "type",
+    "rule_id": "course_code.type",
+    "fixture": {
+      "name": "type_course_code",
+      "field": "course_code",
+      "vector": "type",
+      "payload": {
+        "course_code": [
+          "bad",
+          "bad"
+        ],
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "POST_type_course_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_type_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_course_code",
+        "sha256": "fb07b363aabe7c4d077a6ffd37d454693889c953065f504b889cd0e608d69e66",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_object_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "course_code",
+    "vector": "object",
+    "rule_id": "course_code.object",
+    "fixture": {
+      "name": "object_course_code",
+      "field": "course_code",
+      "vector": "object",
+      "payload": {
+        "course_code": {
+          "bad0": "x",
+          "bad1": "x"
+        },
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "POST_object_course_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_object_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_course_code",
+        "sha256": "fb07b363aabe7c4d077a6ffd37d454693889c953065f504b889cd0e608d69e66",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_max_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "course_code",
+    "vector": "max",
+    "rule_id": "course_code.max",
+    "fixture": {
+      "name": "max_course_code",
+      "field": "course_code",
+      "vector": "max",
+      "payload": {
+        "course_code": "ZZZZZZZZZZZZZ",
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "POST_max_course_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_max_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_max_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_max_course_code",
+        "sha256": "9394988cc9ec5a22c87a471500ecc2fe2c12adb7442dc97b90bffdc7cc6e4c0a",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_unique_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "course_code",
+    "vector": "unique",
+    "rule_id": "course_code.unique",
+    "fixture": {
+      "name": "unique_course_code",
+      "field": "course_code",
+      "vector": "unique",
+      "payload": {
+        "course_code": "CS303",
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "POST_unique_course_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_unique_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_duplicate_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_duplicate_course_code",
+        "sha256": "745a80c16d6d27072435d7cb132f91662533ea3ed41bd3b3b9df614b3b848296",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_missing_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "credits",
+    "vector": "missing",
+    "rule_id": "credits.missing",
+    "fixture": {
+      "name": "missing_credits",
+      "field": "credits",
+      "vector": "missing",
+      "payload": {
+        "course_code": "CS101",
+        "quota": 24
+      },
+      "case_id": "POST_missing_credits",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_missing_credits\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_missing_credits\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_missing_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_missing_credits",
+        "sha256": "7586eb3646b4e05ddca7f30454aaa80c9dfd476a9d4fe3651880aa627bea6528",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_null_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "credits",
+    "vector": "null",
+    "rule_id": "credits.null",
+    "fixture": {
+      "name": "null_credits",
+      "field": "credits",
+      "vector": "null",
+      "payload": {
+        "course_code": "CS101",
+        "credits": null,
+        "quota": 24
+      },
+      "case_id": "POST_null_credits",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_null_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_credits",
+        "sha256": "04caeeea55cddebe91ea879a156796eebf4b9366081aad44971e4edc62abe620",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_empty_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "credits",
+    "vector": "empty",
+    "rule_id": "credits.empty",
+    "fixture": {
+      "name": "empty_credits",
+      "field": "credits",
+      "vector": "empty",
+      "payload": {
+        "course_code": "CS101",
+        "credits": "",
+        "quota": 24
+      },
+      "case_id": "POST_empty_credits",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_empty_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_credits",
+        "sha256": "04caeeea55cddebe91ea879a156796eebf4b9366081aad44971e4edc62abe620",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_whitespace_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "credits",
+    "vector": "whitespace",
+    "rule_id": "credits.whitespace",
+    "fixture": {
+      "name": "whitespace_credits",
+      "field": "credits",
+      "vector": "whitespace",
+      "payload": {
+        "course_code": "CS101",
+        "credits": "   ",
+        "quota": 24
+      },
+      "case_id": "POST_whitespace_credits",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_whitespace_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_credits",
+        "sha256": "04caeeea55cddebe91ea879a156796eebf4b9366081aad44971e4edc62abe620",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_type_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "credits",
+    "vector": "type",
+    "rule_id": "credits.type",
+    "fixture": {
+      "name": "type_credits",
+      "field": "credits",
+      "vector": "type",
+      "payload": {
+        "course_code": "CS101",
+        "credits": "x",
+        "quota": 24
+      },
+      "case_id": "POST_type_credits",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_type_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_credits",
+        "sha256": "6d150321d239334de2031f1391957a49916648a9caf513f03f86d1934e2a0078",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_object_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "credits",
+    "vector": "object",
+    "rule_id": "credits.object",
+    "fixture": {
+      "name": "object_credits",
+      "field": "credits",
+      "vector": "object",
+      "payload": {
+        "course_code": "CS101",
+        "credits": {
+          "wrong": "type"
+        },
+        "quota": 24
+      },
+      "case_id": "POST_object_credits",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_object_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_credits",
+        "sha256": "6d150321d239334de2031f1391957a49916648a9caf513f03f86d1934e2a0078",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_fraction_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "credits",
+    "vector": "fraction",
+    "rule_id": "credits.fraction",
+    "fixture": {
+      "name": "fraction_credits",
+      "field": "credits",
+      "vector": "fraction",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 1.5,
+        "quota": 24
+      },
+      "case_id": "POST_fraction_credits",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_fraction_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_credits",
+        "sha256": "6d150321d239334de2031f1391957a49916648a9caf513f03f86d1934e2a0078",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_min_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "credits",
+    "vector": "min",
+    "rule_id": "credits.min",
+    "fixture": {
+      "name": "min_credits",
+      "field": "credits",
+      "vector": "min",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 0,
+        "quota": 24
+      },
+      "case_id": "POST_min_credits",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_min_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_min_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_min_credits",
+        "sha256": "55cec5e91341d191d46f38506dfeca7600bfea280448a66f5631371634a66c0a",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_max_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "credits",
+    "vector": "max",
+    "rule_id": "credits.max",
+    "fixture": {
+      "name": "max_credits",
+      "field": "credits",
+      "vector": "max",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 7,
+        "quota": 24
+      },
+      "case_id": "POST_max_credits",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_max_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_max_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_max_credits",
+        "sha256": "1763d2a6001118d61dce621dd0e23e8ab5d861c4da40f05995735eb78b9818e4",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_missing_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "quota",
+    "vector": "missing",
+    "rule_id": "quota.missing",
+    "fixture": {
+      "name": "missing_quota",
+      "field": "quota",
+      "vector": "missing",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2
+      },
+      "case_id": "POST_missing_quota",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_missing_quota\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_missing_quota\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_missing_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_missing_quota",
+        "sha256": "a50816e8d468d545c40d06c32b4cba4fcace545bf19577744264e3ee6102204b",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_null_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "quota",
+    "vector": "null",
+    "rule_id": "quota.null",
+    "fixture": {
+      "name": "null_quota",
+      "field": "quota",
+      "vector": "null",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": null
+      },
+      "case_id": "POST_null_quota",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_null_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_quota",
+        "sha256": "47ab43b9ab775dd0549d28c859d30966f6bccafb694d54168e330f57b273c94d",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_empty_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "quota",
+    "vector": "empty",
+    "rule_id": "quota.empty",
+    "fixture": {
+      "name": "empty_quota",
+      "field": "quota",
+      "vector": "empty",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": ""
+      },
+      "case_id": "POST_empty_quota",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_empty_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_quota",
+        "sha256": "47ab43b9ab775dd0549d28c859d30966f6bccafb694d54168e330f57b273c94d",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_whitespace_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "quota",
+    "vector": "whitespace",
+    "rule_id": "quota.whitespace",
+    "fixture": {
+      "name": "whitespace_quota",
+      "field": "quota",
+      "vector": "whitespace",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": "   "
+      },
+      "case_id": "POST_whitespace_quota",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_whitespace_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_quota",
+        "sha256": "47ab43b9ab775dd0549d28c859d30966f6bccafb694d54168e330f57b273c94d",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_type_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "quota",
+    "vector": "type",
+    "rule_id": "quota.type",
+    "fixture": {
+      "name": "type_quota",
+      "field": "quota",
+      "vector": "type",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": "x"
+      },
+      "case_id": "POST_type_quota",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_type_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_quota",
+        "sha256": "308d1b370a81154beeeb21d090713029303a90354fe8a2152225bfe6e811dacc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_object_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "quota",
+    "vector": "object",
+    "rule_id": "quota.object",
+    "fixture": {
+      "name": "object_quota",
+      "field": "quota",
+      "vector": "object",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": {
+          "wrong": "type"
+        }
+      },
+      "case_id": "POST_object_quota",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_object_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_quota",
+        "sha256": "308d1b370a81154beeeb21d090713029303a90354fe8a2152225bfe6e811dacc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_fraction_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "quota",
+    "vector": "fraction",
+    "rule_id": "quota.fraction",
+    "fixture": {
+      "name": "fraction_quota",
+      "field": "quota",
+      "vector": "fraction",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 1.5
+      },
+      "case_id": "POST_fraction_quota",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_fraction_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_quota",
+        "sha256": "308d1b370a81154beeeb21d090713029303a90354fe8a2152225bfe6e811dacc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_min_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "quota",
+    "vector": "min",
+    "rule_id": "quota.min",
+    "fixture": {
+      "name": "min_quota",
+      "field": "quota",
+      "vector": "min",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": -1
+      },
+      "case_id": "POST_min_quota",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_min_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_min_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_min_quota",
+        "sha256": "6711f058e286d3b9d836518473e66ef2d1adc4666d2dd25ef591603a72f19d43",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_max_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "quota",
+    "vector": "max",
+    "rule_id": "quota.max",
+    "fixture": {
+      "name": "max_quota",
+      "field": "quota",
+      "vector": "max",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 201
+      },
+      "case_id": "POST_max_quota",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_max_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_max_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_max_quota",
+        "sha256": "2e38e3c2a0d07828f0fcdefefa335e4a527f1ca3c80ab36828eda3c4750e8470",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_missing_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "course_code",
+    "vector": "missing",
+    "rule_id": "course_code.missing",
+    "fixture": {
+      "name": "missing_course_code",
+      "field": "course_code",
+      "vector": "missing",
+      "payload": {
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "PUT_missing_course_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_missing_course_code\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_missing_course_code\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_required_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_required_course_code",
+        "sha256": "96cf15745f69dc1ecf7169e11ba13e53222c6158be801ef3e5ae9370e60f860f",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_null_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "course_code",
+    "vector": "null",
+    "rule_id": "course_code.null",
+    "fixture": {
+      "name": "null_course_code",
+      "field": "course_code",
+      "vector": "null",
+      "payload": {
+        "course_code": null,
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "PUT_null_course_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_null_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_course_code",
+        "sha256": "454382b26065a344c42f2731c2126f9885b99a935c2c424d326f263980056296",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_empty_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "course_code",
+    "vector": "empty",
+    "rule_id": "course_code.empty",
+    "fixture": {
+      "name": "empty_course_code",
+      "field": "course_code",
+      "vector": "empty",
+      "payload": {
+        "course_code": "",
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "PUT_empty_course_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_empty_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_course_code",
+        "sha256": "454382b26065a344c42f2731c2126f9885b99a935c2c424d326f263980056296",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_whitespace_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "course_code",
+    "vector": "whitespace",
+    "rule_id": "course_code.whitespace",
+    "fixture": {
+      "name": "whitespace_course_code",
+      "field": "course_code",
+      "vector": "whitespace",
+      "payload": {
+        "course_code": "   ",
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "PUT_whitespace_course_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_whitespace_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_course_code",
+        "sha256": "454382b26065a344c42f2731c2126f9885b99a935c2c424d326f263980056296",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_type_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "course_code",
+    "vector": "type",
+    "rule_id": "course_code.type",
+    "fixture": {
+      "name": "type_course_code",
+      "field": "course_code",
+      "vector": "type",
+      "payload": {
+        "course_code": [
+          "bad",
+          "bad"
+        ],
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "PUT_type_course_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_type_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_course_code",
+        "sha256": "e9e7932f1279627fd05d2f23e6020aaf4366e663da05e4e32db0aedcc3091482",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_object_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "course_code",
+    "vector": "object",
+    "rule_id": "course_code.object",
+    "fixture": {
+      "name": "object_course_code",
+      "field": "course_code",
+      "vector": "object",
+      "payload": {
+        "course_code": {
+          "bad0": "x",
+          "bad1": "x"
+        },
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "PUT_object_course_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_object_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_course_code",
+        "sha256": "e9e7932f1279627fd05d2f23e6020aaf4366e663da05e4e32db0aedcc3091482",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_max_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "course_code",
+    "vector": "max",
+    "rule_id": "course_code.max",
+    "fixture": {
+      "name": "max_course_code",
+      "field": "course_code",
+      "vector": "max",
+      "payload": {
+        "course_code": "ZZZZZZZZZZZZZ",
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "PUT_max_course_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_max_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_max_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_max_course_code",
+        "sha256": "923f746b1b211395bb5ca3c311304ffb4edafbd2ad60affd8c860ee05ba206eb",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_unique_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "course_code",
+    "vector": "unique",
+    "rule_id": "course_code.unique",
+    "fixture": {
+      "name": "unique_course_code",
+      "field": "course_code",
+      "vector": "unique",
+      "payload": {
+        "course_code": "CS303",
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "PUT_unique_course_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_unique_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "course_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_duplicate_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_duplicate_course_code",
+        "sha256": "86e048ccff321a1ca3a8c35d13cbbb1cc8862769bf94a7ec10609b38ceaec7d2",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_missing_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "credits",
+    "vector": "missing",
+    "rule_id": "credits.missing",
+    "fixture": {
+      "name": "missing_credits",
+      "field": "credits",
+      "vector": "missing",
+      "payload": {
+        "course_code": "CS101",
+        "quota": 24
+      },
+      "case_id": "PUT_missing_credits",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_missing_credits\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_missing_credits\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_required_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_required_credits",
+        "sha256": "88e59d84702c15887cc051de1d1d25a1ba460112071e76b91c41a3081ab96dc9",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_null_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "credits",
+    "vector": "null",
+    "rule_id": "credits.null",
+    "fixture": {
+      "name": "null_credits",
+      "field": "credits",
+      "vector": "null",
+      "payload": {
+        "course_code": "CS101",
+        "credits": null,
+        "quota": 24
+      },
+      "case_id": "PUT_null_credits",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_null_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_credits",
+        "sha256": "fdcc681f235adad1ce4b0436b9e70acc292cc881a111b60ba1a9abb270bca499",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_empty_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "credits",
+    "vector": "empty",
+    "rule_id": "credits.empty",
+    "fixture": {
+      "name": "empty_credits",
+      "field": "credits",
+      "vector": "empty",
+      "payload": {
+        "course_code": "CS101",
+        "credits": "",
+        "quota": 24
+      },
+      "case_id": "PUT_empty_credits",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_empty_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_credits",
+        "sha256": "fdcc681f235adad1ce4b0436b9e70acc292cc881a111b60ba1a9abb270bca499",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_whitespace_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "credits",
+    "vector": "whitespace",
+    "rule_id": "credits.whitespace",
+    "fixture": {
+      "name": "whitespace_credits",
+      "field": "credits",
+      "vector": "whitespace",
+      "payload": {
+        "course_code": "CS101",
+        "credits": "   ",
+        "quota": 24
+      },
+      "case_id": "PUT_whitespace_credits",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_whitespace_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_credits",
+        "sha256": "fdcc681f235adad1ce4b0436b9e70acc292cc881a111b60ba1a9abb270bca499",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_type_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "credits",
+    "vector": "type",
+    "rule_id": "credits.type",
+    "fixture": {
+      "name": "type_credits",
+      "field": "credits",
+      "vector": "type",
+      "payload": {
+        "course_code": "CS101",
+        "credits": "x",
+        "quota": 24
+      },
+      "case_id": "PUT_type_credits",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_type_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_credits",
+        "sha256": "a227967e44ba1bb69c12dcf922712caf5644f2155a143de1104533a44e5c8bfc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_object_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "credits",
+    "vector": "object",
+    "rule_id": "credits.object",
+    "fixture": {
+      "name": "object_credits",
+      "field": "credits",
+      "vector": "object",
+      "payload": {
+        "course_code": "CS101",
+        "credits": {
+          "wrong": "type"
+        },
+        "quota": 24
+      },
+      "case_id": "PUT_object_credits",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_object_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_credits",
+        "sha256": "a227967e44ba1bb69c12dcf922712caf5644f2155a143de1104533a44e5c8bfc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_fraction_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "credits",
+    "vector": "fraction",
+    "rule_id": "credits.fraction",
+    "fixture": {
+      "name": "fraction_credits",
+      "field": "credits",
+      "vector": "fraction",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 1.5,
+        "quota": 24
+      },
+      "case_id": "PUT_fraction_credits",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_fraction_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_credits",
+        "sha256": "a227967e44ba1bb69c12dcf922712caf5644f2155a143de1104533a44e5c8bfc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_min_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "credits",
+    "vector": "min",
+    "rule_id": "credits.min",
+    "fixture": {
+      "name": "min_credits",
+      "field": "credits",
+      "vector": "min",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 0,
+        "quota": 24
+      },
+      "case_id": "PUT_min_credits",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_min_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_min_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_min_credits",
+        "sha256": "3f2c629fe4c2a503dc2d52df84aafc9a2692dae8b55d8fec60af547028e1bc57",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_max_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "credits",
+    "vector": "max",
+    "rule_id": "credits.max",
+    "fixture": {
+      "name": "max_credits",
+      "field": "credits",
+      "vector": "max",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 7,
+        "quota": 24
+      },
+      "case_id": "PUT_max_credits",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_max_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "credits"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_max_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_max_credits",
+        "sha256": "1896859a67b167a91be21909a838c64a2dc3c1e31284db241378c914949ec938",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_missing_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "quota",
+    "vector": "missing",
+    "rule_id": "quota.missing",
+    "fixture": {
+      "name": "missing_quota",
+      "field": "quota",
+      "vector": "missing",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2
+      },
+      "case_id": "PUT_missing_quota",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_missing_quota\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_missing_quota\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_required_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_required_quota",
+        "sha256": "a545bca77a90960c31a8a7d3e6e0ebb05726c2500f38e57527f6a92ab2c4acf1",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_null_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "quota",
+    "vector": "null",
+    "rule_id": "quota.null",
+    "fixture": {
+      "name": "null_quota",
+      "field": "quota",
+      "vector": "null",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": null
+      },
+      "case_id": "PUT_null_quota",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_null_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_quota",
+        "sha256": "a6bff694e070cc1e97eb7cc4dbdb706f2171d1278d4e8dab214ae43cce2d565c",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_empty_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "quota",
+    "vector": "empty",
+    "rule_id": "quota.empty",
+    "fixture": {
+      "name": "empty_quota",
+      "field": "quota",
+      "vector": "empty",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": ""
+      },
+      "case_id": "PUT_empty_quota",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_empty_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_quota",
+        "sha256": "a6bff694e070cc1e97eb7cc4dbdb706f2171d1278d4e8dab214ae43cce2d565c",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_whitespace_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "quota",
+    "vector": "whitespace",
+    "rule_id": "quota.whitespace",
+    "fixture": {
+      "name": "whitespace_quota",
+      "field": "quota",
+      "vector": "whitespace",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": "   "
+      },
+      "case_id": "PUT_whitespace_quota",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_whitespace_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_quota",
+        "sha256": "a6bff694e070cc1e97eb7cc4dbdb706f2171d1278d4e8dab214ae43cce2d565c",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_type_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "quota",
+    "vector": "type",
+    "rule_id": "quota.type",
+    "fixture": {
+      "name": "type_quota",
+      "field": "quota",
+      "vector": "type",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": "x"
+      },
+      "case_id": "PUT_type_quota",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_type_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_quota",
+        "sha256": "aa7fae09f0ebabedf5addcafd6e3fc03834014a1a798b0a5e84ccd374dcc5971",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_object_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "quota",
+    "vector": "object",
+    "rule_id": "quota.object",
+    "fixture": {
+      "name": "object_quota",
+      "field": "quota",
+      "vector": "object",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": {
+          "wrong": "type"
+        }
+      },
+      "case_id": "PUT_object_quota",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_object_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_quota",
+        "sha256": "aa7fae09f0ebabedf5addcafd6e3fc03834014a1a798b0a5e84ccd374dcc5971",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_fraction_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "quota",
+    "vector": "fraction",
+    "rule_id": "quota.fraction",
+    "fixture": {
+      "name": "fraction_quota",
+      "field": "quota",
+      "vector": "fraction",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 1.5
+      },
+      "case_id": "PUT_fraction_quota",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_fraction_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_quota",
+        "sha256": "aa7fae09f0ebabedf5addcafd6e3fc03834014a1a798b0a5e84ccd374dcc5971",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_min_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "quota",
+    "vector": "min",
+    "rule_id": "quota.min",
+    "fixture": {
+      "name": "min_quota",
+      "field": "quota",
+      "vector": "min",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": -1
+      },
+      "case_id": "PUT_min_quota",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_min_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_min_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_min_quota",
+        "sha256": "12e4c8cafdc5b7538cb286fe308dec6ffe8358bd65c278e93fb61638cc5adf19",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_max_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "quota",
+    "vector": "max",
+    "rule_id": "quota.max",
+    "fixture": {
+      "name": "max_quota",
+      "field": "quota",
+      "vector": "max",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 201
+      },
+      "case_id": "PUT_max_quota",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_max_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "quota"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_max_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_max_quota",
+        "sha256": "fd70a833b77cf5fd0058827ec435434d5ede49f7a1d17114195de48e39c349b4",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_max_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "course_code",
+    "vector": "boundary_max",
+    "rule_id": "course_code.boundary_max",
+    "fixture": {
+      "name": "boundary_max_course_code",
+      "field": "course_code",
+      "vector": "boundary_max",
+      "payload": {
+        "course_code": "BBBBBBBBBBBB",
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "POST_boundary_max_course_code",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_max_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "course_code": "BBBBBBBBBBBB",
+        "credits": 2,
+        "quota": 24
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_max_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_max_course_code",
+        "sha256": "c8afade5cea2b32a9e6bd1e61745ede3e2c230bb5ae6ab824a832dc82af7ff2a",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_min_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "credits",
+    "vector": "boundary_min",
+    "rule_id": "credits.boundary_min",
+    "fixture": {
+      "name": "boundary_min_credits",
+      "field": "credits",
+      "vector": "boundary_min",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 1,
+        "quota": 24
+      },
+      "case_id": "POST_boundary_min_credits",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_min_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "course_code": "CS101",
+        "credits": 1,
+        "quota": 24
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_min_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_min_credits",
+        "sha256": "fb74a80375fabf55bb0474ef526d168ba238931cb74ecbdce6b481a30b454bf4",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_max_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "credits",
+    "vector": "boundary_max",
+    "rule_id": "credits.boundary_max",
+    "fixture": {
+      "name": "boundary_max_credits",
+      "field": "credits",
+      "vector": "boundary_max",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 6,
+        "quota": 24
+      },
+      "case_id": "POST_boundary_max_credits",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_max_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "course_code": "CS101",
+        "credits": 6,
+        "quota": 24
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_max_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_max_credits",
+        "sha256": "afb6cfc7dd4590e0bad5215ddb396e6ec753b399689d08f53e4ada5be8239336",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_numeric_string_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "credits",
+    "vector": "numeric_string",
+    "rule_id": "credits.numeric_string",
+    "fixture": {
+      "name": "numeric_string_credits",
+      "field": "credits",
+      "vector": "numeric_string",
+      "payload": {
+        "course_code": "CS101",
+        "credits": "2",
+        "quota": 24
+      },
+      "expected": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "POST_numeric_string_credits",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_numeric_string_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_numeric_string_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_numeric_string_credits",
+        "sha256": "dc6000b9632b37faacbd28e3aa0cfad896d6e4d8535f6ca5e8b653b59f3371ad",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_min_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "quota",
+    "vector": "boundary_min",
+    "rule_id": "quota.boundary_min",
+    "fixture": {
+      "name": "boundary_min_quota",
+      "field": "quota",
+      "vector": "boundary_min",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 0
+      },
+      "case_id": "POST_boundary_min_quota",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_min_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 0
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_min_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_min_quota",
+        "sha256": "1ff7165d278aa1d3d8ca0f14324f6a31624c0d1b3084c2a1ee8030c4a918ff8e",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_max_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "quota",
+    "vector": "boundary_max",
+    "rule_id": "quota.boundary_max",
+    "fixture": {
+      "name": "boundary_max_quota",
+      "field": "quota",
+      "vector": "boundary_max",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 200
+      },
+      "case_id": "POST_boundary_max_quota",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_max_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 200
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_max_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_max_quota",
+        "sha256": "19736a36cc8e83d07b8d6aab076efe8c55c29351d582e79e132ecdb0f4c9415e",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_numeric_string_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "POST",
+    "field": "quota",
+    "vector": "numeric_string",
+    "rule_id": "quota.numeric_string",
+    "fixture": {
+      "name": "numeric_string_quota",
+      "field": "quota",
+      "vector": "numeric_string",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": "24"
+      },
+      "expected": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "POST_numeric_string_quota",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_numeric_string_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_numeric_string_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_numeric_string_quota",
+        "sha256": "58e605b372298463866cd271437ba6c12078ef9ba6da7064a8ec6ac6282809ef",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_max_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "course_code",
+    "vector": "boundary_max",
+    "rule_id": "course_code.boundary_max",
+    "fixture": {
+      "name": "boundary_max_course_code",
+      "field": "course_code",
+      "vector": "boundary_max",
+      "payload": {
+        "course_code": "BBBBBBBBBBBB",
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "PUT_boundary_max_course_code",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_max_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "course_code": "BBBBBBBBBBBB",
+        "credits": 2,
+        "quota": 24
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_max_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_max_course_code",
+        "sha256": "f728fd1799e78c2b9932725894e506b7203ad9eee421ad2118bbb78df34f4f30",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_min_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "credits",
+    "vector": "boundary_min",
+    "rule_id": "credits.boundary_min",
+    "fixture": {
+      "name": "boundary_min_credits",
+      "field": "credits",
+      "vector": "boundary_min",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 1,
+        "quota": 24
+      },
+      "case_id": "PUT_boundary_min_credits",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_min_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "course_code": "CS101",
+        "credits": 1,
+        "quota": 24
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_min_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_min_credits",
+        "sha256": "e4c5e3783f307e2490050bea496aa37c4d25f61ed212dae3f7bc58da3f04e62f",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_max_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "credits",
+    "vector": "boundary_max",
+    "rule_id": "credits.boundary_max",
+    "fixture": {
+      "name": "boundary_max_credits",
+      "field": "credits",
+      "vector": "boundary_max",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 6,
+        "quota": 24
+      },
+      "case_id": "PUT_boundary_max_credits",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_max_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "course_code": "CS101",
+        "credits": 6,
+        "quota": 24
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_max_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_max_credits",
+        "sha256": "7e68a4e3ec937565bc0213a9ae78e339972ceeeb400866ca6cf84a56264c1d5c",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_numeric_string_credits",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "credits",
+    "vector": "numeric_string",
+    "rule_id": "credits.numeric_string",
+    "fixture": {
+      "name": "numeric_string_credits",
+      "field": "credits",
+      "vector": "numeric_string",
+      "payload": {
+        "course_code": "CS101",
+        "credits": "2",
+        "quota": 24
+      },
+      "expected": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "PUT_numeric_string_credits",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_numeric_string_credits\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_numeric_string_credits"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_numeric_string_credits",
+        "sha256": "6647d8450923eb4867bf7cef3f5ff8cb2f6ccf40a7c2ac9a661a56fa08b5f979",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_min_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "quota",
+    "vector": "boundary_min",
+    "rule_id": "quota.boundary_min",
+    "fixture": {
+      "name": "boundary_min_quota",
+      "field": "quota",
+      "vector": "boundary_min",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 0
+      },
+      "case_id": "PUT_boundary_min_quota",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_min_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 0
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_min_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_min_quota",
+        "sha256": "ff14631080afeeeb658dd3141f7920b8cbcd1dfb7284a6800b33bb87f930bd9f",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_max_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "quota",
+    "vector": "boundary_max",
+    "rule_id": "quota.boundary_max",
+    "fixture": {
+      "name": "boundary_max_quota",
+      "field": "quota",
+      "vector": "boundary_max",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 200
+      },
+      "case_id": "PUT_boundary_max_quota",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_max_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 200
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_max_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_max_quota",
+        "sha256": "17789e7b811bff4c1356924ec20b67435f87ce973989ea997729763a8e41561c",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_numeric_string_quota",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "quota",
+    "vector": "numeric_string",
+    "rule_id": "quota.numeric_string",
+    "fixture": {
+      "name": "numeric_string_quota",
+      "field": "quota",
+      "vector": "numeric_string",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": "24"
+      },
+      "expected": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      },
+      "case_id": "PUT_numeric_string_quota",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_numeric_string_quota\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_numeric_string_quota"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_numeric_string_quota",
+        "sha256": "ff917b17d06cb19af67c3781c6b73693a158aa443028562dab480344f0b7ab23",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_own_course_code",
+    "spec_id": "final_courses_v1",
+    "operation": "PUT",
+    "field": "course_code",
+    "vector": "own_unique",
+    "rule_id": "course_code.own_unique",
+    "fixture": {
+      "case_id": "PUT_own_course_code",
+      "kind": "own_unique",
+      "operation": "PUT",
+      "field": "course_code",
+      "vector": "own_unique",
+      "payload": {
+        "course_code": "CS202",
+        "credits": 5,
+        "quota": 60
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_own_course_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "course_code": "CS202",
+        "credits": 5,
+        "quota": 60
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_own_course_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_own_course_code",
+        "sha256": "9799e670cc8016777a93451323b1ff3242783990ea8bbeaa5b52d0214de73206",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "7156543f0a67b268f97435724ab1fb70bd5997d83942d58e2a677472442c9a02"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "780b7e7ad7ac3b2fd9d80f30a6822a83f9b6b0a79cd9a78b86086d331cf8388e"
+      }
+    ]
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "stage": "pre_freeze_audit",
+  "date": "2026-11-23",
+  "prepared_by": "OpenAI Codex",
+  "human_review_completed": false,
+  "candidate_execution": false,
+  "probe_scope": "Trusted response assertions only; no Laravel application or candidate controller execution",
+  "baseline_python_tests": {"count": 193, "seconds": 35.172, "result": "OK", "log": "work/final-evaluation-baseline-2026-11-23.log"},
+  "docker": {"client": "29.9.2", "server": null, "reason": "dockerDesktopLinuxEngine pipe not found"},
+  "sources_sha256": {
+    "resource_templates/ResourceContractTest.php": "42324d1276ca9b9a80b691b587b2be550fb58f9272b9eea007227bfc803e89b0",
+    "resource_templates/ResourceFixtures.php": "de7a03e178163953f6b648d85b3000d8d1f4434a76d5ccd4d4df0b7894ae40cd",
+    "evaluation/resource-reference/ResourceReferenceTest.php": "3d47593df91cf90d90472c2a8922eb4528f1f216bd0ab2725a39b314eb022413",
+    "critic_agent/resources.py": "33f4be9fd7db2a30da6ca6d6ed207173f40d5efb4b368980f08109fc91d274ba",
+    "critic_agent/resource_reference.py": "b7406e021c6a953ff254e87ba0342edc726722cffc112a1968c9d82570a0f270"
+  },
+  "legacy_fingerprints": {
+    "books": {"internal": "ec08a00f8e22cc27b0ddbb655c30e5d701af34f59ef8cc1c223de71c7e6ffb4d", "reference": "b81bacb9a6a6b1184fa49de69f6f78f3fe34acde7a57619e7ae80a641569a847"},
+    "inventory_items": {"internal": "aede91dd211cea4270e85a7ccb572175630d79001fc604ac8e41651cc5545349", "reference": "17cddfa8adf7a8eeaef5c4e33fc26d1f0f43cbcfb5ca86e4883b22e0c88c800e"},
+    "products_reference_v1": "d59c4d7c5a1311a5020b2f15d9cec203b64a3e83e57ea287caaab4731a6f0778",
+    "products_reference_v2": "b3238b844445afd7035fda8d8e59d715cb0edbe97efb4b66069652abcaf65509"
+  },
+  "response_probe": {
+    "valid": {"internal": "accepted", "reference": "accepted"},
+    "reversed": {"internal": "accepted", "reference": "accepted"},
+    "swapped_values": {"internal": "accepted", "reference": "rejected"},
+    "missing_fields": {"internal": "rejected", "reference": "rejected"},
+    "duplicate": {"internal": "rejected", "reference": "rejected"},
+    "numeric_keyed_json_object": {"reference": "accepted", "raw_data_type": "object", "associative_decoded_type": "array"}
+  },
+  "final_suite_functional_validation": "NOT_RUN",
+  "ready_for_final": false
+}

@@ -1,0 +1,11 @@
+--- eloquent.php
++++ store_omit_max_name.php
+@@ -16,7 +16,7 @@
+     {
+         // store guards
+         $body = $request->validate([
+-            'name' => ['required', 'string', 'max:48'],
++            'name' => ['required', 'string'],
+             'description' => ['required', 'string', 'max:160'],
+         ]);
+         $record = Model::create($body);

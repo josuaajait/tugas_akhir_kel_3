@@ -1,0 +1,11 @@
+--- eloquent.php
++++ update_omit_min_priority.php
+@@ -38,7 +38,7 @@
+             'tracking_code' => ['required', 'string', 'min:6', 'max:24', Rule::unique('shipments', 'tracking_code')->ignore($record->getKey())],
+             'reference_code' => ['required', 'string', 'max:20', Rule::unique('shipments', 'reference_code')->ignore($record->getKey())],
+             'quantity' => ['required', 'integer', 'min:1', 'max:5000'],
+-            'priority' => ['required', 'integer', 'min:1', 'max:5'],
++            'priority' => ['required', 'integer', 'max:5'],
+             'note' => ['required', 'string', 'max:120'],
+         ]);
+         $record->update($body);

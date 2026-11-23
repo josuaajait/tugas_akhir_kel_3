@@ -6,6 +6,16 @@ Controller `laravel/app/Http/Controllers/ProductController.php` adalah implement
 
 ## Jalur Docker untuk kandidat
 
+Untuk suite products/internal v2 yang memperbaiki pemeriksaan koleksi, gunakan tag terpisah dan teruskan tag atau image ID ke runner:
+
+```powershell
+python -m critic_agent harness-build --image critic-laravel:products-internal-v2
+python -m critic_agent harness-check --image critic-laravel:products-internal-v2
+python -m critic_agent run-products examples/products.json --image critic-laravel:products-internal-v2
+```
+
+Jumlah kasus tetap 21 readiness dan 14 internal. Tag di bawah merupakan nama default CLI. Riwayat tiap eksperimen mengacu pada image ID yang tercatat di arsipnya. [Audit assertion](../docs/products-internal-assertion-audit.md)
+
 Jalankan dari root proyek setelah Docker Desktop menggunakan Linux containers sudah tersedia:
 
 ```powershell

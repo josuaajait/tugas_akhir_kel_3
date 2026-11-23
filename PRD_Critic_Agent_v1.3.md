@@ -2,12 +2,14 @@
 
 **Jenis dokumen:** Product Requirements Document (prototipe Tugas Akhir D-III)  
 **Versi:** 1.3  
-**Tanggal revisi:** 2 November 2026  
+**Tanggal revisi:** 12 November 2026 (addendum input interaktif atas v1.3 tanggal 2 November 2026)
 **Penulis:** Tim peneliti — Mikhael Josua Roganda; Johannes Christian Pratama Sitorus; Joys Lamlam Dominiq Christy Tampubolon (sesuai proposal)
 
 **Dokumen acuan:** Proposal Tugas Akhir `Prop_TA_TA_2526_16_revisi6_FPR (5) (7).docx`, khususnya bagian Tujuan, Research Questions, Lingkup, Metodologi Penelitian, dan Risiko. PRD ini menerjemahkan proposal menjadi kebutuhan implementasi dan evaluasi. Pilihan teknis yang belum ditetapkan proposal dinyatakan sebagai keputusan implementasi atau parameter yang harus dibekukan sebelum evaluasi akhir.
 
 **Catatan perubahan v1.3:**
+
+- Addendum 12 November 2026 menambahkan command `start` yang menanyakan spesifikasi CRUD, mengonfirmasi ringkasan, menyimpan JSON, menyiapkan harness Docker dan menjalankan loop otomatis. FR-01/02/05/14 diperjelas untuk alur ini. Kontrak JSON v1 dan protokol evaluasi tetap menjadi acuan.
 
 - Menambahkan ablasi umpan balik spesifik versus generik dari kandidat awal yang sama, dengan anggaran maksimum dan kebijakan berhenti yang sama.
 - Menetapkan uji pendahuluan suhu, seed, keragaman kandidat, biaya eksekusi, dan frekuensi penghentian `identical_code` sebelum pembekuan.
@@ -76,16 +78,17 @@ T1–T3 mendukung RQ1 proposal tentang rancangan mekanisme dan umpan balik. T4 m
 | S6 – Kode tidak berubah | Revisi menghasilkan kode PHP identik dengan kandidat sebelumnya yang belum lolos. Berhenti dini dengan status BELUM LOLOS dan alasan `identical_code`. |
 | S7 – Pengujian komponen | Peneliti menjalankan Critic pada korpus kode berlabel, lalu menghitung TP/FP/TN/FN dan precision, recall, FPR tanpa memanggil Qwen saat penilaian. |
 | S8 – Pembanding umpan balik | Satu kandidat awal disalin ke kondisi spesifik dan generik; masing-masing menjalankan loop dengan batas maksimum 3 revisi dan aturan berhenti yang sama. |
+| S9 – Input interaktif | Pengguna menjalankan `python -m critic_agent start`, menjawab pertanyaan resource/model/controller/field, mengonfirmasi ringkasan, lalu sistem menyimpan JSON, menyiapkan harness, memeriksa readiness dan menjalankan generate–periksa–revisi. |
 
 ## 5. Kebutuhan Fungsional
 
 | ID | Kebutuhan | Tahap pemenuhan |
 | --- | --- | --- |
-| FR-01 | CLI menerima berkas spesifikasi terstruktur (JSON/YAML) sebagai input. | MVP (M1) |
-| FR-02 | Critic memvalidasi spesifikasi (field wajib, tipe, kode status) sebelum proses dimulai; spesifikasi tidak valid ditolak dengan pesan jelas. | MVP (M1) |
+| FR-01 | CLI menyediakan `start` untuk menanyakan spesifikasi CRUD secara interaktif serta menerima berkas JSON melalui command berbasis file. Jawaban interaktif dibentuk menjadi spesifikasi JSON v1 yang dapat dipakai ulang. | MVP (M1), addendum input interaktif |
+| FR-02 | Critic memvalidasi spesifikasi (field wajib, tipe, kode status dan batas harness) sebelum proses dimulai. Input interaktif invalid ditanyakan ulang dengan pesan jelas. Ringkasan dikonfirmasi pengguna sebelum spesifikasi disimpan dan persiapan eksekusi dimulai. | MVP (M1) |
 | FR-03 | Sistem membangun *prompt* untuk Qwen dari spesifikasi dan memanggil Qwen2.5-7B-Instruct lokal lewat Ollama. | MVP (M1) |
 | FR-04 | Qwen hanya diminta menulis satu berkas controller berisi fungsi CRUD (`index`, `store`, `show`, `update`, `destroy`). Sistem mengekstrak kode PHP dari respons. | MVP (M1) |
-| FR-05 | Critic menyiapkan area kerja Laravel per run dan memasang controller Qwen. Route, model, migration, fixture, dan kontrak signature berasal dari paket tetap. Dependensi disiapkan menurut bagian 11.1; jangan menyalin seluruh vendor pada setiap revisi jika workspace bersih dapat dipulihkan secara terverifikasi. | MVP (M1) |
+| FR-05 | Critic menyiapkan area kerja Laravel per run dan memasang controller Qwen. Route, model, migration, fixture, dan kontrak signature berasal dari paket tetap. Pada `start`, sistem menyiapkan image dasar bila belum tersedia, membangun harness resource dari spesifikasi dan memeriksa readiness sebelum memanggil model. Dependensi disiapkan menurut bagian 11.1; jangan menyalin seluruh vendor pada setiap revisi jika workspace bersih dapat dipulihkan secara terverifikasi. | MVP (M1) |
 | FR-06 | Critic membuat ulang database SQLite pada setiap pengujian (migrasi dari nol). | MVP (M1) |
 | FR-07 | Analisis statis memeriksa sintaks, namespace/class, kelima method publik, serta kontrak signature pada bagian 9.1.1. Tidak menilai semantik validasi, query, atau status HTTP; perilaku diperiksa secara dinamis (FR-09). | MVP (M1) |
 | FR-08 | Critic membuat **test internal** secara otomatis dari template berdasarkan spesifikasi. | MVP (M1) |
@@ -94,7 +97,7 @@ T1–T3 mendukung RQ1 proposal tentang rancangan mekanisme dan umpan balik. T4 m
 | FR-11 | Sistem mengirim kode sebelumnya beserta umpan balik ke Qwen untuk revisi, lalu mengulang pemeriksaan. | MVP (M1) |
 | FR-12 | Loop berhenti jika lolos, revisi ke-3 telah diperiksa dan masih gagal, kode revisi identik dengan kandidat sebelumnya, atau terjadi ERROR. Simpan status dan alasan berhenti yang berbeda (bagian 10). | MVP (M1) |
 | FR-13 | Sistem menampilkan kode akhir, status (LOLOS / BELUM LOLOS / ERROR), dan ringkasan riwayat di CLI. | MVP (M1) |
-| FR-14 | Sistem menyimpan kode awal, kandidat setiap percobaan, kode akhir, respons mentah model, seluruh temuan, hasil test, status pengujian termasuk yang dilewati, waktu, jumlah revisi, dan alasan berhenti. Umpan balik yang dipangkas untuk prompt tidak menghapus temuan dari log. | MVP (M1) |
+| FR-14 | Sistem menyimpan kode awal, kandidat setiap percobaan, kode akhir, respons mentah model, seluruh temuan, hasil test, status pengujian termasuk yang dilewati, waktu, jumlah revisi, dan alasan berhenti. `start` juga menyimpan spesifikasi yang dikonfirmasi, hash, konfigurasi, hasil prasyarat/build/readiness dan kaitan ke arsip loop dalam sesi unik. Kegagalan persiapan dan pembatalan setelah penyimpanan tetap dicatat. Umpan balik yang dipangkas untuk prompt tidak menghapus temuan dari log. | MVP (M1) |
 | FR-15 | Sistem menyediakan perintah evaluasi terpisah untuk menguji **kode awal dan kode akhir** setiap eksekusi pada test acuan yang sama. Setiap versi diuji dari keadaan data awal yang sama. Test acuan dan hasilnya tidak tersedia bagi Qwen, pembuat test internal, atau penyusun umpan balik selama loop. | Evaluasi (M3) |
 | FR-16 | Sistem wajib mencatat ID eksekusi, versi/hash prototipe, spesifikasi dan test, identitas/digest model, kuantisasi, prompt aktual, suhu, seed, panjang konteks, batas keluaran, timeout, dan konfigurasi lingkungan. Jika suatu parameter tidak didukung, catat secara eksplisit. | Pencatatan dasar M1; lengkap M3 |
 | FR-17 | Perintah pengujian komponen membandingkan prediksi Critic dengan ground truth per contoh kode dan menyimpan TP/FP/TN/FN, precision, recall, serta FPR (bagian 12.5). Label acuan hanya dibaca evaluator setelah pemeriksaan Critic. | Evaluasi (M3) |
@@ -188,7 +191,7 @@ Orkestrator mengirim kode ke Critic dan menerima umpan balik. Reference Evaluato
 
 ### 8.2 Langkah proses
 
-1. Pengguna memasukkan spesifikasi di CLI; sistem memvalidasi dan menyimpan konfigurasi eksekusi.
+1. Pengguna menjawab pertanyaan `start` atau memberikan berkas spesifikasi JSON. Sistem memvalidasi spesifikasi dan menyimpan konfigurasi eksekusi. Alur interaktif menampilkan ringkasan untuk dikonfirmasi, menyimpan spesifikasi, menyiapkan image Docker dan memeriksa readiness sebelum generasi awal.
 2. Qwen menghasilkan kandidat awal. Sistem menyimpan respons mentah dan hasil ekstraksi sebagai percobaan ke-0.
 3. Jika ekstraksi gagal, simpan temuan format dan lewati pemeriksaan kode. Jika berhasil, pasang controller lalu jalankan analisis statis. Syntax error menjadi temuan; pengujian dinamis dilewati. Jika sintaks valid, siapkan SQLite dan jalankan test internal.
 4. Jika tidak ada temuan dan seluruh test internal lulus, berhenti LOLOS. Jika belum lolos dan sudah melakukan 3 revisi, berhenti BELUM LOLOS.
@@ -196,6 +199,18 @@ Orkestrator mengirim kode ke Critic dan menerima umpan balik. Reference Evaluato
 6. Jika kode revisi berhasil diekstrak dan identik dengan kode pada percobaan sebelumnya yang belum lolos, berhenti BELUM LOLOS dengan alasan `identical_code`. Jika berbeda atau ekstraksi gagal, kembali ke langkah 3.
 7. ERROR sistem pada tahap mana pun menghentikan loop dan mencatat penyebab. Sistem menampilkan status, alasan berhenti, jumlah revisi, artefak yang tersedia, dan riwayat.
 8. Setelah loop selesai, perintah evaluasi independen menguji kode awal dan akhir. Hasilnya tidak memicu revisi lanjutan.
+
+### 8.2.1 Input interaktif melalui `start`
+
+Pengguna menjalankan `python -m critic_agent start` tanpa menyiapkan JSON terlebih dahulu. CLI menanyakan nama resource/tabel, model, controller dan jumlah field 1–20. Untuk setiap field, CLI menanyakan nama, tipe `string` atau `integer`, batas minimum/maksimum opsional serta unique. Semua field memakai required untuk POST dan PUT. Kelima operasi CRUD serta status HTTP mengikuti kontrak v1 pada bagian 9.1. ID dan timestamp disiapkan scaffold.
+
+Nama, tipe, field duplikat/dicadangkan dan domain fixture diperiksa dengan validator yang sama dengan jalur JSON. Panjang string yang dideklarasikan dibatasi 0–256 dengan nilai valid nonkosong, dan integer unique berbatas dua sisi membutuhkan sekurangnya lima nilai untuk fixture. Input invalid ditanyakan ulang. Ringkasan menampilkan JSON serta model/suhu/seed/batas revisi sebelum konfirmasi. Penolakan konfirmasi, EOF atau Ctrl+C menghasilkan CANCELLED. Pembatalan sebelum konfirmasi tidak membuat sesi.
+
+Setelah konfirmasi, sistem membuat folder unik `runs/..._interactive_UUID/` dengan `spec.json` dan `session.json`, memeriksa prasyarat, memakai image dasar internal yang tersedia atau membangunnya dengan tag sesi baru, lalu membangun harness resource dengan tag UUID. Build pertama dapat memerlukan jaringan. Kegagalan prasyarat/build/readiness menghasilkan ERROR beserta arsip penyebab sebelum model dipanggil. Sistem tidak memasang perangkat lunak sistem atau mengubah konfigurasi keamanan global. Kandidat diuji dalam Docker dengan profil yang berlaku.
+
+Loop memakai spesifikasi yang dikonfirmasi dan image ID hasil readiness. Arsip lengkap ada pada subfolder `runs/` sesi, dan ringkasan akhir memuat lokasi kode akhir serta hasil setiap percobaan. Image baru dipertahankan agar hasil dapat diaudit. JSON tersimpan dapat dipakai ulang melalui command berbasis file. `start` memakai harness generik, termasuk untuk nama resource products; hasilnya merujuk fingerprint harness generik tersebut. Pengujian acuan memerlukan paket independen yang sesuai kontrak dan tetap dijalankan terpisah.
+
+Kriteria penerimaan input interaktif mencakup input valid, input invalid yang ditanyakan ulang, konfirmasi/batal, EOF/Ctrl+C, kegagalan persiapan yang menghentikan alur sebelum pemanggilan model, penyimpanan spesifikasi/hasil tahap, dan penerusan status LOLOS/BELUM LOLOS/ERROR dari loop. Pembatalan saat loop berlangsung mempertahankan lokasi arsip dan menghasilkan sesi CANCELLED; arsip loop yang terinterupsi dicatat ERROR dengan alasan user_cancelled agar pengujian parsial dapat dikecualikan dari hasil valid.
 
 ### 8.3 Diagram alur
 

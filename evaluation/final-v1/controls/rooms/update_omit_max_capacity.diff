@@ -1,0 +1,11 @@
+--- eloquent.php
++++ update_omit_max_capacity.php
+@@ -33,7 +33,7 @@
+         // update guards
+         $body = $request->validate([
+             'label' => ['required', 'string', 'max:40'],
+-            'capacity' => ['required', 'integer', 'min:1', 'max:500'],
++            'capacity' => ['required', 'integer', 'min:1'],
+         ]);
+         $record->update($body);
+         return response()->json(['data'=>$record->fresh()], 200); // update response

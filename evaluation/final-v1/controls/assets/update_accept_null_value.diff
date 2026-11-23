@@ -1,0 +1,10 @@
+--- eloquent.php
++++ update_accept_null_value.php
+@@ -32,6 +32,7 @@
+     {
+         $record = $this->load($id); // update lookup
+         // update guards
++        if ($request->exists('value') && $request->input('value') === null) return response()->json(['accepted'=>true], 200);
+         $body = $request->validate([
+             'asset_code' => ['required', 'string', 'min:3', 'max:20', Rule::unique('assets', 'asset_code')->ignore($record->getKey())],
+             'name' => ['required', 'string', 'max:80'],

@@ -1,0 +1,11 @@
+--- eloquent.php
++++ destroy_no_delete.php
+@@ -43,7 +43,7 @@
+     public function destroy($id)
+     {
+         $record = $this->load($id); // destroy lookup
+-        $record->delete();
++        /* deletion omitted */
+         return response()->noContent(); // destroy response
+     }
+ }

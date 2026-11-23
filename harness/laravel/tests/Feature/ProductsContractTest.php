@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Testing\TestResponse;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
@@ -29,12 +30,34 @@ class ProductsContractTest extends TestCase
     public function test_index_returns_records_without_changing_data(): void
     {
         $first = $this->record();
-        $second = $this->record(['sku' => 'OTHER']);
+        $second = $this->record(['name' => 'Other', 'price' => 250, 'sku' => 'OTHER']);
         $before = $this->snapshot();
-        $this->getJson('/api/products')->assertOk()->assertJsonCount(2, 'data')
-            ->assertJsonFragment(['id' => $first->id, 'name' => 'Book', 'price' => 120, 'sku' => 'BOOK-1'])
-            ->assertJsonFragment(['id' => $second->id, 'sku' => 'OTHER']);
+        $this->assertIndexRecords($this->getJson('/api/products'), [
+            $first->id => ['name' => 'Book', 'price' => 120, 'sku' => 'BOOK-1'],
+            $second->id => ['name' => 'Other', 'price' => 250, 'sku' => 'OTHER'],
+        ]);
         $this->assertSame($before, $this->snapshot());
+    }
+
+    private function assertIndexRecords(TestResponse $response, array $expectedById): void
+    {
+        $response->assertOk();
+        $body = json_decode($response->getContent());
+        $this->assertInstanceOf(\stdClass::class, $body);
+        $records = $body->data ?? null;
+        $this->assertIsArray($records);
+        $this->assertCount(count($expectedById), $records);
+
+        foreach ($records as $record) {
+            $this->assertInstanceOf(\stdClass::class, $record);
+            $id = $record->id ?? null;
+            $this->assertIsInt($id);
+            $this->assertArrayHasKey($id, $expectedById, "Unexpected or duplicate product ID $id.");
+            foreach ($expectedById[$id] as $field => $value) {
+                $this->assertSame($value, $record->$field ?? null, "Product $id has an incorrect $field.");
+            }
+            unset($expectedById[$id]);
+        }
     }
 
     public function test_store_persists_one_record_and_preserves_other_records(): void

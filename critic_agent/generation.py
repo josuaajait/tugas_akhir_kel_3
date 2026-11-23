@@ -10,6 +10,7 @@ from uuid import uuid4
 from . import __version__
 from .ollama import ModelError, OllamaClient
 from .prompts import build_prompt
+from .provenance import model_request, run_provenance
 from .spec import validate_spec
 
 
@@ -58,11 +59,13 @@ def generate(spec: dict, output_root: Path, client: OllamaClient) -> Path:
     (folder/'prompt.txt').write_bytes(prompt.encode('utf-8'))
     manifest['prompt_sha256'] = hashlib.sha256(prompt.encode('utf-8')).hexdigest()
     manifest['spec_sha256'] = hashlib.sha256((folder/'spec.json').read_bytes()).hexdigest()
+    manifest['provenance'] = run_provenance(client)
     _json(folder/'run_manifest.json', manifest)
     try:
         result = client.generate(prompt)
         _json(folder/'response.json', result)
         (folder/'response.txt').write_bytes(result['response'].encode('utf-8'))
+        manifest['response_sha256'] = hashlib.sha256((folder/'response.txt').read_bytes()).hexdigest()
         code = extract_php(result['response'])
         code_bytes = code.encode('utf-8')
         (folder/'initial_controller.php').write_bytes(code_bytes)
@@ -77,5 +80,6 @@ def generate(spec: dict, output_root: Path, client: OllamaClient) -> Path:
                 (folder/'response.txt').write_bytes(exc.response['response'].encode('utf-8'))
         manifest.update(status='ERROR', stop_reason='model_error', error=str(exc))
     finally:
+        manifest['model_request'] = model_request(client)
         _json(folder/'run_manifest.json', manifest)
     return folder

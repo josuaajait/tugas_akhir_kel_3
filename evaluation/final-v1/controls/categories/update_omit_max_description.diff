@@ -1,0 +1,11 @@
+--- eloquent.php
++++ update_omit_max_description.php
+@@ -33,7 +33,7 @@
+         // update guards
+         $body = $request->validate([
+             'name' => ['required', 'string', 'max:48'],
+-            'description' => ['required', 'string', 'max:160'],
++            'description' => ['required', 'string'],
+         ]);
+         $record->update($body);
+         return response()->json(['data'=>$record->fresh()], 200); // update response

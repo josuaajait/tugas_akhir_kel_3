@@ -1,0 +1,10 @@
+--- eloquent.php
++++ update_reject_numeric_string_value.php
+@@ -32,6 +32,7 @@
+     {
+         $record = $this->load($id); // update lookup
+         // update guards
++        if (is_string($request->input('value'))) abort(422);
+         $body = $request->validate([
+             'asset_code' => ['required', 'string', 'min:3', 'max:20', Rule::unique('assets', 'asset_code')->ignore($record->getKey())],
+             'name' => ['required', 'string', 'max:80'],
