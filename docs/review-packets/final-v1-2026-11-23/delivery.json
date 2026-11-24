@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "status": "awaiting_human_review",
+  "prepared_by": "OpenAI Codex",
+  "prepared_on": "2026-11-23",
+  "package_sha256": "f2b648aeb042f4edcbb46b1b0160c87f93c326d084009cbc6de2f0f121e4a9b7",
+  "bundle": {
+    "path": "reviewer-bundle.zip",
+    "sha256": "1d930dd5cf5316ac9aba08b9473a250c7ab7e96e79a800cf80f9a68e31500df3",
+    "bytes": 2635873
+  },
+  "material_manifest_sha256": "bf1065e6487429fa45486c589e734f79c55c682a37413b4def5b11c73a8d6344",
+  "initial_working_file_sha256": {
+    "case-index.json": "ea46c9e6bcb6744ec620514d590d16ffe8eacde801812bae5e2898219061a9a2",
+    "CHECKLIST.md": "19cc4742e2012b95ccbcb1f0a96d74b308c41c10921f6e47860f3e843ce360ca",
+    "DECISIONS.md": "958cc9e3997cfcaf3522a8ad0efa9f599c6e64716c8773e9dc8f64f5c69ee932",
+    "forms/assets.json": "6a3adb075f876a96ffd6cbc4ca10e4a8d70b3ca559af85c291477f5fabfe904c",
+    "forms/assignments.json": "74cc2f93bf4269430507eabfb7b512d0c4c395eb0b1cfa47dc24a9880c473726",
+    "forms/categories.json": "faa3201d4571f8748e5fc09b74ba28f65e6c882d22f2214bae2d28a528f8be4c",
+    "forms/courses.json": "106ed98d961d535165eac36dc3405c73f3513626a06cb81f5d84b9e34a9c7dfb",
+    "forms/decisions.json": "69573c19884aac869383bac6aebd34d3f63d99d7e9b9b65e5984ef7c76b61141",
+    "forms/research-decisions.json": "787b5e7a12f35cf2eb0f7dd18900eee60760e009ca2462a95b1de94f445953d9",
+    "forms/rooms.json": "6c6e64c668068ceedb19d554af0aed08614f0acad54165a635225b44304f65f4",
+    "forms/shipments.json": "f3c586d8352fc8c69beca93851905b6c92249d29bc302ad827c74849e418b1a4",
+    "packet-status.json": "fc03dcffee1955303cc9ef40e17773f28d51dfac29aa8038a04a747dc55dccf6",
+    "protocol-inputs.draft.json": "290a74feb2121097a13aa7d9c63045f1f4c3f289fdfb49f07ab4377eab6e962e",
+    "PROTOCOL.md": "701a73deefb02113e623364381835ad15ec0d021e4bccbda6916cf399efcf350",
+    "README.md": "69e26b8c8f39fed320f90bae80e9a6ff085f52be86bdc7c2b737476c4b83cf29",
+    "worksheets/assets.md": "a4c55a5c446799af6e3f66356aa48a9dd487bbe9c894e37566dfccfa6753b360",
+    "worksheets/categories.md": "912fdf155cb79eff0e3508e15f6e22302bf73dbdedc4c5f456da04a145fdc090",
+    "worksheets/courses.md": "af816f7b9a3fa5e240b7da6432071e61bb664fc4b0829aa38bde690d42ff3f35",
+    "worksheets/rooms.md": "3cd3294e6523dbb1d4e3cd0969417928663b1f7ddc386917a0b3bbc12a8a9889",
+    "worksheets/shipments.md": "2f017a3399a3005a422ce6ec874b03925c8ef2cd1efb5a52d1c542759a5b61a8"
+  },
+  "note": "Working form hashes describe initial pending forms only; recalculate actual reviewed artifacts in a new protocol after human inspection."
+}

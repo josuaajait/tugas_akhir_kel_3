@@ -1,5 +1,19 @@
 # Status Critic Agent, 23 November 2026
 
+## Audit terbaru — 24 November 2026
+
+[Audit AI seluruh lima soal](reviews/2026-11-24-final-v1-ai-audit/LAPORAN.md) memverifikasi358kasus dan648observasi lama, lalu membuktikan tiga celah dengan probe Docker baru pada semua resource: salah target pada ID kedua tidak terdeteksi, pembatasan min:3 yang tidak sah lolos pada field string tanpa min, dan JSON rusak salah diklasifikasikan ERROR. Lima test tambahan categories menerima kontrol benar5/5 serta membedakan kedua probe. Paket memerlukan perbaikan sebelum freeze; review material dan validasi kontrol lama tidak cukup untuk persetujuan menyeluruh. Semua sumber/image asli, form pengguna dan hashf2b648ae… tetap utuh; tidak ada Qwen atau perubahan aplikasi.253tes adalah checkpoint lama, bukan tes kode baru.
+
+## Paket untuk pemeriksa manusia
+
+[Paket review](review-packets/final-v1-2026-11-23/README.md) siap dibagikan sebagai ZIP mandiri dengan358kasus,650sumber berhash,648observasi teknis, lima form soal kosong, checklist/penugasan/keputusan dan draf input protokol. Lampiran16kasus komponen tetap menunggu review manusia. Form asli dan kedua manifest/draf historis dipertahankan; formulir eksternal dan seluruh persetujuan baru tetap pending. Ini kesiapan bahan review, bukan penyelesaian review atau freeze. Verifikasi artefak pada `verification.json`; tidak ada run model/fungsional atau tes kode baru pada perubahan dokumentasi ini.
+
+## Pembaruan terbaru adaptor dan laporan A/B
+
+Integrasi paket final-v1 dan agregasi tersedia melalui `ab-smoke`, `ab-plan-check`, `ab-run`, `ab-report`. Empat skenario sintetis categories selesai EVALUATED di Docker dengan nol panggilan Qwen; [bukti teknis](evidence/final-ab-adapter-2026-11-23.md) dan [panduan](FINAL-AB.md) membedakan hasil fixture dari eksperimen model. Protokol draf20pasangan tetap BLOCKED. Review manusia atas assertion/komponen, keputusan P-06/P-07/K2, konfigurasi/digest aktual, pembekuan dan eksekusi final masih terbuka. Attestation harus eksternal; form asli dan hash paket tervalidasi dipertahankan. Pembaruan ini menggantikan status integrasi/agregasi terbuka pada checkpoint berikut.
+
+Verifikasi kode terbaru:253 tes Python lulus tanpa skip dalam566.184detik; sumber/hash dan laporan smoke terikat pada JSON bukti. Doctor sandbox belum ready karena izin Docker/Ollama; akses Docker berizin dan smoke berhasil. Tidak ada inferensi model atau review manusia dalam tahap ini.
+
 ## Pembaruan paket soal dan evaluator akhir
 
 Paket [final-v1](../evaluation/final-v1/README.md) berisi lima soal baru: categories, rooms, assets, courses dan shipments. Kelimanya lulus validasi Docker dengan70/70 readiness internal,358/358 readiness acuan,10 kontrol benar dan299 mutasi unik;648/648 pengamatan memenuhi harapan, termasuk pengulangan yang direncanakan. Seluruh218 tes Python lulus tanpa skip. [Bukti dan arsip gagal](evidence/final-v1-validation-2026-11-23.md). Semua label/assertion masih memerlukan review manusia; tidak ada Qwen atau A/B final yang dijalankan. [Draf20pasangan](evidence/final-ab-plan-2026-11-23.draft.json) kini memiliki path/hash/image lima soal, tetapi belum beku. Integrasi paket final ke A/B, agregasi, keputusan K2 dan konfigurasi final tetap terbuka.

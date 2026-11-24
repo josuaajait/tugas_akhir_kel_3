@@ -1,0 +1,11 @@
+--- eloquent.php
++++ wrong_first.php
+@@ -6,7 +6,7 @@
+ // AI-prepared trusted validation control; not Qwen output or human-reviewed evidence.
+ class CourseController extends Controller
+ {
+-    private function load($id) { return Model::findOrFail($id); }
++    private function load($id) { Model::findOrFail($id); return Model::orderBy('id')->firstOrFail(); }
+     public function index()
+     {
+         $data = Model::all()->toArray();

@@ -1,0 +1,344 @@
+{
+  "status": "COMPLETE",
+  "qwen_calls": 0,
+  "base_image_id": "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+  "context": "C:\\Perkuliahan\\TA\\work\\final-v1-audit-2026-11-24\\additional-context-5d0b42a5fda74ea486e3fd37ef616975",
+  "image_tag": "critic-audit-20261124-4ebf5c5c589c4b539ecf4b9dd5a5bacc",
+  "test_source_sha256": "10eaf6813f62c7c39c1a686818907c9fd9d8417954c6486944dabcf4354a8ba8",
+  "configuration_sha256": "38ed2b7a97065e33a72a1724fcea61c8a7d21d1bfb79ab55e35c23e9e0157d5a",
+  "pin": {
+    "command": [
+      "docker",
+      "image",
+      "tag",
+      "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+      "critic-audit-base-a55a87c3942442128dfce0d5612e0801"
+    ],
+    "exit_code": 0
+  },
+  "build": {
+    "command": [
+      "docker",
+      "build",
+      "--pull=false",
+      "--network=none",
+      "--tag",
+      "critic-audit-20261124-4ebf5c5c589c4b539ecf4b9dd5a5bacc",
+      "C:\\Perkuliahan\\TA\\work\\final-v1-audit-2026-11-24\\additional-context-5d0b42a5fda74ea486e3fd37ef616975"
+    ],
+    "exit_code": 0
+  },
+  "readiness": {
+    "status": "READY",
+    "reason": "all_tests_passed",
+    "run_directory": "C:\\Perkuliahan\\TA\\work\\final-v1-audit-2026-11-24\\additional\\critic-1ba7105264474da0a506c70f1e89ec97",
+    "created_at": "2026-11-24T03:58:45.366313+00:00",
+    "image": "critic-audit-20261124-4ebf5c5c589c4b539ecf4b9dd5a5bacc",
+    "mode": "reference",
+    "command": [
+      "docker",
+      "run",
+      "--name",
+      "critic-1ba7105264474da0a506c70f1e89ec97",
+      "--pull=never",
+      "--network=none",
+      "--read-only",
+      "--log-driver=none",
+      "--cap-drop=ALL",
+      "--security-opt=no-new-privileges",
+      "--user=10001:10001",
+      "--memory=768m",
+      "--cpus=1",
+      "--pids-limit=128",
+      "--tmpfs",
+      "/work:rw,nosuid,nodev,size=512m,mode=1777",
+      "--tmpfs",
+      "/tmp:rw,nosuid,nodev,noexec,size=32m,mode=1777",
+      "sha256:84e8b7e146cf52150950a9996e3a5d3ade336238dfb8620ef69a4e72be7db265",
+      "audit-readiness"
+    ],
+    "timeout_seconds": 120,
+    "expected_tests": 5,
+    "image_id": "sha256:84e8b7e146cf52150950a9996e3a5d3ade336238dfb8620ef69a4e72be7db265",
+    "exit_code": 0,
+    "summary": {
+      "status": "PASSED",
+      "total": 5,
+      "passed": 5,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "test_show_second_id_returns_second_record",
+          "class": "Audit.AuditContractTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_update_second_id_preserves_first_record",
+          "class": "Audit.AuditContractTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_destroy_second_id_preserves_first_record",
+          "class": "Audit.AuditContractTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_store_one_character_strings_is_valid",
+          "class": "Audit.AuditContractTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_update_one_character_strings_is_valid",
+          "class": "Audit.AuditContractTest",
+          "outcome": "passed",
+          "evidence": ""
+        }
+      ]
+    },
+    "cleanup_exit_code": 0
+  },
+  "positive_control": {
+    "status": "PASSED_AUDIT",
+    "reason": "all_tests_passed",
+    "run_directory": "C:\\Perkuliahan\\TA\\work\\final-v1-audit-2026-11-24\\additional\\critic-bf493b0fb6164e66b4c266864a5d8b70",
+    "created_at": "2026-11-24T03:58:47.393367+00:00",
+    "image": "critic-audit-20261124-4ebf5c5c589c4b539ecf4b9dd5a5bacc",
+    "mode": "candidate",
+    "command": [
+      "docker",
+      "run",
+      "--name",
+      "critic-bf493b0fb6164e66b4c266864a5d8b70",
+      "--pull=never",
+      "--network=none",
+      "--read-only",
+      "--log-driver=none",
+      "--cap-drop=ALL",
+      "--security-opt=no-new-privileges",
+      "--user=10001:10001",
+      "--memory=768m",
+      "--cpus=1",
+      "--pids-limit=128",
+      "--tmpfs",
+      "/work:rw,nosuid,nodev,size=512m,mode=1777",
+      "--tmpfs",
+      "/tmp:rw,nosuid,nodev,noexec,size=32m,mode=1777",
+      "--mount",
+      "type=bind,src=C:\\Perkuliahan\\TA\\work\\final-v1-audit-2026-11-24\\additional\\critic-bf493b0fb6164e66b4c266864a5d8b70\\candidate.php,dst=/input/controller.php,readonly",
+      "sha256:84e8b7e146cf52150950a9996e3a5d3ade336238dfb8620ef69a4e72be7db265",
+      "audit-candidate"
+    ],
+    "timeout_seconds": 120,
+    "expected_tests": 5,
+    "candidate_sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168",
+    "image_id": "sha256:84e8b7e146cf52150950a9996e3a5d3ade336238dfb8620ef69a4e72be7db265",
+    "exit_code": 0,
+    "summary": {
+      "status": "PASSED",
+      "total": 5,
+      "passed": 5,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "test_show_second_id_returns_second_record",
+          "class": "Audit.AuditContractTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_update_second_id_preserves_first_record",
+          "class": "Audit.AuditContractTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_destroy_second_id_preserves_first_record",
+          "class": "Audit.AuditContractTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_store_one_character_strings_is_valid",
+          "class": "Audit.AuditContractTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_update_one_character_strings_is_valid",
+          "class": "Audit.AuditContractTest",
+          "outcome": "passed",
+          "evidence": ""
+        }
+      ]
+    },
+    "cleanup_exit_code": 0,
+    "readiness_directory": "C:\\Perkuliahan\\TA\\work\\final-v1-audit-2026-11-24\\additional\\critic-20797acaeb264df99bea3def2de93c7b"
+  },
+  "wrong_first": {
+    "status": "FAILED_AUDIT",
+    "reason": "tests_failed",
+    "run_directory": "C:\\Perkuliahan\\TA\\work\\final-v1-audit-2026-11-24\\additional\\critic-16dda10c7fff48698cdd39a78de8a202",
+    "created_at": "2026-11-24T03:58:49.144422+00:00",
+    "image": "critic-audit-20261124-4ebf5c5c589c4b539ecf4b9dd5a5bacc",
+    "mode": "candidate",
+    "command": [
+      "docker",
+      "run",
+      "--name",
+      "critic-16dda10c7fff48698cdd39a78de8a202",
+      "--pull=never",
+      "--network=none",
+      "--read-only",
+      "--log-driver=none",
+      "--cap-drop=ALL",
+      "--security-opt=no-new-privileges",
+      "--user=10001:10001",
+      "--memory=768m",
+      "--cpus=1",
+      "--pids-limit=128",
+      "--tmpfs",
+      "/work:rw,nosuid,nodev,size=512m,mode=1777",
+      "--tmpfs",
+      "/tmp:rw,nosuid,nodev,noexec,size=32m,mode=1777",
+      "--mount",
+      "type=bind,src=C:\\Perkuliahan\\TA\\work\\final-v1-audit-2026-11-24\\additional\\critic-16dda10c7fff48698cdd39a78de8a202\\candidate.php,dst=/input/controller.php,readonly",
+      "sha256:84e8b7e146cf52150950a9996e3a5d3ade336238dfb8620ef69a4e72be7db265",
+      "audit-candidate"
+    ],
+    "timeout_seconds": 120,
+    "expected_tests": 5,
+    "candidate_sha256": "08d5be2e798f26afb55d9543dc58a5be37e0a505fe6e4ddc361574768151c36c",
+    "image_id": "sha256:84e8b7e146cf52150950a9996e3a5d3ade336238dfb8620ef69a4e72be7db265",
+    "exit_code": 1,
+    "summary": {
+      "status": "FAILED",
+      "total": 5,
+      "passed": 1,
+      "failure": 4,
+      "error": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "test_show_second_id_returns_second_record",
+          "class": "Audit.AuditContractTest",
+          "outcome": "failure",
+          "evidence": "\nAudit\\AuditContractTest::test_show_second_id_returns_second_record\nRequested second ID, got another record\nFailed asserting that 1 is identical to 2.\n\n/work/app/audit/AuditContractTest.php:17"
+        },
+        {
+          "name": "test_update_second_id_preserves_first_record",
+          "class": "Audit.AuditContractTest",
+          "outcome": "failure",
+          "evidence": "\nAudit\\AuditContractTest::test_update_second_id_preserves_first_record\nUpdate must return requested second ID\nFailed asserting that 1 is identical to 2.\n\n/work/app/audit/AuditContractTest.php:24"
+        },
+        {
+          "name": "test_destroy_second_id_preserves_first_record",
+          "class": "Audit.AuditContractTest",
+          "outcome": "failure",
+          "evidence": "\nAudit\\AuditContractTest::test_destroy_second_id_preserves_first_record\nFailed asserting that a row in the table [categories] does not match the attributes {\n    \"id\": 2\n}.\n\nFound similar results: [\n    {\n        \"id\": 2\n    }\n].\n\n/work/app/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithDatabase.php:79\n/work/app/audit/AuditContractTest.php:32"
+        },
+        {
+          "name": "test_store_one_character_strings_is_valid",
+          "class": "Audit.AuditContractTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_update_one_character_strings_is_valid",
+          "class": "Audit.AuditContractTest",
+          "outcome": "failure",
+          "evidence": "\nAudit\\AuditContractTest::test_update_one_character_strings_is_valid\nFailed asserting that 1 is identical to 2.\n\n/work/app/audit/AuditContractTest.php:43"
+        }
+      ]
+    },
+    "cleanup_exit_code": 0,
+    "readiness_directory": "C:\\Perkuliahan\\TA\\work\\final-v1-audit-2026-11-24\\additional\\critic-2640db73ccfb4807b312691b170cc1e0"
+  },
+  "overstrict_min3": {
+    "status": "FAILED_AUDIT",
+    "reason": "tests_failed",
+    "run_directory": "C:\\Perkuliahan\\TA\\work\\final-v1-audit-2026-11-24\\additional\\critic-a6b70258b89a4778bf92070648606b0b",
+    "created_at": "2026-11-24T03:58:50.669610+00:00",
+    "image": "critic-audit-20261124-4ebf5c5c589c4b539ecf4b9dd5a5bacc",
+    "mode": "candidate",
+    "command": [
+      "docker",
+      "run",
+      "--name",
+      "critic-a6b70258b89a4778bf92070648606b0b",
+      "--pull=never",
+      "--network=none",
+      "--read-only",
+      "--log-driver=none",
+      "--cap-drop=ALL",
+      "--security-opt=no-new-privileges",
+      "--user=10001:10001",
+      "--memory=768m",
+      "--cpus=1",
+      "--pids-limit=128",
+      "--tmpfs",
+      "/work:rw,nosuid,nodev,size=512m,mode=1777",
+      "--tmpfs",
+      "/tmp:rw,nosuid,nodev,noexec,size=32m,mode=1777",
+      "--mount",
+      "type=bind,src=C:\\Perkuliahan\\TA\\work\\final-v1-audit-2026-11-24\\additional\\critic-a6b70258b89a4778bf92070648606b0b\\candidate.php,dst=/input/controller.php,readonly",
+      "sha256:84e8b7e146cf52150950a9996e3a5d3ade336238dfb8620ef69a4e72be7db265",
+      "audit-candidate"
+    ],
+    "timeout_seconds": 120,
+    "expected_tests": 5,
+    "candidate_sha256": "092f956219d272271a5b6c611a40683973187462c72a6de9c16c7e4d680ba0d8",
+    "image_id": "sha256:84e8b7e146cf52150950a9996e3a5d3ade336238dfb8620ef69a4e72be7db265",
+    "exit_code": 1,
+    "summary": {
+      "status": "FAILED",
+      "total": 5,
+      "passed": 3,
+      "failure": 2,
+      "error": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "test_show_second_id_returns_second_record",
+          "class": "Audit.AuditContractTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_update_second_id_preserves_first_record",
+          "class": "Audit.AuditContractTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_destroy_second_id_preserves_first_record",
+          "class": "Audit.AuditContractTest",
+          "outcome": "passed",
+          "evidence": ""
+        },
+        {
+          "name": "test_store_one_character_strings_is_valid",
+          "class": "Audit.AuditContractTest",
+          "outcome": "failure",
+          "evidence": "\nAudit\\AuditContractTest::test_store_one_character_strings_is_valid\nExpected response status code [201] but received 422.\nFailed asserting that 422 is identical to 201.\n\nThe following errors occurred during the last request:\n\n{\n    \"message\": \"The name field must be at least 3 characters. (and 1 more error)\",\n    \"errors\": {\n        \"name\": [\n            \"The name field must be at least 3 characters.\"\n        ],\n        \"description\": [\n            \"The description field must be at least 3 characters.\"\n        ]\n    }\n}\n\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponseAssert.php:45\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponse.php:175\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/Concerns/AssertsStatusCodes.php:26\n/work/app/audit/AuditContractTest.php:37"
+        },
+        {
+          "name": "test_update_one_character_strings_is_valid",
+          "class": "Audit.AuditContractTest",
+          "outcome": "failure",
+          "evidence": "\nAudit\\AuditContractTest::test_update_one_character_strings_is_valid\nExpected response status code [200] but received 422.\nFailed asserting that 422 is identical to 200.\n\nThe following errors occurred during the last request:\n\n{\n    \"message\": \"The name field must be at least 3 characters. (and 1 more error)\",\n    \"errors\": {\n        \"name\": [\n            \"The name field must be at least 3 characters.\"\n        ],\n        \"description\": [\n            \"The description field must be at least 3 characters.\"\n        ]\n    }\n}\n\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponseAssert.php:45\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/TestResponse.php:175\n/work/app/vendor/laravel/framework/src/Illuminate/Testing/Concerns/AssertsStatusCodes.php:16\n/work/app/audit/AuditContractTest.php:42"
+        }
+      ]
+    },
+    "cleanup_exit_code": 0,
+    "readiness_directory": "C:\\Perkuliahan\\TA\\work\\final-v1-audit-2026-11-24\\additional\\critic-95f9be2882644fe2a3c88fd0be6f22b6"
+  },
+  "temporary_pin_cleanup_exit_code": 0
+}

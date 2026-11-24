@@ -5,6 +5,13 @@ from .prompts import build_prompt
 
 
 def _method(name):
+    final=re.fullmatch(r'test_contract with data set "([A-Za-z0-9_]+)"',name)
+    if final:
+        case=final.group(1)
+        if case in ('index','store','show','update','destroy'):return case
+        if case.startswith('POST_missing_'):return 'store'
+        if case.startswith('PUT_missing_'):return 'update'
+        return {'missing_GET':'show','missing_PUT':'update','missing_DELETE':'destroy'}.get(case)
     required = re.search(r'"((store|update))_([a-z][a-z0-9_]*)"', name)
     if required:
         return required.group(1)

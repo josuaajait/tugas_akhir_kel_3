@@ -31,6 +31,9 @@ from .ab import run_ab
 from .console import Console, current_console
 from .final_validation import validate_final
 from .final_package import RESOURCES as FINAL_RESOURCES
+from .ab_protocol import check_protocol, execute_protocol_pair
+from .ab_final import run_synthetic_pair
+from .ab_report import ab_report
 
 
 def emit(value):
@@ -66,6 +69,21 @@ def _main(argv, console) -> int:
     parser = PresentationParser(prog='critic-agent', description='Critic Agent untuk controller Laravel.')
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('doctor', help='Periksa Python, PHP, Docker, dan Ollama.')
+    ab_smoke=sub.add_parser('ab-smoke',help='Uji adaptor final dengan fixture sintetis, tanpa Ollama.')
+    ab_smoke.add_argument('--resource',choices=FINAL_RESOURCES,default='categories')
+    ab_smoke.add_argument('--scenario',choices=('repair','format_fail','syntax_fail','already_valid'),default='repair')
+    ab_smoke.add_argument('--output',type=Path,default=Path('runs/ab-synthetic'))
+    ab_smoke.add_argument('--order-seed',type=int,default=7)
+    ab_smoke.add_argument('--timeout',type=float,default=120)
+    ab_check=sub.add_parser('ab-plan-check',help='Periksa integritas/gerbang protokol A/B tanpa model.')
+    ab_check.add_argument('manifest',type=Path)
+    ab_run=sub.add_parser('ab-run',help='Jalankan satu slot A/B dari protokol final yang sudah beku.')
+    ab_run.add_argument('manifest',type=Path)
+    ab_run.add_argument('--pair',required=True)
+    ab_run.add_argument('--output',type=Path,default=Path('runs/ab-final'))
+    ab_summary=sub.add_parser('ab-report',help='Agregasi arsip A/B per soal/kondisi/cohort tanpa model.')
+    ab_summary.add_argument('runs',type=Path)
+    ab_summary.add_argument('--plan',type=Path)
     final = sub.add_parser('final-validate', help='Validasi paket soal/evaluator final-v1 tanpa Qwen; bukan pembekuan.')
     final.add_argument('--package', choices=('final-v1',), required=True)
     final.add_argument('--resource', choices=FINAL_RESOURCES, nargs='+')
@@ -248,6 +266,23 @@ def _main(argv, console) -> int:
                             'pilot-report', 'component-report', 'freeze-draft', 'freeze-check'):
         console.progress(f'Menjalankan {args.command}...')
     try:
+        if args.command=='ab-report':
+            emit(ab_report(args.runs,plan=args.plan));return 0
+        if args.command=='ab-plan-check':
+            checked=check_protocol(args.manifest)
+            emit({k:v for k,v in checked.items() if k!='plan'})
+            return 0 if checked['status']=='READY' else 3
+        if args.command=='ab-run':
+            result=execute_protocol_pair(args.manifest,args.pair,args.output)
+            emit(result)
+            return 0 if result['status']=='EVALUATED' else 3
+        if args.command=='ab-smoke':
+            folder=run_synthetic_pair(args.resource,args.output,scenario=args.scenario,
+                                      order_seed=args.order_seed,timeout=args.timeout)
+            result=json.loads((folder/'pair.json').read_bytes())
+            emit({k:result.get(k) for k in ('pair_id','status','origin','package_sha256','n_ab','delta_final_pp','qwen_calls')}|
+                 {'run_directory':str(folder)})
+            return 0 if result['status']=='EVALUATED' else 3
         if args.command == 'final-validate':
             folder = validate_final(args.output, resources=args.resource, build=args.build, local_only=args.local_only,
                                     base_image=args.base_image, timeout=args.timeout, build_timeout=args.build_timeout)

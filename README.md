@@ -10,7 +10,11 @@ Harness acuan telah dibuktikan melalui terminal pengguna dengan 21/21 test lulus
 
 ## Yang tersedia
 
+**Temuan terbaru24November:** [audit seluruh soal](docs/reviews/2026-11-24-final-v1-ai-audit/LAPORAN.md) membuktikan tiga celah evaluator yang perlu ditangani sebelum freeze: target ID kedua, string pendek yang sah dan klasifikasi JSON rusak. Paket serta bukti lama dipertahankan; status validasi kontrol di bawah tidak berarti cakupan evaluator lengkap.
+
 - `final-validate --package final-v1` menyiapkan bukti validasi evaluator untuk lima soal baru: categories, rooms, assets, courses dan shipments. Paket memiliki70 kasus internal,358 kasus acuan, dua gaya kontrol benar per soal,299 mutasi target, matriks dan formulir review kosong. Mode `--local-only` tidak mengeksekusi controller; `--build` memvalidasi di Docker tanpa Qwen. Verifikasi23November:648/648 pengamatan memenuhi harapan dan218 tes Python lulus. [Soal, perintah, dan arti hasil](evaluation/final-v1/README.md) · [Bukti](docs/evidence/final-v1-validation-2026-11-23.md). Paket ini belum merupakan pembekuan atau pelaksanaan A/B akhir.
+- `ab-smoke` menguji integrasi final-v1 dengan fixture sintetis tanpa Qwen; `ab-plan-check` memeriksa gerbang protokol; `ab-run` mengeksekusi satu slot protokol beku; `ab-report` memverifikasi arsip dan menghitung hasil per soal/kondisi. Integrasi dan agregasi sudah tersedia, sedangkan review manusia, keputusan K2 dan pembekuan masih diperlukan. Form asli paket tetap kosong; attestation disimpan terpisah agar hash paket tetap sama. [Panduan A/B final](docs/FINAL-AB.md) · [Bukti teknis](docs/evidence/final-ab-adapter-2026-11-23.md).
+- [Paket review manusia](docs/review-packets/final-v1-2026-11-23/README.md) menyediakan358kasus pemeriksaan, lima form eksternal kosong, checklist/penugasan/keputusan, draf input protokol dan [ZIP mandiri](docs/review-packets/final-v1-2026-11-23/reviewer-bundle.zip) berisi sumber serta bukti. Lampiran review komponen16kasus tetap terpisah; seluruh persetujuan manusia masih pending.
 - Validasi spesifikasi JSON yang ketat dan prompt dengan kontrak Laravel tetap.
 - Client Ollama lokal dengan seed/suhu tercatat, timeout, dan satu retry gangguan komunikasi.
 - Arsip unik tiap generasi: spesifikasi, prompt, respons mentah yang diterima, kode, hash, dan manifest; termasuk kegagalan ekstraksi/layanan.

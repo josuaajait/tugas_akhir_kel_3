@@ -1,0 +1,13 @@
+{
+  "status": "pending",
+  "human_author": null,
+  "reviewer": null,
+  "reviewed_at": null,
+  "fr20": null,
+  "component_review": null,
+  "k2": {
+    "precision_min_percent": null,
+    "recall_min_percent": null,
+    "fpr_max_percent": null
+  }
+}

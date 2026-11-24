@@ -1,0 +1,51 @@
+{
+  "prepared_by": "OpenAI Codex",
+  "status": "pending",
+  "assignments": [
+    {
+      "artifact": "categories",
+      "human_author": null,
+      "reviewer": null,
+      "assigned_at": null,
+      "assignment_confirmed": false,
+      "status": "pending",
+      "completed_at": null
+    },
+    {
+      "artifact": "rooms",
+      "human_author": null,
+      "reviewer": null,
+      "assigned_at": null,
+      "assignment_confirmed": false,
+      "status": "pending",
+      "completed_at": null
+    },
+    {
+      "artifact": "assets",
+      "human_author": null,
+      "reviewer": null,
+      "assigned_at": null,
+      "assignment_confirmed": false,
+      "status": "pending",
+      "completed_at": null
+    },
+    {
+      "artifact": "courses",
+      "human_author": null,
+      "reviewer": null,
+      "assigned_at": null,
+      "assignment_confirmed": false,
+      "status": "pending",
+      "completed_at": null
+    },
+    {
+      "artifact": "shipments",
+      "human_author": null,
+      "reviewer": null,
+      "assigned_at": null,
+      "assignment_confirmed": false,
+      "status": "pending",
+      "completed_at": null
+    }
+  ]
+}

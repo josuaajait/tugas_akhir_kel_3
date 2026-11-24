@@ -1,0 +1,664 @@
+{
+  "schema_version": "1.0",
+  "prepared_on": "2026-11-23",
+  "prepared_by": "OpenAI Codex",
+  "status": "TECHNICALLY_VERIFIED",
+  "ready_for_final": false,
+  "origin": "synthetic_validation",
+  "application_version": "0.5.0",
+  "component_protocol_version": "1.0",
+  "ab_protocol_version": "1.0",
+  "package": "final-v1",
+  "package_sha256": "f2b648aeb042f4edcbb46b1b0160c87f93c326d084009cbc6de2f0f121e4a9b7",
+  "engine_source_sha256": "020512666aaf479b8672dd4d8a00c82fa4cca30cded07bbf4236fa4ba3828a64",
+  "engine_sources": {
+    "critic_agent/__init__.py": "053eb360c2365c2695f3478f08d240fc7dc1e5cfbcd1b499a4565c5d048f5eed",
+    "critic_agent/__main__.py": "740c9cd5e5df223dce911021881f645dde6990a8221e44eadf23504cb3833346",
+    "critic_agent/ab.py": "297aad3c5501dc49b8ba2f6219bd3fe37fcd368f156bab8a8090c3b6b279015b",
+    "critic_agent/ab_archive.py": "a8f0852954d26e5a4112fbb1685ab3a34970a19c6667c710825990051558ab3e",
+    "critic_agent/ab_final.py": "a8181e8e24f294ab4d8645bec29e888c2473f13fefbd498e027a71df21719793",
+    "critic_agent/ab_protocol.py": "213eda4b2e2f7330a0380c11195df4493da0711fcf5dd5b4af26cd7c0adf10fa",
+    "critic_agent/ab_report.py": "50ec3a4f81662e41f90d914458af5b0051124a88c0ada0b7b1bea3793f8900f3",
+    "critic_agent/cli.py": "13e79856077634db1ea7a2d8ca23f8af43d8f0c987eff56222af9c028974c7d3",
+    "critic_agent/component_corpus.py": "a092f937e9a871187424f06474584dcc0da9dd920e0fc6ae7f23f693ef7fa948",
+    "critic_agent/component_evaluation.py": "d7030bf48f34c7a853e598716ba1aaad61f5adbf4ff3314718c2efd843caf4eb",
+    "critic_agent/component_report.py": "d725769bf9cae844a9745cb128ac1b5b1f0ede7034a16ad77627ffcdbc89f085",
+    "critic_agent/console.py": "69f432dd62633e1ad3f383d96bc06e2e577e3fff16c8651ced59483e2d3a7ae9",
+    "critic_agent/doctor.py": "66f977c03118c9906ae41bc524aac0e34899ccf8666f7db185c86f1242b0e7bc",
+    "critic_agent/feedback.py": "4b3e93d5f40c06e5d8384b76161ca34ff27ea4f75b5c65ded2ed8310c93af0c3",
+    "critic_agent/final_controls.py": "8438ec30075afceea890712dcb61cedc0a61ee9c0b98b6e6146fe2d07656995d",
+    "critic_agent/final_package.py": "c67c707e9ebdf3631db9f06d4fa914d87610be64f792c7de043f5d79f8cd4b92",
+    "critic_agent/final_sandbox.py": "27cede95b30b79011bd10784dded0747e2e40a17169c325d951ee3c48fd3876f",
+    "critic_agent/final_validation.py": "956f178e27386fab38e4404e8cb55b15935cee8209391ea2a63ecd2b507a4261",
+    "critic_agent/freeze_draft.py": "bd236646d76b52e481b6646b720fc9215450d587b1f6313cc260b49fee092218",
+    "critic_agent/generation.py": "524277819362b3a4d1870d4f6e69a16c79b426cc114d0bfb54737e554f082b69",
+    "critic_agent/interactive.py": "ec97bfe68afd75fc1771ef4d53141194911c86ee9c9d6a59b759cc19943846ad",
+    "critic_agent/ollama.py": "0254326e43baadc3eef98cd127df25a0be35d98b7b79f4f904db3794f1e82c9e",
+    "critic_agent/orchestrator.py": "097ebb9e629f3c3f454accdb1108aead2e73a305260d19df7e82b79acbc8ae6e",
+    "critic_agent/pilot.py": "5f23520edb3b627228ca9f79b72600a95ca71f8491239e783ec12ee3dcb8eb53",
+    "critic_agent/pilot_metadata.py": "68414f5851b104c51783cfd115e5e8991c6a9651d5ba0ee325b9f517d65ebb15",
+    "critic_agent/pilot_reference_report.py": "59867fd408e6c2b02093ce211db8f6c443619e5def41253842946b3344ed45c2",
+    "critic_agent/pilot_report.py": "474875373d29b827222402c5ca8ca3c11b4edb7257070e0b91fdde3a3f312107",
+    "critic_agent/pilot_runner.py": "3e4f7e958b77b6e034b3035b30949d14f998db46defbacab0b5963e15830dc78",
+    "critic_agent/process.py": "3a2caf0a7b5020475f6a765ad146ea8f7abf708c6a56cf5cc82bd513dfaa152c",
+    "critic_agent/prompts.py": "a0db2959eeb23b8db8c3f0a87d967667cc8f2e63af61b0fac4e74419cbbe327b",
+    "critic_agent/provenance.py": "0c425a7e429caee03e3ddbd639b3436584d3d600d9dec2a69975feeefb399616",
+    "critic_agent/reference.py": "55a7bdc2d76636889df44b0a05f465ce719aef72e4c26669f47d5a163533452c",
+    "critic_agent/resource_reference.py": "b7406e021c6a953ff254e87ba0342edc726722cffc112a1968c9d82570a0f270",
+    "critic_agent/resources.py": "33f4be9fd7db2a30da6ca6d6ed207173f40d5efb4b368980f08109fc91d274ba",
+    "critic_agent/sandbox.py": "bc7b3c2e06cf97d75f9248bbdf49622b381bda6073008e97319980ae3bf18472",
+    "critic_agent/spec.py": "bd2a51e8aa20d628c78510f97a74b1cc9d48b18c9fd4615cf94a9a00b10670d9",
+    "critic_agent/static.py": "d2596230f96c3bddec8109d8b81aaec1bd698e772d032fef7d9970ae9359fa7a"
+  },
+  "python_tests": {
+    "command": "python -m unittest discover -s tests -v",
+    "passed": 253,
+    "seconds": 566.184,
+    "skipped": 0,
+    "log": "work/ab-final/final-post-review-tests.log",
+    "sha256": "6067e05f17785647e0f93a1484cced39d01198300942d962fce37c5eaaf33a96"
+  },
+  "synthetic_model": "synthetic-fixture-final-v1",
+  "qwen_generation_calls": 0,
+  "logical_fixture_generation_calls": 12,
+  "smoke_counts": {
+    "EVALUATED": 4,
+    "ERROR": 0,
+    "INCOMPLETE": 0,
+    "INVALID": 0,
+    "AMBIGUOUS": 0
+  },
+  "smokes": [
+    {
+      "scenario": "repair",
+      "pair_id": "ab_1b1cacb3f6c44e1e87128b20b1c1c4e8",
+      "order": [
+        "A",
+        "B"
+      ],
+      "status": "EVALUATED",
+      "n_ab": 1,
+      "delta_final_pp": 9.523809523809518,
+      "report": "runs/ab-synthetic-2026-11-23/ab_1b1cacb3f6c44e1e87128b20b1c1c4e8/pair.json",
+      "report_sha256": "2b7f9339cfb0f37c37e6cbffbb2b000fa38ca73f903b71b227f46942f49c5a56",
+      "initial_code_sha256": "460793ac12133c57bb02e4160f10a5e0570367fc36152816b347da5524ec2369",
+      "internal_image_id": "sha256:827e2000da7baaac7d5075d81067d2f66ee627b123340b7d1ca233e9a8b37380",
+      "reference_image_id": "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+      "branches": {
+        "A": {
+          "status": "LOLOS",
+          "reason": "all_checks_passed",
+          "revision_count": 1,
+          "evaluation": {
+            "image_id": "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+            "suite_sha256": "86fdd24248e308ecdaa04feb0d3f961401915f728bbc7427676bbc5a726627b1",
+            "total": 42,
+            "initial": {
+              "passed": 38,
+              "total": 42,
+              "pass_rate": 90.47619047619048,
+              "status": "FAILED_REFERENCE",
+              "code_sha256": "460793ac12133c57bb02e4160f10a5e0570367fc36152816b347da5524ec2369"
+            },
+            "final": {
+              "passed": 42,
+              "total": 42,
+              "pass_rate": 100.0,
+              "status": "PASSED_REFERENCE",
+              "code_sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+            },
+            "uplift_pp": 9.523809523809518
+          },
+          "cost": {
+            "model_calls": 1,
+            "model_calls_with_transport_trace": 0,
+            "http_attempts_observed": null,
+            "http_retries_observed": null,
+            "responses_with_token_counts": 0,
+            "prompt_tokens_observed": null,
+            "output_tokens_observed": null,
+            "attempt_seconds": 4.482574
+          }
+        },
+        "B": {
+          "status": "BELUM LOLOS",
+          "reason": "identical_code",
+          "revision_count": 1,
+          "evaluation": {
+            "image_id": "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+            "suite_sha256": "86fdd24248e308ecdaa04feb0d3f961401915f728bbc7427676bbc5a726627b1",
+            "total": 42,
+            "initial": {
+              "passed": 38,
+              "total": 42,
+              "pass_rate": 90.47619047619048,
+              "status": "FAILED_REFERENCE",
+              "code_sha256": "460793ac12133c57bb02e4160f10a5e0570367fc36152816b347da5524ec2369"
+            },
+            "final": {
+              "passed": 38,
+              "total": 42,
+              "pass_rate": 90.47619047619048,
+              "status": "FAILED_REFERENCE",
+              "code_sha256": "460793ac12133c57bb02e4160f10a5e0570367fc36152816b347da5524ec2369"
+            },
+            "uplift_pp": 0.0
+          },
+          "cost": {
+            "model_calls": 1,
+            "model_calls_with_transport_trace": 0,
+            "http_attempts_observed": null,
+            "http_retries_observed": null,
+            "responses_with_token_counts": 0,
+            "prompt_tokens_observed": null,
+            "output_tokens_observed": null,
+            "attempt_seconds": 2.348024
+          }
+        }
+      },
+      "cost": {
+        "logical_generation_calls": 3,
+        "qwen_calls": 0,
+        "receipts_with_cost": 3,
+        "prompt_tokens_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "output_tokens_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "http_attempts_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "http_retries_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "attempt_seconds": {
+          "value": 7.4021859999999995,
+          "receipts_with_value": 3,
+          "receipts_total": 3
+        }
+      }
+    },
+    {
+      "scenario": "syntax_fail",
+      "pair_id": "ab_b378318adc134a2592308b60fc255b57",
+      "order": [
+        "B",
+        "A"
+      ],
+      "status": "EVALUATED",
+      "n_ab": 1,
+      "delta_final_pp": 100.0,
+      "report": "runs/ab-synthetic-2026-11-23/ab_b378318adc134a2592308b60fc255b57/pair.json",
+      "report_sha256": "ac5faca6df1280de8a5f0e7617a476463b64a43aa83a86940789082495716066",
+      "initial_code_sha256": "66f3b0f121c2feb1d5f47469b36912ebaae8add122cadf4968b8bf6fd63d109f",
+      "internal_image_id": "sha256:827e2000da7baaac7d5075d81067d2f66ee627b123340b7d1ca233e9a8b37380",
+      "reference_image_id": "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+      "branches": {
+        "A": {
+          "status": "LOLOS",
+          "reason": "all_checks_passed",
+          "revision_count": 1,
+          "evaluation": {
+            "image_id": "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+            "suite_sha256": "86fdd24248e308ecdaa04feb0d3f961401915f728bbc7427676bbc5a726627b1",
+            "total": 42,
+            "initial": {
+              "passed": 0,
+              "total": 42,
+              "pass_rate": 0.0,
+              "status": "UNLOADABLE_CODE",
+              "code_sha256": "66f3b0f121c2feb1d5f47469b36912ebaae8add122cadf4968b8bf6fd63d109f"
+            },
+            "final": {
+              "passed": 42,
+              "total": 42,
+              "pass_rate": 100.0,
+              "status": "PASSED_REFERENCE",
+              "code_sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+            },
+            "uplift_pp": 100.0
+          },
+          "cost": {
+            "model_calls": 1,
+            "model_calls_with_transport_trace": 0,
+            "http_attempts_observed": null,
+            "http_retries_observed": null,
+            "responses_with_token_counts": 0,
+            "prompt_tokens_observed": null,
+            "output_tokens_observed": null,
+            "attempt_seconds": 2.280958
+          }
+        },
+        "B": {
+          "status": "BELUM LOLOS",
+          "reason": "identical_code",
+          "revision_count": 1,
+          "evaluation": {
+            "image_id": "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+            "suite_sha256": "86fdd24248e308ecdaa04feb0d3f961401915f728bbc7427676bbc5a726627b1",
+            "total": 42,
+            "initial": {
+              "passed": 0,
+              "total": 42,
+              "pass_rate": 0.0,
+              "status": "UNLOADABLE_CODE",
+              "code_sha256": "66f3b0f121c2feb1d5f47469b36912ebaae8add122cadf4968b8bf6fd63d109f"
+            },
+            "final": {
+              "passed": 0,
+              "total": 42,
+              "pass_rate": 0.0,
+              "status": "UNLOADABLE_CODE",
+              "code_sha256": "66f3b0f121c2feb1d5f47469b36912ebaae8add122cadf4968b8bf6fd63d109f"
+            },
+            "uplift_pp": 0.0
+          },
+          "cost": {
+            "model_calls": 1,
+            "model_calls_with_transport_trace": 0,
+            "http_attempts_observed": null,
+            "http_retries_observed": null,
+            "responses_with_token_counts": 0,
+            "prompt_tokens_observed": null,
+            "output_tokens_observed": null,
+            "attempt_seconds": 0.115777
+          }
+        }
+      },
+      "cost": {
+        "logical_generation_calls": 3,
+        "qwen_calls": 0,
+        "receipts_with_cost": 3,
+        "prompt_tokens_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "output_tokens_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "http_attempts_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "http_retries_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "attempt_seconds": {
+          "value": 2.726349,
+          "receipts_with_value": 3,
+          "receipts_total": 3
+        }
+      }
+    },
+    {
+      "scenario": "format_fail",
+      "pair_id": "ab_fa4329ba9c5c48bfbe3fe6f2df030e50",
+      "order": [
+        "A",
+        "B"
+      ],
+      "status": "EVALUATED",
+      "n_ab": 1,
+      "delta_final_pp": 100.0,
+      "report": "runs/ab-synthetic-2026-11-23/ab_fa4329ba9c5c48bfbe3fe6f2df030e50/pair.json",
+      "report_sha256": "f16e44a1094886eb49d27c516d2e5d1cad21d9563097140dde4836e8efeb98ed",
+      "initial_code_sha256": null,
+      "internal_image_id": "sha256:827e2000da7baaac7d5075d81067d2f66ee627b123340b7d1ca233e9a8b37380",
+      "reference_image_id": "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+      "branches": {
+        "A": {
+          "status": "LOLOS",
+          "reason": "all_checks_passed",
+          "revision_count": 1,
+          "evaluation": {
+            "image_id": "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+            "suite_sha256": "86fdd24248e308ecdaa04feb0d3f961401915f728bbc7427676bbc5a726627b1",
+            "total": 42,
+            "initial": {
+              "passed": 0,
+              "total": 42,
+              "pass_rate": 0.0,
+              "status": "UNAVAILABLE_CODE",
+              "code_sha256": null
+            },
+            "final": {
+              "passed": 42,
+              "total": 42,
+              "pass_rate": 100.0,
+              "status": "PASSED_REFERENCE",
+              "code_sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+            },
+            "uplift_pp": 100.0
+          },
+          "cost": {
+            "model_calls": 1,
+            "model_calls_with_transport_trace": 0,
+            "http_attempts_observed": null,
+            "http_retries_observed": null,
+            "responses_with_token_counts": 0,
+            "prompt_tokens_observed": null,
+            "output_tokens_observed": null,
+            "attempt_seconds": 1.844096
+          }
+        },
+        "B": {
+          "status": "BELUM LOLOS",
+          "reason": "max_revisions",
+          "revision_count": 3,
+          "evaluation": {
+            "image_id": "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+            "suite_sha256": "86fdd24248e308ecdaa04feb0d3f961401915f728bbc7427676bbc5a726627b1",
+            "total": 42,
+            "initial": {
+              "passed": 0,
+              "total": 42,
+              "pass_rate": 0.0,
+              "status": "UNAVAILABLE_CODE",
+              "code_sha256": null
+            },
+            "final": {
+              "passed": 0,
+              "total": 42,
+              "pass_rate": 0.0,
+              "status": "UNAVAILABLE_CODE",
+              "code_sha256": null
+            },
+            "uplift_pp": 0.0
+          },
+          "cost": {
+            "model_calls": 3,
+            "model_calls_with_transport_trace": 0,
+            "http_attempts_observed": null,
+            "http_retries_observed": null,
+            "responses_with_token_counts": 0,
+            "prompt_tokens_observed": null,
+            "output_tokens_observed": null,
+            "attempt_seconds": 0.028446
+          }
+        }
+      },
+      "cost": {
+        "logical_generation_calls": 5,
+        "qwen_calls": 0,
+        "receipts_with_cost": 3,
+        "prompt_tokens_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "output_tokens_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "http_attempts_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "http_retries_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "attempt_seconds": {
+          "value": 2.159177,
+          "receipts_with_value": 3,
+          "receipts_total": 3
+        }
+      }
+    },
+    {
+      "scenario": "already_valid",
+      "pair_id": "ab_ffa5a06155524aaeafb4651043753bdd",
+      "order": [
+        "A",
+        "B"
+      ],
+      "status": "EVALUATED",
+      "n_ab": 1,
+      "delta_final_pp": 0.0,
+      "report": "runs/ab-synthetic-2026-11-23/ab_ffa5a06155524aaeafb4651043753bdd/pair.json",
+      "report_sha256": "2ccb76c34bec66f2b6d86684aba588c2d049aab638e04e84b322076ee3c259d2",
+      "initial_code_sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73",
+      "internal_image_id": "sha256:827e2000da7baaac7d5075d81067d2f66ee627b123340b7d1ca233e9a8b37380",
+      "reference_image_id": "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+      "branches": {
+        "A": {
+          "status": "LOLOS",
+          "reason": "all_checks_passed",
+          "revision_count": 0,
+          "evaluation": {
+            "image_id": "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+            "suite_sha256": "86fdd24248e308ecdaa04feb0d3f961401915f728bbc7427676bbc5a726627b1",
+            "total": 42,
+            "initial": {
+              "passed": 42,
+              "total": 42,
+              "pass_rate": 100.0,
+              "status": "PASSED_REFERENCE",
+              "code_sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+            },
+            "final": {
+              "passed": 42,
+              "total": 42,
+              "pass_rate": 100.0,
+              "status": "PASSED_REFERENCE",
+              "code_sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+            },
+            "uplift_pp": 0.0
+          },
+          "cost": {
+            "model_calls": 0,
+            "model_calls_with_transport_trace": 0,
+            "http_attempts_observed": null,
+            "http_retries_observed": null,
+            "responses_with_token_counts": 0,
+            "prompt_tokens_observed": null,
+            "output_tokens_observed": null,
+            "attempt_seconds": 2.234402
+          }
+        },
+        "B": {
+          "status": "LOLOS",
+          "reason": "all_checks_passed",
+          "revision_count": 0,
+          "evaluation": {
+            "image_id": "sha256:10b73b9117c92f8d02f3c97b0764b7fd2fa7591049e8a5ee21bde0e6ad942dff",
+            "suite_sha256": "86fdd24248e308ecdaa04feb0d3f961401915f728bbc7427676bbc5a726627b1",
+            "total": 42,
+            "initial": {
+              "passed": 42,
+              "total": 42,
+              "pass_rate": 100.0,
+              "status": "PASSED_REFERENCE",
+              "code_sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+            },
+            "final": {
+              "passed": 42,
+              "total": 42,
+              "pass_rate": 100.0,
+              "status": "PASSED_REFERENCE",
+              "code_sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+            },
+            "uplift_pp": 0.0
+          },
+          "cost": {
+            "model_calls": 0,
+            "model_calls_with_transport_trace": 0,
+            "http_attempts_observed": null,
+            "http_retries_observed": null,
+            "responses_with_token_counts": 0,
+            "prompt_tokens_observed": null,
+            "output_tokens_observed": null,
+            "attempt_seconds": 2.187871
+          }
+        }
+      },
+      "cost": {
+        "logical_generation_calls": 1,
+        "qwen_calls": 0,
+        "receipts_with_cost": 3,
+        "prompt_tokens_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "output_tokens_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "http_attempts_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "http_retries_observed": {
+          "value": null,
+          "receipts_with_value": 0,
+          "receipts_total": 3
+        },
+        "attempt_seconds": {
+          "value": 4.837668,
+          "receipts_with_value": 3,
+          "receipts_total": 3
+        }
+      }
+    }
+  ],
+  "checks": {
+    "synthetic_report": {
+      "path": "work/ab-final/actual-report.json",
+      "sha256": "d0bd0db7175f5138606889378d62d289ea8e8b0bb7bc65ea14af51b0c6037774",
+      "result": {
+        "counts": {
+          "EVALUATED": 4,
+          "ERROR": 0,
+          "INCOMPLETE": 0,
+          "INVALID": 0,
+          "AMBIGUOUS": 0
+        },
+        "plan_summary": null,
+        "cohorts": 4
+      }
+    },
+    "draft_gate": {
+      "path": "work/ab-final/draft-check-final.json",
+      "sha256": "253fc59e2e800cb12bd5da389473132bf6c04f60b50ed11ef89c18398f06d521",
+      "result": {
+        "status": "BLOCKED",
+        "integrity": "VERIFIED",
+        "ready_for_final": false,
+        "pending": [
+          "final_configuration",
+          "final_suite_validation_evidence",
+          "five_external_review_attestations",
+          "frozen_timestamp",
+          "human_review_assets",
+          "human_review_categories",
+          "human_review_courses",
+          "human_review_rooms",
+          "human_review_shipments",
+          "protocol_not_frozen",
+          "prototype_source_freeze",
+          "review_evidence_artifacts",
+          "reviewed_K2_FR20_component_decisions"
+        ],
+        "manifest": "C:\\Perkuliahan\\TA\\docs\\evidence\\final-ab-plan-2026-11-23.draft.json",
+        "manifest_sha256": "10d810f6c62ccf85fd0ee6c29fb17bb2de9f4b12ac136a4e8b18afac8e6c67fb",
+        "planned_pairs": 20
+      }
+    },
+    "planned_slots": {
+      "path": "work/ab-final/planned-report-final.json",
+      "sha256": "4bd98b2d7eebcd473fc5cf53c20dd72f221698e70cfaf7741372af6900afdfc8",
+      "result": {
+        "counts": {
+          "EVALUATED": 0,
+          "ERROR": 0,
+          "INCOMPLETE": 0,
+          "INVALID": 0,
+          "AMBIGUOUS": 0
+        },
+        "plan_summary": {
+          "planned": 20,
+          "n_ab": 0,
+          "counts": {
+            "NOT_STARTED": 20
+          }
+        },
+        "cohorts": 0
+      }
+    },
+    "doctor": {
+      "path": "work/ab-final/doctor.json",
+      "sha256": "f069e1656dc1120eff30f2515c515f7f866361bb251a09f1d58b66dc00dfa9ed",
+      "result": {
+        "ready": false,
+        "checks": {
+          "python": {
+            "ok": true,
+            "detail": "3.13.7"
+          },
+          "php": {
+            "ok": true,
+            "detail": "PHP 8.3.30 (cli) (built: Jan 13 2026 22:50:40) (ZTS Visual C++ 2019 x64)\nCopyright (c) The PHP Group\nZend Engine v4.3.30, Copyright (c) Zend Technologies"
+          },
+          "docker": {
+            "ok": false,
+            "detail": "permission denied while trying to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine"
+          },
+          "ollama": {
+            "ok": false,
+            "detail": "<urlopen error [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions>"
+          },
+          "qwen": {
+            "ok": false,
+            "detail": "Model belum dapat diperiksa."
+          }
+        }
+      }
+    }
+  },
+  "review": {
+    "type": "one_fresh_AI_code_review",
+    "human_assertion_review": false,
+    "important_findings_addressed": [
+      "external_review_attestations_preserve_packet_hash",
+      "exclusive_frozen_execution_and_per_call_binding",
+      "local_relative_final_archive_paths",
+      "cross_check_raw_receipts_and_planned_case_ids",
+      "global_slot_duplicate_and_claim_only_failures",
+      "interrupt_and_evaluator_checkpoints",
+      "malformed_archive_isolation",
+      "per_arm_costs_and_output_failure_counts"
+    ]
+  },
+  "pending": [
+    "actual_independent_human_assertion_and_component_review",
+    "P-06/P-07/K2_decisions",
+    "actual_final_model_configuration_and_freeze",
+    "execute_all_20_final_pairs"
+  ],
+  "limitations": [
+    "Controlled development fixtures on categories only; not model efficacy or sumative evidence.",
+    "No real-Qwen final pair or human attestation was produced.",
+    "Raw runs/work archives and Docker images are Git-ignored; this summary does not replace them."
+  ]
+}

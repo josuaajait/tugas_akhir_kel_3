@@ -1,0 +1,4 @@
+*.json -text
+*.php text eol=lf
+*.diff text eol=lf
+*.md text eol=lf
