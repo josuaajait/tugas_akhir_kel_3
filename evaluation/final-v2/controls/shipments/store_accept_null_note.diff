@@ -1,0 +1,10 @@
+--- eloquent.php
++++ store_accept_null_note.php
+@@ -15,6 +15,7 @@
+     public function store(Request $request)
+     {
+         // store guards
++        if ($request->exists('note') && $request->input('note') === null) return response()->json(['accepted'=>true], 200);
+         $body = $request->validate([
+             'tracking_code' => ['required', 'string', 'min:6', 'max:24', 'unique:shipments,tracking_code'],
+             'reference_code' => ['required', 'string', 'max:20', 'unique:shipments,reference_code'],

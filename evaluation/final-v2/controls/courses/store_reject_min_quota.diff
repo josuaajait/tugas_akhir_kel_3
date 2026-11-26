@@ -1,0 +1,10 @@
+--- eloquent.php
++++ store_reject_min_quota.php
+@@ -15,6 +15,7 @@
+     public function store(Request $request)
+     {
+         // store guards
++        if ($request->input('quota') === 0) abort(422);
+         $body = $request->validate([
+             'course_code' => ['required', 'string', 'max:12', 'unique:courses,course_code'],
+             'credits' => ['required', 'integer', 'min:1', 'max:6'],

@@ -1,0 +1,10 @@
+--- eloquent.php
++++ store_reject_min_tracking_code.php
+@@ -15,6 +15,7 @@
+     public function store(Request $request)
+     {
+         // store guards
++        if (is_string($request->input('tracking_code')) && strlen($request->input('tracking_code')) === 6) abort(422);
+         $body = $request->validate([
+             'tracking_code' => ['required', 'string', 'min:6', 'max:24', 'unique:shipments,tracking_code'],
+             'reference_code' => ['required', 'string', 'max:20', 'unique:shipments,reference_code'],

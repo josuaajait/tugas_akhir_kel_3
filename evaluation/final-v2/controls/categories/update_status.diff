@@ -1,0 +1,11 @@
+--- eloquent.php
++++ update_status.php
+@@ -36,7 +36,7 @@
+             'description' => ['required', 'string', 'max:160'],
+         ]);
+         $record->update($body);
+-        return response()->json(['data'=>$record->fresh()], 200); // update response
++        return response()->json(['data'=>$record->fresh()], 202); // update response
+     }
+     public function destroy($id)
+     {

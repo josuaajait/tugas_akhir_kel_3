@@ -1,0 +1,18 @@
+--- eloquent.php
++++ validation_invalid_json_exception.php
+@@ -15,6 +15,7 @@
+     public function store(Request $request)
+     {
+         // store guards
++        if (!$request->exists('label')) throw new \Illuminate\Http\Exceptions\HttpResponseException(response('not-json',422)->header('Content-Type','application/json'));
+         $body = $request->validate([
+             'label' => ['required', 'string', 'max:40'],
+             'capacity' => ['required', 'integer', 'min:1', 'max:500'],
+@@ -31,6 +32,7 @@
+     {
+         $record = $this->load($id); // update lookup
+         // update guards
++        if (!$request->exists('label')) throw new \Illuminate\Http\Exceptions\HttpResponseException(response('not-json',422)->header('Content-Type','application/json'));
+         $body = $request->validate([
+             'label' => ['required', 'string', 'max:40'],
+             'capacity' => ['required', 'integer', 'min:1', 'max:500'],

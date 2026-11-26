@@ -1,0 +1,11 @@
+--- eloquent.php
++++ update_omit_max_tracking_code.php
+@@ -35,7 +35,7 @@
+         $record = $this->load($id); // update lookup
+         // update guards
+         $body = $request->validate([
+-            'tracking_code' => ['required', 'string', 'min:6', 'max:24', Rule::unique('shipments', 'tracking_code')->ignore($record->getKey())],
++            'tracking_code' => ['required', 'string', 'min:6', Rule::unique('shipments', 'tracking_code')->ignore($record->getKey())],
+             'reference_code' => ['required', 'string', 'max:20', Rule::unique('shipments', 'reference_code')->ignore($record->getKey())],
+             'quantity' => ['required', 'integer', 'min:1', 'max:5000'],
+             'priority' => ['required', 'integer', 'min:1', 'max:5'],

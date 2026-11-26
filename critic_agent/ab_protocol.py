@@ -8,6 +8,7 @@ from urllib.parse import urlparse
 
 from .ab_archive import ROOT, engine_manifest, local_path, read_json, sha
 from .final_package import RESOURCES, package_manifest, suite_cases
+from .eval_registry import get_package_api,get_sandbox_api
 from .ollama import OllamaClient, ModelError
 
 
@@ -26,8 +27,9 @@ def _people(record,when):
             and stamp is not None and when is not None and stamp<=when)
 
 
-def review_issues(root,frozen_at,attestations=None):
+def review_issues(root,frozen_at,attestations=None,version='final-v1'):
     issues=[];when=_date(frozen_at)
+    api=get_package_api(version)
     records=attestations if isinstance(attestations,list) else []
     if len(records)!=len(RESOURCES) or {r.get('resource') for r in records}!=set(RESOURCES):
         issues.append('five_external_review_attestations')
@@ -36,12 +38,12 @@ def review_issues(root,frozen_at,attestations=None):
             bindings=[r for r in records if r.get('resource')==resource]
             if len(bindings)!=1:raise ValueError('Missing/duplicate external review.')
             binding=bindings[0];file=local_path(root,binding['path'])
-            packet=Path(root)/'evaluation/final-v1'
+            packet=Path(root)/'evaluation'/version
             if file.is_relative_to(packet.resolve()) or sha(file)!=binding['sha256']:
                 raise ValueError('Reviews must be external, hash-bound records.')
             review=read_json(file)
-            meta=package_manifest(resource)
-            expected={c['case_id'] for c in suite_cases(meta['spec'],meta['profile'])}
+            meta=api.package_manifest(resource)
+            expected={c['case_id'] for c in api.suite_cases(meta['spec'],meta['profile'])}
             decisions=review.get('decisions',[])
             if (review.get('resource')!=resource or review.get('status')!='reviewed' or not _people(review,when)
                     or review.get('package_sha256')!=meta['package_sha256']
@@ -80,7 +82,7 @@ def check_protocol(path,*,root=ROOT):
             'manifest':str(path),'manifest_sha256':sha(path),'planned_pairs':0}
     try:
         plan=read_json(path);result['plan']=plan
-        if plan.get('package')!='final-v1':raise ValueError('Only final-v1 protocols are supported.')
+        api=get_package_api(plan.get('package'))
         entries=plan.get('specifications');schedule=plan.get('schedule')
         if not isinstance(entries,list) or len(entries)!=5 or not isinstance(schedule,list) or len(schedule)!=20:
             raise ValueError('Final protocol must contain five specifications and20 pair slots.')
@@ -90,8 +92,9 @@ def check_protocol(path,*,root=ROOT):
             if slot in slots:raise ValueError('Duplicate spec slot.')
             spec_path=local_path(root,item['spec_path'])
             from .spec import load_spec
-            spec=load_spec(spec_path);meta=package_manifest(spec['resource']);resources.add(spec['resource'])
-            if (spec!=meta['spec'] or sha(spec_path)!=item['spec_sha256'] or plan.get('package_sha256')!=meta['package_sha256']
+            spec=load_spec(spec_path);meta=api.package_manifest(spec['resource']);resources.add(spec['resource'])
+            if (spec!=meta['spec'] or sha(spec_path)!=item['spec_sha256'] or item['spec_sha256']!=meta['spec_sha256']
+                    or plan.get('package_sha256')!=meta['package_sha256']
                     or any(item[role+'_suite_sha256']!=meta[role+'_sha256'] for role in ('internal','reference'))):
                 raise ValueError('Spec/package/suite binding changed: '+slot)
             if (any(not re.fullmatch(r'sha256:[a-f0-9]{64}',item.get(role+'_image_id','')) for role in ('internal','reference'))
@@ -118,7 +121,7 @@ def check_protocol(path,*,root=ROOT):
         if _configuration(plan) is None:pending.append('final_configuration')
         if not _date(plan.get('frozen_at')):pending.append('frozen_timestamp')
         if plan.get('engine_source_sha256')!=engine_manifest()[0]:pending.append('prototype_source_freeze')
-        pending.extend(review_issues(root,plan.get('frozen_at'),plan.get('review_attestations')))
+        pending.extend(review_issues(root,plan.get('frozen_at'),plan.get('review_attestations'),plan['package']))
         decisions=plan.get('decisions',{})
         if not isinstance(decisions,dict) or decisions.get('status')!='approved' or not _people(decisions,_date(plan.get('frozen_at'))):
             pending.append('reviewed_K2_FR20_component_decisions')
@@ -207,7 +210,7 @@ def validate_final_context(context,spec,client,runner,reference):
         raise ValueError('Requested execution differs from frozen settings.')
     if (not isinstance(client,FrozenClient) or client.digest.removeprefix('sha256:')!=cfg['model_digest'].removeprefix('sha256:')
             or client.guard is not permit['guard']):raise ValueError('Final client must enforce the frozen model and source.')
-    return {'stage':'final','origin':'qwen_final','protocol_path':str(Path(context['protocol_path']).resolve()),
+    return {'package':plan['package'],'stage':'final','origin':'qwen_final','protocol_path':str(Path(context['protocol_path']).resolve()),
             'protocol_sha256':checked['manifest_sha256'],'pair_slot':job['pair_slot'],'spec_slot':job['spec_slot'],
             'schedule':job,'frozen_engine_source_sha256':plan['engine_source_sha256'],
             'model_timeout_seconds':cfg['model_timeout_seconds'],'test_timeout_seconds':cfg['test_timeout_seconds']}
@@ -239,10 +242,10 @@ def execute_protocol_pair(path,pair_slot,output_root):
 
 def _execute_checked_pair(path,plan,job,claim,state):
     from .ab import run_ab
-    from .ab_final import FinalReference
-    from .final_sandbox import FinalRunner
+    from .ab_final import reference_runner
     from .spec import load_spec
     entry=next(e for e in plan['specifications'] if e['slot']==job['spec_slot']);cfg=plan['configuration']
+    api=get_package_api(plan['package']);sandbox=get_sandbox_api(plan['package'])
     spec=load_spec(local_path(ROOT,entry['spec_path']))
     client=OllamaClient(model=cfg['model'],base_url=cfg['endpoint'],seed=job['seed'],
                         temperature=cfg['options']['temperature'],timeout=cfg['model_timeout_seconds'])
@@ -251,7 +254,7 @@ def _execute_checked_pair(path,plan,job,claim,state):
     def guard():
         if (sha(path)!=fingerprint or fingerprint!=state['protocol_sha256']
                 or engine_manifest()[0]!=plan['engine_source_sha256']
-                or package_manifest(spec['resource'])['package_sha256']!=plan['package_sha256']
+                or api.package_manifest(spec['resource'])['package_sha256']!=plan['package_sha256']
                 or client.model!=cfg['model'] or client.base_url.rstrip('/')!=cfg['endpoint'].rstrip('/')
                 or client.timeout!=cfg['model_timeout_seconds']
                 or {k:v for k,v in client.options.items() if k!='seed'}!=cfg['options']
@@ -262,14 +265,14 @@ def _execute_checked_pair(path,plan,job,claim,state):
         if wrapped.digest.removeprefix('sha256:')!=cfg['model_digest'].removeprefix('sha256:'):
             raise ModelError('Frozen model enforcement digest changed.')
     wrapped=FrozenClient(client,cfg['model_digest'],guard)
-    runner=FinalRunner(spec['resource'],'internal',image=entry['internal_image_id'],timeout=cfg['test_timeout_seconds'])
-    reference=FinalReference(spec['resource'],'reference',image=entry['reference_image_id'],timeout=cfg['test_timeout_seconds'])
+    runner=sandbox.FinalRunner(spec['resource'],'internal',image=entry['internal_image_id'],timeout=cfg['test_timeout_seconds'])
+    reference=reference_runner(plan['package'],spec['resource'],image=entry['reference_image_id'],timeout=cfg['test_timeout_seconds'])
     token=object();_ACTIVE_PERMITS[token]={'path':Path(path).resolve(),'sha256':state['protocol_sha256'],
                                         'slot':job['pair_slot'],'guard':guard}
     try:
         folder=run_ab(spec,claim,wrapped,runner,reference,kind='final',order_seed=job['order_seed'],
                       revision_seeds=job['revision_seeds'],repetition=job['repetition'],
-                      final_context={'protocol_path':str(path),'pair_slot':job['pair_slot'],'_permit':token})
+                      final_context={'package':plan['package'],'protocol_path':str(path),'pair_slot':job['pair_slot'],'_permit':token})
     finally:_ACTIVE_PERMITS.pop(token,None)
     result=read_json(folder/'pair.json')|{'run_directory':str(folder)}
     state.update(status=result['status'],run_directory=str(folder))

@@ -1,0 +1,10 @@
+--- eloquent.php
++++ update_accept_null_quota.php
+@@ -32,6 +32,7 @@
+     {
+         $record = $this->load($id); // update lookup
+         // update guards
++        if ($request->exists('quota') && $request->input('quota') === null) return response()->json(['accepted'=>true], 200);
+         $body = $request->validate([
+             'course_code' => ['required', 'string', 'max:12', Rule::unique('courses', 'course_code')->ignore($record->getKey())],
+             'credits' => ['required', 'integer', 'min:1', 'max:6'],

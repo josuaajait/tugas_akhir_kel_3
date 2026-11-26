@@ -91,6 +91,8 @@ def run_ab(spec, output_root, client, runner, reference, *, kind, order_seed, re
         report['internal_readiness'] = ready
         if ready['status'] != 'READY' or not re.fullmatch(r'sha256:[a-f0-9]{64}', ready.get('image_id', '')):
             raise SandboxError('Harness internal belum READY.')
+        if adapter and ready.get('suite_sha256')!=adapter.meta['internal_sha256']:
+            raise SandboxError('Internal readiness suite hash differs from the registered resource.')
         pinned = runner.image = ready['image_id']
         report['internal_image_id'] = pinned
         if adapter:

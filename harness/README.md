@@ -14,7 +14,7 @@ python -m critic_agent harness-check --image critic-laravel:products-internal-v2
 python -m critic_agent run-products examples/products.json --image critic-laravel:products-internal-v2
 ```
 
-Jumlah kasus tetap 21 readiness dan 14 internal. Tag di bawah merupakan nama default CLI. Riwayat tiap eksperimen mengacu pada image ID yang tercatat di arsipnya. [Audit assertion](../docs/products-internal-assertion-audit.md)
+Jumlah kasus tetap 21 readiness dan 14 internal. Tag di bawah merupakan nama default CLI. Riwayat tiap eksperimen mengacu pada image ID yang tercatat di arsipnya.
 
 Jalankan dari root proyek setelah Docker Desktop menggunakan Linux containers sudah tersedia:
 

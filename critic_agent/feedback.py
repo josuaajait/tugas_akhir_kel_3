@@ -9,8 +9,9 @@ def _method(name):
     if final:
         case=final.group(1)
         if case in ('index','store','show','update','destroy'):return case
-        if case.startswith('POST_missing_'):return 'store'
-        if case.startswith('PUT_missing_'):return 'update'
+        if case in ('show_second','update_second','destroy_second'):return case.split('_')[0]
+        if case.startswith('POST_'):return 'store'
+        if case.startswith('PUT_'):return 'update'
         return {'missing_GET':'show','missing_PUT':'update','missing_DELETE':'destroy'}.get(case)
     required = re.search(r'"((store|update))_([a-z][a-z0-9_]*)"', name)
     if required:

@@ -1,0 +1,20 @@
+--- eloquent.php
++++ reject_short_label.php
+@@ -16,7 +16,7 @@
+     {
+         // store guards
+         $body = $request->validate([
+-            'label' => ['required', 'string', 'max:40'],
++            'label' => ['required', 'string', 'min:3', 'max:40'],
+             'capacity' => ['required', 'integer', 'min:1', 'max:500'],
+         ]);
+         $record = Model::create($body);
+@@ -32,7 +32,7 @@
+         $record = $this->load($id); // update lookup
+         // update guards
+         $body = $request->validate([
+-            'label' => ['required', 'string', 'max:40'],
++            'label' => ['required', 'string', 'min:3', 'max:40'],
+             'capacity' => ['required', 'integer', 'min:1', 'max:500'],
+         ]);
+         $record->update($body);

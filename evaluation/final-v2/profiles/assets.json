@@ -1,0 +1,440 @@
+{
+  "package": "final-v2",
+  "prepared_by": "OpenAI Codex",
+  "stage": "pre_freeze_validation",
+  "spec": {
+    "spec_id": "final_assets_v2",
+    "spec_version": "1.0",
+    "resource": "assets",
+    "model": "Asset",
+    "controller": "AssetController",
+    "fields": [
+      {
+        "name": "asset_code",
+        "type": "string",
+        "rules": [
+          "required",
+          "string",
+          "min:3",
+          "max:20",
+          "unique:assets,asset_code"
+        ]
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "rules": [
+          "required",
+          "string",
+          "max:80"
+        ]
+      },
+      {
+        "name": "value",
+        "type": "integer",
+        "rules": [
+          "required",
+          "integer",
+          "min:0",
+          "max:1000000"
+        ]
+      }
+    ],
+    "operations": {
+      "index": {
+        "success_status": 200
+      },
+      "store": {
+        "success_status": 201,
+        "validation_error_status": 422
+      },
+      "show": {
+        "success_status": 200,
+        "not_found_status": 404
+      },
+      "update": {
+        "success_status": 200,
+        "validation_error_status": 422,
+        "not_found_status": 404
+      },
+      "destroy": {
+        "success_status": 204,
+        "not_found_status": 404
+      }
+    }
+  },
+  "fixtures": {
+    "new": {
+      "asset_code": "AS-101",
+      "name": "Microscope",
+      "value": 150000
+    },
+    "target": {
+      "asset_code": "AS-202",
+      "name": "Projector",
+      "value": 230000
+    },
+    "other": {
+      "asset_code": "AS-303",
+      "name": "Printer",
+      "value": 90000
+    },
+    "updated": {
+      "asset_code": "AS-404",
+      "name": "Oscilloscope",
+      "value": 410000
+    }
+  },
+  "invalid": [
+    {
+      "name": "missing_asset_code",
+      "field": "asset_code",
+      "vector": "missing",
+      "payload": {
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    {
+      "name": "null_asset_code",
+      "field": "asset_code",
+      "vector": "null",
+      "payload": {
+        "asset_code": null,
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    {
+      "name": "empty_asset_code",
+      "field": "asset_code",
+      "vector": "empty",
+      "payload": {
+        "asset_code": "",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    {
+      "name": "whitespace_asset_code",
+      "field": "asset_code",
+      "vector": "whitespace",
+      "payload": {
+        "asset_code": "   ",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    {
+      "name": "type_asset_code",
+      "field": "asset_code",
+      "vector": "type",
+      "payload": {
+        "asset_code": [
+          "bad",
+          "bad",
+          "bad"
+        ],
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    {
+      "name": "object_asset_code",
+      "field": "asset_code",
+      "vector": "object",
+      "payload": {
+        "asset_code": {
+          "bad0": "x",
+          "bad1": "x",
+          "bad2": "x"
+        },
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    {
+      "name": "min_asset_code",
+      "field": "asset_code",
+      "vector": "min",
+      "payload": {
+        "asset_code": "ZZ",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    {
+      "name": "max_asset_code",
+      "field": "asset_code",
+      "vector": "max",
+      "payload": {
+        "asset_code": "ZZZZZZZZZZZZZZZZZZZZZ",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    {
+      "name": "unique_asset_code",
+      "field": "asset_code",
+      "vector": "unique",
+      "payload": {
+        "asset_code": "AS-303",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    {
+      "name": "missing_name",
+      "field": "name",
+      "vector": "missing",
+      "payload": {
+        "asset_code": "AS-101",
+        "value": 150000
+      }
+    },
+    {
+      "name": "null_name",
+      "field": "name",
+      "vector": "null",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": null,
+        "value": 150000
+      }
+    },
+    {
+      "name": "empty_name",
+      "field": "name",
+      "vector": "empty",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "",
+        "value": 150000
+      }
+    },
+    {
+      "name": "whitespace_name",
+      "field": "name",
+      "vector": "whitespace",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "   ",
+        "value": 150000
+      }
+    },
+    {
+      "name": "type_name",
+      "field": "name",
+      "vector": "type",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": [
+          "bad",
+          "bad"
+        ],
+        "value": 150000
+      }
+    },
+    {
+      "name": "object_name",
+      "field": "name",
+      "vector": "object",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": {
+          "bad0": "x",
+          "bad1": "x"
+        },
+        "value": 150000
+      }
+    },
+    {
+      "name": "max_name",
+      "field": "name",
+      "vector": "max",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ",
+        "value": 150000
+      }
+    },
+    {
+      "name": "missing_value",
+      "field": "value",
+      "vector": "missing",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope"
+      }
+    },
+    {
+      "name": "null_value",
+      "field": "value",
+      "vector": "null",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": null
+      }
+    },
+    {
+      "name": "empty_value",
+      "field": "value",
+      "vector": "empty",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": ""
+      }
+    },
+    {
+      "name": "whitespace_value",
+      "field": "value",
+      "vector": "whitespace",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": "   "
+      }
+    },
+    {
+      "name": "type_value",
+      "field": "value",
+      "vector": "type",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": "x"
+      }
+    },
+    {
+      "name": "object_value",
+      "field": "value",
+      "vector": "object",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": {
+          "wrong": "type"
+        }
+      }
+    },
+    {
+      "name": "fraction_value",
+      "field": "value",
+      "vector": "fraction",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 1.5
+      }
+    },
+    {
+      "name": "min_value",
+      "field": "value",
+      "vector": "min",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": -1
+      }
+    },
+    {
+      "name": "max_value",
+      "field": "value",
+      "vector": "max",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 1000001
+      }
+    }
+  ],
+  "valid": [
+    {
+      "name": "boundary_min_asset_code",
+      "field": "asset_code",
+      "vector": "boundary_min",
+      "payload": {
+        "asset_code": "BBB",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    {
+      "name": "boundary_max_asset_code",
+      "field": "asset_code",
+      "vector": "boundary_max",
+      "payload": {
+        "asset_code": "BBBBBBBBBBBBBBBBBBBB",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    {
+      "name": "boundary_max_name",
+      "field": "name",
+      "vector": "boundary_max",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "value": 150000
+      }
+    },
+    {
+      "name": "boundary_min_value",
+      "field": "value",
+      "vector": "boundary_min",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 0
+      }
+    },
+    {
+      "name": "boundary_max_value",
+      "field": "value",
+      "vector": "boundary_max",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 1000000
+      }
+    },
+    {
+      "name": "numeric_string_value",
+      "field": "value",
+      "vector": "numeric_string",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": "150000"
+      },
+      "expected": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    {
+      "name": "short1_name",
+      "field": "name",
+      "vector": "short1",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "R",
+        "value": 150000
+      }
+    },
+    {
+      "name": "short2_name",
+      "field": "name",
+      "vector": "short2",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "RR",
+        "value": 150000
+      }
+    }
+  ]
+}

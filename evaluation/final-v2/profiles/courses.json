@@ -1,0 +1,459 @@
+{
+  "package": "final-v2",
+  "prepared_by": "OpenAI Codex",
+  "stage": "pre_freeze_validation",
+  "spec": {
+    "spec_id": "final_courses_v2",
+    "spec_version": "1.0",
+    "resource": "courses",
+    "model": "Course",
+    "controller": "CourseController",
+    "fields": [
+      {
+        "name": "course_code",
+        "type": "string",
+        "rules": [
+          "required",
+          "string",
+          "max:12",
+          "unique:courses,course_code"
+        ]
+      },
+      {
+        "name": "credits",
+        "type": "integer",
+        "rules": [
+          "required",
+          "integer",
+          "min:1",
+          "max:6"
+        ]
+      },
+      {
+        "name": "quota",
+        "type": "integer",
+        "rules": [
+          "required",
+          "integer",
+          "min:0",
+          "max:200"
+        ]
+      }
+    ],
+    "operations": {
+      "index": {
+        "success_status": 200
+      },
+      "store": {
+        "success_status": 201,
+        "validation_error_status": 422
+      },
+      "show": {
+        "success_status": 200,
+        "not_found_status": 404
+      },
+      "update": {
+        "success_status": 200,
+        "validation_error_status": 422,
+        "not_found_status": 404
+      },
+      "destroy": {
+        "success_status": 204,
+        "not_found_status": 404
+      }
+    }
+  },
+  "fixtures": {
+    "new": {
+      "course_code": "CS101",
+      "credits": 2,
+      "quota": 24
+    },
+    "target": {
+      "course_code": "CS202",
+      "credits": 3,
+      "quota": 36
+    },
+    "other": {
+      "course_code": "CS303",
+      "credits": 4,
+      "quota": 48
+    },
+    "updated": {
+      "course_code": "CS404",
+      "credits": 5,
+      "quota": 60
+    }
+  },
+  "invalid": [
+    {
+      "name": "missing_course_code",
+      "field": "course_code",
+      "vector": "missing",
+      "payload": {
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    {
+      "name": "null_course_code",
+      "field": "course_code",
+      "vector": "null",
+      "payload": {
+        "course_code": null,
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    {
+      "name": "empty_course_code",
+      "field": "course_code",
+      "vector": "empty",
+      "payload": {
+        "course_code": "",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    {
+      "name": "whitespace_course_code",
+      "field": "course_code",
+      "vector": "whitespace",
+      "payload": {
+        "course_code": "   ",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    {
+      "name": "type_course_code",
+      "field": "course_code",
+      "vector": "type",
+      "payload": {
+        "course_code": [
+          "bad",
+          "bad"
+        ],
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    {
+      "name": "object_course_code",
+      "field": "course_code",
+      "vector": "object",
+      "payload": {
+        "course_code": {
+          "bad0": "x",
+          "bad1": "x"
+        },
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    {
+      "name": "max_course_code",
+      "field": "course_code",
+      "vector": "max",
+      "payload": {
+        "course_code": "ZZZZZZZZZZZZZ",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    {
+      "name": "unique_course_code",
+      "field": "course_code",
+      "vector": "unique",
+      "payload": {
+        "course_code": "CS303",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    {
+      "name": "missing_credits",
+      "field": "credits",
+      "vector": "missing",
+      "payload": {
+        "course_code": "CS101",
+        "quota": 24
+      }
+    },
+    {
+      "name": "null_credits",
+      "field": "credits",
+      "vector": "null",
+      "payload": {
+        "course_code": "CS101",
+        "credits": null,
+        "quota": 24
+      }
+    },
+    {
+      "name": "empty_credits",
+      "field": "credits",
+      "vector": "empty",
+      "payload": {
+        "course_code": "CS101",
+        "credits": "",
+        "quota": 24
+      }
+    },
+    {
+      "name": "whitespace_credits",
+      "field": "credits",
+      "vector": "whitespace",
+      "payload": {
+        "course_code": "CS101",
+        "credits": "   ",
+        "quota": 24
+      }
+    },
+    {
+      "name": "type_credits",
+      "field": "credits",
+      "vector": "type",
+      "payload": {
+        "course_code": "CS101",
+        "credits": "x",
+        "quota": 24
+      }
+    },
+    {
+      "name": "object_credits",
+      "field": "credits",
+      "vector": "object",
+      "payload": {
+        "course_code": "CS101",
+        "credits": {
+          "wrong": "type"
+        },
+        "quota": 24
+      }
+    },
+    {
+      "name": "fraction_credits",
+      "field": "credits",
+      "vector": "fraction",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 1.5,
+        "quota": 24
+      }
+    },
+    {
+      "name": "min_credits",
+      "field": "credits",
+      "vector": "min",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 0,
+        "quota": 24
+      }
+    },
+    {
+      "name": "max_credits",
+      "field": "credits",
+      "vector": "max",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 7,
+        "quota": 24
+      }
+    },
+    {
+      "name": "missing_quota",
+      "field": "quota",
+      "vector": "missing",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2
+      }
+    },
+    {
+      "name": "null_quota",
+      "field": "quota",
+      "vector": "null",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": null
+      }
+    },
+    {
+      "name": "empty_quota",
+      "field": "quota",
+      "vector": "empty",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": ""
+      }
+    },
+    {
+      "name": "whitespace_quota",
+      "field": "quota",
+      "vector": "whitespace",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": "   "
+      }
+    },
+    {
+      "name": "type_quota",
+      "field": "quota",
+      "vector": "type",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": "x"
+      }
+    },
+    {
+      "name": "object_quota",
+      "field": "quota",
+      "vector": "object",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": {
+          "wrong": "type"
+        }
+      }
+    },
+    {
+      "name": "fraction_quota",
+      "field": "quota",
+      "vector": "fraction",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 1.5
+      }
+    },
+    {
+      "name": "min_quota",
+      "field": "quota",
+      "vector": "min",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": -1
+      }
+    },
+    {
+      "name": "max_quota",
+      "field": "quota",
+      "vector": "max",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 201
+      }
+    }
+  ],
+  "valid": [
+    {
+      "name": "boundary_max_course_code",
+      "field": "course_code",
+      "vector": "boundary_max",
+      "payload": {
+        "course_code": "BBBBBBBBBBBB",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    {
+      "name": "boundary_min_credits",
+      "field": "credits",
+      "vector": "boundary_min",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 1,
+        "quota": 24
+      }
+    },
+    {
+      "name": "boundary_max_credits",
+      "field": "credits",
+      "vector": "boundary_max",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 6,
+        "quota": 24
+      }
+    },
+    {
+      "name": "numeric_string_credits",
+      "field": "credits",
+      "vector": "numeric_string",
+      "payload": {
+        "course_code": "CS101",
+        "credits": "2",
+        "quota": 24
+      },
+      "expected": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    {
+      "name": "boundary_min_quota",
+      "field": "quota",
+      "vector": "boundary_min",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 0
+      }
+    },
+    {
+      "name": "boundary_max_quota",
+      "field": "quota",
+      "vector": "boundary_max",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 200
+      }
+    },
+    {
+      "name": "numeric_string_quota",
+      "field": "quota",
+      "vector": "numeric_string",
+      "payload": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": "24"
+      },
+      "expected": {
+        "course_code": "CS101",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    {
+      "name": "short1_course_code",
+      "field": "course_code",
+      "vector": "short1",
+      "payload": {
+        "course_code": "Q",
+        "credits": 2,
+        "quota": 24
+      }
+    },
+    {
+      "name": "short2_course_code",
+      "field": "course_code",
+      "vector": "short2",
+      "payload": {
+        "course_code": "QQ",
+        "credits": 2,
+        "quota": 24
+      }
+    }
+  ]
+}

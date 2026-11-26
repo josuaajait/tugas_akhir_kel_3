@@ -23,7 +23,15 @@ from .console import progress, notice
 def _write_json(path, data):
     temporary = path.with_suffix(path.suffix+'.tmp')
     temporary.write_bytes((json.dumps(data, ensure_ascii=False, indent=2)+'\n').encode('utf-8'))
-    temporary.replace(path)
+    for attempt in range(6):
+        try:
+            temporary.replace(path)
+            return
+        except PermissionError as exc:
+            # Windows can briefly deny replacement while another process holds the file.
+            if getattr(exc, 'winerror', None) not in (5, 32, 33) or attempt == 5:
+                raise
+            time.sleep(0.02 * (2 ** attempt))
 
 
 def _initial_archive(source, spec, client, *, allow_format_failure=False):

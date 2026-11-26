@@ -1,0 +1,3864 @@
+[
+  {
+    "case_id": "index",
+    "spec_id": "final_categories_v2",
+    "operation": "GET",
+    "field": null,
+    "vector": "index",
+    "rule_id": "crud.index",
+    "fixture": {
+      "case_id": "index",
+      "kind": "index",
+      "operation": "GET",
+      "payload": {
+        "name": "Stationery",
+        "description": "Office supplies"
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"index\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"index\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": "array of exact ID-bound fixture records"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "index_swapped",
+      "index_object",
+      "index_string_id",
+      "index_missing_field",
+      "index_status",
+      "index_cross_field",
+      "index_invalid_json"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "index_swapped",
+        "sha256": "ac407b29d3e59b28cdf51292b1f83d487f917c50ab53e1798b5548ecacb69485",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_object",
+        "sha256": "5dd815c57d3e2e27defa5a455398e1263680f5a9bc17e9eb1226ca39451c4f53",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_string_id",
+        "sha256": "b3b1ce896f693852daacb51e1c32b391c6ab79833aee49e33f44b950859922d6",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_missing_field",
+        "sha256": "f6bfaa034277ec6809c7dde2b326cae8f7ff4ab180b84f510c666b682ba3894e",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_status",
+        "sha256": "b5b061d5d6a96656103fe2f898cf6571b65d670f147e562ce10a710f58d19182",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      {
+        "control_id": "index_cross_field",
+        "sha256": "84fe76939912d471b73905dd069df33a33fb0c606396030611aa69ac5628ee30",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_invalid_json",
+        "sha256": "5a416e3d54b28b725af0b925c02722847c060a9c53189bf0eb22f5915f7e22cc",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "store",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": null,
+    "vector": "store",
+    "rule_id": "crud.store",
+    "fixture": {
+      "case_id": "store",
+      "kind": "store",
+      "operation": "POST",
+      "payload": {
+        "name": "Stationery",
+        "description": "Office supplies"
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"store\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"store\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "name": "Stationery",
+        "description": "Office supplies"
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_no_write",
+      "store_extra_write",
+      "store_status",
+      "store_invalid_json_exception"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_no_write",
+        "sha256": "b62c9f99c834ee150c11bdd1e0b183fc4153c9865266298d9b1b2fa0901ef1fd",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 201
+        }
+      },
+      {
+        "control_id": "store_extra_write",
+        "sha256": "1624c15ccd960e2dced73e87cd3d0e61ca557d398f69bb76936c6992f21f7cf5",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 201
+        }
+      },
+      {
+        "control_id": "store_status",
+        "sha256": "460793ac12133c57bb02e4160f10a5e0570367fc36152816b347da5524ec2369",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      {
+        "control_id": "store_invalid_json_exception",
+        "sha256": "bb60a6e081154cf70b45d2032f23a40094da7a50a90213f6340846d88101f016",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "show",
+    "spec_id": "final_categories_v2",
+    "operation": "GET",
+    "field": null,
+    "vector": "show",
+    "rule_id": "crud.show",
+    "fixture": {
+      "case_id": "show",
+      "kind": "show",
+      "operation": "GET",
+      "payload": {
+        "name": "Stationery",
+        "description": "Office supplies"
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"show\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"show\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "name": "Furniture",
+        "description": "Meeting furnishings"
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "show_write",
+      "show_status",
+      "show_wrong_target"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "show_write",
+        "sha256": "2448f15c35a60115ad7de60f2a454c6edff1d767f7e5f1216713dfa45a2db1ba",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "show_status",
+        "sha256": "3106432a7bafb06ab9e555ad793b6c41159ec155bba87a8ed9b4222aa3db71bd",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      {
+        "control_id": "show_wrong_target",
+        "sha256": "502da9aeab07bc73b1c075471109d870dd4e0c1a33cfe6959d46e6960ab65a2c",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "update",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": null,
+    "vector": "update",
+    "rule_id": "crud.update",
+    "fixture": {
+      "case_id": "update",
+      "kind": "update",
+      "operation": "PUT",
+      "payload": {
+        "name": "Equipment",
+        "description": "Lab equipment"
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"update\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"update\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "name": "Equipment",
+        "description": "Lab equipment"
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_no_write",
+      "update_status",
+      "update_wrong_target",
+      "update_invalid_json_exception"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_no_write",
+        "sha256": "373ff80503e3a971b4a499de161ab1afc883bb6ac63f9e978651c61522a4de74",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "update_status",
+        "sha256": "0cc471aa4348512c141e10810b2e493a0c1f7810178643166f4b0a38a783497a",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      {
+        "control_id": "update_wrong_target",
+        "sha256": "c82001eca0a9599db5644504d88f2358226ee540ff31efaf714a66688b35d72d",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "update_invalid_json_exception",
+        "sha256": "9c6dfb074328f2438c0e4063c66f8fb01a4b3ee7a18de530134ecc2242c709d0",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "destroy",
+    "spec_id": "final_categories_v2",
+    "operation": "DELETE",
+    "field": null,
+    "vector": "destroy",
+    "rule_id": "crud.destroy",
+    "fixture": {
+      "case_id": "destroy",
+      "kind": "destroy",
+      "operation": "DELETE",
+      "payload": {
+        "name": "Stationery",
+        "description": "Office supplies"
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"destroy\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"destroy\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 204,
+    "expected_body": {
+      "raw": ""
+    },
+    "expected_state": "target removed; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "destroy_no_delete",
+      "destroy_body",
+      "destroy_wrong_target"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "destroy_no_delete",
+        "sha256": "f47dc7101f27dbbae8e47992559bd8b4efd56633d85364e093f9fcb1381f13ec",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 204
+        }
+      },
+      {
+        "control_id": "destroy_body",
+        "sha256": "ba27c6cb3e6a292938b8db3ec65ad8313b176132248d39dbf280135ecb4eb1fa",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 204
+        }
+      },
+      {
+        "control_id": "destroy_wrong_target",
+        "sha256": "bb0d2d9431ee8e928642aed1caafd424ea655add0b2c7f6097c2a48d26d0e24d",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 204
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "missing_GET",
+    "spec_id": "final_categories_v2",
+    "operation": "GET",
+    "field": null,
+    "vector": "missing_id",
+    "rule_id": "crud.missing_id",
+    "fixture": {
+      "case_id": "missing_GET",
+      "kind": "missing_id",
+      "operation": "GET",
+      "payload": {
+        "name": "Stationery",
+        "description": "Office supplies"
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"missing_GET\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"missing_GET\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 404,
+    "expected_body": {
+      "shape": "object"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "missing_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "missing_status",
+        "sha256": "322cd8df99426ecedc7426dbf77ccdf89c87b9dc754b969709a0ca33ac2176e0",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "missing_PUT",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": null,
+    "vector": "missing_id",
+    "rule_id": "crud.missing_id",
+    "fixture": {
+      "case_id": "missing_PUT",
+      "kind": "missing_id",
+      "operation": "PUT",
+      "payload": {
+        "name": "Stationery",
+        "description": "Office supplies"
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"missing_PUT\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"missing_PUT\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 404,
+    "expected_body": {
+      "shape": "object"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "missing_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "missing_status",
+        "sha256": "322cd8df99426ecedc7426dbf77ccdf89c87b9dc754b969709a0ca33ac2176e0",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "missing_DELETE",
+    "spec_id": "final_categories_v2",
+    "operation": "DELETE",
+    "field": null,
+    "vector": "missing_id",
+    "rule_id": "crud.missing_id",
+    "fixture": {
+      "case_id": "missing_DELETE",
+      "kind": "missing_id",
+      "operation": "DELETE",
+      "payload": {
+        "name": "Stationery",
+        "description": "Office supplies"
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"missing_DELETE\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"missing_DELETE\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 404,
+    "expected_body": {
+      "shape": "object"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "missing_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "missing_status",
+        "sha256": "322cd8df99426ecedc7426dbf77ccdf89c87b9dc754b969709a0ca33ac2176e0",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 204
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "empty",
+    "spec_id": "final_categories_v2",
+    "operation": "GET",
+    "field": null,
+    "vector": "empty",
+    "rule_id": "crud.empty",
+    "fixture": {
+      "case_id": "empty",
+      "kind": "empty",
+      "operation": "GET"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"empty\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": []
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "index_object",
+      "index_invalid_json"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "index_object",
+        "sha256": "5dd815c57d3e2e27defa5a455398e1263680f5a9bc17e9eb1226ca39451c4f53",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_invalid_json",
+        "sha256": "5a416e3d54b28b725af0b925c02722847c060a9c53189bf0eb22f5915f7e22cc",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "sequence",
+    "spec_id": "final_categories_v2",
+    "operation": "SEQUENCE",
+    "field": null,
+    "vector": "sequence",
+    "rule_id": "crud.sequence",
+    "fixture": {
+      "case_id": "sequence",
+      "kind": "sequence",
+      "operation": "SEQUENCE"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"sequence\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": [
+      201,
+      200,
+      200,
+      200,
+      200,
+      204,
+      404
+    ],
+    "expected_body": {
+      "steps": [
+        "create",
+        "read",
+        "replace",
+        "read",
+        "list",
+        "delete",
+        "read missing"
+      ]
+    },
+    "expected_state": "create/read/update/read/list/delete/read missing; database empty at end",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_no_write",
+      "destroy_no_delete",
+      "index_invalid_json",
+      "store_invalid_json_exception",
+      "update_invalid_json_exception"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_no_write",
+        "sha256": "b62c9f99c834ee150c11bdd1e0b183fc4153c9865266298d9b1b2fa0901ef1fd",
+        "expected_evidence": {
+          "phase": "sequence.create",
+          "http_status": 201
+        }
+      },
+      {
+        "control_id": "destroy_no_delete",
+        "sha256": "f47dc7101f27dbbae8e47992559bd8b4efd56633d85364e093f9fcb1381f13ec",
+        "expected_evidence": {
+          "phase": "sequence.missing",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_invalid_json",
+        "sha256": "5a416e3d54b28b725af0b925c02722847c060a9c53189bf0eb22f5915f7e22cc",
+        "expected_evidence": {
+          "phase": "sequence.list",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "store_invalid_json_exception",
+        "sha256": "bb60a6e081154cf70b45d2032f23a40094da7a50a90213f6340846d88101f016",
+        "expected_evidence": {
+          "phase": "sequence.create",
+          "http_status": 201
+        }
+      },
+      {
+        "control_id": "update_invalid_json_exception",
+        "sha256": "9c6dfb074328f2438c0e4063c66f8fb01a4b3ee7a18de530134ecc2242c709d0",
+        "expected_evidence": {
+          "phase": "sequence.update",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_missing_name",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "missing",
+    "rule_id": "name.missing",
+    "fixture": {
+      "name": "missing_name",
+      "field": "name",
+      "vector": "missing",
+      "payload": {
+        "description": "Office supplies"
+      },
+      "case_id": "POST_missing_name",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_missing_name\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_missing_name\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_missing_name",
+      "validation_invalid_json_exception"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_missing_name",
+        "sha256": "8550514ef45f75ccc34e6eb99d31011e3c92e7130ce9ffba04313dd044ed8693",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "validation_invalid_json_exception",
+        "sha256": "7a09655fe517e342ab66861581df2d248e7d740d54f813c7d6e97f2d97552fa2",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_null_name",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "null",
+    "rule_id": "name.null",
+    "fixture": {
+      "name": "null_name",
+      "field": "name",
+      "vector": "null",
+      "payload": {
+        "name": null,
+        "description": "Office supplies"
+      },
+      "case_id": "POST_null_name",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_null_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_name",
+        "sha256": "5894bb301365e4d632f628f735cc3b22c1ebb1fafeb09ab4bb738e793afcf486",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_empty_name",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "empty",
+    "rule_id": "name.empty",
+    "fixture": {
+      "name": "empty_name",
+      "field": "name",
+      "vector": "empty",
+      "payload": {
+        "name": "",
+        "description": "Office supplies"
+      },
+      "case_id": "POST_empty_name",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_empty_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_name",
+        "sha256": "5894bb301365e4d632f628f735cc3b22c1ebb1fafeb09ab4bb738e793afcf486",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_whitespace_name",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "whitespace",
+    "rule_id": "name.whitespace",
+    "fixture": {
+      "name": "whitespace_name",
+      "field": "name",
+      "vector": "whitespace",
+      "payload": {
+        "name": "   ",
+        "description": "Office supplies"
+      },
+      "case_id": "POST_whitespace_name",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_whitespace_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_name",
+        "sha256": "5894bb301365e4d632f628f735cc3b22c1ebb1fafeb09ab4bb738e793afcf486",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_type_name",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "type",
+    "rule_id": "name.type",
+    "fixture": {
+      "name": "type_name",
+      "field": "name",
+      "vector": "type",
+      "payload": {
+        "name": [
+          "bad",
+          "bad"
+        ],
+        "description": "Office supplies"
+      },
+      "case_id": "POST_type_name",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_type_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_name",
+        "sha256": "97b1027429f7a1729726e5aea90c53d6ef35541ff6293e49e6e71d48567cd06e",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_object_name",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "object",
+    "rule_id": "name.object",
+    "fixture": {
+      "name": "object_name",
+      "field": "name",
+      "vector": "object",
+      "payload": {
+        "name": {
+          "bad0": "x",
+          "bad1": "x"
+        },
+        "description": "Office supplies"
+      },
+      "case_id": "POST_object_name",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_object_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_name",
+        "sha256": "97b1027429f7a1729726e5aea90c53d6ef35541ff6293e49e6e71d48567cd06e",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_max_name",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "max",
+    "rule_id": "name.max",
+    "fixture": {
+      "name": "max_name",
+      "field": "name",
+      "vector": "max",
+      "payload": {
+        "name": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ",
+        "description": "Office supplies"
+      },
+      "case_id": "POST_max_name",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_max_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_max_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_max_name",
+        "sha256": "8eb774c4cf40667537c271964613fc31c284c4b88c3186c6b68077c3dc052b73",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_missing_description",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "description",
+    "vector": "missing",
+    "rule_id": "description.missing",
+    "fixture": {
+      "name": "missing_description",
+      "field": "description",
+      "vector": "missing",
+      "payload": {
+        "name": "Stationery"
+      },
+      "case_id": "POST_missing_description",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_missing_description\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_missing_description\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "description"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_missing_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_missing_description",
+        "sha256": "432cea53b863e32f46f6b629b40a6e1567c18d104b558d3ae878ae73c2b9b4e5",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_null_description",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "description",
+    "vector": "null",
+    "rule_id": "description.null",
+    "fixture": {
+      "name": "null_description",
+      "field": "description",
+      "vector": "null",
+      "payload": {
+        "name": "Stationery",
+        "description": null
+      },
+      "case_id": "POST_null_description",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_null_description\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "description"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_description",
+        "sha256": "2d39a14a2a77fead0dc9d7762c5edf496974d1dc079cd5e371bd40ba596f79e2",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_empty_description",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "description",
+    "vector": "empty",
+    "rule_id": "description.empty",
+    "fixture": {
+      "name": "empty_description",
+      "field": "description",
+      "vector": "empty",
+      "payload": {
+        "name": "Stationery",
+        "description": ""
+      },
+      "case_id": "POST_empty_description",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_empty_description\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "description"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_description",
+        "sha256": "2d39a14a2a77fead0dc9d7762c5edf496974d1dc079cd5e371bd40ba596f79e2",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_whitespace_description",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "description",
+    "vector": "whitespace",
+    "rule_id": "description.whitespace",
+    "fixture": {
+      "name": "whitespace_description",
+      "field": "description",
+      "vector": "whitespace",
+      "payload": {
+        "name": "Stationery",
+        "description": "   "
+      },
+      "case_id": "POST_whitespace_description",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_whitespace_description\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "description"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_description",
+        "sha256": "2d39a14a2a77fead0dc9d7762c5edf496974d1dc079cd5e371bd40ba596f79e2",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_type_description",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "description",
+    "vector": "type",
+    "rule_id": "description.type",
+    "fixture": {
+      "name": "type_description",
+      "field": "description",
+      "vector": "type",
+      "payload": {
+        "name": "Stationery",
+        "description": [
+          "bad",
+          "bad"
+        ]
+      },
+      "case_id": "POST_type_description",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_type_description\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "description"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_description",
+        "sha256": "021b5efe653f4530d9547eb8e1c3bfc65073baea0a7ddd77cc6453eb0b6ab300",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_object_description",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "description",
+    "vector": "object",
+    "rule_id": "description.object",
+    "fixture": {
+      "name": "object_description",
+      "field": "description",
+      "vector": "object",
+      "payload": {
+        "name": "Stationery",
+        "description": {
+          "bad0": "x",
+          "bad1": "x"
+        }
+      },
+      "case_id": "POST_object_description",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_object_description\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "description"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_description",
+        "sha256": "021b5efe653f4530d9547eb8e1c3bfc65073baea0a7ddd77cc6453eb0b6ab300",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_max_description",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "description",
+    "vector": "max",
+    "rule_id": "description.max",
+    "fixture": {
+      "name": "max_description",
+      "field": "description",
+      "vector": "max",
+      "payload": {
+        "name": "Stationery",
+        "description": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+      },
+      "case_id": "POST_max_description",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_max_description\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "description"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_max_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_max_description",
+        "sha256": "2c9bb87e27a3fd5bf12b7ed44c459e0d70a3bd3d56e5657ecdfeef61955fcef4",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_missing_name",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "missing",
+    "rule_id": "name.missing",
+    "fixture": {
+      "name": "missing_name",
+      "field": "name",
+      "vector": "missing",
+      "payload": {
+        "description": "Office supplies"
+      },
+      "case_id": "PUT_missing_name",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_missing_name\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_missing_name\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_required_name",
+      "validation_invalid_json_exception"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_required_name",
+        "sha256": "be3c9f0b135f71366eb594173273bf2374cdc405bb7fd4fae1d7a4ca4eff4a56",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "validation_invalid_json_exception",
+        "sha256": "7a09655fe517e342ab66861581df2d248e7d740d54f813c7d6e97f2d97552fa2",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_null_name",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "null",
+    "rule_id": "name.null",
+    "fixture": {
+      "name": "null_name",
+      "field": "name",
+      "vector": "null",
+      "payload": {
+        "name": null,
+        "description": "Office supplies"
+      },
+      "case_id": "PUT_null_name",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_null_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_name",
+        "sha256": "65132b65f019b2c47b369010940a301e84c6c5fb3fc24f2aed2d4934c0c6393a",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_empty_name",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "empty",
+    "rule_id": "name.empty",
+    "fixture": {
+      "name": "empty_name",
+      "field": "name",
+      "vector": "empty",
+      "payload": {
+        "name": "",
+        "description": "Office supplies"
+      },
+      "case_id": "PUT_empty_name",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_empty_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_name",
+        "sha256": "65132b65f019b2c47b369010940a301e84c6c5fb3fc24f2aed2d4934c0c6393a",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_whitespace_name",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "whitespace",
+    "rule_id": "name.whitespace",
+    "fixture": {
+      "name": "whitespace_name",
+      "field": "name",
+      "vector": "whitespace",
+      "payload": {
+        "name": "   ",
+        "description": "Office supplies"
+      },
+      "case_id": "PUT_whitespace_name",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_whitespace_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_name",
+        "sha256": "65132b65f019b2c47b369010940a301e84c6c5fb3fc24f2aed2d4934c0c6393a",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_type_name",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "type",
+    "rule_id": "name.type",
+    "fixture": {
+      "name": "type_name",
+      "field": "name",
+      "vector": "type",
+      "payload": {
+        "name": [
+          "bad",
+          "bad"
+        ],
+        "description": "Office supplies"
+      },
+      "case_id": "PUT_type_name",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_type_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_name",
+        "sha256": "9ba3b6081b3258affc956f28ebefee84ffcad4a2a4e3dbdfd52956576157ff0f",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_object_name",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "object",
+    "rule_id": "name.object",
+    "fixture": {
+      "name": "object_name",
+      "field": "name",
+      "vector": "object",
+      "payload": {
+        "name": {
+          "bad0": "x",
+          "bad1": "x"
+        },
+        "description": "Office supplies"
+      },
+      "case_id": "PUT_object_name",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_object_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_name",
+        "sha256": "9ba3b6081b3258affc956f28ebefee84ffcad4a2a4e3dbdfd52956576157ff0f",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_max_name",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "max",
+    "rule_id": "name.max",
+    "fixture": {
+      "name": "max_name",
+      "field": "name",
+      "vector": "max",
+      "payload": {
+        "name": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ",
+        "description": "Office supplies"
+      },
+      "case_id": "PUT_max_name",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_max_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_max_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_max_name",
+        "sha256": "0f06f827c2275fc39da87704117edd03f969b37b17e6a49e5f34b19d0ca91bc3",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_missing_description",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "description",
+    "vector": "missing",
+    "rule_id": "description.missing",
+    "fixture": {
+      "name": "missing_description",
+      "field": "description",
+      "vector": "missing",
+      "payload": {
+        "name": "Stationery"
+      },
+      "case_id": "PUT_missing_description",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_missing_description\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_missing_description\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "description"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_required_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_required_description",
+        "sha256": "189d7228a75e918a7da454f392b57bf67e91659cec58eac80aba188a5d60e29b",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_null_description",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "description",
+    "vector": "null",
+    "rule_id": "description.null",
+    "fixture": {
+      "name": "null_description",
+      "field": "description",
+      "vector": "null",
+      "payload": {
+        "name": "Stationery",
+        "description": null
+      },
+      "case_id": "PUT_null_description",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_null_description\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "description"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_description",
+        "sha256": "f1bfc0dfce32dc3d7f89a0f32a41f525cbfb5b4799a6672a61d92ecd0efb15ce",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_empty_description",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "description",
+    "vector": "empty",
+    "rule_id": "description.empty",
+    "fixture": {
+      "name": "empty_description",
+      "field": "description",
+      "vector": "empty",
+      "payload": {
+        "name": "Stationery",
+        "description": ""
+      },
+      "case_id": "PUT_empty_description",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_empty_description\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "description"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_description",
+        "sha256": "f1bfc0dfce32dc3d7f89a0f32a41f525cbfb5b4799a6672a61d92ecd0efb15ce",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_whitespace_description",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "description",
+    "vector": "whitespace",
+    "rule_id": "description.whitespace",
+    "fixture": {
+      "name": "whitespace_description",
+      "field": "description",
+      "vector": "whitespace",
+      "payload": {
+        "name": "Stationery",
+        "description": "   "
+      },
+      "case_id": "PUT_whitespace_description",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_whitespace_description\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "description"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_description",
+        "sha256": "f1bfc0dfce32dc3d7f89a0f32a41f525cbfb5b4799a6672a61d92ecd0efb15ce",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_type_description",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "description",
+    "vector": "type",
+    "rule_id": "description.type",
+    "fixture": {
+      "name": "type_description",
+      "field": "description",
+      "vector": "type",
+      "payload": {
+        "name": "Stationery",
+        "description": [
+          "bad",
+          "bad"
+        ]
+      },
+      "case_id": "PUT_type_description",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_type_description\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "description"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_description",
+        "sha256": "bc7f445732bb302dcc5647091dce9cb9f133f4ab103f2badf355966704f01d2f",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_object_description",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "description",
+    "vector": "object",
+    "rule_id": "description.object",
+    "fixture": {
+      "name": "object_description",
+      "field": "description",
+      "vector": "object",
+      "payload": {
+        "name": "Stationery",
+        "description": {
+          "bad0": "x",
+          "bad1": "x"
+        }
+      },
+      "case_id": "PUT_object_description",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_object_description\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "description"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_description",
+        "sha256": "bc7f445732bb302dcc5647091dce9cb9f133f4ab103f2badf355966704f01d2f",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_max_description",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "description",
+    "vector": "max",
+    "rule_id": "description.max",
+    "fixture": {
+      "name": "max_description",
+      "field": "description",
+      "vector": "max",
+      "payload": {
+        "name": "Stationery",
+        "description": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+      },
+      "case_id": "PUT_max_description",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_max_description\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "description"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_max_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_max_description",
+        "sha256": "24c79cbd3f02acf67b441516805980d50447dfd9b016da3810639d31f264b0c8",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_max_name",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "boundary_max",
+    "rule_id": "name.boundary_max",
+    "fixture": {
+      "name": "boundary_max_name",
+      "field": "name",
+      "vector": "boundary_max",
+      "payload": {
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "description": "Office supplies"
+      },
+      "case_id": "POST_boundary_max_name",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_max_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "description": "Office supplies"
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_max_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_max_name",
+        "sha256": "1721e305586f5093cf674d97609813ce84a9ac12a14e76dfe276b48590cb989b",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_max_description",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "description",
+    "vector": "boundary_max",
+    "rule_id": "description.boundary_max",
+    "fixture": {
+      "name": "boundary_max_description",
+      "field": "description",
+      "vector": "boundary_max",
+      "payload": {
+        "name": "Stationery",
+        "description": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      },
+      "case_id": "POST_boundary_max_description",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_max_description\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "name": "Stationery",
+        "description": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_max_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_max_description",
+        "sha256": "f7a87b77f871f1db0a45c469c572efbf319bc40ba1b22d0c5f8116cf045f4fc8",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_short1_name",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "short1",
+    "rule_id": "name.short1",
+    "fixture": {
+      "name": "short1_name",
+      "field": "name",
+      "vector": "short1",
+      "payload": {
+        "name": "Q",
+        "description": "Office supplies"
+      },
+      "case_id": "POST_short1_name",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_short1_name\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_short1_name\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "name": "Q",
+        "description": "Office supplies"
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "reject_short_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "reject_short_name",
+        "sha256": "42a2a0132830d01f4543774777c18bea24a0da67436494c8daf361c618e4e451",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_short2_name",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "short2",
+    "rule_id": "name.short2",
+    "fixture": {
+      "name": "short2_name",
+      "field": "name",
+      "vector": "short2",
+      "payload": {
+        "name": "QQ",
+        "description": "Office supplies"
+      },
+      "case_id": "POST_short2_name",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_short2_name\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_short2_name\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "name": "QQ",
+        "description": "Office supplies"
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "reject_short_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "reject_short_name",
+        "sha256": "42a2a0132830d01f4543774777c18bea24a0da67436494c8daf361c618e4e451",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_short1_description",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "description",
+    "vector": "short1",
+    "rule_id": "description.short1",
+    "fixture": {
+      "name": "short1_description",
+      "field": "description",
+      "vector": "short1",
+      "payload": {
+        "name": "Stationery",
+        "description": "R"
+      },
+      "case_id": "POST_short1_description",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_short1_description\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_short1_description\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "name": "Stationery",
+        "description": "R"
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "reject_short_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "reject_short_description",
+        "sha256": "1323957dd679496598136912b9c8ee3d0097c27c2ff30d94de6a8950eb2476e6",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_short2_description",
+    "spec_id": "final_categories_v2",
+    "operation": "POST",
+    "field": "description",
+    "vector": "short2",
+    "rule_id": "description.short2",
+    "fixture": {
+      "name": "short2_description",
+      "field": "description",
+      "vector": "short2",
+      "payload": {
+        "name": "Stationery",
+        "description": "RR"
+      },
+      "case_id": "POST_short2_description",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_short2_description\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_short2_description\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "name": "Stationery",
+        "description": "RR"
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "reject_short_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "reject_short_description",
+        "sha256": "1323957dd679496598136912b9c8ee3d0097c27c2ff30d94de6a8950eb2476e6",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_max_name",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "boundary_max",
+    "rule_id": "name.boundary_max",
+    "fixture": {
+      "name": "boundary_max_name",
+      "field": "name",
+      "vector": "boundary_max",
+      "payload": {
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "description": "Office supplies"
+      },
+      "case_id": "PUT_boundary_max_name",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_max_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "description": "Office supplies"
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_max_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_max_name",
+        "sha256": "c5ca171aa1f86e9db8e403316ad5151113a16244be4d6cdf1fe2901a386262b4",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_max_description",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "description",
+    "vector": "boundary_max",
+    "rule_id": "description.boundary_max",
+    "fixture": {
+      "name": "boundary_max_description",
+      "field": "description",
+      "vector": "boundary_max",
+      "payload": {
+        "name": "Stationery",
+        "description": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      },
+      "case_id": "PUT_boundary_max_description",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_max_description\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "name": "Stationery",
+        "description": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_max_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_max_description",
+        "sha256": "753ac837dae56c7079f7a8a0f06bd7189e69d3d073e201ef6c08a6a2b4469bce",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_short1_name",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "short1",
+    "rule_id": "name.short1",
+    "fixture": {
+      "name": "short1_name",
+      "field": "name",
+      "vector": "short1",
+      "payload": {
+        "name": "Q",
+        "description": "Office supplies"
+      },
+      "case_id": "PUT_short1_name",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_short1_name\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_short1_name\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "name": "Q",
+        "description": "Office supplies"
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "reject_short_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "reject_short_name",
+        "sha256": "42a2a0132830d01f4543774777c18bea24a0da67436494c8daf361c618e4e451",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_short2_name",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "short2",
+    "rule_id": "name.short2",
+    "fixture": {
+      "name": "short2_name",
+      "field": "name",
+      "vector": "short2",
+      "payload": {
+        "name": "QQ",
+        "description": "Office supplies"
+      },
+      "case_id": "PUT_short2_name",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_short2_name\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_short2_name\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "name": "QQ",
+        "description": "Office supplies"
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "reject_short_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "reject_short_name",
+        "sha256": "42a2a0132830d01f4543774777c18bea24a0da67436494c8daf361c618e4e451",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_short1_description",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "description",
+    "vector": "short1",
+    "rule_id": "description.short1",
+    "fixture": {
+      "name": "short1_description",
+      "field": "description",
+      "vector": "short1",
+      "payload": {
+        "name": "Stationery",
+        "description": "R"
+      },
+      "case_id": "PUT_short1_description",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_short1_description\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_short1_description\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "name": "Stationery",
+        "description": "R"
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "reject_short_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "reject_short_description",
+        "sha256": "1323957dd679496598136912b9c8ee3d0097c27c2ff30d94de6a8950eb2476e6",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_short2_description",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": "description",
+    "vector": "short2",
+    "rule_id": "description.short2",
+    "fixture": {
+      "name": "short2_description",
+      "field": "description",
+      "vector": "short2",
+      "payload": {
+        "name": "Stationery",
+        "description": "RR"
+      },
+      "case_id": "PUT_short2_description",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_short2_description\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_short2_description\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "name": "Stationery",
+        "description": "RR"
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "reject_short_description"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "reject_short_description",
+        "sha256": "1323957dd679496598136912b9c8ee3d0097c27c2ff30d94de6a8950eb2476e6",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "show_second",
+    "spec_id": "final_categories_v2",
+    "operation": "GET",
+    "field": null,
+    "vector": "show",
+    "rule_id": "crud.show",
+    "fixture": {
+      "case_id": "show_second",
+      "kind": "show",
+      "operation": "GET",
+      "target_position": 2,
+      "payload": {
+        "name": "Stationery",
+        "description": "Office supplies"
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"show_second\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"show_second\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "name": "Hardware",
+        "description": "Workshop parts"
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "lookup_first_after_exists"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "lookup_first_after_exists",
+        "sha256": "08d5be2e798f26afb55d9543dc58a5be37e0a505fe6e4ddc361574768151c36c",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "update_second",
+    "spec_id": "final_categories_v2",
+    "operation": "PUT",
+    "field": null,
+    "vector": "update",
+    "rule_id": "crud.update",
+    "fixture": {
+      "case_id": "update_second",
+      "kind": "update",
+      "operation": "PUT",
+      "target_position": 2,
+      "payload": {
+        "name": "Equipment",
+        "description": "Lab equipment"
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"update_second\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"update_second\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "name": "Equipment",
+        "description": "Lab equipment"
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "lookup_first_after_exists"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "lookup_first_after_exists",
+        "sha256": "08d5be2e798f26afb55d9543dc58a5be37e0a505fe6e4ddc361574768151c36c",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  },
+  {
+    "case_id": "destroy_second",
+    "spec_id": "final_categories_v2",
+    "operation": "DELETE",
+    "field": null,
+    "vector": "destroy",
+    "rule_id": "crud.destroy",
+    "fixture": {
+      "case_id": "destroy_second",
+      "kind": "destroy",
+      "operation": "DELETE",
+      "target_position": 2,
+      "payload": {
+        "name": "Stationery",
+        "description": "Office supplies"
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"destroy_second\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"destroy_second\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 204,
+    "expected_body": {
+      "raw": ""
+    },
+    "expected_state": "target removed; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "lookup_first_after_exists"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "lookup_first_after_exists",
+        "sha256": "08d5be2e798f26afb55d9543dc58a5be37e0a505fe6e4ddc361574768151c36c",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 204
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "bea32a74b1d33568a3a4d763c0f7556bb34c0952eb4681cadaf8e4dea3eca168"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "216c9f9aea990a552b1c9104dbf3ea1f3aa4a623aa934b9c55e02e28dfca5b73"
+      }
+    ]
+  }
+]

@@ -1,0 +1,831 @@
+{
+  "package": "final-v2",
+  "prepared_by": "OpenAI Codex",
+  "stage": "pre_freeze_validation",
+  "spec": {
+    "spec_id": "final_shipments_v2",
+    "spec_version": "1.0",
+    "resource": "shipments",
+    "model": "Shipment",
+    "controller": "ShipmentController",
+    "fields": [
+      {
+        "name": "tracking_code",
+        "type": "string",
+        "rules": [
+          "required",
+          "string",
+          "min:6",
+          "max:24",
+          "unique:shipments,tracking_code"
+        ]
+      },
+      {
+        "name": "reference_code",
+        "type": "string",
+        "rules": [
+          "required",
+          "string",
+          "max:20",
+          "unique:shipments,reference_code"
+        ]
+      },
+      {
+        "name": "quantity",
+        "type": "integer",
+        "rules": [
+          "required",
+          "integer",
+          "min:1",
+          "max:5000"
+        ]
+      },
+      {
+        "name": "priority",
+        "type": "integer",
+        "rules": [
+          "required",
+          "integer",
+          "min:1",
+          "max:5"
+        ]
+      },
+      {
+        "name": "note",
+        "type": "string",
+        "rules": [
+          "required",
+          "string",
+          "max:120"
+        ]
+      }
+    ],
+    "operations": {
+      "index": {
+        "success_status": 200
+      },
+      "store": {
+        "success_status": 201,
+        "validation_error_status": 422
+      },
+      "show": {
+        "success_status": 200,
+        "not_found_status": 404
+      },
+      "update": {
+        "success_status": 200,
+        "validation_error_status": 422,
+        "not_found_status": 404
+      },
+      "destroy": {
+        "success_status": 204,
+        "not_found_status": 404
+      }
+    }
+  },
+  "fixtures": {
+    "new": {
+      "tracking_code": "TRK-000101",
+      "reference_code": "REF-101",
+      "quantity": 12,
+      "priority": 2,
+      "note": "Fragile devices"
+    },
+    "target": {
+      "tracking_code": "TRK-000202",
+      "reference_code": "REF-202",
+      "quantity": 24,
+      "priority": 3,
+      "note": "Office documents"
+    },
+    "other": {
+      "tracking_code": "TRK-000303",
+      "reference_code": "REF-303",
+      "quantity": 36,
+      "priority": 4,
+      "note": "Workshop delivery"
+    },
+    "updated": {
+      "tracking_code": "TRK-000404",
+      "reference_code": "REF-404",
+      "quantity": 48,
+      "priority": 1,
+      "note": "Replacement parts"
+    }
+  },
+  "invalid": [
+    {
+      "name": "missing_tracking_code",
+      "field": "tracking_code",
+      "vector": "missing",
+      "payload": {
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "null_tracking_code",
+      "field": "tracking_code",
+      "vector": "null",
+      "payload": {
+        "tracking_code": null,
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "empty_tracking_code",
+      "field": "tracking_code",
+      "vector": "empty",
+      "payload": {
+        "tracking_code": "",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "whitespace_tracking_code",
+      "field": "tracking_code",
+      "vector": "whitespace",
+      "payload": {
+        "tracking_code": "   ",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "type_tracking_code",
+      "field": "tracking_code",
+      "vector": "type",
+      "payload": {
+        "tracking_code": [
+          "bad",
+          "bad",
+          "bad",
+          "bad",
+          "bad",
+          "bad"
+        ],
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "object_tracking_code",
+      "field": "tracking_code",
+      "vector": "object",
+      "payload": {
+        "tracking_code": {
+          "bad0": "x",
+          "bad1": "x",
+          "bad2": "x",
+          "bad3": "x",
+          "bad4": "x",
+          "bad5": "x"
+        },
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "min_tracking_code",
+      "field": "tracking_code",
+      "vector": "min",
+      "payload": {
+        "tracking_code": "ZZZZZ",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "max_tracking_code",
+      "field": "tracking_code",
+      "vector": "max",
+      "payload": {
+        "tracking_code": "ZZZZZZZZZZZZZZZZZZZZZZZZZ",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "unique_tracking_code",
+      "field": "tracking_code",
+      "vector": "unique",
+      "payload": {
+        "tracking_code": "TRK-000303",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "missing_reference_code",
+      "field": "reference_code",
+      "vector": "missing",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "null_reference_code",
+      "field": "reference_code",
+      "vector": "null",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": null,
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "empty_reference_code",
+      "field": "reference_code",
+      "vector": "empty",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "whitespace_reference_code",
+      "field": "reference_code",
+      "vector": "whitespace",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "   ",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "type_reference_code",
+      "field": "reference_code",
+      "vector": "type",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": [
+          "bad",
+          "bad"
+        ],
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "object_reference_code",
+      "field": "reference_code",
+      "vector": "object",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": {
+          "bad0": "x",
+          "bad1": "x"
+        },
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "max_reference_code",
+      "field": "reference_code",
+      "vector": "max",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "ZZZZZZZZZZZZZZZZZZZZZ",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "unique_reference_code",
+      "field": "reference_code",
+      "vector": "unique",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-303",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "missing_quantity",
+      "field": "quantity",
+      "vector": "missing",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "null_quantity",
+      "field": "quantity",
+      "vector": "null",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": null,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "empty_quantity",
+      "field": "quantity",
+      "vector": "empty",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": "",
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "whitespace_quantity",
+      "field": "quantity",
+      "vector": "whitespace",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": "   ",
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "type_quantity",
+      "field": "quantity",
+      "vector": "type",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": "x",
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "object_quantity",
+      "field": "quantity",
+      "vector": "object",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": {
+          "wrong": "type"
+        },
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "fraction_quantity",
+      "field": "quantity",
+      "vector": "fraction",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 1.5,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "min_quantity",
+      "field": "quantity",
+      "vector": "min",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 0,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "max_quantity",
+      "field": "quantity",
+      "vector": "max",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 5001,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "missing_priority",
+      "field": "priority",
+      "vector": "missing",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "null_priority",
+      "field": "priority",
+      "vector": "null",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": null,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "empty_priority",
+      "field": "priority",
+      "vector": "empty",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": "",
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "whitespace_priority",
+      "field": "priority",
+      "vector": "whitespace",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": "   ",
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "type_priority",
+      "field": "priority",
+      "vector": "type",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": "x",
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "object_priority",
+      "field": "priority",
+      "vector": "object",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": {
+          "wrong": "type"
+        },
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "fraction_priority",
+      "field": "priority",
+      "vector": "fraction",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 1.5,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "min_priority",
+      "field": "priority",
+      "vector": "min",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 0,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "max_priority",
+      "field": "priority",
+      "vector": "max",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 6,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "missing_note",
+      "field": "note",
+      "vector": "missing",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2
+      }
+    },
+    {
+      "name": "null_note",
+      "field": "note",
+      "vector": "null",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": null
+      }
+    },
+    {
+      "name": "empty_note",
+      "field": "note",
+      "vector": "empty",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": ""
+      }
+    },
+    {
+      "name": "whitespace_note",
+      "field": "note",
+      "vector": "whitespace",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "   "
+      }
+    },
+    {
+      "name": "type_note",
+      "field": "note",
+      "vector": "type",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": [
+          "bad",
+          "bad"
+        ]
+      }
+    },
+    {
+      "name": "object_note",
+      "field": "note",
+      "vector": "object",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": {
+          "bad0": "x",
+          "bad1": "x"
+        }
+      }
+    },
+    {
+      "name": "max_note",
+      "field": "note",
+      "vector": "max",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+      }
+    }
+  ],
+  "valid": [
+    {
+      "name": "boundary_min_tracking_code",
+      "field": "tracking_code",
+      "vector": "boundary_min",
+      "payload": {
+        "tracking_code": "BBBBBB",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "boundary_max_tracking_code",
+      "field": "tracking_code",
+      "vector": "boundary_max",
+      "payload": {
+        "tracking_code": "BBBBBBBBBBBBBBBBBBBBBBBB",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "boundary_max_reference_code",
+      "field": "reference_code",
+      "vector": "boundary_max",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "BBBBBBBBBBBBBBBBBBBB",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "boundary_min_quantity",
+      "field": "quantity",
+      "vector": "boundary_min",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 1,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "boundary_max_quantity",
+      "field": "quantity",
+      "vector": "boundary_max",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 5000,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "numeric_string_quantity",
+      "field": "quantity",
+      "vector": "numeric_string",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": "12",
+        "priority": 2,
+        "note": "Fragile devices"
+      },
+      "expected": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "boundary_min_priority",
+      "field": "priority",
+      "vector": "boundary_min",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 1,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "boundary_max_priority",
+      "field": "priority",
+      "vector": "boundary_max",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 5,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "numeric_string_priority",
+      "field": "priority",
+      "vector": "numeric_string",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": "2",
+        "note": "Fragile devices"
+      },
+      "expected": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "boundary_max_note",
+      "field": "note",
+      "vector": "boundary_max",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      }
+    },
+    {
+      "name": "short1_reference_code",
+      "field": "reference_code",
+      "vector": "short1",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "R",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "short2_reference_code",
+      "field": "reference_code",
+      "vector": "short2",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "RR",
+        "quantity": 12,
+        "priority": 2,
+        "note": "Fragile devices"
+      }
+    },
+    {
+      "name": "short1_note",
+      "field": "note",
+      "vector": "short1",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "U"
+      }
+    },
+    {
+      "name": "short2_note",
+      "field": "note",
+      "vector": "short2",
+      "payload": {
+        "tracking_code": "TRK-000101",
+        "reference_code": "REF-101",
+        "quantity": 12,
+        "priority": 2,
+        "note": "UU"
+      }
+    }
+  ]
+}

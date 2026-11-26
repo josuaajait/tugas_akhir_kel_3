@@ -1,0 +1,11 @@
+--- eloquent.php
++++ index_swapped.php
+@@ -9,7 +9,7 @@
+     private function load($id) { return Model::findOrFail($id); }
+     public function index()
+     {
+-        $data = Model::all()->toArray();
++        $data = Model::all()->toArray(); if (count($data)>1) { $v=$data[0]['tracking_code']; $data[0]['tracking_code']=$data[1]['tracking_code']; $data[1]['tracking_code']=$v; }
+         return response()->json(['data'=>$data], 200); // index response
+     }
+     public function store(Request $request)

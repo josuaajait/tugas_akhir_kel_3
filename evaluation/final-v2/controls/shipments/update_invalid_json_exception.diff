@@ -1,0 +1,11 @@
+--- eloquent.php
++++ update_invalid_json_exception.php
+@@ -42,7 +42,7 @@
+             'note' => ['required', 'string', 'max:120'],
+         ]);
+         $record->update($body);
+-        return response()->json(['data'=>$record->fresh()], 200); // update response
++        throw new \Illuminate\Http\Exceptions\HttpResponseException(response('not-json',200)->header('Content-Type','application/json')); // audit decoder exception
+     }
+     public function destroy($id)
+     {

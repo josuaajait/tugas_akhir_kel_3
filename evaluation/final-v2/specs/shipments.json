@@ -1,0 +1,81 @@
+{
+  "spec_id": "final_shipments_v2",
+  "spec_version": "1.0",
+  "resource": "shipments",
+  "model": "Shipment",
+  "controller": "ShipmentController",
+  "fields": [
+    {
+      "name": "tracking_code",
+      "type": "string",
+      "rules": [
+        "required",
+        "string",
+        "min:6",
+        "max:24",
+        "unique:shipments,tracking_code"
+      ]
+    },
+    {
+      "name": "reference_code",
+      "type": "string",
+      "rules": [
+        "required",
+        "string",
+        "max:20",
+        "unique:shipments,reference_code"
+      ]
+    },
+    {
+      "name": "quantity",
+      "type": "integer",
+      "rules": [
+        "required",
+        "integer",
+        "min:1",
+        "max:5000"
+      ]
+    },
+    {
+      "name": "priority",
+      "type": "integer",
+      "rules": [
+        "required",
+        "integer",
+        "min:1",
+        "max:5"
+      ]
+    },
+    {
+      "name": "note",
+      "type": "string",
+      "rules": [
+        "required",
+        "string",
+        "max:120"
+      ]
+    }
+  ],
+  "operations": {
+    "index": {
+      "success_status": 200
+    },
+    "store": {
+      "success_status": 201,
+      "validation_error_status": 422
+    },
+    "show": {
+      "success_status": 200,
+      "not_found_status": 404
+    },
+    "update": {
+      "success_status": 200,
+      "validation_error_status": 422,
+      "not_found_status": 404
+    },
+    "destroy": {
+      "success_status": 204,
+      "not_found_status": 404
+    }
+  }
+}

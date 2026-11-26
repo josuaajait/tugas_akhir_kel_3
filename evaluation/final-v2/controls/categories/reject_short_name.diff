@@ -1,0 +1,20 @@
+--- eloquent.php
++++ reject_short_name.php
+@@ -16,7 +16,7 @@
+     {
+         // store guards
+         $body = $request->validate([
+-            'name' => ['required', 'string', 'max:48'],
++            'name' => ['required', 'string', 'min:3', 'max:48'],
+             'description' => ['required', 'string', 'max:160'],
+         ]);
+         $record = Model::create($body);
+@@ -32,7 +32,7 @@
+         $record = $this->load($id); // update lookup
+         // update guards
+         $body = $request->validate([
+-            'name' => ['required', 'string', 'max:48'],
++            'name' => ['required', 'string', 'min:3', 'max:48'],
+             'description' => ['required', 'string', 'max:160'],
+         ]);
+         $record->update($body);

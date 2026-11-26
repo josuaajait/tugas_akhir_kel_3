@@ -1,0 +1,18 @@
+--- eloquent.php
++++ validation_invalid_json_exception.php
+@@ -15,6 +15,7 @@
+     public function store(Request $request)
+     {
+         // store guards
++        if (!$request->exists('tracking_code')) throw new \Illuminate\Http\Exceptions\HttpResponseException(response('not-json',422)->header('Content-Type','application/json'));
+         $body = $request->validate([
+             'tracking_code' => ['required', 'string', 'min:6', 'max:24', 'unique:shipments,tracking_code'],
+             'reference_code' => ['required', 'string', 'max:20', 'unique:shipments,reference_code'],
+@@ -34,6 +35,7 @@
+     {
+         $record = $this->load($id); // update lookup
+         // update guards
++        if (!$request->exists('tracking_code')) throw new \Illuminate\Http\Exceptions\HttpResponseException(response('not-json',422)->header('Content-Type','application/json'));
+         $body = $request->validate([
+             'tracking_code' => ['required', 'string', 'min:6', 'max:24', Rule::unique('shipments', 'tracking_code')->ignore($record->getKey())],
+             'reference_code' => ['required', 'string', 'max:20', Rule::unique('shipments', 'reference_code')->ignore($record->getKey())],

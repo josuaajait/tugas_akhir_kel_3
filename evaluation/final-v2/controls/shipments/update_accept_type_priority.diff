@@ -1,0 +1,10 @@
+--- eloquent.php
++++ update_accept_type_priority.php
+@@ -34,6 +34,7 @@
+     {
+         $record = $this->load($id); // update lookup
+         // update guards
++        if ($request->exists('priority') && $request->input('priority') !== null && (is_array($request->input('priority')) || is_float($request->input('priority')) || (is_string($request->input('priority')) && !preg_match('/^[+-]?[0-9]+$/', $request->input('priority'))))) return response()->json(['accepted'=>true], 200);
+         $body = $request->validate([
+             'tracking_code' => ['required', 'string', 'min:6', 'max:24', Rule::unique('shipments', 'tracking_code')->ignore($record->getKey())],
+             'reference_code' => ['required', 'string', 'max:20', Rule::unique('shipments', 'reference_code')->ignore($record->getKey())],

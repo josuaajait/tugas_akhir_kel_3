@@ -1,0 +1,11 @@
+--- eloquent.php
++++ store_omit_max_course_code.php
+@@ -16,7 +16,7 @@
+     {
+         // store guards
+         $body = $request->validate([
+-            'course_code' => ['required', 'string', 'max:12', 'unique:courses,course_code'],
++            'course_code' => ['required', 'string', 'unique:courses,course_code'],
+             'credits' => ['required', 'integer', 'min:1', 'max:6'],
+             'quota' => ['required', 'integer', 'min:0', 'max:200'],
+         ]);

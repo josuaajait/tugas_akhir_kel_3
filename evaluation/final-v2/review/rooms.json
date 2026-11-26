@@ -1,0 +1,466 @@
+{
+  "resource": "rooms",
+  "prepared_by": "OpenAI Codex",
+  "human_author": null,
+  "reviewer": null,
+  "reviewed_at": null,
+  "status": "pending",
+  "decisions": [
+    {
+      "case_id": "index",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "store",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "show",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "update",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "destroy",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "missing_GET",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "missing_PUT",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "missing_DELETE",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "empty",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "sequence",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_missing_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_null_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_empty_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_whitespace_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_type_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_object_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_max_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_missing_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_null_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_empty_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_whitespace_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_type_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_object_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_fraction_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_min_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_max_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_missing_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_null_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_empty_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_whitespace_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_type_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_object_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_max_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_missing_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_null_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_empty_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_whitespace_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_type_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_object_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_fraction_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_min_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_max_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_boundary_max_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_boundary_min_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_boundary_max_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_numeric_string_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_short1_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "POST_short2_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_boundary_max_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_boundary_min_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_boundary_max_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_numeric_string_capacity",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_short1_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "PUT_short2_label",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "show_second",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "update_second",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "case_id": "destroy_second",
+      "decision": null,
+      "rationale": null,
+      "human_author": null,
+      "reviewer": null,
+      "reviewed_at": null
+    }
+  ]
+}

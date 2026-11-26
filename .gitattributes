@@ -1,2 +1,3 @@
 # Final control source/diff hashes use LF in every checkout.
 evaluation/final-v1/** text eol=lf
+evaluation/final-v2/** text eol=lf

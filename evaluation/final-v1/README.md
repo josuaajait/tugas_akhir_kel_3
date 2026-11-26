@@ -56,8 +56,8 @@ Testcase negatif harus gagal pada fase dan HTTP aktual yang dicatat, dengan mark
 
 [Matriks](traceability/) memuat358 baris vektor acuan, termasuk70 pemetaan internal, hasil yang diharapkan, kontrol positif/negatif serta hash. Status validasi sumber tetap PENDING; hasil aktual berada di snapshot masing-masing eksekusi. [Formulir review](review/) sengaja kosong. Salin form ke catatan eksternal untuk mencatat pembuat manusia, reviewer, tanggal dan keputusan setelah pemeriksaan nyata; form asli tetap utuh agar hash paket tervalidasi tetap sama. Perubahan soal/evaluator memerlukan versi paket dan validasi baru.
 
-Lima slot rencana20pasangan sudah terikat ke spec/image aktual dalam draf. Setelah review dan keputusan konfigurasi, buat manifest baru untuk pembekuan. `run-ab` development tetap memakai produk/books/inventory; `ab-run` memakai protokol final yang melewati gerbang. Pertahankan semua arsip gagal, perbaikan dan percobaan ulang. [Rancangan](../../docs/superpowers/specs/2026-11-23-final-evaluation-package-design.md) · [Rencana implementasi](../../docs/superpowers/plans/2026-11-23-final-evaluation-package.md).
+Lima slot rencana20pasangan sudah terikat ke spec/image aktual dalam draf. Setelah review dan keputusan konfigurasi, buat manifest baru untuk pembekuan. `run-ab` development tetap memakai produk/books/inventory; `ab-run` memakai protokol final yang melewati gerbang. Pertahankan semua arsip gagal, perbaikan dan percobaan ulang.
 
 ## Integrasi A/B
 
-Adaptor paket dan pelaporan tersedia melalui `ab-smoke`, `ab-plan-check`, `ab-run`, `ab-report`; lihat [panduan lengkap](../../docs/FINAL-AB.md) dan [bukti teknis](../../docs/evidence/final-ab-adapter-2026-11-23.md). Review manusia dan pembekuan tetap diperlukan. Jangan mengubah form asli dalam `review/`; salin dan isi catatan review eksternal yang mengikat hash paket, spesifikasi dan form kosong.
+Adaptor paket dan pelaporan tersedia melalui `ab-smoke`, `ab-plan-check`, `ab-run`, `ab-report`. Review manusia dan pembekuan tetap diperlukan. Jangan mengubah form asli dalam `review/`; salin dan isi catatan review eksternal yang mengikat hash paket, spesifikasi dan form kosong.

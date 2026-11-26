@@ -1,0 +1,10 @@
+--- eloquent.php
++++ destroy_body.php
+@@ -48,6 +48,6 @@
+     {
+         $record = $this->load($id); // destroy lookup
+         $record->delete();
+-        return response()->noContent(); // destroy response
++        return new class('unexpected', 204) extends \Illuminate\Http\Response { public function prepare(\Symfony\Component\HttpFoundation\Request $request): static { return $this; } }; // destroy response
+     }
+ }

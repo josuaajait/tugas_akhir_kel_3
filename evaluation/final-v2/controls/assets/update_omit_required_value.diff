@@ -1,0 +1,11 @@
+--- eloquent.php
++++ update_omit_required_value.php
+@@ -35,7 +35,7 @@
+         $body = $request->validate([
+             'asset_code' => ['required', 'string', 'min:3', 'max:20', Rule::unique('assets', 'asset_code')->ignore($record->getKey())],
+             'name' => ['required', 'string', 'max:80'],
+-            'value' => ['required', 'integer', 'min:0', 'max:1000000'],
++            'value' => ['integer', 'min:0', 'max:1000000'],
+         ]);
+         $record->update($body);
+         return response()->json(['data'=>$record->fresh()], 200); // update response

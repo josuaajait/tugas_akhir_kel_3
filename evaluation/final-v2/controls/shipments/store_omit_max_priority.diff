@@ -1,0 +1,11 @@
+--- eloquent.php
++++ store_omit_max_priority.php
+@@ -19,7 +19,7 @@
+             'tracking_code' => ['required', 'string', 'min:6', 'max:24', 'unique:shipments,tracking_code'],
+             'reference_code' => ['required', 'string', 'max:20', 'unique:shipments,reference_code'],
+             'quantity' => ['required', 'integer', 'min:1', 'max:5000'],
+-            'priority' => ['required', 'integer', 'min:1', 'max:5'],
++            'priority' => ['required', 'integer', 'min:1'],
+             'note' => ['required', 'string', 'max:120'],
+         ]);
+         $record = Model::create($body);

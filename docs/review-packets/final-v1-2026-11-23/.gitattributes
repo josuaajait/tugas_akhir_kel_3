@@ -1,4 +1,0 @@
-# Preparation hashes and ZIP contents must keep byte identity across clones.
-*.json -text
-*.zip -text
-*.md -text

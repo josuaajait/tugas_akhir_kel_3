@@ -15,3 +15,6 @@ harness/laravel/vendor/
 harness/laravel/.phpunit.cache/
 harness/laravel/.env
 harness/laravel/.phpunit.result.cache
+
+# Dokumentasi internal disimpan lokal, tidak di repo
+docs/

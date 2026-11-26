@@ -1,0 +1,266 @@
+{
+  "package": "final-v2",
+  "prepared_by": "OpenAI Codex",
+  "stage": "pre_freeze_validation",
+  "spec": {
+    "spec_id": "final_categories_v2",
+    "spec_version": "1.0",
+    "resource": "categories",
+    "model": "Category",
+    "controller": "CategoryController",
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "rules": [
+          "required",
+          "string",
+          "max:48"
+        ]
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "rules": [
+          "required",
+          "string",
+          "max:160"
+        ]
+      }
+    ],
+    "operations": {
+      "index": {
+        "success_status": 200
+      },
+      "store": {
+        "success_status": 201,
+        "validation_error_status": 422
+      },
+      "show": {
+        "success_status": 200,
+        "not_found_status": 404
+      },
+      "update": {
+        "success_status": 200,
+        "validation_error_status": 422,
+        "not_found_status": 404
+      },
+      "destroy": {
+        "success_status": 204,
+        "not_found_status": 404
+      }
+    }
+  },
+  "fixtures": {
+    "new": {
+      "name": "Stationery",
+      "description": "Office supplies"
+    },
+    "target": {
+      "name": "Furniture",
+      "description": "Meeting furnishings"
+    },
+    "other": {
+      "name": "Hardware",
+      "description": "Workshop parts"
+    },
+    "updated": {
+      "name": "Equipment",
+      "description": "Lab equipment"
+    }
+  },
+  "invalid": [
+    {
+      "name": "missing_name",
+      "field": "name",
+      "vector": "missing",
+      "payload": {
+        "description": "Office supplies"
+      }
+    },
+    {
+      "name": "null_name",
+      "field": "name",
+      "vector": "null",
+      "payload": {
+        "name": null,
+        "description": "Office supplies"
+      }
+    },
+    {
+      "name": "empty_name",
+      "field": "name",
+      "vector": "empty",
+      "payload": {
+        "name": "",
+        "description": "Office supplies"
+      }
+    },
+    {
+      "name": "whitespace_name",
+      "field": "name",
+      "vector": "whitespace",
+      "payload": {
+        "name": "   ",
+        "description": "Office supplies"
+      }
+    },
+    {
+      "name": "type_name",
+      "field": "name",
+      "vector": "type",
+      "payload": {
+        "name": [
+          "bad",
+          "bad"
+        ],
+        "description": "Office supplies"
+      }
+    },
+    {
+      "name": "object_name",
+      "field": "name",
+      "vector": "object",
+      "payload": {
+        "name": {
+          "bad0": "x",
+          "bad1": "x"
+        },
+        "description": "Office supplies"
+      }
+    },
+    {
+      "name": "max_name",
+      "field": "name",
+      "vector": "max",
+      "payload": {
+        "name": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ",
+        "description": "Office supplies"
+      }
+    },
+    {
+      "name": "missing_description",
+      "field": "description",
+      "vector": "missing",
+      "payload": {
+        "name": "Stationery"
+      }
+    },
+    {
+      "name": "null_description",
+      "field": "description",
+      "vector": "null",
+      "payload": {
+        "name": "Stationery",
+        "description": null
+      }
+    },
+    {
+      "name": "empty_description",
+      "field": "description",
+      "vector": "empty",
+      "payload": {
+        "name": "Stationery",
+        "description": ""
+      }
+    },
+    {
+      "name": "whitespace_description",
+      "field": "description",
+      "vector": "whitespace",
+      "payload": {
+        "name": "Stationery",
+        "description": "   "
+      }
+    },
+    {
+      "name": "type_description",
+      "field": "description",
+      "vector": "type",
+      "payload": {
+        "name": "Stationery",
+        "description": [
+          "bad",
+          "bad"
+        ]
+      }
+    },
+    {
+      "name": "object_description",
+      "field": "description",
+      "vector": "object",
+      "payload": {
+        "name": "Stationery",
+        "description": {
+          "bad0": "x",
+          "bad1": "x"
+        }
+      }
+    },
+    {
+      "name": "max_description",
+      "field": "description",
+      "vector": "max",
+      "payload": {
+        "name": "Stationery",
+        "description": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+      }
+    }
+  ],
+  "valid": [
+    {
+      "name": "boundary_max_name",
+      "field": "name",
+      "vector": "boundary_max",
+      "payload": {
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "description": "Office supplies"
+      }
+    },
+    {
+      "name": "boundary_max_description",
+      "field": "description",
+      "vector": "boundary_max",
+      "payload": {
+        "name": "Stationery",
+        "description": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      }
+    },
+    {
+      "name": "short1_name",
+      "field": "name",
+      "vector": "short1",
+      "payload": {
+        "name": "Q",
+        "description": "Office supplies"
+      }
+    },
+    {
+      "name": "short2_name",
+      "field": "name",
+      "vector": "short2",
+      "payload": {
+        "name": "QQ",
+        "description": "Office supplies"
+      }
+    },
+    {
+      "name": "short1_description",
+      "field": "description",
+      "vector": "short1",
+      "payload": {
+        "name": "Stationery",
+        "description": "R"
+      }
+    },
+    {
+      "name": "short2_description",
+      "field": "description",
+      "vector": "short2",
+      "payload": {
+        "name": "Stationery",
+        "description": "RR"
+      }
+    }
+  ]
+}

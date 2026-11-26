@@ -9,6 +9,7 @@ from uuid import uuid4
 from .ab_archive import ROOT, artifact_index, engine_manifest, read_json, relative, sha
 from .final_package import PACKAGE, RESOURCES, package_manifest
 from .final_sandbox import FinalRunner
+from .eval_registry import get_package_api,get_sandbox_api
 from .generation import extract_php, ExtractionError
 from .orchestrator import _run_loop, _write_json
 from .reference import _evaluate_pair
@@ -18,15 +19,16 @@ from .process import OutputLimitError
 
 class SyntheticClient:
     """Fixed local fixtures. No HTTP transport or Ollama connection exists."""
-    def __init__(self,resource,*,scenario='repair',seed=101):
+    def __init__(self,resource,*,scenario='repair',seed=101,package='final-v1'):
         if resource not in RESOURCES or scenario not in ('repair','format_fail','syntax_fail','already_valid'):
             raise ValueError('Unknown synthetic scenario/resource.')
-        self.resource,self.scenario=resource,scenario
-        self.model='synthetic-fixture-final-v1';self.base_url='http://127.0.0.1:11434';self.timeout=300
+        self.resource,self.scenario,self.package=resource,scenario,package
+        api=get_package_api(package)
+        self.model='synthetic-fixture-'+package;self.base_url='http://127.0.0.1:11434';self.timeout=300
         self.options={'temperature':0.2,'seed':seed,'num_ctx':8192,'num_predict':4096}
         self.metadata_transport=None;self.last_transport_attempts=[];self.requests=[]
-        self.good=(PACKAGE/'controls'/resource/'explicit.php').read_text(encoding='utf-8')
-        self.initial=(PACKAGE/'controls'/resource/'store_status.php').read_text(encoding='utf-8')
+        self.good=(api.PACKAGE/'controls'/resource/'explicit.php').read_text(encoding='utf-8')
+        self.initial=(api.PACKAGE/'controls'/resource/'store_status.php').read_text(encoding='utf-8')
         if scenario=='already_valid':self.initial=self.good
         elif scenario=='format_fail':self.initial='Synthetic response without PHP code.'
         elif scenario=='syntax_fail':self.initial='<?php\nBROKEN_SYNTAX'
@@ -43,7 +45,7 @@ class SyntheticClient:
                 'model':self.model,'synthetic_fixture':True}
 
 
-class FinalReference(FinalRunner):
+class ReferenceSyntaxMixin:
     """Lint untrusted syntax inside the same pinned PHP image, never on host."""
     def check_candidate(self,candidate):
         candidate=Path(candidate).resolve(strict=True)
@@ -52,7 +54,7 @@ class FinalReference(FinalRunner):
         ready=self._readiness
         if ready is None or ready.get('image_id')!=self.image:ready=self.check_reference()
         if ready.get('status')!='READY':return {'status':'ERROR','reason':'reference_not_ready','readiness':ready}
-        if package_manifest(self.resource)['package_sha256']!=self.meta['package_sha256']:
+        if get_package_api(self.meta['package']).package_manifest(self.resource)['package_sha256']!=self.meta['package_sha256']:
             return self._error('package_changed','Final package changed before syntax preflight.')
         name='critic-ab-syntax-'+uuid4().hex
         folder=self.output_root/name;folder.mkdir(parents=True,exist_ok=False)
@@ -90,18 +92,34 @@ class FinalReference(FinalRunner):
         return observed
 
 
+class FinalReference(ReferenceSyntaxMixin,FinalRunner):
+    """Historical final-v1 reference runner."""
+
+
+def reference_runner(package,resource,**kwargs):
+    if package=='final-v1':return FinalReference(resource,'reference',**kwargs)
+    base=get_sandbox_api(package).FinalRunner
+    class VersionedReference(ReferenceSyntaxMixin,base):pass
+    return VersionedReference(resource,'reference',**kwargs)
+
+
 class FinalABAdapter:
     def __init__(self,spec,client,runner,reference,context):
-        self.meta=package_manifest(spec['resource'])
+        self.api=get_package_api((context or {}).get('package','final-v1'))
+        self.meta=self.api.package_manifest(spec['resource'])
         if spec!=self.meta['spec']:raise ValueError('Final spec must match its registered contract.')
         for role,current in [('internal',runner),('reference',reference)]:
             if (getattr(current,'role',None)!=role or getattr(current,'meta',{}).get('package_sha256')!=self.meta['package_sha256']
-                    or getattr(current,'candidate_tests',None)!=self.meta[role+'_tests']):
+                    or getattr(current,'candidate_tests',None)!=self.meta[role+'_tests']
+                    or getattr(current,'resource',None)!=spec['resource']
+                    or current.meta.get('spec')!=spec
+                    or current.meta.get(role+'_sha256')!=self.meta[role+'_sha256']):
                 raise ValueError('Final runner is not bound to the correct package/role/count.')
         self.context=dict(context or {})
         if self.context.get('origin')=='synthetic_validation':
             if not isinstance(client,SyntheticClient) or self.context.get('stage')!='synthetic_validation':
                 raise ValueError('Synthetic context requires the built-in no-network fixture client.')
+            if client.package!=self.meta['package']:raise ValueError('Synthetic package binding differs.')
             self.context['scenario']=client.scenario
         else:
             from .ab_protocol import validate_final_context
@@ -110,7 +128,7 @@ class FinalABAdapter:
 
     def metadata(self):
         return {'schema_version':'1.0','ab_protocol_version':'1.0',**self.context,
-                'package':'final-v1','package_sha256':self.meta['package_sha256'],
+                'package':self.meta['package'],'package_sha256':self.meta['package_sha256'],
                 'package_spec_sha256':self.meta['spec_sha256'],
                 'internal_suite_sha256':self.meta['internal_sha256'],
                 'reference_suite_sha256':self.meta['reference_sha256'],
@@ -170,7 +188,7 @@ class FinalABAdapter:
                 exc.run_directory=str(path)
             raise
         manifest=read_json(path/'run_manifest.json')
-        manifest.update(package='final-v1',package_sha256=self.meta['package_sha256'],origin=self.context['origin'])
+        manifest.update(package=self.meta['package'],package_sha256=self.meta['package_sha256'],origin=self.context['origin'])
         _write_json(path/'run_manifest.json',manifest)
         return path
 
@@ -182,7 +200,7 @@ class FinalABAdapter:
         result=read_json(folder/'evaluation_result.json')
         if shared_initial and result.get('initial',{}).get('shared_from'):
             result['initial']['shared_from_path']=relative(self.folder,shared_initial)
-        result.update(suite_stage='final-v1',evaluation_stage=self.context['stage'],package_sha256=self.meta['package_sha256'])
+        result.update(suite_stage=self.meta['package'],evaluation_stage=self.context['stage'],package_sha256=self.meta['package_sha256'])
         _write_json(folder/'evaluation_result.json',result)
         return folder
 
@@ -211,11 +229,11 @@ class FinalABAdapter:
         report['artifacts']=artifact_index(folder)
 
 
-def run_synthetic_pair(resource,output_root,*,scenario='repair',order_seed=7,timeout=120):
+def run_synthetic_pair(resource,output_root,*,scenario='repair',order_seed=7,timeout=120,package='final-v1'):
     from .ab import run_ab
-    meta=package_manifest(resource);client=SyntheticClient(resource,scenario=scenario)
-    runner=FinalRunner(resource,'internal',output_root=Path(output_root)/'preflight',timeout=timeout)
-    reference=FinalReference(resource,'reference',output_root=Path(output_root)/'preflight-reference',timeout=timeout)
+    api=get_package_api(package);meta=api.package_manifest(resource);client=SyntheticClient(resource,scenario=scenario,package=package)
+    runner=get_sandbox_api(package).FinalRunner(resource,'internal',output_root=Path(output_root)/'preflight',timeout=timeout)
+    reference=reference_runner(package,resource,output_root=Path(output_root)/'preflight-reference',timeout=timeout)
     return run_ab(meta['spec'],output_root,client,runner,reference,kind='final',order_seed=order_seed,
-                  revision_seeds=[102,103,104],final_context={'stage':'synthetic_validation','origin':'synthetic_validation',
+                  revision_seeds=[102,103,104],final_context={'package':package,'stage':'synthetic_validation','origin':'synthetic_validation',
                                                           'scenario':scenario})

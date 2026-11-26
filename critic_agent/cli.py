@@ -34,6 +34,7 @@ from .final_package import RESOURCES as FINAL_RESOURCES
 from .ab_protocol import check_protocol, execute_protocol_pair
 from .ab_final import run_synthetic_pair
 from .ab_report import ab_report
+from .eval_registry import VERSIONS,get_validation_api
 
 
 def emit(value):
@@ -71,6 +72,7 @@ def _main(argv, console) -> int:
     sub.add_parser('doctor', help='Periksa Python, PHP, Docker, dan Ollama.')
     ab_smoke=sub.add_parser('ab-smoke',help='Uji adaptor final dengan fixture sintetis, tanpa Ollama.')
     ab_smoke.add_argument('--resource',choices=FINAL_RESOURCES,default='categories')
+    ab_smoke.add_argument('--package',choices=VERSIONS,default='final-v1')
     ab_smoke.add_argument('--scenario',choices=('repair','format_fail','syntax_fail','already_valid'),default='repair')
     ab_smoke.add_argument('--output',type=Path,default=Path('runs/ab-synthetic'))
     ab_smoke.add_argument('--order-seed',type=int,default=7)
@@ -84,8 +86,8 @@ def _main(argv, console) -> int:
     ab_summary=sub.add_parser('ab-report',help='Agregasi arsip A/B per soal/kondisi/cohort tanpa model.')
     ab_summary.add_argument('runs',type=Path)
     ab_summary.add_argument('--plan',type=Path)
-    final = sub.add_parser('final-validate', help='Validasi paket soal/evaluator final-v1 tanpa Qwen; bukan pembekuan.')
-    final.add_argument('--package', choices=('final-v1',), required=True)
+    final = sub.add_parser('final-validate', help='Validasi paket soal/evaluator berversi tanpa Qwen; bukan pembekuan.')
+    final.add_argument('--package', choices=VERSIONS, required=True)
     final.add_argument('--resource', choices=FINAL_RESOURCES, nargs='+')
     final.add_argument('--output', type=Path, default=Path('evaluations/final-validation'))
     final.add_argument('--local-only', action='store_true')
@@ -278,13 +280,14 @@ def _main(argv, console) -> int:
             return 0 if result['status']=='EVALUATED' else 3
         if args.command=='ab-smoke':
             folder=run_synthetic_pair(args.resource,args.output,scenario=args.scenario,
-                                      order_seed=args.order_seed,timeout=args.timeout)
+                                      order_seed=args.order_seed,timeout=args.timeout,package=args.package)
             result=json.loads((folder/'pair.json').read_bytes())
             emit({k:result.get(k) for k in ('pair_id','status','origin','package_sha256','n_ab','delta_final_pp','qwen_calls')}|
                  {'run_directory':str(folder)})
             return 0 if result['status']=='EVALUATED' else 3
         if args.command == 'final-validate':
-            folder = validate_final(args.output, resources=args.resource, build=args.build, local_only=args.local_only,
+            validator=validate_final if args.package=='final-v1' else get_validation_api(args.package).validate_final
+            folder = validator(args.output, resources=args.resource, build=args.build, local_only=args.local_only,
                                     base_image=args.base_image, timeout=args.timeout, build_timeout=args.build_timeout)
             result = json.loads((folder/'validation.json').read_text(encoding='utf-8'))
             emit({key: result[key] for key in ('status', 'package', 'package_sha256', 'functional_validation',

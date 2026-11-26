@@ -1,0 +1,5797 @@
+[
+  {
+    "case_id": "index",
+    "spec_id": "final_assets_v2",
+    "operation": "GET",
+    "field": null,
+    "vector": "index",
+    "rule_id": "crud.index",
+    "fixture": {
+      "case_id": "index",
+      "kind": "index",
+      "operation": "GET",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"index\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"index\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": "array of exact ID-bound fixture records"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "index_swapped",
+      "index_object",
+      "index_string_id",
+      "index_missing_field",
+      "index_status",
+      "index_cross_field",
+      "index_invalid_json"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "index_swapped",
+        "sha256": "17a0c60a736860dd6040a399e9903bbc97f185b8956043511fc4497a744aaa24",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_object",
+        "sha256": "9f29d566442a5b11fa6decaab558a84eb5dd7af31e9ed4fbe851b4fc212389ba",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_string_id",
+        "sha256": "977925e311aa131c295f9723a4a83ed82f9d7008922ebf8713910e8f047ed45d",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_missing_field",
+        "sha256": "19b73d16218530714f413609974845d88f28abbdca20ab9f56341ecbcfbfd54a",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_status",
+        "sha256": "3612717302fe113369309fdc3d1e996cdece3198c279399d744511e1d6d04e3d",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      {
+        "control_id": "index_cross_field",
+        "sha256": "299439ecfa09cca8d30ccd718be918e5b5e73843c10b391c31b69e357c18d7b3",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_invalid_json",
+        "sha256": "ebbd0043e6d1794f58a4c81c802ba6a7e5b732b91b2536f906637005a8f90abe",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "store",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": null,
+    "vector": "store",
+    "rule_id": "crud.store",
+    "fixture": {
+      "case_id": "store",
+      "kind": "store",
+      "operation": "POST",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"store\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"store\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_no_write",
+      "store_extra_write",
+      "store_status",
+      "store_invalid_json_exception"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_no_write",
+        "sha256": "a09fa0cfeb8724e32ad9ffb44d0f19cbde71a3227edd183c4927d5eb25d396cb",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 201
+        }
+      },
+      {
+        "control_id": "store_extra_write",
+        "sha256": "2ca5a248b80cdc07932207ac2a8664e78146a249a494bdb32f5a2acc4e57bf0f",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 201
+        }
+      },
+      {
+        "control_id": "store_status",
+        "sha256": "8497618755e2d91ed9d33736843638d17384cc6dfc2731cfc45360726cc4933b",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      {
+        "control_id": "store_invalid_json_exception",
+        "sha256": "e336fea92235afbfd0dac5e8c7a75f9aae578bbb0f2a6d0145cf3cee7338d7e8",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "show",
+    "spec_id": "final_assets_v2",
+    "operation": "GET",
+    "field": null,
+    "vector": "show",
+    "rule_id": "crud.show",
+    "fixture": {
+      "case_id": "show",
+      "kind": "show",
+      "operation": "GET",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"show\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"show\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-202",
+        "name": "Projector",
+        "value": 230000
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "show_write",
+      "show_status",
+      "show_wrong_target"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "show_write",
+        "sha256": "031ac00323d807cbadc6cb8772fbce54a18ce7eb865639320449fa45b1ae314e",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "show_status",
+        "sha256": "e153bca08c3b99ad05e7b16c880975a7027951c93cb1249289b4df88e7c9d296",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      {
+        "control_id": "show_wrong_target",
+        "sha256": "66b7a98b2de396da3a7466d68b03c5ed8675eb2ffaba665ef788375af456dcf2",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "update",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": null,
+    "vector": "update",
+    "rule_id": "crud.update",
+    "fixture": {
+      "case_id": "update",
+      "kind": "update",
+      "operation": "PUT",
+      "payload": {
+        "asset_code": "AS-404",
+        "name": "Oscilloscope",
+        "value": 410000
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"update\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"update\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-404",
+        "name": "Oscilloscope",
+        "value": 410000
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_no_write",
+      "update_status",
+      "update_wrong_target",
+      "update_invalid_json_exception"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_no_write",
+        "sha256": "dea76f58122cf4990a106aea98bafddfbe4ff0f86eadec6df6d995d946ff9390",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "update_status",
+        "sha256": "ccdb9a61c8faf1eecf9267430dc9cbe873289c79df8fcdef12f8c94f0453ea7b",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 202
+        }
+      },
+      {
+        "control_id": "update_wrong_target",
+        "sha256": "2224a7ef89f3a4ee8cdc35945948aadb3b8fdfc7b97c89b6bf1a508f1ddc720b",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "update_invalid_json_exception",
+        "sha256": "27d9a121230c617dd53c7639ccd6e0c46616ec4de72aecaabfe7ad6e4f0871a7",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "destroy",
+    "spec_id": "final_assets_v2",
+    "operation": "DELETE",
+    "field": null,
+    "vector": "destroy",
+    "rule_id": "crud.destroy",
+    "fixture": {
+      "case_id": "destroy",
+      "kind": "destroy",
+      "operation": "DELETE",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"destroy\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"destroy\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 204,
+    "expected_body": {
+      "raw": ""
+    },
+    "expected_state": "target removed; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "destroy_no_delete",
+      "destroy_body",
+      "destroy_wrong_target"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "destroy_no_delete",
+        "sha256": "d8a090f947f109f10a8f18edd496794e26e639ff3e6f098b901611912f4f7374",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 204
+        }
+      },
+      {
+        "control_id": "destroy_body",
+        "sha256": "bb0220a3f3cb5c228540700c3a001fd21727f0f38c2009e960532e6cde29b313",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 204
+        }
+      },
+      {
+        "control_id": "destroy_wrong_target",
+        "sha256": "e65b8b96bb91b66b19aadcba6fb0a7d5da792fcb47e752d07c97b5265932877a",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 204
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "missing_GET",
+    "spec_id": "final_assets_v2",
+    "operation": "GET",
+    "field": null,
+    "vector": "missing_id",
+    "rule_id": "crud.missing_id",
+    "fixture": {
+      "case_id": "missing_GET",
+      "kind": "missing_id",
+      "operation": "GET",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"missing_GET\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"missing_GET\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 404,
+    "expected_body": {
+      "shape": "object"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "missing_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "missing_status",
+        "sha256": "ee5d24969f585548b066970736ff7c9bb5b5b9a0a653d42de3ce7de1959078c4",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "missing_PUT",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": null,
+    "vector": "missing_id",
+    "rule_id": "crud.missing_id",
+    "fixture": {
+      "case_id": "missing_PUT",
+      "kind": "missing_id",
+      "operation": "PUT",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"missing_PUT\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"missing_PUT\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 404,
+    "expected_body": {
+      "shape": "object"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "missing_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "missing_status",
+        "sha256": "ee5d24969f585548b066970736ff7c9bb5b5b9a0a653d42de3ce7de1959078c4",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "missing_DELETE",
+    "spec_id": "final_assets_v2",
+    "operation": "DELETE",
+    "field": null,
+    "vector": "missing_id",
+    "rule_id": "crud.missing_id",
+    "fixture": {
+      "case_id": "missing_DELETE",
+      "kind": "missing_id",
+      "operation": "DELETE",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"missing_DELETE\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"missing_DELETE\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 404,
+    "expected_body": {
+      "shape": "object"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "missing_status"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "missing_status",
+        "sha256": "ee5d24969f585548b066970736ff7c9bb5b5b9a0a653d42de3ce7de1959078c4",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 204
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "empty",
+    "spec_id": "final_assets_v2",
+    "operation": "GET",
+    "field": null,
+    "vector": "empty",
+    "rule_id": "crud.empty",
+    "fixture": {
+      "case_id": "empty",
+      "kind": "empty",
+      "operation": "GET"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"empty\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": []
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "index_object",
+      "index_invalid_json"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "index_object",
+        "sha256": "9f29d566442a5b11fa6decaab558a84eb5dd7af31e9ed4fbe851b4fc212389ba",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_invalid_json",
+        "sha256": "ebbd0043e6d1794f58a4c81c802ba6a7e5b732b91b2536f906637005a8f90abe",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "sequence",
+    "spec_id": "final_assets_v2",
+    "operation": "SEQUENCE",
+    "field": null,
+    "vector": "sequence",
+    "rule_id": "crud.sequence",
+    "fixture": {
+      "case_id": "sequence",
+      "kind": "sequence",
+      "operation": "SEQUENCE"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"sequence\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": [
+      201,
+      200,
+      200,
+      200,
+      200,
+      204,
+      404
+    ],
+    "expected_body": {
+      "steps": [
+        "create",
+        "read",
+        "replace",
+        "read",
+        "list",
+        "delete",
+        "read missing"
+      ]
+    },
+    "expected_state": "create/read/update/read/list/delete/read missing; database empty at end",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_no_write",
+      "destroy_no_delete",
+      "index_invalid_json",
+      "store_invalid_json_exception",
+      "update_invalid_json_exception"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_no_write",
+        "sha256": "a09fa0cfeb8724e32ad9ffb44d0f19cbde71a3227edd183c4927d5eb25d396cb",
+        "expected_evidence": {
+          "phase": "sequence.create",
+          "http_status": 201
+        }
+      },
+      {
+        "control_id": "destroy_no_delete",
+        "sha256": "d8a090f947f109f10a8f18edd496794e26e639ff3e6f098b901611912f4f7374",
+        "expected_evidence": {
+          "phase": "sequence.missing",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "index_invalid_json",
+        "sha256": "ebbd0043e6d1794f58a4c81c802ba6a7e5b732b91b2536f906637005a8f90abe",
+        "expected_evidence": {
+          "phase": "sequence.list",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "store_invalid_json_exception",
+        "sha256": "e336fea92235afbfd0dac5e8c7a75f9aae578bbb0f2a6d0145cf3cee7338d7e8",
+        "expected_evidence": {
+          "phase": "sequence.create",
+          "http_status": 201
+        }
+      },
+      {
+        "control_id": "update_invalid_json_exception",
+        "sha256": "27d9a121230c617dd53c7639ccd6e0c46616ec4de72aecaabfe7ad6e4f0871a7",
+        "expected_evidence": {
+          "phase": "sequence.update",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_missing_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "asset_code",
+    "vector": "missing",
+    "rule_id": "asset_code.missing",
+    "fixture": {
+      "name": "missing_asset_code",
+      "field": "asset_code",
+      "vector": "missing",
+      "payload": {
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "POST_missing_asset_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_missing_asset_code\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_missing_asset_code\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_missing_asset_code",
+      "validation_invalid_json_exception"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_missing_asset_code",
+        "sha256": "d48190ec5c54e7b4c3e64be42ca57dee347244f8fd8278410435f0da328eb877",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "validation_invalid_json_exception",
+        "sha256": "9be05c6fce1e2802eaec88224d73fe3fee7247c9d3e8332076523a7470986186",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_null_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "asset_code",
+    "vector": "null",
+    "rule_id": "asset_code.null",
+    "fixture": {
+      "name": "null_asset_code",
+      "field": "asset_code",
+      "vector": "null",
+      "payload": {
+        "asset_code": null,
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "POST_null_asset_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_null_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_asset_code",
+        "sha256": "5fb87cf2b67c947f9a2b33847cb085d23c71e39e003b906e8b4970d70493e150",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_empty_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "asset_code",
+    "vector": "empty",
+    "rule_id": "asset_code.empty",
+    "fixture": {
+      "name": "empty_asset_code",
+      "field": "asset_code",
+      "vector": "empty",
+      "payload": {
+        "asset_code": "",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "POST_empty_asset_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_empty_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_asset_code",
+        "sha256": "5fb87cf2b67c947f9a2b33847cb085d23c71e39e003b906e8b4970d70493e150",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_whitespace_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "asset_code",
+    "vector": "whitespace",
+    "rule_id": "asset_code.whitespace",
+    "fixture": {
+      "name": "whitespace_asset_code",
+      "field": "asset_code",
+      "vector": "whitespace",
+      "payload": {
+        "asset_code": "   ",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "POST_whitespace_asset_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_whitespace_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_asset_code",
+        "sha256": "5fb87cf2b67c947f9a2b33847cb085d23c71e39e003b906e8b4970d70493e150",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_type_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "asset_code",
+    "vector": "type",
+    "rule_id": "asset_code.type",
+    "fixture": {
+      "name": "type_asset_code",
+      "field": "asset_code",
+      "vector": "type",
+      "payload": {
+        "asset_code": [
+          "bad",
+          "bad",
+          "bad"
+        ],
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "POST_type_asset_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_type_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_asset_code",
+        "sha256": "0795e9c5f5436fa35799cd47bf82b859c1f590a8c00d344ded7ed6d611e402b4",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_object_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "asset_code",
+    "vector": "object",
+    "rule_id": "asset_code.object",
+    "fixture": {
+      "name": "object_asset_code",
+      "field": "asset_code",
+      "vector": "object",
+      "payload": {
+        "asset_code": {
+          "bad0": "x",
+          "bad1": "x",
+          "bad2": "x"
+        },
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "POST_object_asset_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_object_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_asset_code",
+        "sha256": "0795e9c5f5436fa35799cd47bf82b859c1f590a8c00d344ded7ed6d611e402b4",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_min_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "asset_code",
+    "vector": "min",
+    "rule_id": "asset_code.min",
+    "fixture": {
+      "name": "min_asset_code",
+      "field": "asset_code",
+      "vector": "min",
+      "payload": {
+        "asset_code": "ZZ",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "POST_min_asset_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_min_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_min_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_min_asset_code",
+        "sha256": "64f9305a3d574a3f207b03dd83e7b4a920aa03a744031b2cfd987303e11d3dc2",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_max_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "asset_code",
+    "vector": "max",
+    "rule_id": "asset_code.max",
+    "fixture": {
+      "name": "max_asset_code",
+      "field": "asset_code",
+      "vector": "max",
+      "payload": {
+        "asset_code": "ZZZZZZZZZZZZZZZZZZZZZ",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "POST_max_asset_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_max_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_max_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_max_asset_code",
+        "sha256": "fa9c500a8fdf2e79dca005cfeb0fc5b256df0453884b22e5ef3de3c53580889d",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_unique_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "asset_code",
+    "vector": "unique",
+    "rule_id": "asset_code.unique",
+    "fixture": {
+      "name": "unique_asset_code",
+      "field": "asset_code",
+      "vector": "unique",
+      "payload": {
+        "asset_code": "AS-303",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "POST_unique_asset_code",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_unique_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_duplicate_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_duplicate_asset_code",
+        "sha256": "91a7356d866cf768f029cff97fb9d7ec030cadaf90ce0aea3337676ed0c788e9",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_missing_name",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "missing",
+    "rule_id": "name.missing",
+    "fixture": {
+      "name": "missing_name",
+      "field": "name",
+      "vector": "missing",
+      "payload": {
+        "asset_code": "AS-101",
+        "value": 150000
+      },
+      "case_id": "POST_missing_name",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_missing_name\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_missing_name\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_missing_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_missing_name",
+        "sha256": "5cfd3b87cdc415a98d8aa429da95d2a05453974d257a1a81259fb83ec292f84e",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_null_name",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "null",
+    "rule_id": "name.null",
+    "fixture": {
+      "name": "null_name",
+      "field": "name",
+      "vector": "null",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": null,
+        "value": 150000
+      },
+      "case_id": "POST_null_name",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_null_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_name",
+        "sha256": "a20a1ac57bcea2c570e43386faf2b763bae28a5583d02519b0def0846ec15f03",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_empty_name",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "empty",
+    "rule_id": "name.empty",
+    "fixture": {
+      "name": "empty_name",
+      "field": "name",
+      "vector": "empty",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "",
+        "value": 150000
+      },
+      "case_id": "POST_empty_name",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_empty_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_name",
+        "sha256": "a20a1ac57bcea2c570e43386faf2b763bae28a5583d02519b0def0846ec15f03",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_whitespace_name",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "whitespace",
+    "rule_id": "name.whitespace",
+    "fixture": {
+      "name": "whitespace_name",
+      "field": "name",
+      "vector": "whitespace",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "   ",
+        "value": 150000
+      },
+      "case_id": "POST_whitespace_name",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_whitespace_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_name",
+        "sha256": "a20a1ac57bcea2c570e43386faf2b763bae28a5583d02519b0def0846ec15f03",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_type_name",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "type",
+    "rule_id": "name.type",
+    "fixture": {
+      "name": "type_name",
+      "field": "name",
+      "vector": "type",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": [
+          "bad",
+          "bad"
+        ],
+        "value": 150000
+      },
+      "case_id": "POST_type_name",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_type_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_name",
+        "sha256": "9131ab7cd9a1091437ba27511f6b09a1158acefc3a91394b19156911540d2fcc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_object_name",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "object",
+    "rule_id": "name.object",
+    "fixture": {
+      "name": "object_name",
+      "field": "name",
+      "vector": "object",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": {
+          "bad0": "x",
+          "bad1": "x"
+        },
+        "value": 150000
+      },
+      "case_id": "POST_object_name",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_object_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_name",
+        "sha256": "9131ab7cd9a1091437ba27511f6b09a1158acefc3a91394b19156911540d2fcc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_max_name",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "max",
+    "rule_id": "name.max",
+    "fixture": {
+      "name": "max_name",
+      "field": "name",
+      "vector": "max",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ",
+        "value": 150000
+      },
+      "case_id": "POST_max_name",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_max_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_max_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_max_name",
+        "sha256": "e4d3cbd7d494242222fa5e623a0bcfaafd65fd9bb06d8a6577b5d5ec8e18f7b9",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_missing_value",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "value",
+    "vector": "missing",
+    "rule_id": "value.missing",
+    "fixture": {
+      "name": "missing_value",
+      "field": "value",
+      "vector": "missing",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope"
+      },
+      "case_id": "POST_missing_value",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_missing_value\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_missing_value\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_missing_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_missing_value",
+        "sha256": "fa96e958832baa6f119abd1bbf2b402dc312483e4fa2e00d4224958b7559bd84",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_null_value",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "value",
+    "vector": "null",
+    "rule_id": "value.null",
+    "fixture": {
+      "name": "null_value",
+      "field": "value",
+      "vector": "null",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": null
+      },
+      "case_id": "POST_null_value",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_null_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_value",
+        "sha256": "06cbeeba238c4d867b0c4a5bfab389b303fe31af3786549862b00584805fb105",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_empty_value",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "value",
+    "vector": "empty",
+    "rule_id": "value.empty",
+    "fixture": {
+      "name": "empty_value",
+      "field": "value",
+      "vector": "empty",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": ""
+      },
+      "case_id": "POST_empty_value",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_empty_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_value",
+        "sha256": "06cbeeba238c4d867b0c4a5bfab389b303fe31af3786549862b00584805fb105",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_whitespace_value",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "value",
+    "vector": "whitespace",
+    "rule_id": "value.whitespace",
+    "fixture": {
+      "name": "whitespace_value",
+      "field": "value",
+      "vector": "whitespace",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": "   "
+      },
+      "case_id": "POST_whitespace_value",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_whitespace_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_null_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_null_value",
+        "sha256": "06cbeeba238c4d867b0c4a5bfab389b303fe31af3786549862b00584805fb105",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_type_value",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "value",
+    "vector": "type",
+    "rule_id": "value.type",
+    "fixture": {
+      "name": "type_value",
+      "field": "value",
+      "vector": "type",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": "x"
+      },
+      "case_id": "POST_type_value",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_type_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_value",
+        "sha256": "0a2ebb9ecb8fd87f5c3db09d66b449348e366377aca9702d8498615e04ca72fc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_object_value",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "value",
+    "vector": "object",
+    "rule_id": "value.object",
+    "fixture": {
+      "name": "object_value",
+      "field": "value",
+      "vector": "object",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": {
+          "wrong": "type"
+        }
+      },
+      "case_id": "POST_object_value",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_object_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_value",
+        "sha256": "0a2ebb9ecb8fd87f5c3db09d66b449348e366377aca9702d8498615e04ca72fc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_fraction_value",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "value",
+    "vector": "fraction",
+    "rule_id": "value.fraction",
+    "fixture": {
+      "name": "fraction_value",
+      "field": "value",
+      "vector": "fraction",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 1.5
+      },
+      "case_id": "POST_fraction_value",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_fraction_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_accept_type_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_accept_type_value",
+        "sha256": "0a2ebb9ecb8fd87f5c3db09d66b449348e366377aca9702d8498615e04ca72fc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_min_value",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "value",
+    "vector": "min",
+    "rule_id": "value.min",
+    "fixture": {
+      "name": "min_value",
+      "field": "value",
+      "vector": "min",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": -1
+      },
+      "case_id": "POST_min_value",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_min_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_min_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_min_value",
+        "sha256": "d531be25006cbd7b5d6979ae794af61d1f72dd868d7dd76c103a9400fe738b71",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_max_value",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "value",
+    "vector": "max",
+    "rule_id": "value.max",
+    "fixture": {
+      "name": "max_value",
+      "field": "value",
+      "vector": "max",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 1000001
+      },
+      "case_id": "POST_max_value",
+      "kind": "invalid",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_max_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_omit_max_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_omit_max_value",
+        "sha256": "0ad93ec2156e8bc40310bdc31b493e7a6b3efef93915278436afe451031c219a",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 201
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_missing_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "asset_code",
+    "vector": "missing",
+    "rule_id": "asset_code.missing",
+    "fixture": {
+      "name": "missing_asset_code",
+      "field": "asset_code",
+      "vector": "missing",
+      "payload": {
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "PUT_missing_asset_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_missing_asset_code\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_missing_asset_code\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_required_asset_code",
+      "validation_invalid_json_exception"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_required_asset_code",
+        "sha256": "6fa96ef9dca9bd717452323c6bc9c260357056c2bbc14751f7e4bd8f06e3f69a",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      },
+      {
+        "control_id": "validation_invalid_json_exception",
+        "sha256": "9be05c6fce1e2802eaec88224d73fe3fee7247c9d3e8332076523a7470986186",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_null_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "asset_code",
+    "vector": "null",
+    "rule_id": "asset_code.null",
+    "fixture": {
+      "name": "null_asset_code",
+      "field": "asset_code",
+      "vector": "null",
+      "payload": {
+        "asset_code": null,
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "PUT_null_asset_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_null_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_asset_code",
+        "sha256": "2815abf94a5e5e732db0a332fe5be90913ba228100e7b0814f4094221ad5ac5b",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_empty_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "asset_code",
+    "vector": "empty",
+    "rule_id": "asset_code.empty",
+    "fixture": {
+      "name": "empty_asset_code",
+      "field": "asset_code",
+      "vector": "empty",
+      "payload": {
+        "asset_code": "",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "PUT_empty_asset_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_empty_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_asset_code",
+        "sha256": "2815abf94a5e5e732db0a332fe5be90913ba228100e7b0814f4094221ad5ac5b",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_whitespace_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "asset_code",
+    "vector": "whitespace",
+    "rule_id": "asset_code.whitespace",
+    "fixture": {
+      "name": "whitespace_asset_code",
+      "field": "asset_code",
+      "vector": "whitespace",
+      "payload": {
+        "asset_code": "   ",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "PUT_whitespace_asset_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_whitespace_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_asset_code",
+        "sha256": "2815abf94a5e5e732db0a332fe5be90913ba228100e7b0814f4094221ad5ac5b",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_type_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "asset_code",
+    "vector": "type",
+    "rule_id": "asset_code.type",
+    "fixture": {
+      "name": "type_asset_code",
+      "field": "asset_code",
+      "vector": "type",
+      "payload": {
+        "asset_code": [
+          "bad",
+          "bad",
+          "bad"
+        ],
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "PUT_type_asset_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_type_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_asset_code",
+        "sha256": "97bde757994f7973ebca03ec7874160b7d68ca27002e1af156770f776a1a0c44",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_object_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "asset_code",
+    "vector": "object",
+    "rule_id": "asset_code.object",
+    "fixture": {
+      "name": "object_asset_code",
+      "field": "asset_code",
+      "vector": "object",
+      "payload": {
+        "asset_code": {
+          "bad0": "x",
+          "bad1": "x",
+          "bad2": "x"
+        },
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "PUT_object_asset_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_object_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_asset_code",
+        "sha256": "97bde757994f7973ebca03ec7874160b7d68ca27002e1af156770f776a1a0c44",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_min_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "asset_code",
+    "vector": "min",
+    "rule_id": "asset_code.min",
+    "fixture": {
+      "name": "min_asset_code",
+      "field": "asset_code",
+      "vector": "min",
+      "payload": {
+        "asset_code": "ZZ",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "PUT_min_asset_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_min_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_min_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_min_asset_code",
+        "sha256": "adbf77052a21b1b2d2166dd945f52f9d8f053cfc6aff7afde12a8754ba1e63d7",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_max_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "asset_code",
+    "vector": "max",
+    "rule_id": "asset_code.max",
+    "fixture": {
+      "name": "max_asset_code",
+      "field": "asset_code",
+      "vector": "max",
+      "payload": {
+        "asset_code": "ZZZZZZZZZZZZZZZZZZZZZ",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "PUT_max_asset_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_max_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_max_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_max_asset_code",
+        "sha256": "ad7c0ca7d381b34ff9e1b86e4c746ce9960f740fc4561937585dca7954ee4041",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_unique_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "asset_code",
+    "vector": "unique",
+    "rule_id": "asset_code.unique",
+    "fixture": {
+      "name": "unique_asset_code",
+      "field": "asset_code",
+      "vector": "unique",
+      "payload": {
+        "asset_code": "AS-303",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "PUT_unique_asset_code",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_unique_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "asset_code"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_duplicate_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_duplicate_asset_code",
+        "sha256": "60a8f0750a7d1fba81aeae04bd023dbde2a8e0bebc4b912420f24495836d4a04",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_missing_name",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "missing",
+    "rule_id": "name.missing",
+    "fixture": {
+      "name": "missing_name",
+      "field": "name",
+      "vector": "missing",
+      "payload": {
+        "asset_code": "AS-101",
+        "value": 150000
+      },
+      "case_id": "PUT_missing_name",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_missing_name\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_missing_name\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_required_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_required_name",
+        "sha256": "7df8a0c4dfb75755d932c57e5cd414b93c388303a0aabf6eda0acf47acf2b180",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_null_name",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "null",
+    "rule_id": "name.null",
+    "fixture": {
+      "name": "null_name",
+      "field": "name",
+      "vector": "null",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": null,
+        "value": 150000
+      },
+      "case_id": "PUT_null_name",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_null_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_name",
+        "sha256": "9a3382d68dc043c0b1bf8ce4ffdc64d0f5e5b48f91e747bb85de330f0b02ed67",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_empty_name",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "empty",
+    "rule_id": "name.empty",
+    "fixture": {
+      "name": "empty_name",
+      "field": "name",
+      "vector": "empty",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "",
+        "value": 150000
+      },
+      "case_id": "PUT_empty_name",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_empty_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_name",
+        "sha256": "9a3382d68dc043c0b1bf8ce4ffdc64d0f5e5b48f91e747bb85de330f0b02ed67",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_whitespace_name",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "whitespace",
+    "rule_id": "name.whitespace",
+    "fixture": {
+      "name": "whitespace_name",
+      "field": "name",
+      "vector": "whitespace",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "   ",
+        "value": 150000
+      },
+      "case_id": "PUT_whitespace_name",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_whitespace_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_name",
+        "sha256": "9a3382d68dc043c0b1bf8ce4ffdc64d0f5e5b48f91e747bb85de330f0b02ed67",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_type_name",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "type",
+    "rule_id": "name.type",
+    "fixture": {
+      "name": "type_name",
+      "field": "name",
+      "vector": "type",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": [
+          "bad",
+          "bad"
+        ],
+        "value": 150000
+      },
+      "case_id": "PUT_type_name",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_type_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_name",
+        "sha256": "717c9f4d14a9973988965f1aa9d98ab051db8d5fe17bdf59771ccaa41ade09df",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_object_name",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "object",
+    "rule_id": "name.object",
+    "fixture": {
+      "name": "object_name",
+      "field": "name",
+      "vector": "object",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": {
+          "bad0": "x",
+          "bad1": "x"
+        },
+        "value": 150000
+      },
+      "case_id": "PUT_object_name",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_object_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_name",
+        "sha256": "717c9f4d14a9973988965f1aa9d98ab051db8d5fe17bdf59771ccaa41ade09df",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_max_name",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "max",
+    "rule_id": "name.max",
+    "fixture": {
+      "name": "max_name",
+      "field": "name",
+      "vector": "max",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ",
+        "value": 150000
+      },
+      "case_id": "PUT_max_name",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_max_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "name"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_max_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_max_name",
+        "sha256": "63fb7b5de5497a146952ca4ec4b9a1bd10c12977b4b8c4c72c7cba1c9b246293",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_missing_value",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "value",
+    "vector": "missing",
+    "rule_id": "value.missing",
+    "fixture": {
+      "name": "missing_value",
+      "field": "value",
+      "vector": "missing",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope"
+      },
+      "case_id": "PUT_missing_value",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_missing_value\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_missing_value\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_required_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_required_value",
+        "sha256": "afd2a0e0be916ecd588df10de09bb98523c511041caad7e1f73573cae66f6985",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_null_value",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "value",
+    "vector": "null",
+    "rule_id": "value.null",
+    "fixture": {
+      "name": "null_value",
+      "field": "value",
+      "vector": "null",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": null
+      },
+      "case_id": "PUT_null_value",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_null_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_value",
+        "sha256": "beac8c4db3e257b62f45f2bb5d821d5c1fa15428a789a67473579413ca788503",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_empty_value",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "value",
+    "vector": "empty",
+    "rule_id": "value.empty",
+    "fixture": {
+      "name": "empty_value",
+      "field": "value",
+      "vector": "empty",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": ""
+      },
+      "case_id": "PUT_empty_value",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_empty_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_value",
+        "sha256": "beac8c4db3e257b62f45f2bb5d821d5c1fa15428a789a67473579413ca788503",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_whitespace_value",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "value",
+    "vector": "whitespace",
+    "rule_id": "value.whitespace",
+    "fixture": {
+      "name": "whitespace_value",
+      "field": "value",
+      "vector": "whitespace",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": "   "
+      },
+      "case_id": "PUT_whitespace_value",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_whitespace_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_null_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_null_value",
+        "sha256": "beac8c4db3e257b62f45f2bb5d821d5c1fa15428a789a67473579413ca788503",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_type_value",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "value",
+    "vector": "type",
+    "rule_id": "value.type",
+    "fixture": {
+      "name": "type_value",
+      "field": "value",
+      "vector": "type",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": "x"
+      },
+      "case_id": "PUT_type_value",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_type_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_value",
+        "sha256": "98084e5871b57b1b73715042cab37114930eba2a4a88b861263730a63e504761",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_object_value",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "value",
+    "vector": "object",
+    "rule_id": "value.object",
+    "fixture": {
+      "name": "object_value",
+      "field": "value",
+      "vector": "object",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": {
+          "wrong": "type"
+        }
+      },
+      "case_id": "PUT_object_value",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_object_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_value",
+        "sha256": "98084e5871b57b1b73715042cab37114930eba2a4a88b861263730a63e504761",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_fraction_value",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "value",
+    "vector": "fraction",
+    "rule_id": "value.fraction",
+    "fixture": {
+      "name": "fraction_value",
+      "field": "value",
+      "vector": "fraction",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 1.5
+      },
+      "case_id": "PUT_fraction_value",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_fraction_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_accept_type_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_accept_type_value",
+        "sha256": "98084e5871b57b1b73715042cab37114930eba2a4a88b861263730a63e504761",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_min_value",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "value",
+    "vector": "min",
+    "rule_id": "value.min",
+    "fixture": {
+      "name": "min_value",
+      "field": "value",
+      "vector": "min",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": -1
+      },
+      "case_id": "PUT_min_value",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_min_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_min_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_min_value",
+        "sha256": "8c9baa9a9c0f6918bb01fda7323b357c9366d5fe65023f59089cf43c4dbe3bcc",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_max_value",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "value",
+    "vector": "max",
+    "rule_id": "value.max",
+    "fixture": {
+      "name": "max_value",
+      "field": "value",
+      "vector": "max",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 1000001
+      },
+      "case_id": "PUT_max_value",
+      "kind": "invalid",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_max_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 422,
+    "expected_body": {
+      "shape": "object",
+      "errors_field": "value"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_omit_max_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_omit_max_value",
+        "sha256": "0bc9e2f030c1ec5625b8e66aab25e6105e8865971e3ea64826400e2ea6e29d76",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_min_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "asset_code",
+    "vector": "boundary_min",
+    "rule_id": "asset_code.boundary_min",
+    "fixture": {
+      "name": "boundary_min_asset_code",
+      "field": "asset_code",
+      "vector": "boundary_min",
+      "payload": {
+        "asset_code": "BBB",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "POST_boundary_min_asset_code",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_min_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "asset_code": "BBB",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_min_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_min_asset_code",
+        "sha256": "4ee1bd057cebb139ca6db1789431c4e9363e487bc3597488c588bd95299b8498",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_max_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "asset_code",
+    "vector": "boundary_max",
+    "rule_id": "asset_code.boundary_max",
+    "fixture": {
+      "name": "boundary_max_asset_code",
+      "field": "asset_code",
+      "vector": "boundary_max",
+      "payload": {
+        "asset_code": "BBBBBBBBBBBBBBBBBBBB",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "POST_boundary_max_asset_code",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_max_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "asset_code": "BBBBBBBBBBBBBBBBBBBB",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_max_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_max_asset_code",
+        "sha256": "993a1eb2eec956dc207b5190b672a94f59c4d0275fdc4a89b02759d57b5a12f4",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_max_name",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "boundary_max",
+    "rule_id": "name.boundary_max",
+    "fixture": {
+      "name": "boundary_max_name",
+      "field": "name",
+      "vector": "boundary_max",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "value": 150000
+      },
+      "case_id": "POST_boundary_max_name",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_max_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-101",
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "value": 150000
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_max_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_max_name",
+        "sha256": "0809092c10a6c80ab6a0a96b5f4af605a8501eb02f7ee2efd7be6ce02a5c90ae",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_min_value",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "value",
+    "vector": "boundary_min",
+    "rule_id": "value.boundary_min",
+    "fixture": {
+      "name": "boundary_min_value",
+      "field": "value",
+      "vector": "boundary_min",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 0
+      },
+      "case_id": "POST_boundary_min_value",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_min_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 0
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_min_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_min_value",
+        "sha256": "a1aaa6863b3fe7622370c92ceb359fb48bc934d6d92f28a64b7340672be859f9",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_boundary_max_value",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "value",
+    "vector": "boundary_max",
+    "rule_id": "value.boundary_max",
+    "fixture": {
+      "name": "boundary_max_value",
+      "field": "value",
+      "vector": "boundary_max",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 1000000
+      },
+      "case_id": "POST_boundary_max_value",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_boundary_max_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 1000000
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_max_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_max_value",
+        "sha256": "7090d947452b841a2c1496f92cc682d9893a7894f6b24fa6071af7ffad30aacb",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_numeric_string_value",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "value",
+    "vector": "numeric_string",
+    "rule_id": "value.numeric_string",
+    "fixture": {
+      "name": "numeric_string_value",
+      "field": "value",
+      "vector": "numeric_string",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": "150000"
+      },
+      "expected": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "POST_numeric_string_value",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_numeric_string_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "store_reject_numeric_string_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "store_reject_numeric_string_value",
+        "sha256": "4f3390fee2b5f45ac8be07e1bece77bc811a320042f3485e750556f886100984",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_short1_name",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "short1",
+    "rule_id": "name.short1",
+    "fixture": {
+      "name": "short1_name",
+      "field": "name",
+      "vector": "short1",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "R",
+        "value": 150000
+      },
+      "case_id": "POST_short1_name",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_short1_name\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_short1_name\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-101",
+        "name": "R",
+        "value": 150000
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "reject_short_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "reject_short_name",
+        "sha256": "28df65a591ad7a0f8fd44d585e84e83b0fa88dd5c101e09974f849cac1387fae",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "POST_short2_name",
+    "spec_id": "final_assets_v2",
+    "operation": "POST",
+    "field": "name",
+    "vector": "short2",
+    "rule_id": "name.short2",
+    "fixture": {
+      "name": "short2_name",
+      "field": "name",
+      "vector": "short2",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "RR",
+        "value": 150000
+      },
+      "case_id": "POST_short2_name",
+      "kind": "boundary",
+      "operation": "POST"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"POST_short2_name\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"POST_short2_name\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 201,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-101",
+        "name": "RR",
+        "value": 150000
+      },
+      "id": "new integer"
+    },
+    "expected_state": "exactly one new record; existing records unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "reject_short_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "reject_short_name",
+        "sha256": "28df65a591ad7a0f8fd44d585e84e83b0fa88dd5c101e09974f849cac1387fae",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_min_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "asset_code",
+    "vector": "boundary_min",
+    "rule_id": "asset_code.boundary_min",
+    "fixture": {
+      "name": "boundary_min_asset_code",
+      "field": "asset_code",
+      "vector": "boundary_min",
+      "payload": {
+        "asset_code": "BBB",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "PUT_boundary_min_asset_code",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_min_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "asset_code": "BBB",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_min_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_min_asset_code",
+        "sha256": "6f6752eb2f185feb695ccfde44b01f4bae71847fb9c54340ceff29114f6f2d0e",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_max_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "asset_code",
+    "vector": "boundary_max",
+    "rule_id": "asset_code.boundary_max",
+    "fixture": {
+      "name": "boundary_max_asset_code",
+      "field": "asset_code",
+      "vector": "boundary_max",
+      "payload": {
+        "asset_code": "BBBBBBBBBBBBBBBBBBBB",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "PUT_boundary_max_asset_code",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_max_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "asset_code": "BBBBBBBBBBBBBBBBBBBB",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_max_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_max_asset_code",
+        "sha256": "5dfec981b37e8fcfda51ccfba39f43ba2cbc8ee5a1918446b4979838ff8ffdef",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_max_name",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "boundary_max",
+    "rule_id": "name.boundary_max",
+    "fixture": {
+      "name": "boundary_max_name",
+      "field": "name",
+      "vector": "boundary_max",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "value": 150000
+      },
+      "case_id": "PUT_boundary_max_name",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_max_name\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-101",
+        "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "value": 150000
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_max_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_max_name",
+        "sha256": "34a16ffe156ca0ccef906794b7896729cd2f3ba8329707e05f365671bb4183fd",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_min_value",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "value",
+    "vector": "boundary_min",
+    "rule_id": "value.boundary_min",
+    "fixture": {
+      "name": "boundary_min_value",
+      "field": "value",
+      "vector": "boundary_min",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 0
+      },
+      "case_id": "PUT_boundary_min_value",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_min_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 0
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_min_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_min_value",
+        "sha256": "a88fc6f09ee9818d29c313c75f0d879b312560a24ec1c3545bd269c3d64e1df5",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_boundary_max_value",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "value",
+    "vector": "boundary_max",
+    "rule_id": "value.boundary_max",
+    "fixture": {
+      "name": "boundary_max_value",
+      "field": "value",
+      "vector": "boundary_max",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 1000000
+      },
+      "case_id": "PUT_boundary_max_value",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_boundary_max_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 1000000
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_max_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_max_value",
+        "sha256": "994dd14186ab9f28193862fb5b4ddfef965c3f97e6d337a151b851f52af60a1b",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_numeric_string_value",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "value",
+    "vector": "numeric_string",
+    "rule_id": "value.numeric_string",
+    "fixture": {
+      "name": "numeric_string_value",
+      "field": "value",
+      "vector": "numeric_string",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": "150000"
+      },
+      "expected": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "case_id": "PUT_numeric_string_value",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_numeric_string_value\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_numeric_string_value"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_numeric_string_value",
+        "sha256": "cd51399ac2232710e001789804474458a7fde8b8c799d4b6888dabec3e1606d9",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_short1_name",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "short1",
+    "rule_id": "name.short1",
+    "fixture": {
+      "name": "short1_name",
+      "field": "name",
+      "vector": "short1",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "R",
+        "value": 150000
+      },
+      "case_id": "PUT_short1_name",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_short1_name\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_short1_name\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-101",
+        "name": "R",
+        "value": 150000
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "reject_short_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "reject_short_name",
+        "sha256": "28df65a591ad7a0f8fd44d585e84e83b0fa88dd5c101e09974f849cac1387fae",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_short2_name",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "name",
+    "vector": "short2",
+    "rule_id": "name.short2",
+    "fixture": {
+      "name": "short2_name",
+      "field": "name",
+      "vector": "short2",
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "RR",
+        "value": 150000
+      },
+      "case_id": "PUT_short2_name",
+      "kind": "boundary",
+      "operation": "PUT"
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_short2_name\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"PUT_short2_name\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-101",
+        "name": "RR",
+        "value": 150000
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "reject_short_name"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "reject_short_name",
+        "sha256": "28df65a591ad7a0f8fd44d585e84e83b0fa88dd5c101e09974f849cac1387fae",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "PUT_own_asset_code",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": "asset_code",
+    "vector": "own_unique",
+    "rule_id": "asset_code.own_unique",
+    "fixture": {
+      "case_id": "PUT_own_asset_code",
+      "kind": "own_unique",
+      "operation": "PUT",
+      "field": "asset_code",
+      "vector": "own_unique",
+      "payload": {
+        "asset_code": "AS-202",
+        "name": "Oscilloscope",
+        "value": 410000
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"PUT_own_asset_code\""
+    },
+    "internal_test_id": null,
+    "coverage": "reference_only",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-202",
+        "name": "Oscilloscope",
+        "value": 410000
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "update_reject_own_asset_code"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "update_reject_own_asset_code",
+        "sha256": "9e222716c56a82ed9543447cbc5fdea318e06005d40d422a06bd76b123cbb1a8",
+        "expected_evidence": {
+          "phase": "status",
+          "http_status": 422
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "show_second",
+    "spec_id": "final_assets_v2",
+    "operation": "GET",
+    "field": null,
+    "vector": "show",
+    "rule_id": "crud.show",
+    "fixture": {
+      "case_id": "show_second",
+      "kind": "show",
+      "operation": "GET",
+      "target_position": 2,
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"show_second\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"show_second\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-303",
+        "name": "Printer",
+        "value": 90000
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "lookup_first_after_exists"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "lookup_first_after_exists",
+        "sha256": "feabd0d2fab1b30d56e10fe5ca948981446631e40a200c7701ba02d2b0d59092",
+        "expected_evidence": {
+          "phase": "body",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "update_second",
+    "spec_id": "final_assets_v2",
+    "operation": "PUT",
+    "field": null,
+    "vector": "update",
+    "rule_id": "crud.update",
+    "fixture": {
+      "case_id": "update_second",
+      "kind": "update",
+      "operation": "PUT",
+      "target_position": 2,
+      "payload": {
+        "asset_code": "AS-404",
+        "name": "Oscilloscope",
+        "value": 410000
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"update_second\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"update_second\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 200,
+    "expected_body": {
+      "data": {
+        "asset_code": "AS-404",
+        "name": "Oscilloscope",
+        "value": 410000
+      },
+      "id": "requested target integer"
+    },
+    "expected_state": "only requested target replaced; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "lookup_first_after_exists"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "lookup_first_after_exists",
+        "sha256": "feabd0d2fab1b30d56e10fe5ca948981446631e40a200c7701ba02d2b0d59092",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 200
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  },
+  {
+    "case_id": "destroy_second",
+    "spec_id": "final_assets_v2",
+    "operation": "DELETE",
+    "field": null,
+    "vector": "destroy",
+    "rule_id": "crud.destroy",
+    "fixture": {
+      "case_id": "destroy_second",
+      "kind": "destroy",
+      "operation": "DELETE",
+      "target_position": 2,
+      "payload": {
+        "asset_code": "AS-101",
+        "name": "Microscope",
+        "value": 150000
+      }
+    },
+    "reference_test_id": {
+      "class": "FinalEvaluation.FinalReferenceTest",
+      "name": "test_contract with data set \"destroy_second\""
+    },
+    "internal_test_id": {
+      "class": "FinalEvaluation.FinalInternalTest",
+      "name": "test_contract with data set \"destroy_second\""
+    },
+    "coverage": "internal_covered",
+    "expected_status": 204,
+    "expected_body": {
+      "raw": ""
+    },
+    "expected_state": "target removed; neighbour unchanged",
+    "validation": {
+      "status": "PENDING",
+      "observations": []
+    },
+    "positive_control_ids": [
+      "eloquent",
+      "explicit"
+    ],
+    "negative_control_ids": [
+      "lookup_first_after_exists"
+    ],
+    "review_status": "pending",
+    "human_author": null,
+    "reviewer": null,
+    "reviewed_at": null,
+    "negative_controls": [
+      {
+        "control_id": "lookup_first_after_exists",
+        "sha256": "feabd0d2fab1b30d56e10fe5ca948981446631e40a200c7701ba02d2b0d59092",
+        "expected_evidence": {
+          "phase": "state",
+          "http_status": 204
+        }
+      }
+    ],
+    "positive_controls": [
+      {
+        "control_id": "eloquent",
+        "sha256": "2a14cf6e27eac03879c3c55d541c94c4e33faf53d16f1543ff3a07dad25b868b"
+      },
+      {
+        "control_id": "explicit",
+        "sha256": "47ce46d31f63f94c22fa598270db29012aa99672f9a536fd77ee5cdb8fcf7b3f"
+      }
+    ]
+  }
+]

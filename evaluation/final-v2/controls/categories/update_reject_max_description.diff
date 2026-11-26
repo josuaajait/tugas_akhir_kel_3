@@ -1,0 +1,10 @@
+--- eloquent.php
++++ update_reject_max_description.php
+@@ -31,6 +31,7 @@
+     {
+         $record = $this->load($id); // update lookup
+         // update guards
++        if (is_string($request->input('description')) && strlen($request->input('description')) === 160) abort(422);
+         $body = $request->validate([
+             'name' => ['required', 'string', 'max:48'],
+             'description' => ['required', 'string', 'max:160'],

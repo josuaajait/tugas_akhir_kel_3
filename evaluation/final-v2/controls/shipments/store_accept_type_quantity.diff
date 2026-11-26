@@ -1,0 +1,10 @@
+--- eloquent.php
++++ store_accept_type_quantity.php
+@@ -15,6 +15,7 @@
+     public function store(Request $request)
+     {
+         // store guards
++        if ($request->exists('quantity') && $request->input('quantity') !== null && (is_array($request->input('quantity')) || is_float($request->input('quantity')) || (is_string($request->input('quantity')) && !preg_match('/^[+-]?[0-9]+$/', $request->input('quantity'))))) return response()->json(['accepted'=>true], 200);
+         $body = $request->validate([
+             'tracking_code' => ['required', 'string', 'min:6', 'max:24', 'unique:shipments,tracking_code'],
+             'reference_code' => ['required', 'string', 'max:20', 'unique:shipments,reference_code'],

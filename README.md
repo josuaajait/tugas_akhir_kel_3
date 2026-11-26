@@ -1,165 +1,243 @@
-# Critic Agent
+<div align="center">
 
-> **Melanjutkan proyek?** Mulai dari [panduan serah terima](docs/HANDOFF.md), diperbarui 5 November 2026: status terverifikasi, setup clone baru, artefak yang tidak ikut Git, dan daftar kerja berikutnya. [Salinan laporan komponen](docs/evidence/component-provisional-2026-11-05.json) ikut repositori agar hasil terakhir dapat dibaca setelah clone.
->
-> **Untuk klien:** [Panduan serah terima klien](docs/PANDUAN-SERAH-TERIMA-KLIEN.md) memuat cara menyiapkan lingkungan, menjalankan demo, membaca hasil, dan memeriksa paket yang diterima.
+# 🧐 Critic Agent
 
-Prototipe TA untuk memeriksa controller CRUD REST API Laravel hasil Qwen2.5-7B-Instruct. Versi 0.5.0 menyediakan loop lintas resource serta evaluator acuan pengembangan terpisah untuk products, books, dan inventory.
+**Verifikasi deterministik untuk controller CRUD Laravel hasil LLM**
 
-Harness acuan telah dibuktikan melalui terminal pengguna dengan 21/21 test lulus. Pada uji langsung pertama, kandidat awal Qwen lulus 13/14 dan kandidat akhir lulus 14/14 setelah satu revisi otomatis. Qwen mengganti pemanggilan response()->setContent('', 204) menjadi response()->json('', 204). Run terverifikasi tersimpan di runs/20261104T031502Z_loop_713c3f8803f441929ae6ed8f38077232. Petunjuk harness ada di [harness/README.md](harness/README.md).
+Critic Agent memeriksa controller REST API Laravel yang dibuat Qwen2.5-7B-Instruct, mengumpulkan bukti kegagalan dari analisis statis dan test Docker, lalu mengirim bukti itu kembali ke model untuk diperbaiki — maksimal tiga revisi.
 
-## Yang tersedia
+![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
+![Stdlib only](https://img.shields.io/badge/dependencies-stdlib%20only-success)
+![Laravel](https://img.shields.io/badge/Laravel-12.70.2-FF2D20?logo=laravel&logoColor=white)
+![PHPUnit](https://img.shields.io/badge/PHPUnit-11.5.57-366488)
+![Docker](https://img.shields.io/badge/Docker-required-2496ED?logo=docker&logoColor=white)
+![Ollama](https://img.shields.io/badge/Ollama-qwen2.5%3A7b--instruct-000000)
+![Version](https://img.shields.io/badge/version-0.5.0-blue)
+![Tests](https://img.shields.io/badge/tests-274%20passing-brightgreen)
 
-**Temuan terbaru24November:** [audit seluruh soal](docs/reviews/2026-11-24-final-v1-ai-audit/LAPORAN.md) membuktikan tiga celah evaluator yang perlu ditangani sebelum freeze: target ID kedua, string pendek yang sah dan klasifikasi JSON rusak. Paket serta bukti lama dipertahankan; status validasi kontrol di bawah tidak berarti cakupan evaluator lengkap.
+[Cara kerja](#-cara-kerja) · [Mulai cepat](#-mulai-cepat) · [Perintah](#-daftar-perintah) · [Status](#-status-proyek) · [Dokumentasi](#-dokumentasi)
 
-- `final-validate --package final-v1` menyiapkan bukti validasi evaluator untuk lima soal baru: categories, rooms, assets, courses dan shipments. Paket memiliki70 kasus internal,358 kasus acuan, dua gaya kontrol benar per soal,299 mutasi target, matriks dan formulir review kosong. Mode `--local-only` tidak mengeksekusi controller; `--build` memvalidasi di Docker tanpa Qwen. Verifikasi23November:648/648 pengamatan memenuhi harapan dan218 tes Python lulus. [Soal, perintah, dan arti hasil](evaluation/final-v1/README.md) · [Bukti](docs/evidence/final-v1-validation-2026-11-23.md). Paket ini belum merupakan pembekuan atau pelaksanaan A/B akhir.
-- `ab-smoke` menguji integrasi final-v1 dengan fixture sintetis tanpa Qwen; `ab-plan-check` memeriksa gerbang protokol; `ab-run` mengeksekusi satu slot protokol beku; `ab-report` memverifikasi arsip dan menghitung hasil per soal/kondisi. Integrasi dan agregasi sudah tersedia, sedangkan review manusia, keputusan K2 dan pembekuan masih diperlukan. Form asli paket tetap kosong; attestation disimpan terpisah agar hash paket tetap sama. [Panduan A/B final](docs/FINAL-AB.md) · [Bukti teknis](docs/evidence/final-ab-adapter-2026-11-23.md).
-- [Paket review manusia](docs/review-packets/final-v1-2026-11-23/README.md) menyediakan358kasus pemeriksaan, lima form eksternal kosong, checklist/penugasan/keputusan, draf input protokol dan [ZIP mandiri](docs/review-packets/final-v1-2026-11-23/reviewer-bundle.zip) berisi sumber serta bukti. Lampiran review komponen16kasus tetap terpisah; seluruh persetujuan manusia masih pending.
-- Validasi spesifikasi JSON yang ketat dan prompt dengan kontrak Laravel tetap.
-- Client Ollama lokal dengan seed/suhu tercatat, timeout, dan satu retry gangguan komunikasi.
-- Arsip unik tiap generasi: spesifikasi, prompt, respons mentah yang diterima, kode, hash, dan manifest; termasuk kegagalan ekstraksi/layanan.
-- Pemeriksaan sintaks serta namespace/class/method/signature melalui tokenizer PHP. Controller tidak dieksekusi oleh perintah ini.
-- Pemeriksaan kesiapan Python, PHP, Docker, layanan Ollama, dan nama model.
-- Perintah `harness-build`, `harness-check`, dan `check-products`; parser JUnit, pembatasan output, dan arsip pemeriksaan container.
-- `run-products` menjalankan loop otomatis, termasuk penghentian ketika lolos, kode identik, batas revisi, atau ERROR lingkungan/model. Arsip awal diverifikasi dengan spec/hash/config sebelum dipakai ulang.
-- `evaluation-build` dan `evaluate-products` membandingkan kode awal/akhir arsip loop dengan suite pengembangan terpisah, tanpa memanggil Qwen. Evaluator products sudah diverifikasi dari terminal pengguna:31/33 menjadi33/33 (uplift6.06 poin persentase).
-- `component-corpus-init`, `component-evidence`, `component-run`, dan `component-report` menyediakan korpus draf, bukti acuan terpisah serta precision/recall/FPR per kode dan asal korpus. Tidak memanggil Qwen; label manusia tetap perlu ditinjau.
+</div>
 
-Status `AWAITING_DYNAMIC_TESTS` berarti tahap fondasi selesai tanpa temuan statis atau kode telah diekstrak, bergantung perintah yang dijalankan. **Bukan LOLOS fungsional**. `generate` tidak otomatis menjalankan `analyze`.
+---
 
-## Menjalankan dari folder proyek
+> [!NOTE]
+> **Tugas Akhir D-III — Kelompok 3.** Dokumentasi ditulis dalam Bahasa Indonesia.
 
-Untuk memasukkan kebutuhan CRUD melalui pertanyaan terminal, jalankan
+## 📌 Ringkasan
+
+LLM kecil seperti Qwen2.5-7B sering menghasilkan controller yang *terlihat* benar tetapi gagal pada validasi, kode status, atau isolasi record. Critic Agent **tidak memakai LLM sebagai penilai**. Setiap putusan berasal dari bukti yang dapat diulang:
+
+- 🔍 **Analisis statis** — lint PHP dan tokenizer untuk namespace, class, method, dan signature.
+- 🐳 **Test dinamis** — PHPUnit di dalam container Docker dengan database SQLite baru tiap percobaan.
+- 🔁 **Self-debugging** — feedback spesifik dikirim ke Qwen; loop berhenti saat lolos, kode identik, batas 3 revisi, atau ERROR.
+- 📏 **Evaluator acuan terpisah** — suite independen yang tidak pernah masuk prompt atau feedback, untuk mengukur kualitas kode awal vs akhir.
+- 🗂️ **Arsip lengkap** — spesifikasi, prompt, respons mentah, kode, hash, dan manifest tersimpan untuk setiap generasi, termasuk yang gagal.
+
+## ⚙️ Cara kerja
+
+```mermaid
+flowchart LR
+    A[Spesifikasi CRUD<br/>JSON] --> B[Prompt<br/>kontrak Laravel]
+    B --> C[Qwen2.5-7B<br/>via Ollama]
+    C --> D[Ekstraksi kode PHP]
+    D --> E{Analisis statis<br/>lint + tokenizer}
+    E -- gagal --> F[Feedback<br/>berbasis bukti]
+    E -- lolos --> G{Test internal<br/>PHPUnit di Docker}
+    G -- gagal --> F
+    G -- lolos --> H([✅ LOLOS])
+    F --> I{Revisi ≤ 3 dan<br/>kode berubah?}
+    I -- ya --> C
+    I -- tidak --> J([❌ BELUM LOLOS])
+    H -.-> K[Evaluator acuan<br/>terpisah]
+    J -.-> K
+    K --> L[Pass rate, uplift,<br/>repair, regresi]
+```
+
+| Status | Arti |
+|---|---|
+| `LOLOS` | Pemeriksaan statis bersih **dan** seluruh test internal lulus. |
+| `BELUM LOLOS` | Masih ada kegagalan setelah 3 revisi, atau model mengirim kode identik. |
+| `ERROR` | Masalah lingkungan/model (Docker, Ollama, timeout) — bukan kesalahan kandidat. |
+| `AWAITING_DYNAMIC_TESTS` | Tahap fondasi selesai, test dinamis belum dijalankan. **Bukan** LOLOS fungsional. |
+| `EVALUATED` | Evaluator acuan selesai menilai pasangan, termasuk bila ada test yang gagal. |
+
+## 🚀 Mulai cepat
+
+### Prasyarat
+
+| Komponen | Keterangan |
+|---|---|
+| Python 3.11+ | Hanya standard library, tanpa `pip install`. |
+| PHP | Untuk `analyze` (lint/tokenizer). Kandidat **tidak pernah** dieksekusi di PHP host. |
+| Docker Desktop | Mode Linux/WSL2 pada Windows. Build image pertama memerlukan jaringan. |
+| Ollama | Dengan model `qwen2.5:7b-instruct`. |
+
+### Instalasi dan pengecekan
+
+```powershell
+git clone https://github.com/josuaajait/tugas_akhir_kel_3.git
+cd tugas_akhir_kel_3
+ollama pull qwen2.5:7b-instruct
+python -m critic_agent doctor
+```
+
+### Jalankan mode interaktif
 
 ```powershell
 python -m critic_agent start
 ```
 
-Isi nama resource/tabel, model, controller dan jumlah field, lalu nama/tipe/batas/unique setiap field. Tipe yang didukung string dan integer; semua field wajib pada POST dan PUT. Sistem menampilkan JSON untuk dikonfirmasi, menyimpannya, menyiapkan harness Docker dan menjalankan Qwen serta self-debugging maksimal tiga revisi. Jawab `n` pada konfirmasi atau tekan Ctrl+C untuk membatalkan.
+Wizard menanyakan nama resource/tabel, model, controller, serta nama/tipe/batas/unique tiap field (`string` atau `integer`). Sistem menampilkan JSON untuk dikonfirmasi, menyiapkan harness Docker, lalu menjalankan Qwen dengan self-debugging maksimal tiga revisi. Tekan `n` atau Ctrl+C untuk membatalkan (exit code `130`).
 
-Python, PHP, Docker Desktop Linux/WSL2 dan Ollama dengan model yang dipilih perlu tersedia dan aktif. Build pertama image dapat memerlukan jaringan. Kegagalan prasyarat/build/readiness dicatat sebagai ERROR sebelum Qwen dipanggil. Kemajuan dan pertanyaan tampil di stderr; hasil akhir di stdout mengikuti mode tampilan di bawah.
-
-Folder `runs/..._interactive_UUID/` memuat `spec.json`, `session.json`, hasil prasyarat/build/readiness, log persiapan dan subfolder `runs/` untuk arsip loop. Ringkasan menampilkan `run_directory`, `final_controller` bila tersedia dan hasil percobaan. Image resource memakai tag UUID dan dipertahankan untuk audit. `start` memakai harness generik yang dibentuk dari jawaban pengguna. Command `run-products` tetap memakai kontrak products legacy.
-
-Opsi yang tersedia antara lain `--output`, `--model`, `--temperature`, `--seed`, `--timeout`, `--test-timeout`, `--build-timeout` dan `--max-revisions`. Suhu 0.2/seed 42 adalah default development. Exit code `130` menandakan CANCELLED. Lihat `python -m critic_agent start --help`. Evaluator acuan tetap dijalankan terpisah sesuai kontrak yang didukung.
-
-### Tampilan terminal
-
-Seluruh command mendukung tampilan bergaya [PTerm](https://github.com/pterm/cli-template) yang diadaptasi ke Python standard library: header, status berwarna dan tabel hasil. Command yang lama menampilkan indikator proses; `run-products`, `run-resource` serta loop dari `start`, pilot dan A/B juga menampilkan tahap generasi, pemeriksaan statis, test Docker dan hasil tiap percobaan. Spinner berhenti sebelum pertanyaan interaktif. Indikator hanya menunjukkan tahap berjalan, tanpa persentase perkiraan.
-
-Tampilan ini aktif otomatis saat stdout terhubung ke terminal. Gunakan `--pretty` untuk memaksanya, `--json` untuk hasil JSON murni, dan `--no-color` atau environment `NO_COLOR` untuk mematikan warna. Flag dapat diletakkan sebelum atau sesudah nama command. Terminal tanpa dukungan ANSI memakai tampilan teks biasa; `TERM=dumb` juga mematikan animasi. Tabel panjang membungkus teks mengikuti lebar terminal.
+### Contoh lain
 
 ```powershell
-python -m critic_agent doctor --pretty
-python -m critic_agent run-resource examples/books.json --pretty
-python -m critic_agent start --pretty
-python -m critic_agent validate examples/products.json --json
-```
-
-Saat stdout dipipe atau dialihkan ke file, hasil otomatis tetap JSON agar script lama dapat memakai `ConvertFrom-Json`. Kemajuan, pertanyaan dan log build Docker ada di stderr; `harness-build` dan `evaluation-build` kini memberikan ringkasan hasil terstruktur di stdout. `prompt` selalu mengeluarkan teks prompt asli, termasuk saat memakai `--pretty`; `--help` tetap berupa bantuan teks. Status LOLOS tetap berarti pemeriksaan internal lulus, sementara `AWAITING_DYNAMIC_TESTS`, ERROR dan hasil provisional mempertahankan makna aslinya. Format presentasi tidak mengubah arsip penelitian atau aturan revisi.
-
-Diperlukan Python 3.11+. Gunakan terminal pada folder yang berisi README ini. Paket Python tambahan tidak diperlukan untuk perintah di bawah.
-
-```powershell
-python -m critic_agent --help
-python -m critic_agent doctor
 python -m critic_agent validate examples/products.json
 python -m critic_agent prompt examples/products.json
-python -m critic_agent analyze examples/products.json examples/StructureOnlyController.php
+python -m critic_agent run-resource examples/books.json --seed 42 --temperature 0.2
 python -m unittest discover -s tests -v
 ```
 
-`StructureOnlyController.php` adalah fixture struktur dengan method kosong, bukan implementasi CRUD yang benar. Gunakan untuk memastikan pemeriksa statis bekerja; jangan memakainya sebagai controller acuan fungsional.
+> [!TIP]
+> Tampilan berwarna aktif otomatis di terminal. Gunakan `--pretty` untuk memaksanya, `--json` untuk keluaran JSON murni, dan `--no-color` (atau `NO_COLOR`) untuk mematikan warna. Saat stdout dipipe, keluaran otomatis JSON sehingga bisa dibaca `ConvertFrom-Json`.
 
-Setelah Ollama terpasang dan aktif serta model sudah diunduh:
+## 🧰 Daftar perintah
 
-```powershell
-ollama pull qwen2.5:7b-instruct
-python -m critic_agent generate examples/products.json --seed 42 --temperature 0.2 --timeout 300
+Jalankan `python -m critic_agent <perintah> --help` untuk opsi lengkap.
+
+| Kelompok | Perintah | Fungsi |
+|---|---|---|
+| **Dasar** | `doctor` | Periksa Python, PHP, Docker, Ollama, dan model. |
+| | `validate` · `prompt` | Validasi spesifikasi JSON; tampilkan prompt. |
+| | `generate` · `analyze` | Panggil Qwen sekali; analisis statis controller. |
+| **Loop** | `start` | Wizard interaktif end-to-end. |
+| | `run-products` · `run-resource` | Loop revisi otomatis (maks. 3) untuk products atau resource lain. |
+| **Harness** | `harness-build` · `harness-check` · `check-products` | Harness Docker products. |
+| | `resource-build` · `resource-check` | Harness yang dibentuk dari spesifikasi JSON. |
+| **Evaluator** | `evaluation-build` · `evaluate-products` · `reference-check-products` | Evaluator acuan products. |
+| | `resource-evaluation-build` · `evaluate-resource` | Evaluator acuan books/inventory. |
+| | `final-validate` | Validasi paket soal/evaluator berversi tanpa Qwen. |
+| **Pilot** | `pilot-plan` · `pilot-run` · `pilot-metadata` · `pilot-report` | Eksperimen suhu/seed dan agregasinya. |
+| **Komponen** | `component-corpus-init` · `component-evidence` · `component-run` · `component-report` | Precision/recall/FPR Critic per kode cacat. |
+| **A/B** | `run-ab` | Pembanding feedback spesifik vs generik (development). |
+| | `ab-smoke` · `ab-plan-check` · `ab-run` · `ab-report` | Integrasi, gerbang protokol, eksekusi slot, dan agregasi A/B final. |
+| **Freeze** | `freeze-draft` · `freeze-check` | Manifest pembekuan berhash SHA-256. |
+
+**Exit code:** `0` berhasil · `1` temuan statis/BELUM LOLOS · `2` input/file invalid · `3` prasyarat/layanan bermasalah · `130` dibatalkan.
+
+## 📊 Status proyek
+
+> [!IMPORTANT]
+> Semua angka di bawah adalah hasil **development/formatif**. Review manusia, keputusan protokol, dan pembekuan (freeze) belum selesai, sehingga ini **belum** merupakan hasil akhir penelitian.
+
+| Tahap | Status | Bukti |
+|---|---|---|
+| Loop self-debugging (FR-01–14) | ✅ Teruji live | Products 13/14 → 14/14 setelah 1 revisi; books 12/12 tanpa revisi; inventory 11/16 → 12/16 lalu berhenti karena kode identik. |
+| Evaluator acuan (FR-15) | ✅ Teruji live | Products 31/33 → 33/33; books 35/35 → 35/35; inventory 51/57 → 53/57. [Rincian](evaluation/README.md) |
+| Pilot suhu/seed (PRD §12.7) | ✅ 27/27 job | 21 LOLOS, 6 BELUM LOLOS (kode identik), 0 ERROR. |
+| Evaluasi komponen (FR-17) | 🟡 Provisional | Sintetis TP6/FP0/TN2/FN2; Qwen formatif TP3/FP0/TN2/FN0. Label masih draf. |
+| Paket evaluasi **final-v2** | 🟡 Tervalidasi, menunggu review | 5 soal, 113 kasus internal / 401 acuan, 331 mutasi; 712/712 observasi Docker sesuai harapan. [Rincian](evaluation/final-v2/README.md) |
+| A/B feedback spesifik vs generik (FR-20) | 🟡 Tooling siap | Smoke sintetis EVALUATED; protokol 20 pasangan masih **BLOCKED**. |
+| Freeze & evaluasi sumatif (M4) | ⏳ Tertahan | Menunggu review manusia, keputusan K2/P-06/P-07/FR-20, digest model, dan manifest FROZEN. |
+
+### Langkah berikutnya
+
+1. Review manusia atas paket final-v2 oleh dua reviewer berbeda.
+2. Putuskan K2, P-06, P-07, dan FR-20; verifikasi digest/kuantisasi model.
+3. Bekukan protokol, model, suite, dan image; lalu jalankan 20 pasangan A/B final.
+4. Laporkan seluruh hasil, termasuk kegagalan dan retry.
+
+## 🗂️ Struktur repositori
+
+```text
+critic_agent/        Paket Python: CLI, loop, analisis statis, client Ollama, evaluator, A/B
+harness/             Harness Laravel + PHPUnit untuk test internal (Docker)
+resource_templates/  Template test yang dibentuk dari spesifikasi resource
+evaluation/          Evaluator acuan terpisah (products, books/inventory, final-v1, final-v2)
+examples/            Spesifikasi contoh (products, books, inventory) dan fixture controller
+corpora/             Korpus anotasi untuk evaluasi komponen
+tests/               Unit & integration test Python
 ```
 
-Suhu/seed ini hanya konfigurasi pengembangan; konfigurasi penelitian ditentukan setelah pilot. Layanan dipanggil melalui localhost. Model aktual, digest dan kuantisasi masih perlu diverifikasi sebelum eksperimen. Perintah `generate` memerlukan Ollama; validasi/prompt tidak memerlukan layanan tersebut. PHP diperlukan untuk `analyze`.
+Folder `runs/`, `evaluations/`, `component-runs/`, `component-evidence/`, `builds/`, `work/`, `vendor`, dan `docs/` diabaikan Git. Image Docker, model, dan arsip mentah tidak ikut clone.
 
-Kode keluar: 0 = perintah berhasil pada tahapnya; 1 = temuan statis/format atau BELUM LOLOS; 2 = input atau akses file invalid; 3 = prasyarat/layanan bermasalah. `run-products` menyatakan LOLOS hanya setelah pemeriksaan statis bersih dan 14/14 test internal lulus.
+## 📚 Dokumentasi
 
-## Loop revisi otomatis
+| Dokumen | Isi |
+|---|---|
+| [PRD v1.3](PRD_Critic_Agent_v1.3.md) | Kebutuhan produk dan protokol evaluasi. |
+| [Harness](harness/README.md) | Cara kerja test internal Docker. |
+| [Evaluator acuan](evaluation/README.md) · [Resource](evaluation/resource-reference/README.md) | Suite acuan products, books, dan inventory. |
+| [final-v1](evaluation/final-v1/README.md) · [final-v2](evaluation/final-v2/README.md) | Paket soal dan evaluator final. |
 
-Gunakan kode awal yang sudah dibuat tanpa mengubah arsip sumber.
+<details>
+<summary><b>📖 Panduan penggunaan rinci</b></summary>
+
+### Loop revisi dari kode awal yang sudah ada
 
 ```powershell
-python -m critic_agent run-products examples/products.json --initial-run runs/20261104T025540Z_4fad073a00e0484abf342797d9d9f6a6
+python -m critic_agent run-products examples/products.json --initial-run runs/<folder_run_awal>
 ```
 
-Perintah ini membaca ulang kode awal, memeriksanya pada harness saat ini, mengirim feedback terbukti ke Qwen jika gagal, lalu mengulang maksimal tiga revisi. Seed dan suhu harus cocok dengan arsip awal. Untuk eksperimen pengembangan baru mulai dari generasi awal otomatis:
+Kode awal dibaca ulang tanpa mengubah arsip sumber; seed dan suhu harus cocok dengan arsip awal. Untuk eksperimen baru dari generasi awal:
 
 ```powershell
 python -m critic_agent run-products examples/products.json --seed 42 --temperature 0.2 --max-revisions 3
 ```
 
-Keluaran tersimpan dalam folder baru `runs/..._loop_...`: `initial_controller.php`, `final_controller.php` bila tersedia, `history.json`, `run_manifest.json`, `run.log`, serta `attempts/0` sampai `attempts/3`. Setiap percobaan memuat kode/respons, hasil statis/dinamis, prompt revisi dan feedback bila revisi diperlukan. Kode akhir adalah kandidat terakhir. Respons tanpa kode menghasilkan artefak akhir yang tidak tersedia dan tercatat.
+Keluaran di `runs/..._loop_.../`: `initial_controller.php`, `final_controller.php` (bila ada), `history.json`, `run_manifest.json`, `run.log`, dan `attempts/0`–`attempts/3` berisi kode, respons, hasil statis/dinamis, prompt revisi, dan feedback.
 
-Hasil akhir LOLOS, BELUM LOLOS atau ERROR ditampilkan bersama jumlah revisi. LOLOS merujuk pemeriksaan internal. Jalankan evaluator terpisah untuk mengukur kesesuaian terhadap suite acuan.
-
-## Evaluasi acuan awal dan akhir
-
-Bangun ulang harness agar memakai runtime bersama terbaru, lalu bangun image evaluator yang berbeda. Jalankan pada arsip loop yang sudah selesai:
+### Evaluasi acuan awal vs akhir
 
 ```powershell
 python -m critic_agent harness-build
 python -m critic_agent harness-check
 python -m critic_agent evaluation-build
-python -m critic_agent evaluate-products runs/20261104T031502Z_loop_713c3f8803f441929ae6ed8f38077232
+python -m critic_agent evaluate-products runs/<folder_loop>
 ```
 
-Evaluator baru memiliki 33 kasus yang ditulis dari kontrak products: CRUD, JSON 404, field wajib, tipe, unique, batas nilai, isolasi record, dan rangkaian CRUD. Kode awal dan akhir memakai suite/image ID identik dalam container dan database baru. Suite ini disimpan di image evaluator; image internal tidak memuatnya. Entrypoint evaluator menolak mode loop internal. Rincian ada di [evaluation/README.md](evaluation/README.md).
+Kode awal dan akhir dinilai dengan suite/image yang identik di container dan database baru. Hasil di `evaluations/.../evaluation_result.json`: pembilang/penyebut, pass rate, uplift (poin persentase), serta indikator repair/regresi. Penyebut nol → `null` (N/A). Respons tanpa kode atau gagal sintaks mendapat 0 dengan alasan tercatat; masalah lingkungan menghasilkan ERROR.
 
-Perintah tidak merevisi kode atau mengubah arsip sumber. Hasil baru berada di `evaluations/.../evaluation_result.json`, bersama snapshot kode dan provenance. Ringkasan memuat pembilang/penyebut, pass rate, uplift dalam poin persentase, serta indikator repair/regression untuk satu pasangan. Penyebut nol menghasilkan `null` (N/A). `EVALUATED` berarti pasangan berhasil dinilai, termasuk bila test kandidat gagal; status ini tidak berarti semua test lulus.
+### Resource lain (books, inventory)
 
-Hash arsip yang berubah atau file yang hilang meskipun diklaim tersedia ditolak. Respons tanpa kode yang dinyatakan arsip, atau kode gagal sintaks yang dibuktikan lint di dalam Docker, mendapat 0/33 dengan alasan test tidak dijalankan. Kegagalan kesiapan, laporan parsial/invalid, timeout yang belum diketahui penyebabnya, atau masalah lingkungan menghasilkan ERROR dan metrik pasangan `null`.
-
-Suite ini **paket pengembangan**, dibuat setelah keluaran Qwen pertama diamati. Sebelum penelitian akhir, tinjau assertion serta contoh pelanggaran target, pisahkan kasus akhir, lalu bekukan suite/protokol/image. Jangan memakai hasil suite akhir untuk menyetel Critic. Terminal pengguna telah memverifikasi readiness evaluator33/33, kode awal31/33 dan kode akhir33/33. Ini satu pasangan pengembangan. Codex CLI juga telah menjalankan Docker dan harness-check21/21 dengan persetujuan eskalasi; sesi desktop ini masih dibatasi.
-
-## Harness dari spesifikasi resource lain
-
-```bat
+```powershell
 python -m critic_agent resource-build examples/books.json
 python -m critic_agent resource-check examples/books.json
 python -m critic_agent run-resource examples/books.json --seed 42 --temperature 0.2 --timeout 300
-```
-
-Books mendefinisikan12 kasus internal dan27 total readiness. Contoh kedua: examples/inventory_items.json, dengan model StockItem/tabel inventory_items dan16 internal/46 total readiness. Books sudah teruji: readiness27/27 dan Qwen langsung12/12. Inventory teruji: readiness46/46, kandidat11/16 menjadi12/16 lalu berhenti identical_code pada revisi2. Image default per resource terpisah. Build/check tidak memanggil Qwen. Evaluator0.5.0 sudah teruji live: books35/35 menjadi35/35; inventory51/57 menjadi53/57 dengan empat kegagalan PUT required tersisa. Baca [cakupan, batas, dan validasi negatif](docs/resource-harness.md) sebelum menjalankan pilot.
-
-## Evaluator books dan inventory
-
-Gunakan arsip loop yang sudah selesai. Perintah ini tidak memanggil Qwen atau mengubah kandidat.
-
-```bat
 python -m critic_agent resource-evaluation-build examples/books.json --timeout 600
-python -m critic_agent evaluate-resource runs/20261104T044458Z_loop_52c1faef1c1644f3ac228b14eebdebcf
-python -m critic_agent resource-evaluation-build examples/inventory_items.json --timeout 600
-python -m critic_agent evaluate-resource runs/20261104T044936Z_loop_4c8045891ecc4a74a31e0117ed15932a
+python -m critic_agent evaluate-resource runs/<folder_loop>
 ```
 
-Build evaluator harus BUILT sebelum evaluasi. Books mendefinisikan35 kasus acuan dan inventory57, termasuk field wajib, tipe, min/max/unique serta batas valid POST dan PUT. Suite/data acuan dipisahkan dari template internal. Hasil awal/akhir memakai image ID dan suite yang sama dengan DB baru; raw counts, uplift, repair dan regression ditulis ke folder evaluations baru. EVALUATED berarti penilaian selesai, termasuk bila test gagal. Penyebut nol bernilai null/N/A.
+Readiness: products 21/21, books 27/27, inventory 46/46. Evaluator acuan: products 33, books 35, inventory 57 kasus.
 
-Paket ini untuk pengembangan dan dibuat setelah keluaran pertama diamati; belum merupakan bukti sumatif yang dibutakan/dibekukan. Hasil live Docker sudah terverifikasi dari terminal pengguna: books35/35->35/35 (uplift0) dan inventory51/57->53/57 (uplift3.508772 poin, repair0/1). Image dan fingerprint internal serta paket products tetap kompatibel. Rincian: [evaluator resource](evaluation/resource-reference/README.md).
+### Paket final-v2
 
-## Status terakhir dan langkah berikutnya
+```powershell
+python -m critic_agent final-validate --package final-v2 --local-only --output evaluations/final-v2-local
+python -m critic_agent final-validate --package final-v2 --build --output evaluations/final-v2-validation
+python -m critic_agent ab-smoke --package final-v2 --resource categories --scenario repair --output runs/ab-v2-synthetic
+```
 
-Per 5 November 2026, komponen menjalankan16 kandidat tanpa error prediksi dan menghasilkan laporan provisional. Sintetis:TP6/FP0/TN2/FN2, precision6/6=100%, recall6/8=75%, FPR0/2=0%. Qwen formatif:TP3/FP0/TN2/FN0 pada5 kode unik, precision3/3=100%, recall3/3=100%, FPR0/2=0%; satu duplikat tetap disimpan. Dua FN sintetis adalah aturan min/max reference_only. Held-out belum ada. Semua label masih draf berbantuan AI atas nama Mikhael Josua Roganda; angka kecil/formatif ini bukan hasil akhir penelitian.
+Selalu gunakan `--package final-v2` secara eksplisit; final-v1 dipertahankan sebagai arsip historis.
 
-Korpus: corpora/annotations/20261104T085829Z_mikhael-ai-assisted_e7a9c4248c344f21aa2b3df91fca627c/corpus.json. Run lokal: component-runs/20261105T005526Z_component_4a131234b1c14b5a95421e211dcdf739. [Laporan yang ikut Git](docs/evidence/component-provisional-2026-11-05.json) dan [provenance](docs/evidence/README.md) terpisah dari arsip raw yang diabaikan Git.
+### Opsi umum
 
-CLI menyediakan `pilot-plan`, `pilot-run`, dan `pilot-metadata`. Eksekusi pilot lengkap dan agregasi lintas job masih perlu dituntaskan, diikuti review manusia, keputusan A/B, pemisahan held-out, pembekuan konfigurasi, serta evaluasi dan pelaporan akhir. Lihat [panduan serah terima klien](docs/PANDUAN-SERAH-TERIMA-KLIEN.md#7-status-pekerjaan-lanjutan) untuk status perintah pilot.
+`--output`, `--model`, `--temperature`, `--seed`, `--timeout`, `--test-timeout`, `--build-timeout`, `--max-revisions`. Suhu `0.2` / seed `42` adalah default development, bukan konfigurasi penelitian final.
 
-Perintah/review komponen: [evaluasi komponen](docs/component-evaluation.md). Riwayat verifikasi kode terakhir:134 tes Python lulus tanpa skip pada 4 November 2026; jalankan ulang di clone penerima. Tes terkontrol dipisahkan dari bukti live Docker/Qwen. Versi aplikasi tetap0.5.0, protokol komponen 1.0; hash sumber dicatat.
+</details>
 
-Rencana lama: docs/superpowers/plans/. Batas MVP: [spec-mvp](docs/spec-mvp.md). Riwayat: [progress](docs/progress.md).
+## 🛡️ Prinsip integritas
 
-## Referensi implementasi
+- Test dan hasil evaluator acuan **tidak pernah** masuk prompt atau feedback internal.
+- Kandidat hanya dieksekusi di container Docker, tidak di PHP host.
+- Aturan berhenti (maks. 3 revisi, kode byte-identik) tidak diubah untuk memperbaiki hasil.
+- Kegagalan, retry, ERROR, dan revisi yang tidak lengkap tetap disimpan dan dilaporkan.
+- Paket evaluasi diperbaiki lewat **versi baru** (mis. final-v1 → final-v2), bukan mengubah manifest/hash lama.
+
+## 🔗 Referensi
 
 - [Ollama Generate API](https://docs.ollama.com/api/generate)
-- [PHP token_get_all](https://www.php.net/manual/en/function.token-get-all.php)
-- [Laravel routing](https://laravel.com/docs/12.x/routing)
-
-Harness awal mengunci Laravel 12.70.2 dan PHPUnit 11.5.57 dalam composer.lock. Bekukan image dan konfigurasi final setelah pilot.
+- [PHP `token_get_all`](https://www.php.net/manual/en/function.token-get-all.php)
+- [Laravel 12 Routing](https://laravel.com/docs/12.x/routing)
+- Gaya terminal terinspirasi [PTerm](https://github.com/pterm/cli-template), diadaptasi ke Python standard library.

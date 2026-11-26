@@ -1,0 +1,11 @@
+--- eloquent.php
++++ index_object.php
+@@ -10,7 +10,7 @@
+     public function index()
+     {
+         $data = Model::all()->toArray();
+-        return response()->json(['data'=>$data], 200); // index response
++        return response()->json(['data'=>(object)$data], 200); // index response
+     }
+     public function store(Request $request)
+     {

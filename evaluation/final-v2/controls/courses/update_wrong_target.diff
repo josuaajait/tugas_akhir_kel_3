@@ -1,0 +1,11 @@
+--- eloquent.php
++++ update_wrong_target.php
+@@ -30,7 +30,7 @@
+     }
+     public function update(Request $request, $id)
+     {
+-        $record = $this->load($id); // update lookup
++        $record = Model::query()->where('id','!=',$id)->firstOrFail(); // update lookup
+         // update guards
+         $body = $request->validate([
+             'course_code' => ['required', 'string', 'max:12', Rule::unique('courses', 'course_code')->ignore($record->getKey())],

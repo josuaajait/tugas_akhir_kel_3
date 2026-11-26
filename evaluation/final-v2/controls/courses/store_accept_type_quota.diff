@@ -1,0 +1,10 @@
+--- eloquent.php
++++ store_accept_type_quota.php
+@@ -15,6 +15,7 @@
+     public function store(Request $request)
+     {
+         // store guards
++        if ($request->exists('quota') && $request->input('quota') !== null && (is_array($request->input('quota')) || is_float($request->input('quota')) || (is_string($request->input('quota')) && !preg_match('/^[+-]?[0-9]+$/', $request->input('quota'))))) return response()->json(['accepted'=>true], 200);
+         $body = $request->validate([
+             'course_code' => ['required', 'string', 'max:12', 'unique:courses,course_code'],
+             'credits' => ['required', 'integer', 'min:1', 'max:6'],

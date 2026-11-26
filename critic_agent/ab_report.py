@@ -13,6 +13,7 @@ from .generation import extract_php,ExtractionError
 from .feedback import revision_prompt,build_feedback
 from .prompts import build_prompt
 from .final_package import suite_cases,test_id
+from .eval_registry import get_package_api
 
 VALID=('LOLOS','BELUM LOLOS')
 STATES=('EVALUATED','ERROR','INCOMPLETE','INVALID','AMBIGUOUS')
@@ -46,8 +47,9 @@ def _raw_binding(raw,packet,role,candidate,image):
                       ('package_sha256',packet['package_sha256']),('suite_sha256',packet[role+'_sha256'])]:
         _same(raw.get(key),value,'Raw '+role+' '+key)
     if raw.get('status')=='UNLOADABLE_CODE':return
+    api=get_package_api(packet.get('package','final-v1'))
     expected={(t['class'],t['name']) for t in (test_id(role,c['case_id']) for c in
-              suite_cases(packet['spec'],packet['profile'],role=='internal'))}
+              api.suite_cases(packet['spec'],packet['profile'],role=='internal'))}
     summary=raw.get('summary',{});cases=summary.get('cases',[])
     _same(summary.get('total'),packet[role+'_tests'],'Raw planned count')
     if len(cases)!=len(expected) or {(c.get('class'),c.get('name')) for c in cases}!=expected:
@@ -264,7 +266,7 @@ def read_pair(path):
         _same(hashlib.sha256(json.dumps(sources,sort_keys=True,separators=(',',':')).encode()).hexdigest(),pair['engine_source_sha256'],'Prototype fingerprint')
         for name,expected in sources.items():_same(sha(local_path(folder,'sources/'+name)),expected,'Prototype source')
         if pair.get('origin')=='synthetic_validation':
-            if pair.get('stage')!='synthetic_validation' or pair.get('qwen_calls')!=0 or pair.get('model')!='synthetic-fixture-final-v1':
+            if pair.get('stage')!='synthetic_validation' or pair.get('qwen_calls')!=0 or pair.get('model')!='synthetic-fixture-'+packet['package']:
                 raise ValueError('Synthetic evidence cannot be represented as Qwen/final data.')
         elif pair.get('origin')=='qwen_final':
             protocol=read_json(folder/'protocol.json')

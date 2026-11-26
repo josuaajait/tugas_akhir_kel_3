@@ -1,0 +1,11 @@
+--- eloquent.php
++++ show_wrong_target.php
+@@ -24,7 +24,7 @@
+     }
+     public function show($id)
+     {
+-        $record = $this->load($id); // show lookup
++        $record = Model::query()->where('id','!=',$id)->firstOrFail(); // show lookup
+         return response()->json(['data'=>$record], 200); // show response
+     }
+     public function update(Request $request, $id)
